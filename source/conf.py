@@ -16,7 +16,7 @@ release = '0.0'
 
 extensions = [
     'recommonmark',
-    'sphinx_markdown_tables',
+    # 'sphinx_markdown_tables',
     'sphinxemoji.sphinxemoji',
     'sphinx.ext.githubpages',
     'sphinx_copybutton'
@@ -30,7 +30,7 @@ language = 'zh_CN'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
 
 

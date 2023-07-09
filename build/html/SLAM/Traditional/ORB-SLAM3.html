@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>ORB Feature Extraction &#8212; Polaris&#39; NoteBook 0.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SLAM/Traditional/ORB-SLAM3';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Polaris' NoteBook 0.0 文档</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sys</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Sys/index.html">Linux</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Sys/Linux/bind_device.html">Bind a USB device under a static name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Sys/Linux/nuc.html">本地部署</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/SLAM/Traditional/ORB-SLAM3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ORB Feature Extraction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ORB Feature Extraction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-matching">Feature Matching</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">词袋模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">图像检索</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-estimation">Motion Estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">关于优化算法</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-keyframe-span"><span style="color:green;">KeyFrame</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-kf-s-selection-span"><span style="color:green;">KF’s Selection</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-kf-s-insertation-span"><span style="color:green;">KF’s Insertation</span></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">地图的更新策略</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">共视图关键帧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">剔除地图点</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mappoint">地图点MapPoint</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">回环检测</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">位置识别</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="orb-feature-extraction">
+<h1>ORB Feature Extraction<a class="headerlink" href="#orb-feature-extraction" title="此标题的永久链接">#</a></h1>
+<ol class="simple">
+<li><p>输入图像，并对输入图像进行预处理，将其转换成灰度图像；</p></li>
+<li><p>初始化参数，包括特征点数量nfeatures，尺度scaleFactor，金字塔层数nlevel，初始阈值iniThFAST，最小阈值minThFAST等参数；</p></li>
+<li><p>计算金字塔图像，源码中使用8层金字塔，尺度因子为1.2，则通过对原图像进行不同层次的resize，可以获得8层金字塔的图像；</p></li>
+<li><p>计算特征点：</p>
+<ul class="simple">
+<li><p>将图像分割成网格，每个网格大小为W<em>W=30</em>30像素；</p></li>
+<li><p>遍历每个网格；</p></li>
+<li><p>对每个网格提取FAST关键点，先用初始阈值iniThFAST提取，若提取不到关键点，则改用最小阈值minThFAST提取。（注意，初始阈值一般比最小阈值大）</p></li>
+</ul>
+</li>
+<li><p>对所有提取到的关键点利用八叉树的形式进行划分：</p>
+<ul class="simple">
+<li><p>为了使得分布更加均匀</p></li>
+<li><p>按照像素宽和像素高的比值作为初始的节点数量，并将关键点坐标落在对应节点内的关键点分配入节点中；</p></li>
+<li><p>根据每个节点中存在的特征点数量作为判断依据，如果当前节点只有1个关键点，则停止分割。否则继续等分成4份；</p></li>
+<li><p>按照上述方法不断划分下去，如图3所示，可见出现一个八叉树的结构，终止条件是节点的数目Lnode大于等于要求的特征点数量nfeatures；</p></li>
+<li><p>对满足条件的节点进行遍历，在每个节点中保存响应值最大的关键点，保证特征点的高性能；</p></li>
+</ul>
+</li>
+<li><p>对上述所保存的所有节点中的特征点计算主方向，利用灰度质心的方法计算主方向，上一讲中我们已经讲解过方法，这讲就不再赘述了；</p></li>
+<li><p>对图像中每个关键点计算其描述子，值得注意的是，为了将主方向融入BRIEF中，在计算描述子时，ORB将pattern进行旋转，使得其具备旋转不变性；</p></li>
+</ol>
+</section>
+<section id="feature-matching">
+<h1>Feature Matching<a class="headerlink" href="#feature-matching" title="此标题的永久链接">#</a></h1>
+<section id="id1">
+<h2>词袋模型<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>特征就是单词，每一张图片都是一个袋子，装有某几个单词。</p>
+<p>字典是预先准备的。</p>
+<p>优点在于：</p>
+<ul class="simple">
+<li><p>把图片抽象成了几个单词的集合，在数学上用向量就可以简单表示，称为BOW向量。</p></li>
+<li><p>准备字典时，把单词通过多层聚类的方法进行分类，通过树进行索引，这个检索过程能达到对数级别的查找效率。</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>图像检索<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+</section>
+</section>
+<section id="motion-estimation">
+<h1>Motion Estimation<a class="headerlink" href="#motion-estimation" title="此标题的永久链接">#</a></h1>
+<p>核心方法就是3D-2D的PNP</p>
+<p>使用最小化重投影（与观测的）误差，通过优化的算法解的使得误差最小的运动矩阵。</p>
+<section id="id3">
+<h2>关于优化算法<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<hr class="docutils" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    1. 梯度下降法：
+
+    · 只考虑了该点是否在下降
+
+    · 实际上，由于梯度下降法过于贪心，通常会导致锯齿状下降，导致收敛速度缓慢；而且会陷入局部最优或者鞍点问题
+
+    2. 牛顿法：
+
+    · 不仅参考了一点的导数，还参考了导数的导数；考虑了下降后这个方向是不是依然在下降，可以优化梯度下降法中最终可能找到鞍点等错误的点的情况。
+
+    · 而牛顿法尽管使用了二阶近似，提高了下降速度，但对于SLAM问题而言，求解海塞阵的计算量太大，非常不适用；
+
+    ！！！！以下还没读懂！！！！！
+    -----------------------------------
+
+    3. 高斯牛顿法：
+
+    　　基于牛顿法改进的高斯牛顿法，通过二次近似二阶泰勒展开，利用雅克比的二次方来近似海塞阵，在计算量和下降速度上可以较好满足SLAM的需求，但存在的隐患是增量的范围超出泰勒展开时限定的微小邻域，导致近似失败；
+
+    4. 列文伯格-马夸尔特法：
+
+    　　列文伯格-马夸尔特法是基于高斯牛顿法进一步改进的，通过限定搜索区域，防止出现近似失败的情况，LM方法也是SLAM中最常用的优化方法。
+
+    -----------------------------------
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="span-style-color-green-keyframe-span">
+<h1><span style="color:green;">KeyFrame</span><a class="headerlink" href="#span-style-color-green-keyframe-span" title="此标题的永久链接">#</a></h1>
+<p>关键帧的目的在于，适当地降低信息冗余度，减少计算机资源的损耗，保证系统的平稳运行</p>
+<section id="span-style-color-green-kf-s-selection-span">
+<h2><span style="color:green;">KF’s Selection</span><a class="headerlink" href="#span-style-color-green-kf-s-selection-span" title="此标题的永久链接">#</a></h2>
+<ol class="simple">
+<li><p>若当前处于定位模式，不插入关键帧；</p></li>
+</ol>
+<p>原因：定位模式是只定位不建图，只利用已有的地图点对当前相机姿态进行估计，而不更新地图点，因此没有插入关键帧的必要。</p>
+<ol class="simple">
+<li><p>若局部地图处于全局闭环情况下，不插入关键帧；</p></li>
+</ol>
+<p>原因：局部地图被占用，插入关键帧会影响全局闭环的优化。</p>
+<ol class="simple">
+<li><p>若距离上一次重定位较近，不插入关键帧；</p></li>
+</ol>
+<p>原因：重定位时，当前帧通过与局部关键帧匹配并进行运动估计，能够很好地恢复其运动姿态。笔者认为，因为重定位时当前帧与重定位候选帧的信息冗余度较低，所以在重定位成功后，当前帧会作为关键帧插入地图中。而新来的一帧，由于重定位时刚刚插入关键帧，所以不需要频繁插入。</p>
+</section>
+<section id="span-style-color-green-kf-s-insertation-span">
+<h2><span style="color:green;">KF’s Insertation</span><a class="headerlink" href="#span-style-color-green-kf-s-insertation-span" title="此标题的永久链接">#</a></h2>
+<p>排除了上面三种情况，接下来就需要对关键帧进一步检测，才能确定是否真的需要插入关键帧。进一步检查包含一个必不可少的条件和另外三选一的条件。</p>
+</section>
+</section>
+<section id="id4">
+<h1>地图的更新策略<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h1>
+<p>如何插入新的关键帧和地图点，同样，怎么剔除多余的关键帧和没用的地图点</p>
+<section id="id5">
+<h2>共视图关键帧<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>遍历当前帧所有地图点,已有共同观测的地图点，则更新观测信息和地图点???；没有共同观测的，则临时存储；将共同观测数量大于15的关键帧加入共视图中，若无满足条件的，则将共同观测数量最多的关键帧加入共视图中，并取共同观测数量最大的作为当前帧的父节点。</p>
+</section>
+<section id="id6">
+<h2>剔除地图点<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<p>应该被看到却没被看到的；被看到的太少的；刚建出来就不见的。</p>
+<p>在剔除了不满足要求的地图点后，剩下的地图点都是要插入地图的</p>
+</section>
+</section>
+<section id="mappoint">
+<h1>地图点MapPoint<a class="headerlink" href="#mappoint" title="此标题的永久链接">#</a></h1>
+<p>特征点为2d的，是相机拍摄到的点
+地图点是3d的，是根据同一个特征点在多个地图中不同的位置三角化得到的</p>
+</section>
+<section id="id7">
+<h1>回环检测<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h1>
+<section id="id8">
+<h2>位置识别<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
+<p>利用一范数来度量当前帧与共视图关键帧之间的相似度分数，将所有相似分数进行排序，取最小的匹配分数 Smin
+作为参考值，用于查找回环候选帧。然后排除当前帧共视图的所有关键帧,</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ORB Feature Extraction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-matching">Feature Matching</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">词袋模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">图像检索</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-estimation">Motion Estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">关于优化算法</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-keyframe-span"><span style="color:green;">KeyFrame</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-kf-s-selection-span"><span style="color:green;">KF’s Selection</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-kf-s-insertation-span"><span style="color:green;">KF’s Insertation</span></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">地图的更新策略</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">共视图关键帧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">剔除地图点</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mappoint">地图点MapPoint</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">回环检测</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">位置识别</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： PolarisXQ
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, PolarisXQ.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
