@@ -1,11 +1,12 @@
 .. _SLAM:
 
-Traditional
+SLAM
 ==================================================
 
 **Table of Contents:**
 
 .. toctree::
     :maxdepth: 1
+    :caption: Traditional
 
     Traditional/ORB-SLAM3.md 
