@@ -14,10 +14,15 @@ release = '0.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
+import sphinx_copybutton
+import sphinxemoji
+import recommonmark
+import sphinx_markdown_tables
+
 extensions = [
     'recommonmark',
     # 'sphinx_markdown_tables',
-    'sphinxemoji.sphinxemoji',
+    # 'sphinxemoji.sphinxemoji',
     'sphinx.ext.githubpages',
     'sphinx_copybutton'
 ]
@@ -39,3 +44,5 @@ source_parsers = {
 '.md': CommonMarkParser,
 }
 source_suffix = ['.rst', '.md']
+
+
