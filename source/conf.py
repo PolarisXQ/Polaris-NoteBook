@@ -42,3 +42,4 @@ source_parsers = {
 source_suffix = ['.rst', '.md']
 
 
+html_logo = '_static/madccat.png'
