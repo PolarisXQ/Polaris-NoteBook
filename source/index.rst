@@ -12,4 +12,5 @@ Welcome to Polaris' NoteBook's documentation!
 
    Sys/index.rst
    SLAM/index.rst
+   Docker/index.rst
    

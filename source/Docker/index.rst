@@ -1,13 +1,12 @@
-.. _SLAM:
+.. _Docker:
 
-SLAM
+Docker
 ==================================================
 
 **Table of Contents:**
 
 .. toctree::
     :maxdepth: 1
-    :caption: Traditional
+    :caption: Docker
 
-    overview.md
-    Traditional/ORB-SLAM3.md 
+    HowtoRun.md 
