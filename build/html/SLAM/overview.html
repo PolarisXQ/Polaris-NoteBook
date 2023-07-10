@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>SLAM</title>
+      <title>An Simple Overview</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -29,8 +29,8 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="An Simple Overview" href="overview.html" />
-  <link rel="prev" title="本地部署" href="../Sys/Linux/nuc.html" /> 
+  <link rel="next" title="ORB（Oriented FAST + Rotated BRIEF） Feature Extraction" href="Traditional/ORB-SLAM3.html" />
+  <link rel="prev" title="SLAM" href="index.html" /> 
   </head>
 
   <body>
@@ -97,7 +97,7 @@
       <p class="caption">
         <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook-s-documentation">Table of Contents</a></span>
       </p>
-      <ul class="current">
+      <ul class="">
         
           <li class="toctree-l1 ">
             
@@ -108,17 +108,11 @@
           </li>
 
         
-          <li class="toctree-l1 current">
+          <li class="toctree-l1 ">
             
-              <a href="#" class="reference internal current">SLAM</a>
+              <a href="index.html" class="reference internal ">SLAM</a>
             
 
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#slam" class="reference internal">SLAM</a></li>
-                
-              </ul>
             
           </li>
 
@@ -144,18 +138,20 @@
   <ul class="breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
     
-    <li>SLAM</li>
+      <li><a href="index.html">SLAM</a> &raquo;</li>
+    
+    <li>An Simple Overview</li>
   </ul>
   
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="../Sys/Linux/nuc.html"
-       title="上一章">← 本地部署</a>
+    <a href="index.html"
+       title="上一章">← SLAM</a>
   </li>
   <li class="next">
-    <a href="overview.html"
-       title="下一章">An Simple Overview →</a>
+    <a href="Traditional/ORB-SLAM3.html"
+       title="下一章">ORB（Oriented FAST + Rotated BRIEF） Feature Extraction →</a>
   </li>
 </ul>
   
@@ -163,48 +159,17 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="slam">
-<span id="id1"></span><h1>SLAM<a class="headerlink" href="#slam" title="此标题的永久链接">¶</a></h1>
-<p><strong>Table of Contents:</strong></p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Traditional</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">An Simple Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#geomeetry-method">Geomeetry Method</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html">ORB（Oriented FAST + Rotated BRIEF） Feature Extraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html#feature-matching">Feature Matching</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id1">词袋模型</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id2">确定最优匹配？？？？</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html#motion-estimation">Motion Estimation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id3">在跟踪过程主要分为三种类型，来确定优化的初始值：</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#pnp">优化方法PNP</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id4">关于优化算法</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html#span-style-color-green-keyframe-span"><span style="color:green;">KeyFrame</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#span-style-color-green-kf-s-selection-span"><span style="color:green;">KF’s Selection</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#span-style-color-green-kf-s-insertation-span"><span style="color:green;">KF’s Insertation</span></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id5">地图的更新策略</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id6">共视图关键帧</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id7">剔除地图点</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html#mappoint">地图点MapPoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id8">回环检测</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Traditional/ORB-SLAM3.html#id9">位置识别</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Traditional/RecommendReading.html">阅读推荐</a></li>
-</ul>
-</div>
+  <section id="an-simple-overview">
+<h1>An Simple Overview<a class="headerlink" href="#an-simple-overview" title="此标题的永久链接">¶</a></h1>
+<section id="geomeetry-method">
+<h2>Geomeetry Method<a class="headerlink" href="#geomeetry-method" title="此标题的永久链接">¶</a></h2>
+<p>points:
+ORB/SIFT/
+mesh
+TSD
+object
+surfels</p>
+</section>
 </section>
 
 
@@ -212,12 +177,12 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="../Sys/Linux/nuc.html"
-       title="上一章">← 本地部署</a>
+    <a href="index.html"
+       title="上一章">← SLAM</a>
   </li>
   <li class="next">
-    <a href="overview.html"
-       title="下一章">An Simple Overview →</a>
+    <a href="Traditional/ORB-SLAM3.html"
+       title="下一章">ORB（Oriented FAST + Rotated BRIEF） Feature Extraction →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.

@@ -6,8 +6,9 @@ SLAM
 **Table of Contents:**
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 0
     :caption: Traditional
 
     overview.md
     Traditional/ORB-SLAM3.md 
+    Traditional/RecommendReading.md 
