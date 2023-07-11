@@ -6,7 +6,7 @@ SLAM
 **Table of Contents:**
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 1
     :caption: Traditional
 
     overview.md

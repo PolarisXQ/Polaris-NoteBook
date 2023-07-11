@@ -160,10 +160,17 @@
 </pre></div>
 </div>
 <ul class="simple">
+<li><p>–gpus all 要在主机上安装 NVIDIA Container Toolkit</p>
+<ul>
+<li><p>all：在容器内启用所有可用的GPU设备</p></li>
+<li><p>0,1,2：在容器内启用指定的GPU设备，这里的数字表示GPU设备的索引号</p></li>
+<li><p>gpu-model-name:3：在容器内启用指定型号和数量的GPU设备，这里的 gpu-model-name 是GPU设备型号的名称，数字 3 表示要启用3个该型号的GPU设备</p></li>
+</ul>
+</li>
 <li><p>-name: name for container</p></li>
 <li><p>-it: 分配一个伪终端并保持STDIN打开，以便您可以与容器进行交互</p></li>
 <li><p>-d: 让容器在后台运行</p></li>
-<li><p>-v 挂载一个卷（volume）到容器中</p>
+<li><p>-v 挂载一个卷（volume）到容器中，文件同步修改</p>
 <ul>
 <li><p><span style="color:purple;">【Windows format】E:\file\path\in\host:/home/file/path/in/container</span></p></li>
 </ul>
@@ -171,8 +178,12 @@
 <li><p>-e: 设置环境变量</p>
 <ul>
 <li><p><span style="color:purple;">Windos中设置docker内端口转发到xlaunch中的方法:  DISPLAY=host.docker.internal:0.0</span></p></li>
+<li><p>NVIDIA_DRIVER_CAPABILITIES=all 选项是为了在容器中启用NVIDIA GPU加速，以便在容器内运行需要GPU的应用程序。</p></li>
 </ul>
 </li>
+<li><p>–ipc：表示容器使用主机的 IPC（进程间通信）命名空间。</p></li>
+<li><p>–privileged：表示容器将以特权模式运行，可以访问主机的所有设备和文件系统。</p></li>
+<li><p>-net 选项是为了将容器连接到网络</p></li>
 </ul>
 <section id="example">
 <h2>EXAMPLE<a class="headerlink" href="#example" title="此标题的永久链接">¶</a></h2>

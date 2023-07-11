@@ -29,7 +29,7 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="ORB（Oriented FAST + Rotated BRIEF） Feature Extraction" href="Traditional/ORB-SLAM3.html" />
+  <link rel="next" title="ORB_SLAM" href="Traditional/ORB-SLAM3.html" />
   <link rel="prev" title="SLAM" href="index.html" /> 
   </head>
 
@@ -151,7 +151,7 @@
   </li>
   <li class="next">
     <a href="Traditional/ORB-SLAM3.html"
-       title="下一章">ORB（Oriented FAST + Rotated BRIEF） Feature Extraction →</a>
+       title="下一章">ORB_SLAM →</a>
   </li>
 </ul>
   
@@ -169,6 +169,11 @@ mesh
 TSD
 object
 surfels</p>
+<p>| Algorithm | Pros | Cons | Geometry | Device | Backend | Senser |
+| — | — | — | — | — | — | — |
+| ORB-SLAM | Fast,Light,Robust | if parse, then unable to contruct a 2d grip map for navigation; if dense, too heavy？ | Point | | G2O | Various |
+| SG-SLAM() | 2D-Semantic(ncnn), dynamic object elimination, real-time  | dense(otc) | Point | | G2O | RGBD |
+| VINS-Mono | 行2列2 | 行2列3 | | | |</p>
 </section>
 </section>
 
@@ -182,7 +187,7 @@ surfels</p>
   </li>
   <li class="next">
     <a href="Traditional/ORB-SLAM3.html"
-       title="下一章">ORB（Oriented FAST + Rotated BRIEF） Feature Extraction →</a>
+       title="下一章">ORB_SLAM →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.

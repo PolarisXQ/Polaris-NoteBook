@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>ORB（Oriented FAST + Rotated BRIEF） Feature Extraction</title>
+      <title>ORB_SLAM</title>
     
           <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
@@ -29,7 +29,7 @@
       <link rel="shortcut icon" href="../../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../../genindex.html" />
   <link rel="search" title="搜索" href="../../search.html" />
-  <link rel="next" title="Docker" href="../../Docker/index.html" />
+  <link rel="next" title="阅读推荐" href="RecommendReading.html" />
   <link rel="prev" title="An Simple Overview" href="../overview.html" /> 
   </head>
 
@@ -140,7 +140,7 @@
     
       <li><a href="../index.html">SLAM</a> &raquo;</li>
     
-    <li>ORB（Oriented FAST + Rotated BRIEF） Feature Extraction</li>
+    <li>ORB_SLAM</li>
   </ul>
   
 
@@ -150,8 +150,8 @@
        title="上一章">← An Simple Overview</a>
   </li>
   <li class="next">
-    <a href="../../Docker/index.html"
-       title="下一章">Docker →</a>
+    <a href="RecommendReading.html"
+       title="下一章">阅读推荐 →</a>
   </li>
 </ul>
   
@@ -159,8 +159,10 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="orb-oriented-fast-rotated-brief-feature-extraction">
-<h1>ORB（Oriented FAST + Rotated BRIEF） Feature Extraction<a class="headerlink" href="#orb-oriented-fast-rotated-brief-feature-extraction" title="此标题的永久链接">¶</a></h1>
+  <section id="orb-slam">
+<h1>ORB_SLAM<a class="headerlink" href="#orb-slam" title="此标题的永久链接">¶</a></h1>
+<section id="orb-oriented-fast-rotated-brief-feature-extraction">
+<h2>ORB（Oriented FAST + Rotated BRIEF） Feature Extraction<a class="headerlink" href="#orb-oriented-fast-rotated-brief-feature-extraction" title="此标题的永久链接">¶</a></h2>
 <p><strong>步骤:</strong>
 <img alt="../../_images/step_orb_ext.png" src="../../_images/step_orb_ext.png" /></p>
 <ol class="simple">
@@ -193,7 +195,7 @@
 </ol>
 </section>
 <section id="feature-matching">
-<h1>Feature Matching<a class="headerlink" href="#feature-matching" title="此标题的永久链接">¶</a></h1>
+<h2>Feature Matching<a class="headerlink" href="#feature-matching" title="此标题的永久链接">¶</a></h2>
 <p><strong>步骤：</strong></p>
 <ol class="simple">
 <li><p>对新来的帧进行特征提取</p></li>
@@ -201,7 +203,7 @@
 <li><p>在匹配时我们查找两帧BOW向量中相同ID的词汇，特征匹配只在有相同ID的词汇中进行。显然，这个过程限定了匹配范围，可以提高匹配的速度。当然，匹配的精度跟词汇树的大小和深度有关系。</p></li>
 </ol>
 <section id="id1">
-<h2>词袋模型<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<h3>词袋模型<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h3>
 <ul class="simple">
 <li><p>字典是预先准备的。</p></li>
 <li><p>优点在于：</p>
@@ -213,16 +215,16 @@
 </ul>
 </section>
 <section id="id2">
-<h2>确定最优匹配？？？？<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<h3>确定最优匹配？？？？<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
 <p>ORBSLAM2中将360°分成30个bin，每个bin的范围是12°。对于图像1和图像2任意两个对应匹配特征，我们计算其二者主方向的夹角。根据夹角的大小确定在哪个角度范围里，并将特征索引存入对应bin中。</p>
 <p>我们统计每个bin中保存的索引数量，取数量最多的前三个bin作为最终的匹配对结果。其他的匹配对全部予以删除。至此，我们的最优匹配就全部确定了。</p>
 <p>不过，值得注意的是，我们实际上匹配的点只是一部分，另一部分没有匹配到的，在后面会通过共试图关键帧以及局部地图重投影进行进一步匹配，我们会在后续的内容中讲解。</p>
 </section>
 </section>
 <section id="motion-estimation">
-<h1>Motion Estimation<a class="headerlink" href="#motion-estimation" title="此标题的永久链接">¶</a></h1>
+<h2>Motion Estimation<a class="headerlink" href="#motion-estimation" title="此标题的永久链接">¶</a></h2>
 <section id="id3">
-<h2>在跟踪过程主要分为三种类型，来确定优化的初始值：<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<h3>在跟踪过程主要分为三种类型，来确定优化的初始值：<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
 <p><img alt="../../_images/motion_est.png" src="../../_images/motion_est.png" /></p>
 <ol class="simple">
 <li><p>无运动模型的跟踪，即基于参考帧的跟踪；</p></li>
@@ -232,7 +234,7 @@
 </ol>
 </section>
 <section id="pnp">
-<h2>优化方法PNP<a class="headerlink" href="#pnp" title="此标题的永久链接">¶</a></h2>
+<h3>优化方法PNP<a class="headerlink" href="#pnp" title="此标题的永久链接">¶</a></h3>
 <p>PNP是一种将匹配点从三维空间投影到像平面并与观测数据计算误差来估计相机运动的方法，我们也管这种方法叫重投影误差。
 使用重投影（与观测的）误差，通过优化的算法解的使得误差最小的运动矩阵,作为运动估计。</p>
 <p>基于解析的PNP方法:</p>
@@ -246,7 +248,7 @@
 <p><span style="color:green;">人生苦短，证明就略过把😎</span></p>
 <p>反正最后得到了误差对运动矩阵的导数式，然后就可以用g2o或者ceres来求解最小误差（最小二乘法）的运动矩阵了。</p>
 <section id="id4">
-<h3>关于优化算法<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+<h4>关于优化算法<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    1. 梯度下降法：
 
     · 只考虑了该点是否在下降
@@ -277,52 +279,79 @@
 </section>
 </section>
 <section id="span-style-color-green-keyframe-span">
-<h1><span style="color:green;">KeyFrame</span><a class="headerlink" href="#span-style-color-green-keyframe-span" title="此标题的永久链接">¶</a></h1>
+<h2><span style="color:green;">KeyFrame</span><a class="headerlink" href="#span-style-color-green-keyframe-span" title="此标题的永久链接">¶</a></h2>
 <p>关键帧的目的在于，适当地降低信息冗余度，减少计算机资源的损耗，保证系统的平稳运行</p>
 <section id="span-style-color-green-kf-s-selection-span">
-<h2><span style="color:green;">KF’s Selection</span><a class="headerlink" href="#span-style-color-green-kf-s-selection-span" title="此标题的永久链接">¶</a></h2>
-<ol class="simple">
-<li><p>若当前处于定位模式，不插入关键帧；</p></li>
-</ol>
-<p>原因：定位模式是只定位不建图，只利用已有的地图点对当前相机姿态进行估计，而不更新地图点，因此没有插入关键帧的必要。</p>
-<ol class="simple">
-<li><p>若局部地图处于全局闭环情况下，不插入关键帧；</p></li>
-</ol>
+<h3><span style="color:green;">KF’s Selection</span><a class="headerlink" href="#span-style-color-green-kf-s-selection-span" title="此标题的永久链接">¶</a></h3>
+<ol>
+<li><p>若当前处于定位模式，不插入关键帧；</p>
+<p>原因：定位模式是只定位不建图</p>
+</li>
+<li><p>若局部地图处于全局闭环情况下，不插入关键帧；</p>
 <p>原因：局部地图被占用，插入关键帧会影响全局闭环的优化。</p>
-<ol class="simple">
-<li><p>若距离上一次重定位较近，不插入关键帧；</p></li>
-</ol>
+</li>
+<li><p>若距离上一次重定位较近，不插入关键帧；</p>
 <p>原因：重定位时，当前帧通过与局部关键帧匹配并进行运动估计，能够很好地恢复其运动姿态。笔者认为，因为重定位时当前帧与重定位候选帧的信息冗余度较低，所以在重定位成功后，当前帧会作为关键帧插入地图中。而新来的一帧，由于重定位时刚刚插入关键帧，所以不需要频繁插入。</p>
+</li>
+</ol>
+<p>排除了上面三种情况，接下来就需要对关键帧进一步检测，才能确定是否真的需要插入关键帧。进一步检查包含一个必不可少的条件和另外三选一的条件。</p>
+<ol>
+<li><p>内点数必须超过设定的最小阈值，并且重叠度不能太大；</p>
+<p>原因：保证关键帧跟踪的质量，同时，避免引入过多的信息冗余。</p>
+</li>
+</ol>
+<p>三选一的条件：</p>
+<p>2.1 距离上次插入关键帧已经过去MAX帧，MAX是ORBSLAM2预设的最大值；</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>原因：防止过去太多帧，跟踪丢失。
+</pre></div>
+</div>
+<p>2.2 距离上次插入关键帧至少过去MIN帧，且局部建图线程处于空闲状态，MIN是ORBSLAM2预设的最小值；</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>原因：防止图像重叠度太高，并且局部建图线程有空闲处理新的关键帧。
+</pre></div>
+</div>
+<p>2.3 局部建图线程中关键帧队列的关键帧数量不超过3个；</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>原因：主要也是考虑局部建图线程的处理能力，以及信息的冗余度问题吧。
+</pre></div>
+</div>
+<p>插入关键帧的条件即是必须满足条件1以及满足2.1-2.3中任意一个条件。</p>
 </section>
 <section id="span-style-color-green-kf-s-insertation-span">
-<h2><span style="color:green;">KF’s Insertation</span><a class="headerlink" href="#span-style-color-green-kf-s-insertation-span" title="此标题的永久链接">¶</a></h2>
-<p>排除了上面三种情况，接下来就需要对关键帧进一步检测，才能确定是否真的需要插入关键帧。进一步检查包含一个必不可少的条件和另外三选一的条件。</p>
+<h3><span style="color:green;">KF’s Insertation</span><a class="headerlink" href="#span-style-color-green-kf-s-insertation-span" title="此标题的永久链接">¶</a></h3>
+<ol>
+<li><p>中断局部建图线程，即中断处理地图点、关键帧以及优化相机位姿；</p>
+<p>原因：这是必须插入关键帧的情况，强制终止局部建图。</p>
+</li>
+<li><p>更新当前关键帧的位姿，即从 $T$ 矩阵中取出旋转矩阵 $R$
+和位移矩阵 $t$  以及相机中心 $O$；</p>
+<p>原因：主要用于局部建图模块和回环检测模块中做重投影。</p>
+</li>
+<li><p>将当前帧所对应的地图点按深度信息进行排序；</p>
+<p>原因：筛除超出深度阈值的地图点。</p>
+</li>
+<li><p>对当前关键帧中未关联的三维点，创建新的地图点，具体包括观测信息，更新地图点的描述子以及法向量和深度；</p>
+<p>原因：非常平凡的创建地图点的过程。</p>
+</li>
+<li><p>将所创建的地图点插入地图中，最后将更新后的关键帧也插入地图中。</p>
+<p>原因：插入关键帧的过程最后一个步骤。</p>
+</li>
+</ol>
+<p>插入关键帧的流程大体如上面五个步骤所述。大家在设计关键帧插入流程时可以参考这几种方案，当然也可以根据实际需要设计更符合要求的方案。</p>
 </section>
 </section>
 <section id="id5">
-<h1>地图的更新策略<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h1>
-<p>如何插入新的关键帧和地图点，同样，怎么剔除多余的关键帧和没用的地图点</p>
+<h2>地图的更新策略<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+</section>
+<section id="kp-s-triangular">
+<h2>KP’s Triangular<a class="headerlink" href="#kp-s-triangular" title="此标题的永久链接">¶</a></h2>
+<p>三角化是用来估计相机和地图上的三维点之间的关系。具体来说，当ORB-SLAM使用两个或更多个视角拍摄同一场景时，它会使用三角化算法将这些视角中观察到的特征点转换为三维点。这些三维点可以用于构建地图和定位相机。</p>
+<p>当一个特征点在至少两个视角下都有匹配时，ORB-SLAM会使用三角化技术计算该特征点的3D位置。因此，只有那些至少在两个视角下都有匹配的特征点才会被用于三角化。</p>
+</section>
 <section id="id6">
-<h2>共视图关键帧<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
-<p>遍历当前帧所有地图点,已有共同观测的地图点，则更新观测信息和地图点???；没有共同观测的，则临时存储；将共同观测数量大于15的关键帧加入共视图中，若无满足条件的，则将共同观测数量最多的关键帧加入共视图中，并取共同观测数量最大的作为当前帧的父节点。</p>
-</section>
+<h2>回环检测<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p>回环检测模块包含两个部分的内容：其一是位置识别，即外观验证，通过图像间的相似度信息进行判断；其二是几何验证，通过回环候选帧与当前关键帧的几何关系来做进一步验证。</p>
 <section id="id7">
-<h2>剔除地图点<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
-<p>应该被看到却没被看到的；被看到的太少的；刚建出来就不见的。</p>
-<p>在剔除了不满足要求的地图点后，剩下的地图点都是要插入地图的</p>
+<h3>位置识别<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h3>
 </section>
-</section>
-<section id="mappoint">
-<h1>地图点MapPoint<a class="headerlink" href="#mappoint" title="此标题的永久链接">¶</a></h1>
-<p>特征点为2d的，是相机拍摄到的点
-地图点是3d的，是根据同一个特征点在多个地图中不同的位置三角化得到的</p>
-</section>
-<section id="id8">
-<h1>回环检测<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h1>
-<section id="id9">
-<h2>位置识别<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h2>
-<p>利用一范数来度量当前帧与共视图关键帧之间的相似度分数，将所有相似分数进行排序，取最小的匹配分数 Smin
-作为参考值，用于查找回环候选帧。然后排除当前帧共视图的所有关键帧,</p>
 </section>
 </section>
 
@@ -335,8 +364,8 @@
        title="上一章">← An Simple Overview</a>
   </li>
   <li class="next">
-    <a href="../../Docker/index.html"
-       title="下一章">Docker →</a>
+    <a href="RecommendReading.html"
+       title="下一章">阅读推荐 →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
