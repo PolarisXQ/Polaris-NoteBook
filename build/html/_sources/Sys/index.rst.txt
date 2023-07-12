@@ -10,4 +10,5 @@ Sys
     :caption: Linux
 
     Linux/bind_device.md 
-    Linux/nuc.md
+    Linux/miceli.md
+    .. Linux/nuc.md

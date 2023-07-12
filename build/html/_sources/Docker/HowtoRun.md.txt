@@ -1,4 +1,4 @@
-# How to Run a Container
+# Some Useful Command
 
 ```bash
 docker run [option] [image_name]
@@ -29,8 +29,41 @@ docker run [option] [image_name]
 
 - -net 选项是为了将容器连接到网络
 
+
+<!-- ## OPTION FOR ROS
+
+To make two container communicate with each other
+
+-e ROS_MASTER_URI=http://ros-master:11311  -->
+
 ## EXAMPLE
 ```bash
-docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -it thiagofalcao/opencv3
+docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -dit thiagofalcao/opencv3
 ```
 
+```bash
+docker run -dit --name sim-server --network net-sim ^
+	--gpus all ^
+	-e ROS_MASTER_URI=http://ros-master:11311 ^
+	-e DISPLAY=^%DISPLAY% ^
+	-e QT_X11_NO_MITSHM=1 ^
+	-e NO_AT_BRIDGE=1 ^
+	-e LIBGL_ALWAYS_SOFTWARE=1 ^
+	-e NVIDIA_DRIVER_CAPABILITIES=all ^
+	-v /tmp/.X11-unix:/tmp/.X11-unix ^
+	%SERVER_IMAGE% 
+```
+
+现在，我们需要将容器中的更改更新到原始镜像。首先，我们需要获取容器 ID：
+```shell
+docker ps -l
+```
+
+找到容器 ID 后，可以使用以下命令生成一个新的镜像：
+
+```shell
+docker commit CONTAINER_ID NEW_IMAGE_NAME[:tag(latest)]
+```
+
+
+docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 sg-slam

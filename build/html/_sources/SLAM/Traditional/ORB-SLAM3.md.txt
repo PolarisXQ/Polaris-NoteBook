@@ -1,5 +1,6 @@
 # ORB_SLAM
 
+
 ## ORB（Oriented FAST + Rotated BRIEF） Feature Extraction
 
 __步骤:__
@@ -30,6 +31,7 @@ FAST特征点和ORB描述子本身不具有尺度信息，ORBextractor通过构�
 6. 对上述所保存的所有节点中的特征点计算主方向，利用灰度质心的方法计算主方向，上一讲中我们已经讲解过方法，这讲就不再赘述了；
 
 7. 对图像中每个关键点计算其描述子，值得注意的是，为了将主方向融入BRIEF中，在计算描述子时，ORB将pattern进行旋转，使得其具备旋转不变性；(随便理解一下把)
+
 
 ## Feature Matching
 
