@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Polaris' NoteBook's documentation!
+Welcome to Polaris' NoteBook!
 =============================================
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Table of Contents
+   :titlesonly:
+   :maxdepth: 2
 
    Sys/index.rst
    SLAM/index.rst

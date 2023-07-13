@@ -1,12 +1,8 @@
-.. _Docker:
-
 Docker
 ==================================================
 
-**Table of Contents:**
-
 .. toctree::
-    :maxdepth: 1
-    :caption: Docker
+    :maxdepth: 2
 
-    HowtoRun.md 
+    HowtoRun
+    domain

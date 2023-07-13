@@ -1,5 +1,3 @@
-.. _Sys:
-
 Sys
 ==================================================
 
@@ -9,6 +7,6 @@ Sys
     :maxdepth: 1
     :caption: Linux
 
-    Linux/bind_device.md 
-    Linux/miceli.md
-    .. Linux/nuc.md
+    Linux/bind_device
+    Linux/miceli
+    .. Linux/nuc

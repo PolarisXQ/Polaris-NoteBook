@@ -9,4 +9,4 @@ SLAM
     :maxdepth: 1
     :caption: Traditional
 
-    Traditional/ORB-SLAM3.md 
+    Traditional/ORB-SLAM3 
