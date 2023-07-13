@@ -7,10 +7,10 @@ Welcome to Polaris' NoteBook!
 =============================================
 
 .. toctree::
-   :titlesonly:
    :maxdepth: 2
 
-   Sys/index.rst
-   SLAM/index.rst
-   Docker/index.rst
+   Sys
+   SLAM
+   Docker
+   Miscellaneous
    

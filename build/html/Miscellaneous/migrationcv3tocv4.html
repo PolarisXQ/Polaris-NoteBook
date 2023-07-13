@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>Sys</title>
+      <title>Migration from OpenCV3 to CV4</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -28,9 +28,7 @@
     
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
-  <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="Bind a USB device under a static name" href="Linux/bind_device.html" />
-  <link rel="prev" title="Welcome to Polaris’ NoteBook!" href="../index.html" /> 
+  <link rel="search" title="搜索" href="../search.html" /> 
   </head>
 
   <body>
@@ -97,26 +95,11 @@
       <p class="caption">
         <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">welcome to polaris' notebook!</a></span>
       </p>
-      <ul class="current">
-        
-          <li class="toctree-l1 current">
-            
-              <a href="#" class="reference internal current">Sys</a>
-            
-
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#sys" class="reference internal">Sys</a></li>
-                
-              </ul>
-            
-          </li>
-
+      <ul class="">
         
           <li class="toctree-l1 ">
             
-              <a href="../SLAM/index.html" class="reference internal ">SLAM</a>
+              <a href="../Sys.html" class="reference internal ">Sys</a>
             
 
             
@@ -125,7 +108,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Docker/index.html" class="reference internal ">Docker</a>
+              <a href="../SLAM.html" class="reference internal ">SLAM</a>
             
 
             
@@ -134,7 +117,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../migrationfromcv324.html" class="reference internal ">Migration from OpenCV3 to CV4</a>
+              <a href="../Docker.html" class="reference internal ">Docker</a>
             
 
             
@@ -153,49 +136,49 @@
   <ul class="breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
     
-    <li>Sys</li>
+    <li>Migration from OpenCV3 to CV4</li>
   </ul>
   
 
   <ul class="page-nav">
-  <li class="prev">
-    <a href="../index.html"
-       title="上一章">← Welcome to Polaris’ NoteBook!</a>
-  </li>
-  <li class="next">
-    <a href="Linux/bind_device.html"
-       title="下一章">Bind a USB device under a static name →</a>
-  </li>
 </ul>
   
 </div>
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="sys">
-<h1>Sys<a class="headerlink" href="#sys" title="此标题的永久链接">¶</a></h1>
-<p><strong>Table of Contents:</strong></p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Linux/bind_device.html">Bind a USB device under a static name</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Linux/miceli.html">Miscellaneous</a></li>
-</ul>
+  <section id="migration-from-opencv3-to-cv4">
+<h1>Migration from OpenCV3 to CV4<a class="headerlink" href="#migration-from-opencv3-to-cv4" title="此标题的永久链接">¶</a></h1>
+<p>-CV_color-convertion</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/opencv.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/imgproc/types_c.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/opencv.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/imgproc/types_c.h&gt;</span>
+</pre></div>
 </div>
+<p>CV_LOAD_IMAGE_UNCHANGED</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;opencv2/imgcodecs/legacy/constants_c.h&quot;</span><span class="c1"> </span>
+</pre></div>
+</div>
+<section id="test1">
+<h2>test1<a class="headerlink" href="#test1" title="此标题的永久链接">¶</a></h2>
+<section id="test2">
+<h3>test2<a class="headerlink" href="#test2" title="此标题的永久链接">¶</a></h3>
+</section>
+</section>
+<section id="test3">
+<h2>test3<a class="headerlink" href="#test3" title="此标题的永久链接">¶</a></h2>
+</section>
+<section id="test4">
+<h2>test4<a class="headerlink" href="#test4" title="此标题的永久链接">¶</a></h2>
+</section>
 </section>
 
 
           </div>
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
-  <li class="prev">
-    <a href="../index.html"
-       title="上一章">← Welcome to Polaris’ NoteBook!</a>
-  </li>
-  <li class="next">
-    <a href="Linux/bind_device.html"
-       title="下一章">Bind a USB device under a static name →</a>
-  </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
     <br>
