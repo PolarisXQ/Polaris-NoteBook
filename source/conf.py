@@ -35,7 +35,7 @@ language = 'zh_CN'
 html_theme = 'press'
 html_static_path = ['_static']
 html_sidebars = {
-    '**': ['util/searchbox.html', 'util/sidetoc.html'],
+    '***': ['util/searchbox.html', 'util/sidetoc.html'],
 }
 
 
