@@ -7,4 +7,4 @@ Sys
 
     Sys/Linux/bind_device
     Sys/Linux/Miscellaneous
-    .. Linux/nuc
+    Sys/Linux/nuc
