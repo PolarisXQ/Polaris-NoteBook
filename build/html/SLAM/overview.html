@@ -161,20 +161,119 @@
             
   <section id="an-simple-overview">
 <h1>An Simple Overview<a class="headerlink" href="#an-simple-overview" title="此标题的永久链接">¶</a></h1>
-<section id="geomeetry-method">
-<h2>Geomeetry Method<a class="headerlink" href="#geomeetry-method" title="此标题的永久链接">¶</a></h2>
-<p>points:
-ORB/SIFT/
-mesh
-TSD
-object
-surfels</p>
-<p>| Algorithm | Pros | Cons | Geometry | Device | Backend | Senser |
-| — | — | — | — | — | — | — |
-| ORB-SLAM | Fast,Light,Robust | if parse, then unable to contruct a 2d grip map for navigation; if dense, too heavy？ | Point | | G2O | Various |
-| SG-SLAM() | 2D-Semantic(ncnn), dynamic object elimination, real-time  | dense(otc) | Point | | G2O | RGBD |
-| VINS-Mono | 行2列2 | 行2列3 | | | |</p>
-</section>
+<section id="geometry-method">
+<h2>Geometry Method<a class="headerlink" href="#geometry-method" title="此标题的永久链接">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Sensors</th>
+<th>Back-End Optimization Algorithms</th>
+<th>Image Detection Methods</th>
+<th>Semantic Information</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORB-SLAM</td>
+<td>Monocular, Stereo [IMU] ,Depth</td>
+<td>Pose graph optimization [g2o]</td>
+<td>ORB feature matching</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>DSO</td>
+<td>Monocular</td>
+<td>Direct Sparse Odometry (DSO) [g2o]</td>
+<td>Photometric error minimization, feature tracking</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>VINS-mono</td>
+<td>Monocular</td>
+<td>Visual-Inertial Optimization (VIO)</td>
+<td>Feature tracking, IMU integration</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>VINS-Fusion</td>
+<td>Monocular, Stereo, IMU</td>
+<td>Visual-Inertial Optimization (VIO)</td>
+<td>Feature tracking, IMU integration</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>ROVIOLI</td>
+<td>Monocular, IMU, LiDAR</td>
+<td>Pose graph optimization</td>
+<td>Feature matching, IMU integration, LiDAR odometry</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>ELASTICFUSION</td>
+<td>RGB-D, IMU</td>
+<td>Pose graph optimization</td>
+<td>RGB-D frame-to-frame tracking, surfel fusion</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>VOXBLOX</td>
+<td>RGB-D</td>
+<td>Volumetric fusion</td>
+<td>TSDF volume integration, feature-based tracking</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>SLAM++</td>
+<td>Monocular, Stereo, IMU</td>
+<td>Pose graph optimization</td>
+<td>Feature matching, IMU integration, geometric constraints</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>SemanticFusion</td>
+<td>RGB-D</td>
+<td>Volumetric fusion</td>
+<td>Semantic segmentation, depth fusion</td>
+<td>Presence</td>
+</tr>
+<tr>
+<td>Mask-fusion</td>
+<td>RGB-D</td>
+<td>Volumetric fusion</td>
+<td>Instance segmentation, depth fusion</td>
+<td>Presence</td>
+</tr>
+<tr>
+<td>Segmap</td>
+<td>RGB-D</td>
+<td>Pose graph optimization, volumetric representation</td>
+<td>Feature-based tracking, segmentation</td>
+<td>Presence</td>
+</tr>
+<tr>
+<td>XIVO</td>
+<td>Monocular, Stereo, IMU</td>
+<td>Pose graph optimization</td>
+<td>Feature matching, IMU integration, geometric constraints</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>Voxblox++</td>
+<td>RGB-D</td>
+<td>Volumetric fusion</td>
+<td>Feature-based tracking, surfel mapping</td>
+<td>Absence</td>
+</tr>
+<tr>
+<td>Kimera</td>
+<td>RGB-D, IMU</td>
+<td>Pose graph optimization, volumetric fusion</td>
+<td>Feature matching, IMU integration, surfel mapping, semantic segmentation</td>
+<td>Presence</td>
+</tr>
+</tbody>
+</table></section>
 </section>
 
 

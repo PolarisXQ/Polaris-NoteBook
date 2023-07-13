@@ -4,39 +4,39 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>本地部署</title>
+      <title>Migration from OpenCV3 to CV4</title>
     
-          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
-          <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       
       <!-- sphinx script_files -->
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/translations.js"></script>
 
       
       <!-- bundled in js (rollup iife) -->
-      <!-- <script src="../../_static/theme-vendors.js"></script> -->
-      <script src="../../_static/theme.js" defer></script>
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
     
-      <link rel="shortcut icon" href="../../_static/madcat_mini.png"/>
-  <link rel="index" title="索引" href="../../genindex.html" />
-  <link rel="search" title="搜索" href="../../search.html" /> 
+      <link rel="shortcut icon" href="_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="genindex.html" />
+  <link rel="search" title="搜索" href="search.html" /> 
   </head>
 
   <body>
     <div id="app">
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
-  <router-link to="../../index.html" class="home-link">
+  <router-link to="index.html" class="home-link">
     
-      <img class="logo" src="../../_static/madcat_mini.png" alt="logo"/>
+      <img class="logo" src="_static/madcat_mini.png" alt="logo"/>
     
   </router-link>
 
@@ -81,7 +81,7 @@
           </navlinks><div id="searchbox" class="searchbox" role="search">
   <div class="caption"><span class="caption-text">快速搜索</span>
     <div class="searchformwrapper">
-      <form class="search" action="../../search.html" method="get">
+      <form class="search" action="search.html" method="get">
         <input type="text" name="q" />
         <input type="submit" value="搜索" />
         <input type="hidden" name="check_keywords" value="yes" />
@@ -93,13 +93,13 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook-s-documentation">Table of Contents</a></span>
+        <span class="caption-text"><a href="index.html#welcome-to-polaris-notebook-s-documentation">Table of Contents</a></span>
       </p>
       <ul class="">
         
           <li class="toctree-l1 ">
             
-              <a href="../index.html" class="reference internal ">Sys</a>
+              <a href="Sys/index.html" class="reference internal ">Sys</a>
             
 
             
@@ -108,7 +108,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../../SLAM/index.html" class="reference internal ">SLAM</a>
+              <a href="SLAM/index.html" class="reference internal ">SLAM</a>
             
 
             
@@ -117,7 +117,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../../Docker/index.html" class="reference internal ">Docker</a>
+              <a href="Docker/index.html" class="reference internal ">Docker</a>
             
 
             
@@ -134,9 +134,9 @@
           <div class="body-header" role="navigation" aria-label="navigation">
   
   <ul class="breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>本地部署</li>
+    <li>Migration from OpenCV3 to CV4</li>
   </ul>
   
 
@@ -147,11 +147,20 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="id1">
-<h1>本地部署<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
-</section>
-<section id="docker">
-<h1>Docker<a class="headerlink" href="#docker" title="此标题的永久链接">¶</a></h1>
+  <section id="migration-from-opencv3-to-cv4">
+<h1>Migration from OpenCV3 to CV4<a class="headerlink" href="#migration-from-opencv3-to-cv4" title="此标题的永久链接">¶</a></h1>
+<p>-CV——colorconvert</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/opencv.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/imgproc/types_c.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/opencv.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/imgproc/types_c.h&gt;</span>
+</pre></div>
+</div>
+<p>CV_LOAD_IMAGE_UNCHANGED</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;opencv2/imgcodecs/legacy/constants_c.h&quot;</span><span class="c1"> </span>
+</pre></div>
+</div>
 </section>
 
 

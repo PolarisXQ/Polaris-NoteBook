@@ -1,5 +1,6 @@
 # Some Useful Command
 
+## How to Run a Container
 ```bash
 docker run [option] [image_name]
 ```
@@ -25,16 +26,20 @@ docker run [option] [image_name]
     
 - --ipc：表示容器使用主机的 IPC（进程间通信）命名空间。
 
-- --privileged：表示容器将以特权模式运行，可以访问主机的所有设备和文件系统。
+- --privileged：表示容器将以特权模式运行，可以访问主机的所有设备和文件系统。特别是显卡！！！
 
 - -net 选项是为了将容器连接到网络
 
 
-<!-- ## OPTION FOR ROS
+## OPTION FOR ROS
 
-To make two container communicate with each other
+__To make two container communicate with each other：__
 
--e ROS_MASTER_URI=http://ros-master:11311  -->
+in container A， run roscore with a specific URI and net;
+in container B & C, connet to container A with the same net, ros-master URI;
+so B&C are using the same roscore and share the same network
+
+-e ROS_MASTER_URI=http://ros-master:11311 
 
 ## EXAMPLE
 ```bash
@@ -54,6 +59,12 @@ docker run -dit --name sim-server --network net-sim ^
 	%SERVER_IMAGE% 
 ```
 
+```shell
+docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 sg-slam
+```
+
+## How to Commit
+
 现在，我们需要将容器中的更改更新到原始镜像。首先，我们需要获取容器 ID：
 ```shell
 docker ps -l
@@ -66,4 +77,3 @@ docker commit CONTAINER_ID NEW_IMAGE_NAME[:tag(latest)]
 ```
 
 
-docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 sg-slam
