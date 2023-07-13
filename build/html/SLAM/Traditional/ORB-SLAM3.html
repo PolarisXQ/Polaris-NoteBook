@@ -229,7 +229,7 @@
 <ol class="simple">
 <li><p>无运动模型的跟踪，即基于参考帧的跟踪；</p></li>
 <li><p>基于匀速运动模型的跟踪；
-　ORBSLAM2中每次跟踪成功后，都会将两帧间的相对运动记录下来作为运动模型。在估计下一帧运动时，将前一帧的姿态，乘上这个运动模型，就得到了当前帧的姿态初值。</p></li>
+　ORBSLAM2中每次跟踪成功后，都会将两帧间的相对运动记录下来作为运动模型。在估计下一帧运动时，将前一帧的姿态，乘上这个运动模型，就得到了<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>的姿态初值。</p></li>
 <li><p>重定位(需要用到回环检测)；</p></li>
 </ol>
 </section>
@@ -243,7 +243,7 @@
 <li><p>SLAM问题当中，通常约束条件较多，因此基于解析的方法通常不能更好地利用约束条件;</p></li>
 <li><p>若将错误匹配对纳入解析方程中，会错误估计相机运动</p></li>
 <li><p>尽管可以通过随机选取多组匹配对进行估算多个相机运动并根据一定条件进行筛选出最合适的相机运动，但是笔者更倾向于用PNP解析解估算出一个初值;</p></li>
-<li><p>值得一提的是，ORBSLAM2并不用PNP求初值，而是直接用参考帧的运动作为当前帧的运动初值进行优化;</p></li>
+<li><p>值得一提的是，ORBSLAM2并不用PNP求初值，而是直接用参考帧的运动作为<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>的运动初值进行优化;</p></li>
 </ol>
 <p><span style="color:green;">人生苦短，证明就略过把😎</span></p>
 <p>反正最后得到了误差对运动矩阵的导数式，然后就可以用g2o或者ceres来求解最小误差（最小二乘法）的运动矩阵了。</p>
@@ -291,7 +291,7 @@
 <p>原因：局部地图被占用，插入关键帧会影响全局闭环的优化。</p>
 </li>
 <li><p>若距离上一次重定位较近，不插入关键帧；</p>
-<p>原因：重定位时，当前帧通过与局部关键帧匹配并进行运动估计，能够很好地恢复其运动姿态。笔者认为，因为重定位时当前帧与重定位候选帧的信息冗余度较低，所以在重定位成功后，当前帧会作为关键帧插入地图中。而新来的一帧，由于重定位时刚刚插入关键帧，所以不需要频繁插入。</p>
+<p>原因：重定位时，<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>通过与局部关键帧匹配并进行运动估计，能够很好地恢复其运动姿态。笔者认为，因为重定位时<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>与重定位<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>的信息冗余度较低，所以在重定位成功后，<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>会作为关键帧插入地图中。而新来的一帧，由于重定位时刚刚插入关键帧，所以不需要频繁插入。</p>
 </li>
 </ol>
 <p>排除了上面三种情况，接下来就需要对关键帧进一步检测，才能确定是否真的需要插入关键帧。进一步检查包含一个必不可少的条件和另外三选一的条件。</p>
@@ -317,25 +317,6 @@
 </section>
 <section id="span-style-color-green-kf-s-insertation-span">
 <h3><span style="color:green;">KF’s Insertation</span><a class="headerlink" href="#span-style-color-green-kf-s-insertation-span" title="此标题的永久链接">¶</a></h3>
-<ol>
-<li><p>中断局部建图线程，即中断处理地图点、关键帧以及优化相机位姿；</p>
-<p>原因：这是必须插入关键帧的情况，强制终止局部建图。</p>
-</li>
-<li><p>更新当前关键帧的位姿，即从 $T$ 矩阵中取出旋转矩阵 $R$
-和位移矩阵 $t$  以及相机中心 $O$；</p>
-<p>原因：主要用于局部建图模块和回环检测模块中做重投影。</p>
-</li>
-<li><p>将当前帧所对应的地图点按深度信息进行排序；</p>
-<p>原因：筛除超出深度阈值的地图点。</p>
-</li>
-<li><p>对当前关键帧中未关联的三维点，创建新的地图点，具体包括观测信息，更新地图点的描述子以及法向量和深度；</p>
-<p>原因：非常平凡的创建地图点的过程。</p>
-</li>
-<li><p>将所创建的地图点插入地图中，最后将更新后的关键帧也插入地图中。</p>
-<p>原因：插入关键帧的过程最后一个步骤。</p>
-</li>
-</ol>
-<p>插入关键帧的流程大体如上面五个步骤所述。大家在设计关键帧插入流程时可以参考这几种方案，当然也可以根据实际需要设计更符合要求的方案。</p>
 </section>
 </section>
 <section id="id5">
@@ -346,11 +327,27 @@
 <p>三角化是用来估计相机和地图上的三维点之间的关系。具体来说，当ORB-SLAM使用两个或更多个视角拍摄同一场景时，它会使用三角化算法将这些视角中观察到的特征点转换为三维点。这些三维点可以用于构建地图和定位相机。</p>
 <p>当一个特征点在至少两个视角下都有匹配时，ORB-SLAM会使用三角化技术计算该特征点的3D位置。因此，只有那些至少在两个视角下都有匹配的特征点才会被用于三角化。</p>
 </section>
-<section id="id6">
-<h2>回环检测<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
-<p>回环检测模块包含两个部分的内容：其一是位置识别，即外观验证，通过图像间的相似度信息进行判断；其二是几何验证，通过回环候选帧与当前关键帧的几何关系来做进一步验证。</p>
-<section id="id7">
-<h3>位置识别<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h3>
+<section id="loop-closing">
+<h2>Loop Closing<a class="headerlink" href="#loop-closing" title="此标题的永久链接">¶</a></h2>
+<p>回环检测模块包含两个部分的内容：其一是位置识别，即外观验证，通过图像间的相似度信息进行判断；其二是几何验证，通过回环<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>与当前关键帧的几何关系来做进一步验证。</p>
+<section id="loop-detection">
+<h3>Loop Detection<a class="headerlink" href="#loop-detection" title="此标题的永久链接">¶</a></h3>
+<ol class="simple">
+<li><p>利用一范数来度量<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>与<span style="color:RGB(46,160,67); font-weight: 600;">共视图关键帧</span>之间的相似度分数，假设共视图中一个关键帧的BOW向量为$w$，<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>的BOW向量为$v$，则相似度分数的度量方式为：
+$s(w−v)=2∑_{i=1}^N|w_i|+|v_i|−|w_i−v_i|$
+　　将所有相似分数进行排序，取最小的匹配分数 $S_{min}$ 作为参考值，用于查找回环<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>。</p></li>
+<li><p>确定最小匹配分数后，排除<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span><span style="color:RGB(46,160,67); font-weight: 600;">共视图的所有关键帧</span>，我们回环的意义是确定当前相机看到的场景，在很久之前是不是见过。近期看到的<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>的<span style="color:RGB(46,160,67); font-weight: 600;">共视图关键帧</span>，这对校正整个场景的误差作用不大。</p></li>
+<li><p>对<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>的BOW向量中的词汇逐个逆向索引在地图中找到相关联的关键帧，参考下图。并统计各个关键帧中与<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>相似的词汇数量。排序确定最大的相似词汇数量 $M$，并筛选相似词汇数量大于$0.8×M$的关键帧作为<span style="color:RGB(195,83,195); font-weight: 600;">候选帧 $KF^1_{candidate}$</span>；</p></li>
+<li><p>将<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>与步骤3的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>进行BOW向量计算匹配分数，取匹配分数高于步骤1计算的最小匹配分数 $Smin$ 的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>作为新的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧 $KF^2_{candidate}$</span>；</p></li>
+<li><p>统计<span style="color:RGB(195,83,195); font-weight: 600;">候选帧集中 $KF^2_{candidate}$</span>
+每个<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>的<span style="color:RGB(46,160,67); font-weight: 600;">共视图关键帧</span>与<span style="color:RGB(0,120,212); font-weight: 600;">当前帧</span>的BOW匹配分数总和 $S_total$，并取分数总和大于 $0.75×S_total$ 的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>组成新的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧$KF^3_{candidate}$</span>。
+笔者理解这也是为了确保在一个范围里都能检测到回环，增强回环的可靠性。</p></li>
+<li><p>在上述<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span> $KF^3_{candidate}$ 的基础上，我们检测连续三帧都识别到同一个回环，那么就可以进一步缩小<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>集，形成最终的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧集 $KF_{final-candudate}$</span>，这在ORBSLAM2中叫一致性验证。</p></li>
+</ol>
+<p>至此，我们的外观验证已经完成了。从步骤1开始到步骤6，ORBSLAM2都是在不断提高筛选条件进而缩小<span style="color:RGB(195,83,195); font-weight: 600;">候选帧集</span>。可以想见，这是在利用词袋模型检索和匹配效率极高的优势，快速完成粗检索，精细化的部分再交由几何验证去进一步确定最终的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>。</p>
+</section>
+<section id="geometry-validation">
+<h3>Geometry Validation<a class="headerlink" href="#geometry-validation" title="此标题的永久链接">¶</a></h3>
 </section>
 </section>
 </section>

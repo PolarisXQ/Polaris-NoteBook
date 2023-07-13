@@ -168,112 +168,158 @@
 <tr>
 <th>Algorithm</th>
 <th>Sensors</th>
-<th>Back-End Optimization Algorithms</th>
-<th>Image Detection Methods</th>
+<th>Back-End Optimization Algorithm</th>
+<th>Image Detection Method</th>
 <th>Semantic Information</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Real-Time Capabilities</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ORB-SLAM</td>
-<td>Monocular, Stereo [IMU] ,Depth</td>
-<td>Pose graph optimization [g2o]</td>
-<td>ORB feature matching</td>
-<td>Absence</td>
+<td>Monocular camera, RGB-D camera</td>
+<td>Bundle adjustment</td>
+<td>ORB feature points</td>
+<td>No</td>
+<td>Efficient, robust, widely used</td>
+<td>Limited scalability, prone to drift</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>DSO</td>
-<td>Monocular</td>
-<td>Direct Sparse Odometry (DSO) [g2o]</td>
-<td>Photometric error minimization, feature tracking</td>
-<td>Absence</td>
+<td>Monocular camera</td>
+<td>Direct Sparse Odometry</td>
+<td>Sparse feature points</td>
+<td>No</td>
+<td>Efficient, low-drift, real-time</td>
+<td>Limited scalability, requires texture-rich scenes</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>VINS-mono</td>
-<td>Monocular</td>
-<td>Visual-Inertial Optimization (VIO)</td>
-<td>Feature tracking, IMU integration</td>
-<td>Absence</td>
+<td>Monocular camera, IMU</td>
+<td>Nonlinear Optimization</td>
+<td>Feature tracking</td>
+<td>No</td>
+<td>Accurate, robust, handles motion dynamics</td>
+<td>Limited scalability, requires calibration</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>VINS-Fusion</td>
-<td>Monocular, Stereo, IMU</td>
-<td>Visual-Inertial Optimization (VIO)</td>
-<td>Feature tracking, IMU integration</td>
-<td>Absence</td>
+<td>Monocular camera, IMU, RGB-D camera</td>
+<td>Nonlinear Optimization</td>
+<td>Feature tracking</td>
+<td>Yes</td>
+<td>Accurate, robust, handles motion dynamics</td>
+<td>Limited scalability, requires calibration</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>ROVIOLI</td>
-<td>Monocular, IMU, LiDAR</td>
-<td>Pose graph optimization</td>
-<td>Feature matching, IMU integration, LiDAR odometry</td>
-<td>Absence</td>
+<td>Monocular camera, IMU, RGB-D camera</td>
+<td>Keyframe-based Optimization</td>
+<td>Feature tracking</td>
+<td>Yes</td>
+<td>Accurate, robust, handles large environments</td>
+<td>Limited scalability, requires calibration</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>ELASTICFUSION</td>
-<td>RGB-D, IMU</td>
-<td>Pose graph optimization</td>
-<td>RGB-D frame-to-frame tracking, surfel fusion</td>
-<td>Absence</td>
+<td>RGB-D camera</td>
+<td>Global Loop Closure Optimization</td>
+<td>Dense surface fusion</td>
+<td>No</td>
+<td>Accurate, robust, handles large environments</td>
+<td>Computationally intensive, requires GPU</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>VOXBLOX</td>
-<td>RGB-D</td>
-<td>Volumetric fusion</td>
-<td>TSDF volume integration, feature-based tracking</td>
-<td>Absence</td>
+<td>RGB-D camera</td>
+<td>Volumetric Fusion</td>
+<td>Occupancy grids</td>
+<td>No</td>
+<td>Efficient, handles large environments</td>
+<td>Limited scalability, requires volumetric representation</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>SLAM++</td>
-<td>Monocular, Stereo, IMU</td>
-<td>Pose graph optimization</td>
-<td>Feature matching, IMU integration, geometric constraints</td>
-<td>Absence</td>
+<td>Monocular camera, RGB-D camera</td>
+<td>Optimization and Loop Closure</td>
+<td>Feature matching</td>
+<td>No</td>
+<td>Accurate, handles large environments</td>
+<td>Limited scalability, requires initialization</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>SemanticFusion</td>
-<td>RGB-D</td>
-<td>Volumetric fusion</td>
-<td>Semantic segmentation, depth fusion</td>
-<td>Presence</td>
+<td>RGB-D camera</td>
+<td>Global Optimization with Semantic Segmentation</td>
+<td>Semantic segmentation</td>
+<td>Yes</td>
+<td>Accurate, incorporates semantic information</td>
+<td>Computationally intensive, requires GPU</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Mask-fusion</td>
-<td>RGB-D</td>
-<td>Volumetric fusion</td>
-<td>Instance segmentation, depth fusion</td>
-<td>Presence</td>
+<td>RGB-D camera</td>
+<td>Fusion and Registration</td>
+<td>Object instance segmentation</td>
+<td>Yes</td>
+<td>Accurate, handles multiple objects</td>
+<td>Limited scalability, requires object masks</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Segmap</td>
-<td>RGB-D</td>
-<td>Pose graph optimization, volumetric representation</td>
-<td>Feature-based tracking, segmentation</td>
-<td>Presence</td>
+<td>RGB-D camera</td>
+<td>Graph-based Optimization</td>
+<td>Feature matching</td>
+<td>Yes</td>
+<td>Efficient, handles large environments</td>
+<td>Limited scalability, requires initialization</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>XIVO</td>
-<td>Monocular, Stereo, IMU</td>
-<td>Pose graph optimization</td>
-<td>Feature matching, IMU integration, geometric constraints</td>
-<td>Absence</td>
+<td>Monocular camera, IMU</td>
+<td>Optimization and Loop Closure</td>
+<td>Feature matching</td>
+<td>No</td>
+<td>Accurate, handles large environments</td>
+<td>Limited scalability, requires initialization</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Voxblox++</td>
-<td>RGB-D</td>
-<td>Volumetric fusion</td>
-<td>Feature-based tracking, surfel mapping</td>
-<td>Absence</td>
+<td>RGB-D camera</td>
+<td>Volumetric Fusion</td>
+<td>Truncated signed distance function</td>
+<td>No</td>
+<td>Efficient, handles large environments</td>
+<td>Limited scalability, requires volumetric representation</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Kimera</td>
-<td>RGB-D, IMU</td>
-<td>Pose graph optimization, volumetric fusion</td>
-<td>Feature matching, IMU integration, surfel mapping, semantic segmentation</td>
-<td>Presence</td>
+<td>Monocular camera, IMU, RGB-D camera</td>
+<td>Nonlinear Optimization</td>
+<td>Keypoint tracking</td>
+<td>Yes</td>
+<td>Accurate, handles motion dynamics</td>
+<td>Limited scalability, requires calibration</td>
+<td>Yes</td>
 </tr>
 </tbody>
-</table></section>
+</table><p>Note: Generate by GPT</p>
+</section>
 </section>
 
 

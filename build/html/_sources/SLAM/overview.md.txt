@@ -3,19 +3,21 @@
 ## Geometry Method
 
 
-| Algorithm     | Sensors                 | Back-End Optimization Algorithms     | Image Detection Methods    | Semantic Information |
-|---------------|-------------------------|--------------------------------------|----------------------------|----------------------|
-| ORB-SLAM      | Monocular, Stereo [IMU] ,Depth     | Pose graph optimization [g2o]             | ORB feature matching       | Absence              |
-| DSO           | Monocular               | Direct Sparse Odometry (DSO) [g2o]        | Photometric error minimization, feature tracking   | Absence              |
-| VINS-mono     | Monocular               | Visual-Inertial Optimization (VIO)   | Feature tracking, IMU integration   | Absence              |
-| VINS-Fusion   | Monocular, Stereo, IMU  | Visual-Inertial Optimization (VIO)   | Feature tracking, IMU integration   | Absence              |
-| ROVIOLI       | Monocular, IMU, LiDAR   | Pose graph optimization              | Feature matching, IMU integration, LiDAR odometry   | Absence              |
-| ELASTICFUSION | RGB-D, IMU              | Pose graph optimization              | RGB-D frame-to-frame tracking, surfel fusion   | Absence              |
-| VOXBLOX       | RGB-D                   | Volumetric fusion                     | TSDF volume integration, feature-based tracking  | Absence              |
-| SLAM++        | Monocular, Stereo, IMU  | Pose graph optimization               | Feature matching, IMU integration, geometric constraints  | Absence              |
-| SemanticFusion| RGB-D                   | Volumetric fusion                      | Semantic segmentation, depth fusion  | Presence             |
-| Mask-fusion   | RGB-D                   | Volumetric fusion                      | Instance segmentation, depth fusion  | Presence             |
-| Segmap        | RGB-D                   | Pose graph optimization, volumetric representation | Feature-based tracking, segmentation  | Presence             |
-| XIVO          | Monocular, Stereo, IMU  | Pose graph optimization              | Feature matching, IMU integration, geometric constraints  | Absence              |
-| Voxblox++     | RGB-D                   | Volumetric fusion                     | Feature-based tracking, surfel mapping  | Absence              |
-| Kimera        | RGB-D, IMU              | Pose graph optimization, volumetric fusion | Feature matching, IMU integration, surfel mapping, semantic segmentation | Presence             |
+| Algorithm     | Sensors                            | Back-End Optimization Algorithm          | Image Detection Method | Semantic Information | Pros                                | Cons                                         | Real-Time Capabilities |
+|---------------|------------------------------------|-------------------------------------------|------------------------|----------------------|-------------------------------------|----------------------------------------------|------------------------|
+| ORB-SLAM      | Monocular camera, RGB-D camera      | Bundle adjustment                          | ORB feature points     | No                   | Efficient, robust, widely used     | Limited scalability, prone to drift           | Yes                    |
+| DSO           | Monocular camera                    | Direct Sparse Odometry                      | Sparse feature points   | No                   | Efficient, low-drift, real-time     | Limited scalability, requires texture-rich scenes | Yes                    |
+| VINS-mono     | Monocular camera, IMU               | Nonlinear Optimization                      | Feature tracking        | No                   | Accurate, robust, handles motion dynamics | Limited scalability, requires calibration     | Yes                    |
+| VINS-Fusion   | Monocular camera, IMU, RGB-D camera | Nonlinear Optimization                      | Feature tracking        | Yes                  | Accurate, robust, handles motion dynamics | Limited scalability, requires calibration     | Yes                    |
+| ROVIOLI       | Monocular camera, IMU, RGB-D camera | Keyframe-based Optimization                 | Feature tracking        | Yes                  | Accurate, robust, handles large environments | Limited scalability, requires calibration     | Yes                    |
+| ELASTICFUSION | RGB-D camera                        | Global Loop Closure Optimization           | Dense surface fusion    | No                   | Accurate, robust, handles large environments | Computationally intensive, requires GPU       | Yes                    |
+| VOXBLOX       | RGB-D camera                        | Volumetric Fusion                           | Occupancy grids         | No                   | Efficient, handles large environments | Limited scalability, requires volumetric representation | Yes                    |
+| SLAM++        | Monocular camera, RGB-D camera      | Optimization and Loop Closure               | Feature matching        | No                   | Accurate, handles large environments | Limited scalability, requires initialization | Yes                    |
+| SemanticFusion| RGB-D camera                        | Global Optimization with Semantic Segmentation | Semantic segmentation  | Yes                  | Accurate, incorporates semantic information | Computationally intensive, requires GPU       | Yes                    |
+| Mask-fusion   | RGB-D camera                        | Fusion and Registration                     | Object instance segmentation | Yes          | Accurate, handles multiple objects | Limited scalability, requires object masks    | Yes                    |
+| Segmap        | RGB-D camera                        | Graph-based Optimization                    | Feature matching        | Yes                  | Efficient, handles large environments | Limited scalability, requires initialization | Yes                    |
+| XIVO          | Monocular camera, IMU               | Optimization and Loop Closure               | Feature matching        | No                   | Accurate, handles large environments | Limited scalability, requires initialization | Yes                    |
+| Voxblox++     | RGB-D camera                        | Volumetric Fusion                           | Truncated signed distance function | No | Efficient, handles large environments | Limited scalability, requires volumetric representation | Yes                    |
+| Kimera        | Monocular camera, IMU, RGB-D camera | Nonlinear Optimization                      | Keypoint tracking       | Yes                  | Accurate, handles motion dynamics | Limited scalability, requires calibration     | Yes                    |
+
+Note: Generate by GPT
