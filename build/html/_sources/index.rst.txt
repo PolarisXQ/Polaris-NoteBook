@@ -17,7 +17,7 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: Docker
 
-   HowtoRun
+   Docker/HowtoRun
 
 .. toctree::
    :maxdepth: 1
