@@ -25,7 +25,7 @@ Welcome to Polaris' NoteBook!
 
    SLAM/overview
    SLAM/Traditional/ORB-SLAM3
-   SLAM/Traditional/RecommendReading
+   SLAM/RecommendReading
    SLAM/SLAM_w_NN
 
 .. toctree::

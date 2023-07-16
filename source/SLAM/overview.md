@@ -1,4 +1,4 @@
-# An Simple Overview
+# A Simple Overview
 
 ## Geometry Method
 ORB
@@ -6,6 +6,7 @@ ORB
 Mesh
 
 ## Comparision & Analysis
+
 | Algorithm     | Sensors                            | Back-End Optimization Algorithm              | Image Detection Method | Semantic Information | Pros                                | Cons                                         | Real-Time Capabilities |
 |---------------|------------------------------------|----------------------------------------------|------------------------|----------------------|-------------------------------------|----------------------------------------------|------------------------|
 | ORB-SLAM      | Monocular camera, RGB-D camera      | Bundle adjustment                           | ORB feature points     | No                   | Efficient, robust, widely used     | Limited scalability, prone to drift           | Yes                    |

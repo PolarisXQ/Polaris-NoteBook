@@ -29,7 +29,7 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="Migration from OpenCV3 to CV4" href="../Miscellaneous/migrationcv3tocv4.html" />
+  <link rel="next" title="An Simple Overview" href="../SLAM/overview.html" />
   <link rel="prev" title="Miscellaneous" href="../Sys/Linux/Miscellaneous.html" /> 
   </head>
 
@@ -216,6 +216,33 @@
       </p>
       <ul class="">
         
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/overview.html" class="reference internal ">An Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -228,6 +255,15 @@
           <li class="toctree-l1 ">
             
               <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migration from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">Mis</a>
             
 
             
@@ -256,8 +292,8 @@
        title="上一章">← Miscellaneous</a>
   </li>
   <li class="next">
-    <a href="../Miscellaneous/migrationcv3tocv4.html"
-       title="下一章">Migration from OpenCV3 to CV4 →</a>
+    <a href="../SLAM/overview.html"
+       title="下一章">An Simple Overview →</a>
   </li>
 </ul>
   
@@ -324,9 +360,10 @@ so B&amp;C are using the same roscore and share the same network</p>
 <span class="w">	</span>%SERVER_IMAGE%<span class="w"> </span>
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-dit<span class="w"> </span>--network<span class="w"> </span>net-sim<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-e<span class="w"> </span><span class="nv">NVIDIA_DRIVER_CAPABILITIES</span><span class="o">=</span>all<span class="w"> </span>-e<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0.0<span class="w"> </span>sg-slam
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-dit<span class="w"> </span>--network<span class="w"> </span>net-sim<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-e<span class="w"> </span><span class="nv">NVIDIA_DRIVER_CAPABILITIES</span><span class="o">=</span>all<span class="w"> </span>-e<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0.0<span class="w"> </span>client:latest
 </pre></div>
 </div>
+<p>docker run –gpus all -dit –ipc=host –net=host –privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all kimera:mine /bin/bash</p>
 </section>
 <section id="how-to-commit">
 <h2>How to Commit<a class="headerlink" href="#how-to-commit" title="此标题的永久链接">¶</a></h2>
@@ -350,8 +387,8 @@ so B&amp;C are using the same roscore and share the same network</p>
        title="上一章">← Miscellaneous</a>
   </li>
   <li class="next">
-    <a href="../Miscellaneous/migrationcv3tocv4.html"
-       title="下一章">Migration from OpenCV3 to CV4 →</a>
+    <a href="../SLAM/overview.html"
+       title="下一章">An Simple Overview →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
