@@ -60,8 +60,10 @@ docker run -dit --name sim-server --network net-sim ^
 ```
 
 ```shell
-docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 sg-slam
+docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 client:latest
 ```
+
+docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all kimera:mine /bin/bash
 
 ## How to Commit
 
