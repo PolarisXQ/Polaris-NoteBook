@@ -21,6 +21,7 @@ extensions = [
     # 'sphinxemoji.sphinxemoji',
     'sphinx.ext.githubpages',
     'sphinx_copybutton',
+    'sphinx.ext.mathjax',
     # 'pallets_sphinx_themes'
 ]
 
