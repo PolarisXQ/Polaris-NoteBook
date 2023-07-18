@@ -30,9 +30,16 @@ Welcome to Polaris' NoteBook!
 
 .. toctree::
    :maxdepth: 1
+   :caption: CV
+
+   CV/basic.md
+   CV/Yolo.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: Miscellaneous
 
    Miscellaneous/migrationcv3tocv4
    Miscellaneous/roadtoslam
-
+   Miscellaneous/Cmake
    

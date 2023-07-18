@@ -29,8 +29,8 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="Migration from OpenCV3 to CV4" href="../Miscellaneous/migrationcv3tocv4.html" />
-  <link rel="prev" title="ORB_SLAM" href="Traditional/ORB-SLAM3.html" /> 
+  <link rel="next" title="Basic" href="../CV/basic.html" />
+  <link rel="prev" title="阅读推荐" href="RecommendReading.html" /> 
   </head>
 
   <body>
@@ -64,6 +64,13 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
          SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
       </a>
     </div>
   
@@ -117,6 +124,13 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
          SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
       </a>
     </div>
   
@@ -206,7 +220,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="overview.html" class="reference internal ">An Simple Overview</a>
+              <a href="overview.html" class="reference internal ">A Simple Overview</a>
             
 
             
@@ -216,6 +230,15 @@
           <li class="toctree-l1 ">
             
               <a href="Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RecommendReading.html" class="reference internal ">阅读推荐</a>
             
 
             
@@ -232,15 +255,42 @@
                 
                   <li class="toctree-l2"><a href="#overview" class="reference internal">Overview</a></li>
                 
-                  <li class="toctree-l2"><a href="#frameworld-ncnn-tensorrt" class="reference internal">frameworld ncnn tensorRT</a></li>
+                  <li class="toctree-l2"><a href="#implementation-tools" class="reference internal">implementation tools</a></li>
                 
-                  <li class="toctree-l2"><a href="#semantic-segmentation" class="reference internal">semantic segmentation</a></li>
+                  <li class="toctree-l2"><a href="#semantic-segmentation" class="reference internal">Semantic Segmentation</a></li>
                 
                   <li class="toctree-l2"><a href="#sg-slam" class="reference internal">SG-SLAM</a></li>
                 
                   <li class="toctree-l2"><a href="#kimera-semantic" class="reference internal">kimera-semantic</a></li>
                 
               </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
             
           </li>
 
@@ -290,12 +340,12 @@
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="Traditional/ORB-SLAM3.html"
-       title="上一章">← ORB_SLAM</a>
+    <a href="RecommendReading.html"
+       title="上一章">← 阅读推荐</a>
   </li>
   <li class="next">
-    <a href="../Miscellaneous/migrationcv3tocv4.html"
-       title="下一章">Migration from OpenCV3 to CV4 →</a>
+    <a href="../CV/basic.html"
+       title="下一章">Basic →</a>
   </li>
 </ul>
   
@@ -307,18 +357,55 @@
 <h1>SLAM with Nerual Network<a class="headerlink" href="#slam-with-nerual-network" title="此标题的永久链接">¶</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="此标题的永久链接">¶</a></h2>
-<p>| Algorithm | Time | Nerual Network | Details |
-| ——– | ——– | ——– | ——– |
-| SG-SLAM |  | ncnn+ | |
-| kimera-semantic |  | Row 2, Column 3 ||</p>
-</section>
-<section id="frameworld-ncnn-tensorrt">
-<h2>frameworld ncnn tensorRT<a class="headerlink" href="#frameworld-ncnn-tensorrt" title="此标题的永久链接">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Time</th>
+<th>Nerual Network</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SG-SLAM</td>
+<td></td>
+<td>ncnn+mobilenetv3_lite(backbone)</td>
+<td></td>
+</tr>
+<tr>
+<td>kimera-semantic</td>
+<td></td>
+<td>Row 2, Column 3</td>
+<td></td>
+</tr>
+</tbody>
+</table></section>
+<section id="implementation-tools">
+<h2>implementation tools<a class="headerlink" href="#implementation-tools" title="此标题的永久链接">¶</a></h2>
+<p><img alt="../_images/impltol.webp" src="../_images/impltol.webp" />
+腾讯公司开发的移动端平台部署工具——NCNN；Intel公司针对自家设备开开发的部署工具——OpenVino；NVIDIA公司针对自家GPU开发的部署工具——TensorRT；Google针对自家硬件设备和深度学习框架开发的部署工具——MediaPipe；由微软、亚马逊 、Facebook 和 IBM 等公司共同开发的开放神经网络交换格式——ONNX(Open Neural Network Exchange)。除此之外，还有一些深度学习框架有自己的专用部署服务：比如TensorFlow自己提供的部署服务：TensorFlow Serving、TensorFlow Lite，pytorch自己提供的部署服务：libtorch。</p>
+<p>👉<a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzU2NjU3OTc5NA==&amp;mid=2247560125&amp;idx=2&amp;sn=001988bca941a9404ac8fe7a351b514d&amp;chksm=fca9ec80cbde659689922250b3138e752cfccf50fde18f07016b7673bf1289bb8bd25bb4f636&amp;scene=27">深度学习模型部署综述（ONNX/NCNN/OpenVINO/TensorRT）</a></p>
 </section>
 <section id="semantic-segmentation">
-<h2>semantic segmentation<a class="headerlink" href="#semantic-segmentation" title="此标题的永久链接">¶</a></h2>
-<p>mit_semseg
-yolo-seg</p>
+<h2>Semantic Segmentation<a class="headerlink" href="#semantic-segmentation" title="此标题的永久链接">¶</a></h2>
+<section id="yolact">
+<h3>Yolact<a class="headerlink" href="#yolact" title="此标题的永久链接">¶</a></h3>
+<p>YOLACT，一个实时的检测+分割的one-stage框架。
+将分割分为Prototype mask和Mask Coefficients两个部分的组合的思想非常好。
+实际使用感觉，相比mask rcnn，yolact的漏检，误检，泄露问题都明显多一些。可以在精度要求不高，速度要求高的场合考虑使用。</p>
+</section>
+<section id="mit-semseg">
+<h3>MIT-SemSeg<a class="headerlink" href="#mit-semseg" title="此标题的永久链接">¶</a></h3>
+</section>
+<section id="yolo-seg">
+<h3>Yolo-Seg<a class="headerlink" href="#yolo-seg" title="此标题的永久链接">¶</a></h3>
+<p>👉 <a class="reference external" href="https://github.com/ultralytics/yolov5/issues/10049">作者对YoloSeg的说明</a>
+👉 <a class="reference internal" href="../CV/Yolo.html"><span class="doc">For More Details about Yolo</span></a></p>
+</section>
+<section id="mask-rcnn">
+<h3>Mask-rcnn<a class="headerlink" href="#mask-rcnn" title="此标题的永久链接">¶</a></h3>
+</section>
 </section>
 <section id="sg-slam">
 <h2>SG-SLAM<a class="headerlink" href="#sg-slam" title="此标题的永久链接">¶</a></h2>
@@ -333,12 +420,12 @@ yolo-seg</p>
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="Traditional/ORB-SLAM3.html"
-       title="上一章">← ORB_SLAM</a>
+    <a href="RecommendReading.html"
+       title="上一章">← 阅读推荐</a>
   </li>
   <li class="next">
-    <a href="../Miscellaneous/migrationcv3tocv4.html"
-       title="下一章">Migration from OpenCV3 to CV4 →</a>
+    <a href="../CV/basic.html"
+       title="下一章">Basic →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>Mis</title>
+      <title>How to Cmake</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -28,8 +28,7 @@
     
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
-  <link rel="search" title="搜索" href="../search.html" />
-  <link rel="prev" title="Migration from OpenCV3 to CV4" href="migrationcv3tocv4.html" /> 
+  <link rel="search" title="搜索" href="../search.html" /> 
   </head>
 
   <body>
@@ -68,7 +67,7 @@
   
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
-         class="nav-link  router-link-active">
+         class="nav-link ">
          Miscellaneous
       </a>
     </div>
@@ -121,7 +120,7 @@
   
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
-         class="nav-link  router-link-active">
+         class="nav-link ">
          Miscellaneous
       </a>
     </div>
@@ -246,7 +245,7 @@
       <p class="caption">
         <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
       </p>
-      <ul class="current">
+      <ul class="">
         
           <li class="toctree-l1 ">
             
@@ -257,17 +256,11 @@
           </li>
 
         
-          <li class="toctree-l1 current">
+          <li class="toctree-l1 ">
             
-              <a href="#" class="reference internal current">Mis</a>
+              <a href="roadtoslam.html" class="reference internal ">Mis</a>
             
 
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#mis" class="reference internal">Mis</a></li>
-                
-              </ul>
             
           </li>
 
@@ -284,37 +277,45 @@
   <ul class="breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
     
-    <li>Mis</li>
+    <li>How to Cmake</li>
   </ul>
   
 
   <ul class="page-nav">
-  <li class="prev">
-    <a href="migrationcv3tocv4.html"
-       title="上一章">← Migration from OpenCV3 to CV4</a>
-  </li>
 </ul>
   
 </div>
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="mis">
-<h1>Mis<a class="headerlink" href="#mis" title="此标题的永久链接">¶</a></h1>
-<p>PCL-Cmake</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">14</span><span class="p">)</span>
-</pre></div>
-</div>
+  <section id="how-to-cmake">
+<h1>How to Cmake<a class="headerlink" href="#how-to-cmake" title="此标题的永久链接">¶</a></h1>
+<section id="ninja">
+<h2>Ninja<a class="headerlink" href="#ninja" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>使用 Ninja 进行 CMake 构建的优点包括：</p>
+<ol class="simple">
+<li><p>构建速度快：Ninja 采用了一些优化策略，相比其他构建系统，构建速度更快。</p></li>
+<li><p>易于使用：Ninja 的使用非常简单，只需要在执行 <code class="docutils literal notranslate"><span class="pre">cmake</span></code> 命令时加上 <code class="docutils literal notranslate"><span class="pre">-GNinja</span></code> 参数即可。</p></li>
+<li><p>跨平台支持：Ninja 支持多种不同平台，可以在不同的操作系统上使用。</p></li>
+<li><p>可读性好：Ninja 的构建文件非常易于阅读和理解，可以方便地进行调试和修改。</p></li>
+</ol>
+</li>
+<li><p>使用 Ninja 进行 CMake 构建的缺点包括：</p>
+<ol class="simple">
+<li><p>不支持所有的 CMake 功能：Ninja 并不支持所有的 CMake 功能，可能会导致一些构建问题。</p></li>
+<li><p>在 Windows 平台上支持不完美：Ninja 并不支持 Visual Studio 的所有功能，在 Windows 平台上可能会导致一些构建问题。</p></li>
+<li><p>社区支持不够：相比其他构建系统，Ninja 的社区支持和插件生态系统相对较少。</p></li>
+</ol>
+</li>
+</ul>
+</section>
 </section>
 
 
           </div>
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
-  <li class="prev">
-    <a href="migrationcv3tocv4.html"
-       title="上一章">← Migration from OpenCV3 to CV4</a>
-  </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
     <br>

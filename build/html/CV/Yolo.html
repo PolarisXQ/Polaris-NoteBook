@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>Mis</title>
+      <title>Yolo</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -29,7 +29,8 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="prev" title="Migration from OpenCV3 to CV4" href="migrationcv3tocv4.html" /> 
+  <link rel="next" title="Migration from OpenCV3 to CV4" href="../Miscellaneous/migrationcv3tocv4.html" />
+  <link rel="prev" title="Basic" href="basic.html" /> 
   </head>
 
   <body>
@@ -69,6 +70,13 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
          Miscellaneous
       </a>
     </div>
@@ -122,6 +130,13 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
          Miscellaneous
       </a>
     </div>
@@ -244,13 +259,13 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
       </p>
       <ul class="current">
         
           <li class="toctree-l1 ">
             
-              <a href="migrationcv3tocv4.html" class="reference internal ">Migration from OpenCV3 to CV4</a>
+              <a href="basic.html" class="reference internal ">Basic</a>
             
 
             
@@ -259,15 +274,42 @@
         
           <li class="toctree-l1 current">
             
-              <a href="#" class="reference internal current">Mis</a>
+              <a href="#" class="reference internal current">Yolo</a>
             
 
             
               <ul>
                 
-                  <li class="toctree-l2"><a href="#mis" class="reference internal">Mis</a></li>
+                  <li class="toctree-l2"><a href="#summary" class="reference internal">Summary</a></li>
                 
               </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migration from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">Mis</a>
+            
+
             
           </li>
 
@@ -284,14 +326,18 @@
   <ul class="breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
     
-    <li>Mis</li>
+    <li>Yolo</li>
   </ul>
   
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="migrationcv3tocv4.html"
-       title="上一章">← Migration from OpenCV3 to CV4</a>
+    <a href="basic.html"
+       title="上一章">← Basic</a>
+  </li>
+  <li class="next">
+    <a href="../Miscellaneous/migrationcv3tocv4.html"
+       title="下一章">Migration from OpenCV3 to CV4 →</a>
   </li>
 </ul>
   
@@ -299,12 +345,120 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="mis">
-<h1>Mis<a class="headerlink" href="#mis" title="此标题的永久链接">¶</a></h1>
-<p>PCL-Cmake</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">14</span><span class="p">)</span>
-</pre></div>
-</div>
+  <section id="yolo">
+<h1>Yolo<a class="headerlink" href="#yolo" title="此标题的永久链接">¶</a></h1>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Version</th>
+<th>Trick</th>
+<th>Function</th>
+<th>Defeat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YoloV1</td>
+<td>把图片划分为 $7\times 7$ 个格子</td>
+<td>多个同一种目标</td>
+<td>一个格子还是只能检测一个物体</td>
+</tr>
+<tr>
+<td></td>
+<td>NMS</td>
+<td>由于小格子太多了，算法得到了多个重复的检测框</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>多类目标</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>对于每个区域，我们用2个五元组(c,x,y,w,h)，一个负责回归大目标，一个负责回归小目标</td>
+<td>优化小目标检测。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>综上，$ output=30=5 \times 2(c_{big},x_{big},y_{big},w_{big},h_{big}, c_{small},x_{small},y_{small},w_{small},h_{small})+20 classes $</td>
+<td>预测的框不准确：准确度不足；很多目标找不到：recall不足。</td>
+<td>样本不均衡：没有计算背景的geo_loss，只计算了前景的geo_loss，这个问题YOLO v1回避了，依然存在。</td>
+</tr>
+<tr>
+<td>YoloV2</td>
+<td>预测基于grid的偏移量和基于anchor的偏移量</td>
+<td>首先会对这些值归一化，这是一个偏移量，且值很小，使得训练过程更加稳定，有利于神经网络的学习。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Anchor</td>
+<td>引入对识别对象的先验知识</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>分阶段的loss function</td>
+<td>前12800步我们会优化预测的(x,y,w,h)与anchor的(x,y,w,h)的距离+预测的(x,y,w,h)与GT的(x,y,w,h)的距离，12800步之后就只优化预测的(x,y,w,h)与GT的(x,y,w,h)的距离，为啥？因为这时的预测结果已经较为准确了，anchor已经满足我了我们了，而在一开始预测不准的时候，用上anchor可以加速训练。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>小目标检测能力差</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>YoloV3</td>
+<td>检测头分成3个部分 $13 \times 13 \times 3 \times (4+1+80) $ $26\times26\times3\times(4+1+80)$ $52\times52\times3\times(4+1+80) $</td>
+<td>因为32倍下采样每个点感受野更大，所以去预测<strong>大目标</strong>，8倍下采样每个点感受野最小，所以去预测<strong>小目标</strong>。专人专事。发现预测得更准确了，性能又提升了。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>9个框？</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>多少个bounding box？$ (13\times13+26\times26+52\times52)\times3=10467(YOLO v3)&gt;&gt;845(YOLO v2)=13\times13\times5$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>YoloV4</td>
+<td><span style="color:green">Using multi-anchors for single ground truth</span></td>
+<td>改进检测头，相当于你anchor框的数量没变，但是选择的正样本的比例增加了，就缓解了正负样本不均衡的问题</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><span style="color:green">Eliminate_grid sensitivity</span></td>
+<td>实际上之前的算法无法使框框取到grid里面的任意位置</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$\mathcal{L}_{C I o U}=1-I o U+\frac{\rho^{2}\left(\mathbf{b}, \mathbf{b}^{g t}\right)}{c^{2}}+\alpha v $</td>
+<td>👉<a href="https://zhuanlan.zhihu.com/p/183781646">改进过程详解</a> 不断改进的IoU Loss 考虑了GT与Bounding Box的距离，重合面积，解决Bounding Box全包含GT的问题，加快了收敛速度</td>
+<td></td>
+</tr>
+<tr>
+<td>YOloV5</td>
+<td>自适应anchor</td>
+<td>之前anchor是固定的，自适应anchor利用网络的学习功能，让Anchor的$(x_A,y_A,w_A,h_A) $也是可以学习的</td>
+<td></td>
+</tr>
+</tbody>
+</table><section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="此标题的永久链接">¶</a></h2>
+<p><img alt="../_images/improvement1.webp" src="../_images/improvement1.webp" /></p>
+<p>👉 <a class="reference external" href="https://zhuanlan.zhihu.com/p/186014243">BackBone优化方案</a></p>
+</section>
 </section>
 
 
@@ -312,8 +466,12 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="migrationcv3tocv4.html"
-       title="上一章">← Migration from OpenCV3 to CV4</a>
+    <a href="basic.html"
+       title="上一章">← Basic</a>
+  </li>
+  <li class="next">
+    <a href="../Miscellaneous/migrationcv3tocv4.html"
+       title="下一章">Migration from OpenCV3 to CV4 →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
