@@ -37,6 +37,12 @@ Welcome to Polaris' NoteBook!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Navigation
+
+   Navigation/Overview.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: Miscellaneous
 
    Miscellaneous/migrationcv3tocv4
