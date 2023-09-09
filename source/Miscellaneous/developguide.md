@@ -52,11 +52,12 @@ source ~/.bashrc
 2. Launch XLaunch 
 
 Take Xlaunch as an example
-!()[../pic/xlaunch1.png]
 
-!()[../pic/xlaunch2.png]
+![](./pic/xlaunch1.png)
 
-!()[../pic/xlaunch3.png]
+![](./pic/xlaunch2.png)
+
+![](./pic/xlaunch3.png)
 
 运行成功后将出现图标在托盘
 
