@@ -33,15 +33,13 @@ docker pull ros:humble-perception-jammy
 ```
 其实后面build docker image的时候，也会自动下载的，先下载下来省时间。
 
----
-🌟__原理部分__🌟
 
+    🌟原理部分🌟
 
-!!依照本人的理解!!docker的工作原理就是，运算仍然是调用本机的资源，但是在你可以在docker里面运行任何一种操作系统，而且不会影响到本机的操作系统。
+    !!依照本人的理解!!docker的工作原理就是，运算仍然是调用本机的资源，但是在你可以在docker里面运行任何一种操作系统，而且不会影响到本机的操作系统。
 
-我们这一步做的就是拉取别人构建好的基础镜像，在上面再装一些我们自己需要的软件、上传自己的文件，以后就可以直接使用了。
+    我们这一步做的就是拉取别人构建好的基础镜像，在上面再装一些我们自己需要的软件、上传自己的文件，以后就可以直接使用了。
 
----
 
 2. Write your own Dockerfile
 
@@ -145,13 +143,12 @@ When the building process is done, you can see it in your docker image list.
 
 ### Create your own DevContainer and Run your image
 
----
 
-🌟说明🌟
+        🌟说明🌟
 
-**local\host**指的是你的本地电脑，**container**指的是你在docker里面运行的虚拟机。
+        local\host指的是你的本地电脑，container指的是你在docker里面运行的虚拟机。
 
----
+
 1. Clone 前辈的代码
 
 2. Open the folder in VSCode
@@ -282,13 +279,10 @@ When the building process is done, you can see it in your docker image list.
 
 - https://containers.dev/guides
 
----
 
-🌟__原理部分__🌟
-这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
-在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
-
----
+        🌟原理部分🌟
+        这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
+        在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
 
 
 
