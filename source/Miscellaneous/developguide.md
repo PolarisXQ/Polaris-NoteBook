@@ -1,6 +1,6 @@
 # Develop Guide
 
-## How to Farward GUI to Remote Server
+## How to use ssh and Farward GUI to Remote Server
 
 
 ### Server Side

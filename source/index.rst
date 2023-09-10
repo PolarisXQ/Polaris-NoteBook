@@ -17,7 +17,9 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: Docker
 
+   Docker/WhyDocker
    Docker/HowtoRun
+   Docker/DevContainer
 
 .. toctree::
    :maxdepth: 1
@@ -48,4 +50,5 @@ Welcome to Polaris' NoteBook!
    Miscellaneous/migrationcv3tocv4
    Miscellaneous/roadtoslam
    Miscellaneous/Cmake
+   Miscellaneous/developguide
    
