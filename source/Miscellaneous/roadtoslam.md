@@ -1,6 +1,7 @@
-# Mis
+# On the bumpy road to SLAM
 
-PCL-Cmake
+## PCL-Cmake
+
 ```cmake
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,7 +14,6 @@ add_definitions(-std=c++14 ***)
 ```
 
 
-
-GTSAM eigen version error
+## GTSAM eigen version error
 
 catkin build --cmake-args -DCMAKE_BUILD_TYPE=Release -DGTSAM_USE_SYSTEM_EIGEN=ON

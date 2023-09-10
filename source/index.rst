@@ -17,7 +17,7 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: Docker
 
-   Docker/WhyDocker
+   Docker/workflow
    Docker/HowtoRun
    Docker/DevContainer
 
@@ -26,8 +26,8 @@ Welcome to Polaris' NoteBook!
    :caption: SLAM
 
    SLAM/overview
-   SLAM/Traditional/ORB-SLAM3
    SLAM/RecommendReading
+   SLAM/Traditional/ORB-SLAM3
    SLAM/SLAM_w_NN
 
 .. toctree::
@@ -36,6 +36,7 @@ Welcome to Polaris' NoteBook!
 
    CV/basic.md
    CV/Yolo.md
+   CV/multiobj_track
 
 .. toctree::
    :maxdepth: 1
