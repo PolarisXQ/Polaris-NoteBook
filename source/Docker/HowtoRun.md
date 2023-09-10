@@ -31,7 +31,7 @@ docker run [option] [image_name]
 - -net 选项是为了将容器连接到网络
 
 
-## OPTION FOR ROS
+## OPTIONS FOR ROS
 
 __To make two container communicate with each other：__
 
@@ -39,7 +39,7 @@ in container A， run roscore with a specific URI and net;
 in container B & C, connet to container A with the same net, ros-master URI;
 so B&C are using the same roscore and share the same network
 
--e ROS_MASTER_URI=http://ros-master:11311 
+- -e ROS_MASTER_URI=http://ros-master:11311 
 
 ## EXAMPLE
 ```bash
@@ -63,7 +63,9 @@ docker run -dit --name sim-server --network net-sim ^
 docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 client:latest
 ```
 
+```shell
 docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all kimera:mine /bin/bash
+```
 
 ## How to Commit
 

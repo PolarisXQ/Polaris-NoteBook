@@ -50,5 +50,5 @@ Welcome to Polaris' NoteBook!
    Miscellaneous/migrationcv3tocv4
    Miscellaneous/roadtoslam
    Miscellaneous/Cmake
-   Miscellaneous/developguide
+   Miscellaneous/developwithnuc
    
