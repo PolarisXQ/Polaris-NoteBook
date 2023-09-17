@@ -17,9 +17,10 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: Docker
 
-   Docker/workflow
-   Docker/HowtoRun
+   Docker/docker
    Docker/DevContainer
+   Docker/workflow
+   Docker/UsefulCommand
 
 .. toctree::
    :maxdepth: 1
@@ -43,6 +44,7 @@ Welcome to Polaris' NoteBook!
    :caption: Navigation
 
    Navigation/Overview.md
+   Navigation/CMUSeries.md
 
 .. toctree::
    :maxdepth: 1
