@@ -1,5 +1,7 @@
 # Introduce to our WorkFlow
 
+如何使用docker+devcontainer来实现一键配置环境,一键启动,Follow me!
+
 ## A glance at our work flow
 
 <!-- ![image-20210831162226096](README.assets/image-20210831162226096.png) -->
@@ -10,7 +12,8 @@ i promise
 
 ## Step by Step and detail explaination
 
-### Installation[Skip if you already prepared]
+### Installation [ Skip if you already prepared ]
+
 1. Install Docker on your computer
 
    - [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
@@ -23,6 +26,8 @@ i promise
    - [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)    
 
 3. Install Xming/Xlaunch on Windows / Install XQuartz on Mac
+
+I am currently using XLanch on Windows.
 
 ### Customize your own Docker Image
 
@@ -121,7 +126,6 @@ RUN rm model.tar.gz*
 
 # add start script
 CMD /bin/bash
-
 ```
 
 😶‍🌫️学不会是吧，其实我是在镜像里装一个，回到dockerfile里写一条，慢慢就搓出来了。
@@ -272,17 +276,18 @@ When the building process is done, you can see it in your docker image list.
         - Click "Reopen in Container" and wait for the container to be built.
 
         - Start your development! Enjoy it still!
-   
+
+
+        🌟原理部分🌟
+        这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
+        在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
+
 #### Official Guides
 
 - https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container
 
 - https://containers.dev/guides
 
-
-        🌟原理部分🌟
-        这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
-        在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
 
 
 

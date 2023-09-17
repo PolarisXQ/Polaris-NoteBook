@@ -1,4 +1,4 @@
-# Migration from OpenCV3 to CV4
+# Migrate from OpenCV3 to CV4
 
 ## CV_color-convertion
 ```c++

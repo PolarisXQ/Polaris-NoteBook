@@ -1,4 +1,4 @@
-# Some Useful Command
+# Some Useful Command for Docker
 
 ## How to Run a Container
 ```bash
@@ -28,7 +28,9 @@ docker run [option] [image_name]
 
 - --privileged：表示容器将以特权模式运行，可以访问主机的所有设备和文件系统。特别是显卡！！！
 
-- -net 选项是为了将容器连接到网络
+- --network 选项是为了将容器连接到网络,有host，none，bridge三种模式
+
+- --pid host 与物理机共享PID命名空间
 
 
 ## OPTIONS FOR ROS
@@ -66,6 +68,13 @@ docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -
 ```shell
 docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all kimera:mine /bin/bash
 ```
+
+For Mid360
+```shell
+docker run -dit -p 56101:56101/udp -p 56201:56201/udp -p 56301:56301/udp -p 56401:56401/udp -p 56501:56501/udp --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all rm_sentry:app
+```
+
+apt install -Y libnet-ifconfig-wrapper-perl iputils-ping 
 
 ## How to Commit
 

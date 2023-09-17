@@ -1,4 +1,4 @@
-# How to Cmake
+# How to ues Cmake
 
 ## Ninja
 

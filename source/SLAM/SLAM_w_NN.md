@@ -49,7 +49,7 @@ ncnn 和 TensorRT 都是高效的深度学习推理框架,主要的区别和选�
 
 综上,如果是部署到 ARM/Android,那么 ncnn 会是更好的选择。如果有 NVIDIA GPU,并需要更多高级功能,TensorRT 会更合适。需要根据自己的硬件条件和需求来决定。
 
-## Semantic Segmentation 
+## Semantic Segmentation Methods
 
 ### Yolact
 YOLACT，一个实时的检测+分割的one-stage框架。
@@ -58,13 +58,12 @@ YOLACT，一个实时的检测+分割的one-stage框架。
 
 ### MIT-SemSeg
 
+效果极差
+
 ### Yolo-Seg
 👉 [作者对YoloSeg的说明](https://github.com/ultralytics/yolov5/issues/10049)
 👉 [For More Details about Yolo](../CV/Yolo.md)
 
-### ！！Mask-rcnn
+### Mask-rcnn
 
-
-## SG-SLAM
-
-## kimera-semantic
+老旧
