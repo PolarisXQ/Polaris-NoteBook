@@ -48,6 +48,12 @@ Welcome to Polaris' NoteBook!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Development Related
+
+   develop/rule.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: Miscellaneous
 
    Miscellaneous/migrationcv3tocv4

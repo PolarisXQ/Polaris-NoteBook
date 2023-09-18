@@ -14,4 +14,11 @@ devcontainer= docker container + VSCode
 
 优雅！
 
+## Recommended Reading
+
+📑[“在我的电脑上明明可以的” — 图解 DevContainer 构建干净的开发环境](https://zhuanlan.zhihu.com/p/604545087)
+
+📑[VSCode Remote Development](https://code.visualstudio.com/docs/remote/remote-overview)
+
+
 
