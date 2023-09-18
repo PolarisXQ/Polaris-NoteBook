@@ -1,14 +1,12 @@
 # Introduce to our WorkFlow
 
-如何使用docker+devcontainer来实现一键配置环境,一键启动,Follow me!
+如何使用docker+devcontainer来实现一键配置环境,实现一键启动，纵享丝滑
 
 ## A glance at our work flow
 
-<!-- ![image-20210831162226096](README.assets/image-20210831162226096.png) -->
+![](./pic/workflow.png)
 
-a pic will comming soon
-
-i promise
+（图源网络，侵删）
 
 ## Step by Step and detail explaination
 
@@ -277,16 +275,15 @@ When the building process is done, you can see it in your docker image list.
 
         - Start your development! Enjoy it still!
 
-
-        🌟原理部分🌟
-        这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
-        在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
+                🌟原理部分🌟
+                这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
+                在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
 
 #### Official Guides
 
-- https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container
+- [https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container](https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container)
 
-- https://containers.dev/guides
+- [https://containers.dev/guides](https://containers.dev/guides)
 
 
 
