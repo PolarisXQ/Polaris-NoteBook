@@ -131,7 +131,9 @@ CMD /bin/bash
 3. Build your own Docker Image
 
 ```bash
-docker build -t <your_image_name>[:<tag>] <your_dockerfile_path>
+# under the path that contains dockerfile
+
+docker build -t <your_image_name>[:<tag>] .
 ```
 
 For example, lets name this image rm_sentry, and give it a tag of v1.0, and the dockerfile is in the current directory.
@@ -163,6 +165,8 @@ When the building process is done, you can see it in your docker image list.
         - Click "Reopen in Container" and wait for the container to be built.
 
         - Start your development! Enjoy it!
+
+        - NOTE THAT maybe you need to change something in the devcontainer.json, like the image name, or the workspace folder, or the workspace mount.
 
 
 
