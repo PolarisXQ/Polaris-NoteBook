@@ -4,7 +4,9 @@
 
 ## A glance at our work flow
 
-<img src="./pic/workflow.png" width="80%" height="auto">
+<!-- ![](./pic/workflow.png) -->
+<img src="./pic/workflow.png" style="width:80%;height:auto;">
+
 
 （图源网络，侵删）
 
