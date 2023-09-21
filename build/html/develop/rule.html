@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Develop Rule</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../genindex.html" />
+  <link rel="search" title="搜索" href="../search.html" />
+  <link rel="next" title="Migrate from OpenCV3 to CV4" href="../Miscellaneous/migrationcv3tocv4.html" />
+  <link rel="prev" title="CMU Exploration Series" href="../Navigation/CMUSeries.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Develop Rule</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#id1" class="reference internal">分支命名规范</a></li>
+                
+                  <li class="toctree-l2"><a href="#id6" class="reference internal">日志规范</a></li>
+                
+                  <li class="toctree-l2"><a href="#id7" class="reference internal">关联仓库的管理</a></li>
+                
+                  <li class="toctree-l2"><a href="#reference" class="reference internal">Reference</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>Develop Rule</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="../Navigation/CMUSeries.html"
+       title="上一章">← CMU Exploration Series</a>
+  </li>
+  <li class="next">
+    <a href="../Miscellaneous/migrationcv3tocv4.html"
+       title="下一章">Migrate from OpenCV3 to CV4 →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="develop-rule">
+<h1>Develop Rule<a class="headerlink" href="#develop-rule" title="此标题的永久链接">¶</a></h1>
+<section id="id1">
+<h2>分支命名规范<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p><strong>master 分支</strong></p>
+<p>master 为主分支，也是用于部署生产环境的分支，确保master分支稳定性</p>
+<p>master 分支一般由develop以及hotfix分支合并，任何时间都不能直接修改代码</p>
+<p><strong>develop 分支</strong></p>
+<p>develop 为开发分支，始终保持最新完成以及bug修复后的代码</p>
+<p>一般开发的新功能时，feature分支都是基于develop分支下创建的</p>
+<p><strong>feature 分支</strong></p>
+<p>开发新功能时，以develop为基础创建feature分支</p>
+<p>分支命名: feature/ 开头的为特性分支， 命名规则: feature/user_module、 feature/cart_module</p>
+<p><strong>release分支</strong>
+release 为预上线分支，发布提测阶段，会release分支代码为基准提测</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>当有一组feature开发完成，首先会合并到develop分支，进入提测时，会创建release分支。如果测试过程中若存在bug需要修复，则直接由开发者在release分支修复并提交。当测试完成之后，合并release分支到master和develop分支，此时master为最新代码，用作上线。
+</pre></div>
+</div>
+<p><strong>hotfix 分支</strong></p>
+<p>分支命名: hotfix/ 开头的为修复分支，它的命名规则与 feature 分支类似</p>
+<p>线上出现紧急问题时，需要及时修复，以master分支为基线，创建hotfix分支，修复完成后，需要合并到master分支和develop分支</p>
+<section id="id2">
+<h3>举栗子🌰🌰🌰<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
+<section id="id3">
+<h4>增加新功能<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(dev)$: git checkout -b feature/xxx            # 从dev建立特性分支
+(feature/xxx)$: blabla                         # 开发
+(feature/xxx)$: git add xxx
+(feature/xxx)$: git commit -m &#39;commit comment&#39;
+(dev)$: git merge feature/xxx --no-ff          # 把特性分支合并到dev
+</pre></div>
+</div>
+</section>
+<section id="bug">
+<h4>修复紧急bug<a class="headerlink" href="#bug" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(master)$: git checkout -b hotfix/xxx         # 从master建立hotfix分支
+(hotfix/xxx)$: blabla                         # 开发
+(hotfix/xxx)$: git add xxx
+(hotfix/xxx)$: git commit -m &#39;commit comment&#39;
+(master)$: git merge hotfix/xxx --no-ff       # 把hotfix分支合并到master，并上线到生产环境
+(dev)$: git merge hotfix/xxx --no-ff          # 把hotfix分支合并到dev，同步代码
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>测试环境代码<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(release)$: git merge dev --no-ff             # 把dev分支合并到release，然后在测试环境拉取并测试
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>生产环境上线<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(master)$: git merge release --no-ff          # 把release测试好的代码合并到master，运维人员操作
+(master)$: git tag -a v0.1 -m &#39;部署包版本名&#39;  #给版本命名，打Tag
+</pre></div>
+</div>
+<p><img alt="../_images/devflow.png" src="../_images/devflow.png" /></p>
+</section>
+</section>
+</section>
+<section id="id6">
+<h2>日志规范<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p>在一个团队协作的项目中，开发人员需要经常提交一些代码去修复bug或者实现新的feature。而项目中的文件和实现什么功能、解决什么问题都会渐渐淡忘，最后需要浪费时间去阅读代码。但是好的日志规范commit messages编写有帮助到我们，它也反映了一个开发人员是否是良好的协作者。</p>
+<p>编写良好的Commit messages可以达到3个重要的目的：</p>
+<ul class="simple">
+<li><p>加快review的流程</p></li>
+<li><p>帮助我们编写良好的版本发布日志</p></li>
+<li><p>让之后的维护者了解代码里出现特定变化和feature被添加的原因</p></li>
+</ul>
+<p>目前，社区有多种 Commit message 的写法规范。来自Angular 规范是目前使用最广的写法，比较合理和系统化。</p>
+<section id="commit-message">
+<h3>Commit message 格式<a class="headerlink" href="#commit-message" title="此标题的永久链接">¶</a></h3>
+<p>具体格式为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">type</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">subject</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">BLANK</span> <span class="n">LINE</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">BLANK</span> <span class="n">LINE</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">footer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>type: 本次 commit 的类型，诸如 bugfix docs style 等</p></li>
+<li><p>scope: 本次 commit 波及的范围</p></li>
+<li><p>subject: 简明扼要的阐述下本次 commit 的主旨，在原文中特意强调了几点</p>
+<ol class="simple">
+<li><p>使用祈使句，是不是很熟悉又陌生的一个词，来传送门在此 祈使句</p></li>
+<li><p>首字母不要大写</p></li>
+<li><p>结尾无需添加标点</p></li>
+</ol>
+</li>
+<li><p>body: 同样使用祈使句，在主体内容中我们需要把本次 commit 详细的描述一下，比如此次变更的动机，如需换行，则使用 |</p></li>
+<li><p>footer: 描述下与之关联的 issue 或 break change，详见案例</p></li>
+</ul>
+<section id="type">
+<h4>Type的类别说明<a class="headerlink" href="#type" title="此标题的永久链接">¶</a></h4>
+<ul class="simple">
+<li><p>feat: 添加新特性</p></li>
+<li><p>fix: 修复bug</p></li>
+<li><p>docs: 仅仅修改了文档</p></li>
+<li><p>style: 仅仅修改了空格、格式缩进、都好等等，不改变代码逻辑</p></li>
+<li><p>refactor: 代码重构，没有加新功能或者修复bug</p></li>
+<li><p>perf: 增加代码进行性能测试</p></li>
+<li><p>test: 增加测试用例</p></li>
+<li><p>chore: 改变构建流程、或者增加依赖库、工具等</p></li>
+</ul>
+</section>
+</section>
+<section id="commit-messages">
+<h3>Commit messages格式要求<a class="headerlink" href="#commit-messages" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 标题行：50个字符以内，描述主要变更内容</span>
+<span class="c1">#</span>
+<span class="c1"># 主体内容：更详细的说明文本，建议72个字符以内。 需要描述的信息包括:</span>
+<span class="c1">#</span>
+<span class="c1"># * 为什么这个变更是必须的? 它可能是用来修复一个bug，增加一个feature，提升性能、可靠性、稳定性等等</span>
+<span class="c1"># * 他如何解决这个问题? 具体描述解决问题的步骤</span>
+<span class="c1"># * 是否存在副作用、风险? </span>
+<span class="c1">#</span>
+<span class="c1"># 如果需要的化可以添加一个链接到issue地址或者其它文档</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>关联仓库的管理<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<p>涉及内部仓库之间的引用采用 submodule 进行版本管理，对于可开源发布的版本管理采用包管理，比如pip、npm、go get。</p>
+<p>主项目管理形式如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="n">主项目</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">B</span><span class="p">(</span><span class="n">common公共模块</span><span class="p">)</span>
+<span class="o">|</span>
+<span class="o">|---&gt;</span> <span class="n">C</span><span class="p">(</span><span class="n">包管理</span><span class="p">)</span>
+<span class="o">|</span>
+<span class="o">|---&gt;</span> <span class="n">D</span><span class="p">(</span><span class="n">其他仓库</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>将引用项目作为submodule添加到主项目中：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 添加submodule</span>
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>&lt;远程引用模块仓库地址&gt;
+</pre></div>
+</div>
+<p>子项目版本管理和主项目版本管理是分发的，主项目中的子项目更新需要手动操作：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 更新子模块</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init
+</pre></div>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>https://blog.csdn.net/weixin_44786530/article/details/129403495</p></li>
+<li><p>https://www.cnblogs.com/heroljy/p/9294127.html</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="../Navigation/CMUSeries.html"
+       title="上一章">← CMU Exploration Series</a>
+  </li>
+  <li class="next">
+    <a href="../Miscellaneous/migrationcv3tocv4.html"
+       title="下一章">Migrate from OpenCV3 to CV4 →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

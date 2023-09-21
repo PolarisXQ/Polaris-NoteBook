@@ -17,15 +17,18 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: Docker
 
-   Docker/HowtoRun
+   Docker/docker
+   Docker/DevContainer
+   Docker/workflow
+   Docker/UsefulCommand
 
 .. toctree::
    :maxdepth: 1
    :caption: SLAM
 
    SLAM/overview
-   SLAM/Traditional/ORB-SLAM3
    SLAM/RecommendReading
+   SLAM/Traditional/ORB-SLAM3
    SLAM/SLAM_w_NN
 
 .. toctree::
@@ -34,6 +37,20 @@ Welcome to Polaris' NoteBook!
 
    CV/basic.md
    CV/Yolo.md
+   CV/multiobj_track
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Navigation
+
+   Navigation/Overview.md
+   Navigation/CMUSeries.md
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Development Related
+
+   develop/rule.md
 
 .. toctree::
    :maxdepth: 1
@@ -42,4 +59,5 @@ Welcome to Polaris' NoteBook!
    Miscellaneous/migrationcv3tocv4
    Miscellaneous/roadtoslam
    Miscellaneous/Cmake
+   Miscellaneous/developwithnuc
    

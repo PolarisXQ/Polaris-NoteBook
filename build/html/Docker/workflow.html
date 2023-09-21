@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Introduce to our WorkFlow</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../genindex.html" />
+  <link rel="search" title="搜索" href="../search.html" />
+  <link rel="next" title="Some Useful Command for Docker" href="UsefulCommand.html" />
+  <link rel="prev" title="DevContainer: What Why and How" href="DevContainer.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="DevContainer.html" class="reference internal ">DevContainer: What Why and How</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Introduce to our WorkFlow</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#a-glance-at-our-work-flow" class="reference internal">A glance at our work flow</a></li>
+                
+                  <li class="toctree-l2"><a href="#step-by-step-and-detail-explaination" class="reference internal">Step by Step and detail explaination</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/rule.html" class="reference internal ">Develop Rule</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>Introduce to our WorkFlow</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="DevContainer.html"
+       title="上一章">← DevContainer: What Why and How</a>
+  </li>
+  <li class="next">
+    <a href="UsefulCommand.html"
+       title="下一章">Some Useful Command for Docker →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="introduce-to-our-workflow">
+<h1>Introduce to our WorkFlow<a class="headerlink" href="#introduce-to-our-workflow" title="此标题的永久链接">¶</a></h1>
+<p>如何使用docker+devcontainer来实现一键配置环境,实现一键启动，纵享丝滑</p>
+<section id="a-glance-at-our-work-flow">
+<h2>A glance at our work flow<a class="headerlink" href="#a-glance-at-our-work-flow" title="此标题的永久链接">¶</a></h2>
+<img src="./pic/workflow.png" width="80%" height="auto"><p>（图源网络，侵删）</p>
+</section>
+<section id="step-by-step-and-detail-explaination">
+<h2>Step by Step and detail explaination<a class="headerlink" href="#step-by-step-and-detail-explaination" title="此标题的永久链接">¶</a></h2>
+<section id="installation-skip-if-you-already-prepared">
+<h3>Installation [ Skip if you already prepared ]<a class="headerlink" href="#installation-skip-if-you-already-prepared" title="此标题的永久链接">¶</a></h3>
+<ol class="simple">
+<li><p>Install Docker on your computer</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop for Windows</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">Docker Desktop for Mac</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/install/">Docker Engine for Linux</a></p></li>
+</ul>
+</li>
+<li><p>Install VsCode Extension</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote-SSH</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Remote-Containers</a></p></li>
+</ul>
+</li>
+<li><p>Install Xming/Xlaunch on Windows / Install XQuartz on Mac</p></li>
+</ol>
+<p>I am currently using XLanch on Windows.</p>
+</section>
+<section id="customize-your-own-docker-image">
+<h3>Customize your own Docker Image<a class="headerlink" href="#customize-your-own-docker-image" title="此标题的永久链接">¶</a></h3>
+<ol class="simple">
+<li><p>Pull an basic docker image from docker hub.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ros:humble-perception-jammy
+</pre></div>
+</div>
+<p>其实后面build docker image的时候，也会自动下载的，先下载下来省时间。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>🌟原理部分🌟
+
+!!依照本人的理解!!docker的工作原理就是，运算仍然是调用本机的资源，但是在你可以在docker里面运行任何一种操作系统，而且不会影响到本机的操作系统。
+
+我们这一步做的就是拉取别人构建好的基础镜像，在上面再装一些我们自己需要的软件、上传自己的文件，以后就可以直接使用了。
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Write your own Dockerfile</p></li>
+</ol>
+<p>为什么要写dockerfile呢？ 因为我们需要在基础镜像上安装一些软件，或者上传一些文件，这些操作都可以在dockerfile里面完成。</p>
+<p>这里是一个简单的示例</p>
+<p>因为也是自己在慢慢摸索，现在还只能写点基础的🫠</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Base on which image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ros:humble-perception-jammy</span>
+
+<span class="c"># source ros environment</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/</span><span class="nv">$ROS_DISTRO</span><span class="s2">/setup.bash&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="c"># color your terminal</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;force_color_prompt=yes&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+
+<span class="c">## Install dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>using<span class="w"> </span>add-apt-repository
+<span class="w">    </span>software-properties-common<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>download<span class="w"> </span>
+<span class="w">    </span>wget<span class="w"> </span><span class="se">\ </span>
+<span class="w">    </span>#<span class="w"> </span>useful<span class="w"> </span>tools
+<span class="w">    </span>aptitude<span class="w"> </span>
+
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>rviz2
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rviz2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>Gazebo
+<span class="w">    </span><span class="c1"># ros-humble-gazebo-ros \</span>
+<span class="w">    </span>#<span class="w"> </span>rqt
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rqt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rqt-common-plugins<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>navigation2
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-navigation2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-nav2-bringup<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>Turtlebot3
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-turtlebot3-gazebo<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>octomap<span class="w"> </span>dependencies
+<span class="w">    </span>ros-humble-octomap<span class="w"> </span>ros-humble-octomap-msgs<span class="w"> </span>ros-humble-octomap-mapping<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-octomap-ros<span class="w"> </span>ros-humble-octomap-rviz-plugins<span class="w"> </span>ros-humble-octomap-server<span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>octomap<span class="w"> </span>viewer
+<span class="w">    </span>octovis<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>gridmap<span class="w"> </span>dependencies
+<span class="w">    </span>#<span class="w"> </span>🫠<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>learning<span class="w"> </span>gridmap,<span class="w"> </span>you<span class="w"> </span>may<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>packages
+<span class="w">    </span>#<span class="w"> </span>ros-humble-grid-map-demos
+<span class="w">    </span>ros-humble-grid-map<span class="w"> </span>ros-humble-grid-map-cmake-helpers<span class="w"> </span>ros-humble-grid-map-core<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-costmap-2d<span class="w"> </span>ros-humble-grid-map-cv<span class="w"> </span>ros-humble-grid-map-filters<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-loader<span class="w"> </span>ros-humble-grid-map-msgs<span class="w"> </span>ros-humble-grid-map-octomap<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-pcl<span class="w"> </span>ros-humble-grid-map-ros<span class="w"> </span>ros-humble-grid-map-rviz-plugin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-sdf<span class="w"> </span>ros-humble-grid-map-visualization<span class="w"> </span>
+
+<span class="c"># LIO-SAM</span>
+<span class="c"># Add GTSAM-PPA</span>
+<span class="k">RUN</span><span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:borglab/gtsam-release-4.1
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-perception-pcl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-pcl-msgs<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-vision-opencv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-xacro<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libgtsam-dev<span class="w"> </span>libgtsam-unstable-dev<span class="w"> </span>
+
+<span class="c"># Download models for gazebo</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/.gazebo/models
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/root/.gazebo/models</span>
+<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>http://file.ncnynl.com/ros/gazebo_models.txt
+<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>-i<span class="w"> </span>gazebo_models.txt
+<span class="c"># extract models</span>
+<span class="k">RUN</span><span class="w"> </span>ls<span class="w"> </span>model.tar.g*<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n1<span class="w"> </span>tar<span class="w"> </span>xzvf
+<span class="c"># clean up</span>
+<span class="k">RUN</span><span class="w"> </span>rm<span class="w"> </span>model.tar.gz*
+
+<span class="c"># Install extra dependencies with apt</span>
+
+<span class="c"># Install extra dependencies with pip</span>
+
+<span class="c"># add start script</span>
+<span class="k">CMD</span><span class="w"> </span>/bin/bash
+</pre></div>
+</div>
+<p>😶‍🌫️学不会是吧，其实我是在镜像里装一个，回到dockerfile里写一条，慢慢就搓出来了。</p>
+<ol class="simple">
+<li><p>Build your own Docker Image</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># under the path that contains dockerfile</span>
+
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;your_image_name&gt;<span class="o">[</span>:&lt;tag&gt;<span class="o">]</span><span class="w"> </span>.
+</pre></div>
+</div>
+<p>For example, lets name this image rm_sentry, and give it a tag of v1.0, and the dockerfile is in the current directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>rm_sentry:v1.0<span class="w"> </span>.
+</pre></div>
+</div>
+<p>When the building process is done, you can see it in your docker image list.
+<img alt="../_images/localimage.png" src="../_images/localimage.png" /></p>
+</section>
+<section id="create-your-own-devcontainer-and-run-your-image">
+<h3>Create your own DevContainer and Run your image<a class="headerlink" href="#create-your-own-devcontainer-and-run-your-image" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    🌟说明🌟
+
+    local\host指的是你的本地电脑，container指的是你在docker里面运行的虚拟机。
+</pre></div>
+</div>
+<ol>
+<li><p>Clone 前辈的代码</p></li>
+<li><p>Open the folder in VSCode</p></li>
+<li><p>Open the folder in container</p>
+<ul>
+<li><p>If you are lucky enough…</p>
+<ul class="simple">
+<li><p>there will be a folder called <strong>.devcontainer</strong> in the repo, then you can just click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
+<li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
+<li><p>Start your development! Enjoy it!</p></li>
+<li><p>NOTE THAT maybe you need to change something in the devcontainer.json, like the image name, or the workspace folder, or the workspace mount.</p></li>
+</ul>
+</li>
+<li><p>If not…</p>
+<ul class="simple">
+<li><p>you can create a folder called .devcontainer in the repo, and create a file called devcontainer.json in it, and copy the following code into it.</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sentry_dev&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="s2">&quot;rm_sentry:test2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;runArgs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="c1">// &quot;--cap-add=SYS_PTRACE&quot;, // enable debugging, e.g. gdb</span>
+
+<span class="w">        </span><span class="c1">// &quot;--ipc=host&quot;, // shared memory transport with host, e.g. rviz GUIs</span>
+
+<span class="w">        </span><span class="s2">&quot;--network=host&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// network access to host interfaces, e.g. eth0</span>
+
+<span class="w">        </span><span class="c1">// &quot;--pid=host&quot;, // DDS discovery with host, without --network=host</span>
+
+<span class="w">        </span><span class="s2">&quot;--privileged&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// device access to host peripherals, e.g. USB</span>
+
+<span class="w">        </span><span class="c1">// &quot;--security-opt=seccomp=unconfined&quot;, // enable debugging, e.g. gdb</span>
+
+<span class="w">        </span><span class="s2">&quot;--gpus all&quot;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sentry_ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// workdir in container</span>
+<span class="w">    </span><span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//mount your local file into container, ${containerWorkspaceFolder}==&quot;workspaceFolder&quot;</span>
+
+<span class="w">    </span><span class="c1">// &quot;onCreateCommand&quot;: &quot;.devcontainer/on-create-command.sh&quot;,</span>
+<span class="w">    </span><span class="c1">// &quot;updateContentCommand&quot;: &quot;.devcontainer/update-content-command.sh&quot;,</span>
+<span class="w">    </span><span class="c1">// &quot;postCreateCommand&quot;: &quot;.devcontainer/post-create-command.sh&quot;,</span>
+
+<span class="w">    </span><span class="nt">&quot;remoteEnv&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;DISPLAY&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;host.docker.internal:0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// forward X11 display to host, e.g. rviz GUIs</span>
+<span class="w">        </span><span class="c1">// NOTICE that this is for windows, for mac, you should use &quot;host.docker.internal:0&quot;</span>
+<span class="w">        </span><span class="c1">// NOTICE that XLaunch should be running on local machine</span>
+<span class="w">        </span><span class="nt">&quot;NVIDIA_DRIVER_CAPABILITIES&quot;</span><span class="p">:</span><span class="s2">&quot;all&quot;</span><span class="w"> </span><span class="c1">// enable GPU acceleration</span>
+<span class="w">        </span><span class="c1">//     &quot;OVERLAY_MIXINS&quot;: &quot;release ccache lld&quot;,</span>
+<span class="w">        </span><span class="c1">//     &quot;CCACHE_DIR&quot;: &quot;/tmp/.ccache&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="c1">// &quot;mounts&quot;: [</span>
+<span class="w">    </span><span class="c1">//     {</span>
+<span class="w">    </span><span class="c1">//         &quot;source&quot;: &quot;ccache-${devcontainerId}&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;target&quot;: &quot;/tmp/.ccache&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;type&quot;: &quot;volume&quot;</span>
+<span class="w">    </span><span class="c1">//     },</span>
+<span class="w">    </span><span class="c1">//     {</span>
+<span class="w">    </span><span class="c1">//         &quot;source&quot;: &quot;overlay-${devcontainerId}&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;target&quot;: &quot;/opt/overlay_ws&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;type&quot;: &quot;volume&quot;</span>
+<span class="w">    </span><span class="c1">//     }</span>
+<span class="w">    </span><span class="c1">// ],</span>
+<span class="w">    </span><span class="c1">// &quot;features&quot;: {</span>
+<span class="w">    </span><span class="c1">//     &quot;ghcr.io/devcontainers/features/desktop-lite:1&quot;: {},</span>
+<span class="w">    </span><span class="c1">//     &quot;ghcr.io/devcontainers/features/github-cli:1&quot;: {},</span>
+<span class="w">    </span><span class="c1">//     &quot;ghcr.io/rocker-org/devcontainer-features/apt-packages:1&quot;: {</span>
+<span class="w">    </span><span class="c1">// 		&quot;upgradePackages&quot;: true,</span>
+<span class="w">    </span><span class="c1">// 		&quot;packages&quot;: &quot;&quot;</span>
+<span class="w">    </span><span class="c1">// 	}</span>
+<span class="w">    </span><span class="c1">// },</span>
+<span class="w">    </span><span class="nt">&quot;customizations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// &quot;codespaces&quot;: {</span>
+<span class="w">        </span><span class="c1">//     &quot;openFiles&quot;: [</span>
+<span class="w">        </span><span class="c1">//         &quot;doc/development/codespaces.md&quot;</span>
+<span class="w">        </span><span class="c1">//     ]</span>
+<span class="w">        </span><span class="c1">// },</span>
+<span class="w">        </span><span class="nt">&quot;vscode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// install extension in container</span>
+<span class="w">            </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">            </span><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="c1">// gadget</span>
+<span class="w">                </span><span class="s2">&quot;aaron-bond.better-comments&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;PKief.material-icon-theme&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// C++</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools-extension-pack&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools-themes&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// python</span>
+<span class="w">                </span><span class="s2">&quot;ms-python.vscode-pylance&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-python.python&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// CMake</span>
+<span class="w">                </span><span class="s2">&quot;twxs.cmake&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cmake-tools&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// Github Copilot</span>
+<span class="w">                </span><span class="s2">&quot;GitHub.copilot&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;GitHub.copilot-chat&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;GitHub.copilot-labs&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// note</span>
+<span class="w">                </span><span class="s2">&quot;VisualStudioExptTeam.vscodeintellicode&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;VisualStudioExptTeam.intellicode-api-usage-examples&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// XML</span>
+<span class="w">                </span><span class="s2">&quot;DotJoshJohnson.xml&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// PCD viewer</span>
+<span class="w">                </span><span class="s2">&quot;tatsy.vscode-3d-preview&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// nav2 default</span>
+<span class="w">                </span><span class="c1">// &quot;althack.ament-task-provider&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;eamodio.gitlens&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;esbenp.prettier-vscode&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;ms-iot.vscode-ros&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;streetsidesoftware.code-spell-checker&quot;</span>
+
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
+<li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
+<li><p>Start your development! Enjoy it still!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  🌟原理部分🌟
+  这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
+  在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<section id="official-guides">
+<h4>Official Guides<a class="headerlink" href="#official-guides" title="此标题的永久链接">¶</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container">https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container</a></p></li>
+<li><p><a class="reference external" href="https://containers.dev/guides">https://containers.dev/guides</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="DevContainer.html"
+       title="上一章">← DevContainer: What Why and How</a>
+  </li>
+  <li class="next">
+    <a href="UsefulCommand.html"
+       title="下一章">Some Useful Command for Docker →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

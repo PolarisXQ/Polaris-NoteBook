@@ -29,7 +29,7 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="Migration from OpenCV3 to CV4" href="../Miscellaneous/migrationcv3tocv4.html" />
+  <link rel="next" title="Tracking Multi-Objects" href="multiobj_track.html" />
   <link rel="prev" title="Basic" href="basic.html" /> 
   </head>
 
@@ -71,6 +71,20 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
          CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
       </a>
     </div>
   
@@ -131,6 +145,20 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
          CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
       </a>
     </div>
   
@@ -202,7 +230,34 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Docker/HowtoRun.html" class="reference internal ">Some Useful Command</a>
+              <a href="../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
             
 
             
@@ -229,7 +284,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
             
 
             
@@ -238,7 +293,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
             
 
             
@@ -287,6 +342,60 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/rule.html" class="reference internal ">Develop Rule</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -298,7 +407,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migration from OpenCV3 to CV4</a>
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
             
 
             
@@ -307,7 +416,16 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">Mis</a>
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
             
 
             
@@ -336,8 +454,8 @@
        title="上一章">← Basic</a>
   </li>
   <li class="next">
-    <a href="../Miscellaneous/migrationcv3tocv4.html"
-       title="下一章">Migration from OpenCV3 to CV4 →</a>
+    <a href="multiobj_track.html"
+       title="下一章">Tracking Multi-Objects →</a>
   </li>
 </ul>
   
@@ -456,7 +574,7 @@
 </tbody>
 </table><section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="此标题的永久链接">¶</a></h2>
-<p><img alt="../_images/improvement1.webp" src="../_images/improvement1.webp" /></p>
+<p><img alt="../_images/improvement.webp" src="../_images/improvement.webp" /></p>
 <p>👉 <a class="reference external" href="https://zhuanlan.zhihu.com/p/186014243">BackBone优化方案</a></p>
 </section>
 </section>
@@ -470,8 +588,8 @@
        title="上一章">← Basic</a>
   </li>
   <li class="next">
-    <a href="../Miscellaneous/migrationcv3tocv4.html"
-       title="下一章">Migration from OpenCV3 to CV4 →</a>
+    <a href="multiobj_track.html"
+       title="下一章">Tracking Multi-Objects →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
