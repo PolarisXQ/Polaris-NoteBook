@@ -16,7 +16,6 @@ release = '0.0'
 
 
 extensions = [
-    # 'recommonmark', # 
     'sphinx_markdown_tables',
     # 'sphinxemoji.sphinxemoji',
     'sphinx.ext.githubpages',
