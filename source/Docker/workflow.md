@@ -4,7 +4,7 @@
 
 ## A glance at our work flow
 
-![](./pic/workflow.png)
+<img src="./pic/workflow.png" width="90%">
 
 （图源网络，侵删）
 
@@ -143,7 +143,8 @@ docker build -t rm_sentry:v1.0 .
 ```
 
 When the building process is done, you can see it in your docker image list.
-![](./pic/localimage.png)
+
+<img src="./pic/localimage.png" width="90%">
 
 ### Create your own DevContainer and Run your image
 

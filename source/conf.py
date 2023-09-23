@@ -16,13 +16,31 @@ release = '0.0'
 
 
 extensions = [
-    'recommonmark',
+    # 'recommonmark', # 
     'sphinx_markdown_tables',
     # 'sphinxemoji.sphinxemoji',
     'sphinx.ext.githubpages',
     'sphinx_copybutton',
     'sphinx.ext.mathjax',
     # 'pallets_sphinx_themes'
+    'myst_parser'
+]
+
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
 ]
 
 templates_path = ['_templates']

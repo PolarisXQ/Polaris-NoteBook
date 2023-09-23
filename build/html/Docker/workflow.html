@@ -465,18 +465,20 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="introduce-to-our-workflow">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduce-to-our-workflow">
 <h1>Introduce to our WorkFlow<a class="headerlink" href="#introduce-to-our-workflow" title="此标题的永久链接">¶</a></h1>
 <p>如何使用docker+devcontainer来实现一键配置环境,实现一键启动，纵享丝滑</p>
 <section id="a-glance-at-our-work-flow">
 <h2>A glance at our work flow<a class="headerlink" href="#a-glance-at-our-work-flow" title="此标题的永久链接">¶</a></h2>
-<!-- ![](./pic/workflow.png) --><img src="./Docker/pic/workflow.png" style="width:80%;height:auto;"><p>（图源网络，侵删）</p>
+<p><img alt="" src="../_images/workflow.png" /></p>
+<a class="reference internal image-reference" href="../_images/workflow.png"><img alt="../_images/workflow.png" src="../_images/workflow.png" style="width: 80%;" /></a>
+<p>（图源网络，侵删）</p>
 </section>
 <section id="step-by-step-and-detail-explaination">
 <h2>Step by Step and detail explaination<a class="headerlink" href="#step-by-step-and-detail-explaination" title="此标题的永久链接">¶</a></h2>
 <section id="installation-skip-if-you-already-prepared">
 <h3>Installation [ Skip if you already prepared ]<a class="headerlink" href="#installation-skip-if-you-already-prepared" title="此标题的永久链接">¶</a></h3>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Install Docker on your computer</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop for Windows</a></p></li>
@@ -496,21 +498,21 @@
 </section>
 <section id="customize-your-own-docker-image">
 <h3>Customize your own Docker Image<a class="headerlink" href="#customize-your-own-docker-image" title="此标题的永久链接">¶</a></h3>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Pull an basic docker image from docker hub.</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ros:humble-perception-jammy
 </pre></div>
 </div>
 <p>其实后面build docker image的时候，也会自动下载的，先下载下来省时间。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>🌟原理部分🌟
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>🌟原理部分🌟
 
 !!依照本人的理解!!docker的工作原理就是，运算仍然是调用本机的资源，但是在你可以在docker里面运行任何一种操作系统，而且不会影响到本机的操作系统。
 
 我们这一步做的就是拉取别人构建好的基础镜像，在上面再装一些我们自己需要的软件、上传自己的文件，以后就可以直接使用了。
 </pre></div>
 </div>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>Write your own Dockerfile</p></li>
 </ol>
 <p>为什么要写dockerfile呢？ 因为我们需要在基础镜像上安装一些软件，或者上传一些文件，这些操作都可以在dockerfile里面完成。</p>
@@ -589,7 +591,7 @@
 </pre></div>
 </div>
 <p>😶‍🌫️学不会是吧，其实我是在镜像里装一个，回到dockerfile里写一条，慢慢就搓出来了。</p>
-<ol class="simple">
+<ol class="arabic simple" start="3">
 <li><p>Build your own Docker Image</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># under the path that contains dockerfile</span>
@@ -602,16 +604,16 @@ docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </
 </pre></div>
 </div>
 <p>When the building process is done, you can see it in your docker image list.
-<img alt="../_images/localimage.png" src="../_images/localimage.png" /></p>
+<img alt="" src="../_images/localimage.png" /></p>
 </section>
 <section id="create-your-own-devcontainer-and-run-your-image">
 <h3>Create your own DevContainer and Run your image<a class="headerlink" href="#create-your-own-devcontainer-and-run-your-image" title="此标题的永久链接">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    🌟说明🌟
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    🌟说明🌟
 
     local\host指的是你的本地电脑，container指的是你在docker里面运行的虚拟机。
 </pre></div>
 </div>
-<ol>
+<ol class="arabic">
 <li><p>Clone 前辈的代码</p></li>
 <li><p>Open the folder in VSCode</p></li>
 <li><p>Open the folder in container</p>
@@ -731,7 +733,7 @@ docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </
 <li><p>Click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
 <li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
 <li><p>Start your development! Enjoy it still!</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  🌟原理部分🌟
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  🌟原理部分🌟
   这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
   在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。
 </pre></div>

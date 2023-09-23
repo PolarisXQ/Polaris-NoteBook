@@ -469,7 +469,7 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="slam-with-nerual-network">
+  <section class="tex2jax_ignore mathjax_ignore" id="slam-with-nerual-network">
 <h1>SLAM with Nerual Network<a class="headerlink" href="#slam-with-nerual-network" title="此标题的永久链接">¶</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="此标题的永久链接">¶</a></h2>
@@ -496,45 +496,46 @@
 <td></td>
 </tr>
 </tbody>
-</table></section>
+</table>
+</section>
 <section id="implementation-tools">
 <h2>implementation tools<a class="headerlink" href="#implementation-tools" title="此标题的永久链接">¶</a></h2>
-<p><img alt="../_images/impltol.webp" src="../_images/impltol.webp" />
+<p><img alt="" src="../_images/impltol.webp" />
 腾讯公司开发的移动端平台部署工具——NCNN；Intel公司针对自家设备开开发的部署工具——OpenVino；NVIDIA公司针对自家GPU开发的部署工具——TensorRT；Google针对自家硬件设备和深度学习框架开发的部署工具——MediaPipe；由微软、亚马逊 、Facebook 和 IBM 等公司共同开发的开放神经网络交换格式——ONNX(Open Neural Network Exchange)。除此之外，还有一些深度学习框架有自己的专用部署服务：比如TensorFlow自己提供的部署服务：TensorFlow Serving、TensorFlow Lite，pytorch自己提供的部署服务：libtorch。</p>
-<p>👉<a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzU2NjU3OTc5NA==&amp;mid=2247560125&amp;idx=2&amp;sn=001988bca941a9404ac8fe7a351b514d&amp;chksm=fca9ec80cbde659689922250b3138e752cfccf50fde18f07016b7673bf1289bb8bd25bb4f636&amp;scene=27">深度学习模型部署综述（ONNX/NCNN/OpenVINO/TensorRT）</a></p>
+<p>👉<a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzU2NjU3OTc5NA==&amp;amp;mid=2247560125&amp;amp;idx=2&amp;amp;sn=001988bca941a9404ac8fe7a351b514d&amp;amp;chksm=fca9ec80cbde659689922250b3138e752cfccf50fde18f07016b7673bf1289bb8bd25bb4f636&amp;amp;scene=27">深度学习模型部署综述（ONNX/NCNN/OpenVINO/TensorRT）</a></p>
 </section>
 <section id="how-to-choose">
 <h2>How to Choose<a class="headerlink" href="#how-to-choose" title="此标题的永久链接">¶</a></h2>
 <p>ncnn 和 TensorRT 都是高效的深度学习推理框架,主要的区别和选择考量如下:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>支持硬件:</p></li>
 </ol>
 <ul class="simple">
 <li><p>ncnn 主要针对 ARM 嵌入式设备如手机优化,可以无缝部署到 Android/iOS 应用中。</p></li>
 <li><p>TensorRT 主要针对 NVIDIA GPU 优化,需要 NVIDIA 图形卡。</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>支持框架:</p></li>
 </ol>
 <ul class="simple">
 <li><p>ncnn 支持主流框架 Caffe/TensorFlow/Torch,但需要模型转换。</p></li>
 <li><p>TensorRT 只支持 TensorFlow/PyTorch,可以直接加载模型。</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="3">
 <li><p>性能:</p></li>
 </ol>
 <ul class="simple">
 <li><p>在 ARM 设备上,ncnn 会更快。</p></li>
 <li><p>在 NVIDIA GPU 上 TensorRT 会更快。</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="4">
 <li><p>其他功能:</p></li>
 </ol>
 <ul class="simple">
 <li><p>ncnn 更轻量级,主要是一个推理引擎。</p></li>
 <li><p>TensorRT 提供更多功能如自动优化、INT8 量化、A/B 测试等。</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple" start="5">
 <li><p>社区支持:</p></li>
 </ol>
 <ul class="simple">
@@ -558,7 +559,7 @@
 <section id="yolo-seg">
 <h3>Yolo-Seg<a class="headerlink" href="#yolo-seg" title="此标题的永久链接">¶</a></h3>
 <p>👉 <a class="reference external" href="https://github.com/ultralytics/yolov5/issues/10049">作者对YoloSeg的说明</a>
-👉 <a class="reference internal" href="../CV/Yolo.html"><span class="doc">For More Details about Yolo</span></a></p>
+👉 <a class="reference internal" href="../CV/Yolo.html"><span class="std std-doc">For More Details about Yolo</span></a></p>
 </section>
 <section id="mask-rcnn">
 <h3>Mask-rcnn<a class="headerlink" href="#mask-rcnn" title="此标题的永久链接">¶</a></h3>

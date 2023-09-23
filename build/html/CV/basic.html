@@ -77,6 +77,20 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
          Miscellaneous
       </a>
     </div>
@@ -131,6 +145,20 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link  router-link-active">
          CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
       </a>
     </div>
   
@@ -202,7 +230,34 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Docker/HowtoRun.html" class="reference internal ">Some Useful Command</a>
+              <a href="../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
             
 
             
@@ -229,7 +284,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
             
 
             
@@ -238,7 +293,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
             
 
             
@@ -287,6 +342,60 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/rule.html" class="reference internal ">Develop Rule</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -298,7 +407,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migration from OpenCV3 to CV4</a>
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
             
 
             
@@ -307,7 +416,16 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">Mis</a>
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
             
 
             
@@ -345,9 +463,9 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="basic">
+  <section class="tex2jax_ignore mathjax_ignore" id="basic">
 <h1>Basic<a class="headerlink" href="#basic" title="此标题的永久链接">¶</a></h1>
-<ol>
+<ol class="arabic">
 <li><p>backbone：
 翻译为主干网络的意思，既然说是主干网络，就代表其是网络的一部分，那么是哪部分呢？翻译的很好，主干部分，哈哈哈哈，文字游戏了哈。这个主干网络大多时候指的是提取特征的网络，其作用就是提取图片中的信息，共后面的网络使用。这些网络经常使用的是resnet VGG等，而不是我们自己设计的网络，因为这些网络已经证明了在分类等问题上的特征提取能力是很强的。在用这些网络作为backbone的时候，都是直接加载官方已经训练好的模型参数，后面接着我们自己的网络。让网络的这两个部分同时进行训练，因为加载的backbone模型已经具有提取特征的能力了，在我们的训练过程中，会对他进行微调，使得其更适合于我们自己的任务。</p></li>
 <li><p>head：head是获取网络输出内容的网络，利用之前提取的特征，head利用这些特征，做出预测。</p></li>
