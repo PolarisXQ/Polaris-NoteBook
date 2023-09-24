@@ -15,6 +15,12 @@ Welcome to Polaris' NoteBook!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Development Related
+
+   develop/rule.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: Docker
 
    Docker/docker
@@ -26,10 +32,17 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: SLAM
 
-   SLAM/overview
-   SLAM/RecommendReading
-   SLAM/Traditional/ORB-SLAM3
-   SLAM/SLAM_w_NN
+   Robotics/SLAM/overview
+   Robotics/SLAM/RecommendReading
+   Robotics/SLAM/Traditional/ORB-SLAM3
+   Robotics/SLAM/SLAM_w_NN
+
+   .. toctree::
+   :maxdepth: 1
+   :caption: Navigation
+
+   Robotics/Navigation/Overview.md
+   Robotics/Navigation/CMUSeries.md
 
 .. toctree::
    :maxdepth: 1
@@ -38,19 +51,6 @@ Welcome to Polaris' NoteBook!
    CV/basic.md
    CV/Yolo.md
    CV/multiobj_track
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Navigation
-
-   Navigation/Overview.md
-   Navigation/CMUSeries.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Development Related
-
-   develop/rule.md
 
 .. toctree::
    :maxdepth: 1
