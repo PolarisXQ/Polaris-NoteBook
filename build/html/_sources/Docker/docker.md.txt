@@ -2,7 +2,7 @@
 
 ## What and Why
 
-**依照本人的理解** docker就是把操作系统当成一个软件在跑
+**依照本人的理解** docker就是把操作系统当成一个定制化的软件在跑
 
 docker镜像（image）像是一个程序，可以用dockerfile来自己定制这个操作系统，也可以直接从docker hub上下载
 

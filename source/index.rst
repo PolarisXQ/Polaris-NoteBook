@@ -37,7 +37,7 @@ Welcome to Polaris' NoteBook!
    Robotics/SLAM/Traditional/ORB-SLAM3
    Robotics/SLAM/SLAM_w_NN
 
-   .. toctree::
+.. toctree::
    :maxdepth: 1
    :caption: Navigation
 
@@ -59,5 +59,5 @@ Welcome to Polaris' NoteBook!
    Miscellaneous/migrationcv3tocv4
    Miscellaneous/roadtoslam
    Miscellaneous/Cmake
-   Miscellaneous/developwithnuc
+   Miscellaneous/develowithnuc
    
