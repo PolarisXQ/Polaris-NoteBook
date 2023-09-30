@@ -8,6 +8,12 @@ Welcome to Polaris' NoteBook!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Daily Report
+
+   report/report.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: System
 
    Sys/Linux/bind_device
