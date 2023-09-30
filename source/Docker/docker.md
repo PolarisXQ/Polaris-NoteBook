@@ -20,6 +20,36 @@ Docker的另一个优势就是，只要我写好了dockerfile,上传到github或
 
 这种分发的思想，还是很高效的。
 
+### using CI with Tencent Coding
+
+if you continously fail to checkout, think about if you use git lfs to manage your large files.
+
+if the answer is yes, then you need to add a step in your CI workflow to install git lfs and pull the large files.
+
+```groovy
+pipeline {
+  agent any
+  stages {
+    stage('检出') {
+      steps {
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: env.GIT_BUILD_REF]],
+          extensions: [
+            // 添加 GitLFSPull 插件
+            [$class: 'GitLFSPull'],
+          ],
+          userRemoteConfigs: [[
+            url: env.GIT_REPO_URL,
+            credentialsId: env.CREDENTIALS_ID
+          ]]
+        ])
+      }
+    }
+  }
+}
+```
+
 ## Docker compose
 
 学习中。。。
