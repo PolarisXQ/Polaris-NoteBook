@@ -33,10 +33,7 @@
 - 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
 - 通信测试PASS
 
-![电控通信](./pic/real_robot.png)
-<p align="center">
 <img src="./pic/real_robot.png"  width="90%">
-</p>
 
 - 下一步测导航
 
@@ -84,10 +81,7 @@
 - 用于部署在郭老师的小车上
 - 装车
 
-![装车](./pic/car.jpg)
-<p align="center">
 <img src="./pic/car.jpg"  width="50%">
-</p>
 
 ## 使用FAST_LIO_LOCALIZATION
 
