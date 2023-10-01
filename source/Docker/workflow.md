@@ -45,9 +45,7 @@ If your colleage have already built the image and prepared the environment:
 
 2. Pull the image.
 
-    For Tencent Coding.
-
-    项目-> 制品管理：制品仓库->拉取
+    For Tencent Coding.项目-> 制品管理：制品仓库->拉取
 
 3. config devcontainer.json
 
@@ -62,6 +60,14 @@ If your colleage have already built the image and prepared the environment:
     "workspaceFolder": "/home/sentry_ws", // workdir in container
     "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind", //mount your local file into container, ${containerWorkspaceFolder}=="workspaceFolder"
     ```
+
+4. Open the folder in DevContainer
+
+    - Click the green button in the bottom left corner of VSCode(remenber to install the extension)
+
+    - Click "Reopen in Container" and wait for the container to be built.
+
+    - Start your development! Enjoy it!
 
 #### Customize your own Docker Image
 

@@ -32,6 +32,11 @@
 - 电控通信完成
 - 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
 - 通信测试PASS
+
+<p align="center">
+<img src="./pic/real_robot.png"  width="90%">
+</p>
+
 - 下一步测导航
 
 ## 🟩 阅读far_planner论文
@@ -44,9 +49,10 @@
 - 🗓️2023.09.29
 - 详见代码注释以及readme文档
 
-## 🟩 尝试跑起来郭老师给的小车
+## ✅ 尝试跑起来郭老师给的小车
 
 - 底板框架是ROS1的，还是比较麻烦
+- 后来把上层换成ROS1了
 
 ## 🟩 尝试将farPlanner与navigation2中的localPlanner（Controller）结合
 
@@ -77,7 +83,11 @@
 - 用于部署在郭老师的小车上
 - 装车
 
-## 
+<p align="center">
+<img src="./pic/car.jpg"  width="50%">
+</p>
+
+## nav2方案和FarPlanner方案实车测试
 
 
 
