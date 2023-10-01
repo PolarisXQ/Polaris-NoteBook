@@ -49,6 +49,13 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
          System
       </a>
     </div>
@@ -71,6 +78,13 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link ">
          SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
       </a>
     </div>
   
@@ -116,6 +130,13 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
          System
       </a>
     </div>
@@ -138,6 +159,13 @@
       <a href="../index.html#welcome-to-polaris-notebook"
          class="nav-link ">
          SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
       </a>
     </div>
   
@@ -183,6 +211,24 @@
   
     <div class="sidebar-group">
       <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report.html" class="reference internal ">开发记录</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
         <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
       </p>
       <ul class="">
@@ -217,6 +263,15 @@
           <li class="toctree-l1 ">
             
               <a href="../develop/rule.html" class="reference internal ">Develop Rule</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/git.html" class="reference internal ">GIT</a>
             
 
             
@@ -321,6 +376,15 @@
           </li>
 
         
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
           <li class="toctree-l1 ">
             
               <a href="../Robotics/Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
@@ -333,6 +397,15 @@
           <li class="toctree-l1 ">
             
               <a href="../Robotics/Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
             
 
             
@@ -411,6 +484,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -478,6 +560,34 @@
 </ol>
 <p>Used for GUI visualization</p>
 <p>I am currently using XLanch on Windows.</p>
+</section>
+<section id="pull-and-run">
+<h4>Pull and Run<a class="headerlink" href="#pull-and-run" title="此标题的永久链接">¶</a></h4>
+<p>If your colleage have already built the image and prepared the environment:</p>
+<ol class="arabic">
+<li><p>Clone the repo.</p></li>
+<li><p>Pull the image.</p>
+<p>For Tencent Coding.项目-&gt; 制品管理：制品仓库-&gt;拉取</p>
+</li>
+<li><p>config devcontainer.json</p>
+<p>modify at least these item:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="s2">&quot;rm_sentry:test2&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// to the name of the image you just pulled</span>
+</pre></div>
+</div>
+<p>and notice that this will mount your local workspace folder into the container, they are binded, i.e. if you change the file in the container, it will change the file in your local workspace folder, and vice versa.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sentry_ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// workdir in container</span>
+<span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//mount your local file into container, ${containerWorkspaceFolder}==&quot;workspaceFolder&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Open the folder in DevContainer</p>
+<ul class="simple">
+<li><p>Click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
+<li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
+<li><p>Start your development! Enjoy it!</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="customize-your-own-docker-image">
 <h4>Customize your own Docker Image<a class="headerlink" href="#customize-your-own-docker-image" title="此标题的永久链接">¶</a></h4>
@@ -810,7 +920,8 @@ docker<span class="w"> </span>run<span class="w"> </span>hello-world
 <p>finnally you can see your image in the image list</p>
 </li>
 <li><p>run the image</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xhost<span class="w"> </span>+<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span><span class="si">${</span><span class="nv">DISPLAY</span><span class="si">}</span><span class="w"> </span>sentry:v0.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>&lt;your<span class="w"> </span>hotspot<span class="w"> </span>ip&gt;:0.0
+sudo<span class="w"> </span>xhost<span class="w"> </span>+<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span><span class="si">${</span><span class="nv">DISPLAY</span><span class="si">}</span><span class="w"> </span>sentry:v0.0
 </pre></div>
 </div>
 <ul class="simple">

@@ -33,6 +33,7 @@
 - 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
 - 通信测试PASS
 
+![电控通信](./pic/real_robot.png)
 <p align="center">
 <img src="./pic/real_robot.png"  width="90%">
 </p>
@@ -83,6 +84,7 @@
 - 用于部署在郭老师的小车上
 - 装车
 
+![装车](./pic/car.jpg)
 <p align="center">
 <img src="./pic/car.jpg"  width="50%">
 </p>
@@ -94,7 +96,7 @@
 ## far_planner实车测试
 
 - 要求输入的点云是在map坐标系下的，使用pcl_ros进行点云的坐标转换会出现速度太慢的问题，参看了官方LOAM_Interface的文档，意思是fast_lio直接发布map到sensor的转换？
-- localPlanner原地转圈🙄🙄🙄
+- localPlanner原地转圈：看了社区里别人的方法，应该可以通过调大dirdiffthre来解决
 
 
 ## nav2方案和FarPlanner方案实车测试

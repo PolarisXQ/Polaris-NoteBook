@@ -50,6 +50,7 @@ Welcome to Polaris' NoteBook!
 
    Robotics/Navigation/Overview.md
    Robotics/Navigation/CMUSeries.md
+   Robotics/Navigation/PathTracking.md
 
 .. toctree::
    :maxdepth: 1
