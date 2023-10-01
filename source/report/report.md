@@ -39,7 +39,7 @@
 
 - 下一步测导航
 
-## 🟩 阅读far_planner论文
+## 🟩 阅读far_planner及其相关论文
 
 - 🗓️2023.09.29
 - 感触不深🙃
@@ -86,6 +86,16 @@
 <p align="center">
 <img src="./pic/car.jpg"  width="50%">
 </p>
+
+## 使用FAST_LIO_LOCALIZATION
+
+- 对初始点的要求比较奇怪
+
+## far_planner实车测试
+
+- 要求输入的点云是在map坐标系下的，使用pcl_ros进行点云的坐标转换会出现速度太慢的问题，参看了官方LOAM_Interface的文档，意思是fast_lio直接发布map到sensor的转换？
+- localPlanner原地转圈🙄🙄🙄
+
 
 ## nav2方案和FarPlanner方案实车测试
 
