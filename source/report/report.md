@@ -34,8 +34,12 @@
 - 通信测试PASS
 - 下一步测导航
 
-## ✅ 了解AEDE（autonomous_exploration_development_environment）
-框架
+## 🟩 阅读far_planner论文
+
+- 🗓️2023.09.29
+- 感触不深🙃
+
+## ✅ 了解AEDE（autonomous_exploration_development_environment）框架
 
 - 🗓️2023.09.29
 - 详见代码注释以及readme文档
@@ -57,13 +61,23 @@
 
 ## 🟩 为localPlanner[CMU]加入全向运动模型的支持
 
+- 🗓️2023.09.30
 - localPlanner默认是差分运动模型，依照作者描述和实际跑起来的效果，localplanner的算法优先转向再前进，并且在很多算法里都需要这种调整
 - 用差分来控制全向也未必不行，先看效果，需要的话再加入全向
 
 ## ✅ 阅读localPlanerr[CMU]的代码
 
+- 🗓️2023.09.30
 - 详见代码注释以及readme文档
 
+## ✅ 迁移代码至ROS1
+
+- 🗓️2023.09.30
+- 制作了镜像
+- 用于部署在郭老师的小车上
+- 装车
+
+## 
 
 
 

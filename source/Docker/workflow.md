@@ -37,6 +37,32 @@ Used for GUI visualization
 
 I am currently using XLanch on Windows.
 
+#### Pull and Run
+
+If your colleage have already built the image and prepared the environment:
+
+1. Clone the repo.
+
+2. Pull the image.
+
+    For Tencent Coding.
+
+    项目-> 制品管理：制品仓库->拉取
+
+3. config devcontainer.json
+
+    modify at least these item:
+    ```json
+    "image":"rm_sentry:test2", // to the name of the image you just pulled
+    ```
+
+    and notice that this will mount your local workspace folder into the container, they are binded, i.e. if you change the file in the container, it will change the file in your local workspace folder, and vice versa.
+
+    ```json
+    "workspaceFolder": "/home/sentry_ws", // workdir in container
+    "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind", //mount your local file into container, ${containerWorkspaceFolder}=="workspaceFolder"
+    ```
+
 #### Customize your own Docker Image
 
 1. Pull an basic docker image from docker hub.
@@ -395,6 +421,7 @@ docker run hello-world
 6. run the image
 
     ```bash
+    export DISPLAY=<your hotspot ip>:0.0
     sudo xhost + && sudo docker run -it --network=host --privileged -v /dev:/dev DISPLAY=${DISPLAY} sentry:v0.0
     ```
 
