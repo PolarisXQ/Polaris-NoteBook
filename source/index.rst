@@ -41,6 +41,7 @@ Welcome to Polaris' NoteBook!
 
    Robotics/SLAM/overview
    Robotics/SLAM/RecommendReading
+   Robotics/SLAM/relocalization
    Robotics/SLAM/Traditional/ORB-SLAM3
    Robotics/SLAM/SLAM_w_NN
 
