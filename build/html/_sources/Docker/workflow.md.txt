@@ -12,9 +12,8 @@
 
 ## Step by Step and detail explaination
 
-<p align="center">
-    <img src="./pic/stepbystep.gif" width="30%">
-</p>
+<img src="./pic/stepbystep.gif" width="30%">
+
 
 ### Development
 

@@ -61,8 +61,9 @@ YOLACT，一个实时的检测+分割的one-stage框架。
 效果极差
 
 ### Yolo-Seg
-👉 [作者对YoloSeg的说明](https://github.com/ultralytics/yolov5/issues/10049)
-👉 [For More Details about Yolo](../CV/Yolo.md)
+
+- 👉 [作者对YoloSeg的说明](https://github.com/ultralytics/yolov5/issues/10049)
+- 👉 [For More Details about Yolo](../../CV/Yolo.md)
 
 ### Mask-rcnn
 

@@ -54,8 +54,6 @@
 - 底板框架是ROS1的，还是比较麻烦
 - 后来把上层换成ROS1了
 
-    <img src="./pic/mapping.png"  width="90%">
-
 ## 🟩 尝试将farPlanner与navigation2中的localPlanner（Controller）结合
 
 - 🗓️2023.09.30
