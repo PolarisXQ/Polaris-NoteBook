@@ -121,12 +121,15 @@
 ### 🤔 一些问题
 
 - CMU的AEDE要求输入的点云是在map坐标系下的，但是fast_lio发布的两个registered_pointcloud分别是在sensor（lidar_link）和odom(init_pose)坐标系下的，也就是需要重定位算法发布odom到map的tf，使用pcl_ros库对fast_lio输出的registered_pointcloud进行点云的坐标转换。但是会出现速度太慢的问题，一直有tf时间戳对不上的WARN出现。暂时不知道是因为dll的发布频率太低还是因为坐标转换的速度太慢。
+- 🗓️2023.10.03可以参考CMU sensor_scan_generator 的转换方法，但是官方也把这个点云数据的发布速率设在了5HZ.
 - 参看了CMU官方LOAM_Interface的文档，意思是fast_lio直接发布map到sensor的转换，不需要重定位？实际上不用重定位其实效果也很好，暂时没有出现跑飞的现象，车速0.4-0.5左右。
 
 
 ## Localization方案原理理解
 
-- 🗓️2023.10.02 TODO: DLL,ICP,NDT...ACML,ACML3D,EKF,UKF...😂😂😂
+- 🗓️2023.10.02 ICP and its variants..
+- 🗓️2023.10.03 DLL，NDT
+    TODO: ACML,ACML3D,EKF,UKF...😂😂😂
 
 ## CMU系统参数理解
 
@@ -134,6 +137,7 @@
 - 上坡了！！！
 
     <img src="./pic/slope.png"  width="90%">
+- 🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参数服务，示例可以在我修改过的ADED包中或者pcl_cloud包中找到。调参都在rqt_parameter_reconfigure中进行。（对于ROS1参数服务写起来比较麻烦，懒得写了）
 
 
 
