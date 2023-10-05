@@ -68,8 +68,6 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
     ```
     <img src="./pic/checkout.png"  width="80%">
 
-    <img src="./pic/choosebranch.png"  width="80%">
-
 4. 开发
 
     ```
@@ -96,18 +94,16 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
             - 合并方式选择squash
 
+                <img src="./pic/merge3.png"  width="80%">
+
                     🫠选择哪一个方式好像关系也不大
                     
                     🌟Squash 可以将多个提交合并为一个单独的提交，使项目的提交历史更加干净。
                     
                     🌟Rebase 则可以将一个分支上的提交应用到另一个分支上，使得项目历史更加线性和整洁。
 
-                <img src="./pic/merge3.png"  width="80%">
 
             - 记得添加评审者
-
-                <img src="./pic/merge4.png"  width="80%">
-
         2. 处理冲突
 
             - 若没有冲突，等待评审完成即可，develop分支的内容就会更新为feature分支的内容
@@ -128,9 +124,14 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
             git push origin feature/xxxx
 
+        5. * 等待测试/评审
+
+
     - 评审人员/项目经理
 
         1. 设置仓库
+
+            TIPS：可以通过配置CODING仓库模板、构建计划模板，来规范团队的开发流程
 
             <img src="./pic/setting.jpg"  width="50%">
 
@@ -139,13 +140,14 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
                 🌟Merge commit 合并(常用)
                     当我们的新分支是基于主分支的老版本，或者在新分支和主分支上都进行了提交时，Git将会创建一个新的合并提交。这个合并提交记录了两个分支的历史最新公共祖先以来的所有提交。
 
-        2. 处理冲突/评审/合并
 
-        3. 配置自动化测试
+        2. 配置自动化测试
 
             <img src="./pic/CI.png"  width="80%">
 
-            <img src="./pic/CItest.png"  width="80%">
+            <img src="./pic/CItest.png"  width="100%">
+
+        2. 测试通过，评审/合并
 
         3. 删除分支
 
