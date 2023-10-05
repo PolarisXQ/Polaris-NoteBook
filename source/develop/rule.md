@@ -4,7 +4,7 @@
 
 - 实现并行开发
 - 方便管理
-- 不能避免BUG，但方便你找到BUG
+- 不能避免BUG，但方便找到BUG
 
 ## 分支命名规范(Gitflow)
 
@@ -110,15 +110,13 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
             - 若有冲突，需要解决冲突，再合并
 
-                <img src="./pic/merge5.png"  width="50%">
+                <img src="./pic/merge5.png"  width="80%">
 
         3. 在VsCode处理冲突
 
-            <img src="./pic/mergechange1.png"  width="30%">
+            <img src="./pic/mergechange2.png"  width="80%">
 
-            <img src="./pic/mergechange2.png"  width="50%">
-
-            <img src="./pic/mergechange3.png"  width="50%">
+            <img src="./pic/mergechange3.png"  width="80%">
 
         4. 提交到远程仓库
 
@@ -133,7 +131,7 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
             TIPS：可以通过配置CODING仓库模板、构建计划模板，来规范团队的开发流程
 
-            <img src="./pic/setting.jpg"  width="50%">
+            <img src="./pic/setting.jpg"  width="80%">
 
                 🌟Fast-forward 合并
                     当我们的新分支是基于主分支的最新提交版本时，Git可以直接将主分支指向新分支的头部，这种合并方式叫做Fast-forward合并。这种合并方式不会创建合并提交，只是简单的将主分支的指针前移。
