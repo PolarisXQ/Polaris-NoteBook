@@ -1,4 +1,4 @@
-# Develop Rule
+# 开发的姿势
 
 ## Why
 
@@ -122,7 +122,7 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
             git push origin feature/xxxx
 
-        5. * 等待测试/评审
+        5. 等待测试/评审
 
 
     - 评审人员/项目经理

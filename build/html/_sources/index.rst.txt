@@ -20,7 +20,7 @@ Welcome to Polaris' NoteBook!
    Sys/Linux/Miscellaneous
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Development Related
 
    develop/rule.md
@@ -69,4 +69,5 @@ Welcome to Polaris' NoteBook!
    Miscellaneous/roadtoslam
    Miscellaneous/Cmake
    Miscellaneous/develowithnuc
+   Miscellaneous/JKB-NetWork
    
