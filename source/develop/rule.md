@@ -20,6 +20,9 @@ develop 为开发分支，始终保持最新完成以及bug修复后的代码
 
 一般开发的新功能时，feature分支都是基于develop分支下创建的
 
+对代码进行持续集成也一般在这个分支上进行
+
+
 ### feature 分支
 
 开发新功能时，以develop为基础创建feature分支
@@ -27,9 +30,10 @@ develop 为开发分支，始终保持最新完成以及bug修复后的代码
 分支命名: feature/ 开头的为特性分支， 命名规则: feature/user_module、 feature/cart_module
 
 ### release分支
+
 release 为预上线分支，发布提测阶段，会release分支代码为基准提测
 
-    当有一组feature开发完成，首先会合并到develop分支，进入提测时，会创建release分支。如果测试过程中若存在bug需要修复，则直接由开发者在release分支修复并提交。当测试完成之后，合并release分支到master和develop分支，此时master为最新代码，用作上线。
+当有一组feature开发完成，首先会合并到develop分支，进入提测时，会创建release分支。如果测试过程中若存在bug需要修复，则直接由开发者在release分支修复并提交。当测试完成之后，合并release分支到master和develop分支，此时master为最新代码，用作上线。
 
 ### hotfix 分支
 
@@ -37,33 +41,40 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
 线上出现紧急问题时，需要及时修复，以master分支为基线，创建hotfix分支，修复完成后，需要合并到master分支和develop分支
 
+<img src="./pic/devflow.png"  width="80%">
+
+👉 [See how it looks like in our repo](https://huoguozhandui.coding.net/p/24vision_nav/d/24SentryNav/git/commits/master?commit_history_gk=&commit_history_time_from=&commit_history_time_to=&graph=true&order=desc)
+
+
 ### 举栗子🌰🌰🌰
 
 #### 增加新功能
 
 1. 在coding上创建分支
 
-    <img src="./pic/creatbranch.png"  width="50%">
+    <img src="./pic/creatbranch.png"  width="80%">
 
 2. fetch分支到本地
 
     ```shell
     git fetch
     ```
-    <img src="./pic/fetch.png"  width="50%">
+    <img src="./pic/fetch.png"  width="80%">
 
 3. 切换到新建的分支
 
     ```shell
     git checkout feature/xxx
     ```
-    <img src="./pic/checkout.png"  width="50%">
-    <img src="./pic/choosebranch.png"  width="50%">
+    <img src="./pic/checkout.png"  width="80%">
+
+    <img src="./pic/choosebranch.png"  width="80%">
 
 4. 开发
 
     ```
     (feature/xxx)$: blabla                         # 开发
+    (feature/xxx)$: blabla_test                    # 测试
     (feature/xxx)$: git add xxx
     (feature/xxx)$: git commit -m 'commit comment'
     (feature/xxx)$: git push origin feature/xxx    # 提交到远程仓库
@@ -71,18 +82,17 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 
 5. 合并到develop分支，也就是提pull request(merge request)
 
-    - 开发人员  <span style="color:red; font-weight: 600;">!!!不要在本地进行合并!!! 会被当做普通的commit提交</span>
-
+    - 开发人员
 
         1. 在Coding上发起pull request
 
             - 注意合并方向规范
                 
-                <img src="./pic/merge1.png"  width="50%">
+                <img src="./pic/merge1.png"  width="80%">
 
             - 填写pull request的标题和内容
 
-                <img src="./pic/merge2.png"  width="50%">
+                <img src="./pic/merge2.png"  width="80%">
 
             - 合并方式选择squash
 
@@ -92,32 +102,21 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
                     
                     🌟Rebase 则可以将一个分支上的提交应用到另一个分支上，使得项目历史更加线性和整洁。
 
-                <img src="./pic/merge3.png"  width="50%">
+                <img src="./pic/merge3.png"  width="80%">
 
             - 记得添加评审者
 
-                <img src="./pic/merge4.png"  width="50%">
-
-    - 评审人员/项目经理
-
-        1. 设置仓库
-
-            <img src="./pic/setting.png"  width="50%">
-
-                🌟Fast-forward 合并
-                    当我们的新分支是基于主分支的最新提交版本时，Git可以直接将主分支指向新分支的头部，这种合并方式叫做Fast-forward合并。这种合并方式不会创建合并提交，只是简单的将主分支的指针前移。
-                🌟Merge commit 合并(常用)
-                    当我们的新分支是基于主分支的老版本，或者在新分支和主分支上都进行了提交时，Git将会创建一个新的合并提交。这个合并提交记录了两个分支的历史最新公共祖先以来的所有提交。
+                <img src="./pic/merge4.png"  width="80%">
 
         2. 处理冲突
 
-            - 若没有冲突，直接合并即可，develop分支的内容就会更新为feature分支的内容
+            - 若没有冲突，等待评审完成即可，develop分支的内容就会更新为feature分支的内容
 
             - 若有冲突，需要解决冲突，再合并
 
                 <img src="./pic/merge5.png"  width="50%">
 
-        3. VsCode会自动生成merge的commit message
+        3. 在VsCode处理冲突
 
             <img src="./pic/mergechange1.png"  width="30%">
 
@@ -128,6 +127,27 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
         4. 提交到远程仓库
 
             git push origin feature/xxxx
+
+    - 评审人员/项目经理
+
+        1. 设置仓库
+
+            <img src="./pic/setting.jpg"  width="50%">
+
+                🌟Fast-forward 合并
+                    当我们的新分支是基于主分支的最新提交版本时，Git可以直接将主分支指向新分支的头部，这种合并方式叫做Fast-forward合并。这种合并方式不会创建合并提交，只是简单的将主分支的指针前移。
+                🌟Merge commit 合并(常用)
+                    当我们的新分支是基于主分支的老版本，或者在新分支和主分支上都进行了提交时，Git将会创建一个新的合并提交。这个合并提交记录了两个分支的历史最新公共祖先以来的所有提交。
+
+        2. 处理冲突/评审/合并
+
+        3. 配置自动化测试
+
+            <img src="./pic/CI.png"  width="80%">
+
+            <img src="./pic/CItest.png"  width="80%">
+
+        3. 删除分支
 
 
 #### 修复紧急bug
@@ -154,9 +174,6 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 (master)$: git tag -a v0.1 -m '部署包版本名'  #给版本命名，打Tag
 ```
 
-<img src="./pic/devflow.png"  width="50%">
-
-👉 [See how it look like in our repo](https://huoguozhandui.coding.net/p/24vision_nav/d/24SentryNav/git/commits/master?commit_history_gk=&commit_history_time_from=&commit_history_time_to=&graph=true&order=desc)
 
 ## 日志规范
 
@@ -175,7 +192,7 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 具体格式为:
 
 ```
-<type>: <subject>
+<type>[(scope)]: <subject>
 <BLANK LINE>
 <body>
 <BLANK LINE>
@@ -183,13 +200,10 @@ release 为预上线分支，发布提测阶段，会release分支代码为基�
 ```
 
 - type: 本次 commit 的类型，诸如 bugfix docs style 等
-- scope: 本次 commit 波及的范围
-- subject: 简明扼要的阐述下本次 commit 的主旨，在原文中特意强调了几点 
-    1. 使用祈使句，是不是很熟悉又陌生的一个词，来传送门在此 祈使句 
-    2. 首字母不要大写 
-    3. 结尾无需添加标点
-- body: 同样使用祈使句，在主体内容中我们需要把本次 commit 详细的描述一下，比如此次变更的动机，如需换行，则使用 |
-- footer: 描述下与之关联的 issue 或 break change，详见案例
+- scope[optional]: 本次 commit 波及的范围
+- subject: 简明扼要的阐述下本次 commit 的主旨
+- body: 在主体内容中我们需要把本次 commit 详细的描述一下
+- footer: 描述下与之关联的 issue 或标明 break change
 
 #### Type的类别说明
 
