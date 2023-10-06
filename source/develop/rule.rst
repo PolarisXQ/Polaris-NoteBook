@@ -57,7 +57,7 @@ hotfix 分支
 .. _our repo: https://huoguozhandui.coding.net/p/24vision_nav/d/24SentryNav/git/commits/master?commit_history_gk=&commit_history_time_from=&commit_history_time_to=&graph=true&order=desc
 
 
-举栗子🌰
+A Walkthrough Example
 =========================
 
 增加新功能
@@ -204,6 +204,10 @@ hotfix 分支
 
 3） 测试通过，评审/合并
 
+.. image:: ./pic/buildstatus.png
+    :width: 10%
+    :align: center
+    
 4）删除分支
 
 
@@ -294,26 +298,6 @@ TIS：对Commit分类
 .. image:: ./pic/commitexa.png
     :width: 80%
     :align: center
-
-关联仓库的管理
-************************
-
-涉及内部仓库之间的引用采用 submodule 进行版本管理
-
-将引用项目作为submodule添加到主项目中：
-
-.. code-block:: bash
-
-    # 添加submodule
-    git submodule add <远程引用模块仓库地址>
-
-
-子项目版本管理和主项目版本管理是分发的，主项目中的子项目更新需要手动操作：
-
-.. code-block:: bash
-
-    # 更新子模块
-    git submodule update --init
 
 
 Reference
