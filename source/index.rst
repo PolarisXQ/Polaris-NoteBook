@@ -25,6 +25,7 @@ Welcome to Polaris' NoteBook!
 
    develop/rule.rst
    develop/submodel.rst
+   develop/CI.rst
    develop/git.md
 
 .. toctree::
@@ -61,6 +62,8 @@ Welcome to Polaris' NoteBook!
    CV/basic.md
    CV/Yolo.md
    CV/multiobj_track
+   CV/issue
+
 
 .. toctree::
    :maxdepth: 1

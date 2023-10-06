@@ -22,4 +22,3 @@
 
 
 
- docker run --gpus all -dit --ipc=host --net=host --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /home/geekbang/codingci_rm2024: /home/node/codingci_rm2024 codingci/default-env:test
