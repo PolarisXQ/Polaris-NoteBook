@@ -107,108 +107,108 @@ A Walkthrough Example
 5. 合并到develop分支，也就是提pull request(merge request)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- 开发人员
+**开发人员**
 
-1) 在Coding上发起pull request
+    1) 在Coding上发起pull request
 
-- 注意合并方向规范
+    - 注意合并方向规范
 
-.. image:: ./pic/merge1.png
-   :width: 80%
-   :align: center
+    .. image:: ./pic/merge1.png
+        :width: 80%
+        :align: center
 
-- 填写pull request的标题和内容
+    - 填写pull request的标题和内容
 
-.. image:: ./pic/merge2.png
-   :width: 80%
-   :align: center
+    .. image:: ./pic/merge2.png
+        :width: 80%
+        :align: center
 
-- 合并方式选择squash
+    - 合并方式选择squash
 
-.. image:: ./pic/merge3.png
-    :width: 80%
-    :align: center
+    .. image:: ./pic/merge3.png
+        :width: 80%
+        :align: center
 
-.. hint:: 
+    .. hint:: 
 
-    🫠选择哪一个方式好像关系也不大
-    
-    🌟Squash 可以将多个提交合并为一个单独的提交，使项目的提交历史更加干净。
-    
-    🌟Rebase 则可以将一个分支上的提交应用到另一个分支上，使得项目历史更加线性和整洁。
-
-
-- 记得添加评审者
-
-2) 处理冲突
-
-- 若没有冲突，等待评审完成即可，develop分支的内容就会更新为feature分支的内容
-
-- 若有冲突，需要解决冲突，再合并
-
-.. image:: ./pic/merge5.png
-    :width: 80%
-    :align: center
-
-3) 在VsCode处理冲突
-
-.. image:: ./pic/mergechange2.png
-    :width: 80%
-    :align: center
-
-    
-.. image:: ./pic/mergechange3.png
-    :width: 80%
-    :align: center
-
-4) 提交到远程仓库
-
-.. code-block:: bash
-
-    git push origin feature/xxxx
-
-5) 等待测试/评审
+        🫠选择哪一个方式好像关系也不大
+        
+        🌟Squash 可以将多个提交合并为一个单独的提交，使项目的提交历史更加干净。
+        
+        🌟Rebase 则可以将一个分支上的提交应用到另一个分支上，使得项目历史更加线性和整洁。
 
 
-- 评审人员/项目经理
+    - 记得添加评审者
 
-1) 设置仓库
+    2) 处理冲突
 
-.. hint::
-    
-    TIPS：可以通过配置CODING仓库模板、构建计划模板，来规范团队的开发流程
+    - 若没有冲突，等待评审完成即可，develop分支的内容就会更新为feature分支的内容
+
+    - 若有冲突，需要解决冲突，再合并
+
+    .. image:: ./pic/merge5.png
+        :width: 80%
+        :align: center
+
+    3) 在VsCode处理冲突
+
+    .. image:: ./pic/mergechange2.png
+        :width: 80%
+        :align: center
+
+        
+    .. image:: ./pic/mergechange3.png
+        :width: 80%
+        :align: center
+
+    4) 提交到远程仓库
+
+    .. code-block:: bash
+
+        git push origin feature/xxxx
+
+    5) 等待测试/评审
 
 
-.. image:: ./pic/setting.png
-    :width: 80%
-    :align: center
+**评审人员/项目经理**
 
-.. hint::
+    1) 设置仓库
 
-    🌟Fast-forward 合并
-        当我们的新分支是基于主分支的最新提交版本时，Git可以直接将主分支指向新分支的头部，这种合并方式叫做Fast-forward合并。这种合并方式不会创建合并提交，只是简单的将主分支的指针前移。
-    🌟Merge commit 合并(常用)
-        当我们的新分支是基于主分支的老版本，或者在新分支和主分支上都进行了提交时，Git将会创建一个新的合并提交。这个合并提交记录了两个分支的历史最新公共祖先以来的所有提交。
+    .. hint::
+        
+        TIPS：可以通过配置CODING仓库模板、构建计划模板，来规范团队的开发流程
 
 
-2) 配置自动化测试
+    .. image:: ./pic/setting.jpg
+        :width: 80%
+        :align: center
+
+    .. hint::
+
+        🌟Fast-forward 合并
+            当我们的新分支是基于主分支的最新提交版本时，Git可以直接将主分支指向新分支的头部，这种合并方式叫做Fast-forward合并。这种合并方式不会创建合并提交，只是简单的将主分支的指针前移。
+        🌟Merge commit 合并(常用)
+            当我们的新分支是基于主分支的老版本，或者在新分支和主分支上都进行了提交时，Git将会创建一个新的合并提交。这个合并提交记录了两个分支的历史最新公共祖先以来的所有提交。
 
 
-.. image:: ./pic/CI.png
-    :width: 80%
-    :align: center
+    2) 配置自动化测试
 
-.. image:: ./pic/CItest.png
-    :width: 80%
-    :align: center
 
-3） 测试通过，评审/合并
+    .. image:: ./pic/CI.png
+        :width: 80%
+        :align: center
 
-.. image:: ./pic/buildstatus.png
-    :width: 10%
-    :align: center
-    
-4）删除分支
+    .. image:: ./pic/CItest.png
+        :width: 80%
+        :align: center
+
+    3） 测试通过，评审/合并
+
+    .. image:: ./pic/buildstatus.png
+        :width: 10%
+        :align: center
+        
+    4）删除分支
 
 
 修复紧急bug

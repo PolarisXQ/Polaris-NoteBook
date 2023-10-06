@@ -29,7 +29,7 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="GIT" href="git.html" />
+  <link rel="next" title="关联仓库的管理" href="submodel.html" />
   <link rel="prev" title="Miscellaneous" href="../Sys/Linux/Miscellaneous.html" /> 
   </head>
 
@@ -272,13 +272,20 @@
                 
                   <li class="toctree-l2"><a href="#gitflow" class="reference internal">分支命名规范(Gitflow)</a></li>
                 
-                  <li class="toctree-l2"><a href="#id8" class="reference internal">日志规范</a></li>
-                
-                  <li class="toctree-l2"><a href="#id9" class="reference internal">关联仓库的管理</a></li>
+                  <li class="toctree-l2"><a href="#id7" class="reference internal">日志规范</a></li>
                 
                   <li class="toctree-l2"><a href="#reference" class="reference internal">Reference</a></li>
                 
               </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
             
           </li>
 
@@ -539,8 +546,8 @@
        title="上一章">← Miscellaneous</a>
   </li>
   <li class="next">
-    <a href="git.html"
-       title="下一章">GIT →</a>
+    <a href="submodel.html"
+       title="下一章">关联仓库的管理 →</a>
   </li>
 </ul>
   
@@ -587,10 +594,10 @@
 <a class="reference internal image-reference" href="../_images/devflow.png"><img alt="../_images/devflow.png" class="align-center" src="../_images/devflow.png" style="width: 50%;" /></a>
 <p>👉 See how it looks like in <a class="reference external" href="https://huoguozhandui.coding.net/p/24vision_nav/d/24SentryNav/git/commits/master?commit_history_gk=&amp;commit_history_time_from=&amp;commit_history_time_to=&amp;graph=true&amp;order=desc">our repo</a></p>
 </section>
+<section id="a-walkthrough-example">
+<h3>A Walkthrough Example<a class="headerlink" href="#a-walkthrough-example" title="此标题的永久链接">¶</a></h3>
 <section id="id2">
-<h3>举栗子🌰<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
-<section id="id3">
-<h4>增加新功能<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h4>
+<h4>增加新功能<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h4>
 <section id="coding">
 <h5>1. 在coding上创建分支<a class="headerlink" href="#coding" title="此标题的永久链接">¶</a></h5>
 <a class="reference internal image-reference" href="../_images/creatbranch.png"><img alt="../_images/creatbranch.png" class="align-center" src="../_images/creatbranch.png" style="width: 80%;" /></a>
@@ -602,15 +609,15 @@
 </div>
 <a class="reference internal image-reference" href="../_images/fetch.png"><img alt="../_images/fetch.png" class="align-center" src="../_images/fetch.png" style="width: 80%;" /></a>
 </section>
-<section id="id4">
-<h5>3. 切换到新建的分支<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h5>
+<section id="id3">
+<h5>3. 切换到新建的分支<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h5>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>feature/xxx
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/checkout.png"><img alt="../_images/checkout.png" class="align-center" src="../_images/checkout.png" style="width: 80%;" /></a>
 </section>
-<section id="id5">
-<h5>4. 开发<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h5>
+<section id="id4">
+<h5>4. 开发<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h5>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>feature/xxx<span class="o">)</span>$:<span class="w"> </span>blabla<span class="w">                         </span><span class="c1"># 开发</span>
 <span class="o">(</span>feature/xxx<span class="o">)</span>$:<span class="w"> </span>blabla_test<span class="w">                    </span><span class="c1"># 测试</span>
 <span class="o">(</span>feature/xxx<span class="o">)</span>$:<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>xxx
@@ -621,10 +628,9 @@
 </section>
 <section id="develop-pull-request-merge-request">
 <h5>5. 合并到develop分支，也就是提pull request(merge request)<a class="headerlink" href="#develop-pull-request-merge-request" title="此标题的永久链接">¶</a></h5>
-<ul class="simple">
-<li><p>开发人员</p></li>
-</ul>
-<ol class="arabic simple">
+<p><strong>开发人员</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
 <li><p>在Coding上发起pull request</p></li>
 </ol>
 <ul class="simple">
@@ -670,17 +676,17 @@
 <ol class="arabic simple" start="5">
 <li><p>等待测试/评审</p></li>
 </ol>
-<ul class="simple">
-<li><p>评审人员/项目经理</p></li>
-</ul>
-<ol class="arabic simple">
+</div></blockquote>
+<p><strong>评审人员/项目经理</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
 <li><p>设置仓库</p></li>
 </ol>
 <div class="admonition hint">
 <p class="admonition-title">提示</p>
 <p>TIPS：可以通过配置CODING仓库模板、构建计划模板，来规范团队的开发流程</p>
 </div>
-<a class="reference internal image-reference" href="develop/pic/setting.png"><img alt="develop/pic/setting.png" class="align-center" src="develop/pic/setting.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/setting.jpg"><img alt="../_images/setting.jpg" class="align-center" src="../_images/setting.jpg" style="width: 80%;" /></a>
 <div class="admonition hint">
 <p class="admonition-title">提示</p>
 <dl class="simple">
@@ -696,7 +702,9 @@
 <a class="reference internal image-reference" href="../_images/CI.png"><img alt="../_images/CI.png" class="align-center" src="../_images/CI.png" style="width: 80%;" /></a>
 <a class="reference internal image-reference" href="../_images/CItest.png"><img alt="../_images/CItest.png" class="align-center" src="../_images/CItest.png" style="width: 80%;" /></a>
 <p>3） 测试通过，评审/合并</p>
+<a class="reference internal image-reference" href="../_images/buildstatus.png"><img alt="../_images/buildstatus.png" class="align-center" src="../_images/buildstatus.png" style="width: 10%;" /></a>
 <p>4）删除分支</p>
+</div></blockquote>
 </section>
 </section>
 <section id="bug">
@@ -710,14 +718,14 @@
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h4>测试环境代码<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h4>
+<section id="id5">
+<h4>测试环境代码<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>release<span class="o">)</span>$:<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>dev<span class="w"> </span>--no-ff<span class="w">             </span><span class="c1"># 把dev分支合并到release，然后在测试环境拉取并测试</span>
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h4>生产环境上线<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h4>
+<section id="id6">
+<h4>生产环境上线<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>master<span class="o">)</span>$:<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>release<span class="w"> </span>--no-ff<span class="w">          </span><span class="c1"># 把release测试好的代码合并到master，运维人员操作</span>
 <span class="o">(</span>master<span class="o">)</span>$:<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v0.1<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;部署包版本名&#39;</span><span class="w">  </span><span class="c1">#给版本命名，打Tag</span>
 </pre></div>
@@ -725,8 +733,8 @@
 </section>
 </section>
 </section>
-<section id="id8">
-<h2>日志规范<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<section id="id7">
+<h2>日志规范<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
 <p>在一个团队协作的项目中，开发人员需要经常提交一些代码去修复bug或者实现新的feature。而项目中的文件和实现什么功能、解决什么问题都会渐渐淡忘，最后需要浪费时间去阅读代码。但是好的日志规范commit messages编写有帮助到我们，它也反映了一个开发人员是否是良好的协作者。</p>
 <p>编写良好的Commit messages可以达到3个重要的目的：</p>
 <ul class="simple">
@@ -768,23 +776,9 @@
 </section>
 <section id="tis-commit">
 <h3>TIS：对Commit分类<a class="headerlink" href="#tis-commit" title="此标题的永久链接">¶</a></h3>
-<a class="reference internal image-reference" href="develop/pic/perfectcommit.png"><img alt="develop/pic/perfectcommit.png" class="align-center" src="develop/pic/perfectcommit.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/perfectcommit.jpg"><img alt="../_images/perfectcommit.jpg" class="align-center" src="../_images/perfectcommit.jpg" style="width: 80%;" /></a>
 <a class="reference internal image-reference" href="../_images/commitexa.png"><img alt="../_images/commitexa.png" class="align-center" src="../_images/commitexa.png" style="width: 80%;" /></a>
 </section>
-</section>
-<section id="id9">
-<h2>关联仓库的管理<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h2>
-<p>涉及内部仓库之间的引用采用 submodule 进行版本管理</p>
-<p>将引用项目作为submodule添加到主项目中：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 添加submodule</span>
-git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>&lt;远程引用模块仓库地址&gt;
-</pre></div>
-</div>
-<p>子项目版本管理和主项目版本管理是分发的，主项目中的子项目更新需要手动操作：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 更新子模块</span>
-git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init
-</pre></div>
-</div>
 </section>
 <section id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="此标题的永久链接">¶</a></h2>
@@ -804,8 +798,8 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
        title="上一章">← Miscellaneous</a>
   </li>
   <li class="next">
-    <a href="git.html"
-       title="下一章">GIT →</a>
+    <a href="submodel.html"
+       title="下一章">关联仓库的管理 →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.

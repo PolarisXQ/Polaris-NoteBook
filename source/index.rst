@@ -24,7 +24,7 @@ Welcome to Polaris' NoteBook!
    :caption: Development Related
 
    develop/rule.rst
-   develop/submodule
+   develop/submodel.rst
    develop/git.md
 
 .. toctree::
