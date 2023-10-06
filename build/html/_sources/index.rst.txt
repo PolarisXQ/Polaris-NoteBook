@@ -20,10 +20,10 @@ Welcome to Polaris' NoteBook!
    Sys/Linux/Miscellaneous
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Development Related
 
-   develop/rule.md
+   develop/rule.rst
    develop/git.md
 
 .. toctree::

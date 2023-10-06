@@ -23,7 +23,7 @@ Welcome to Polaris' NoteBook!
    :maxdepth: 1
    :caption: Development Related
 
-   develop/rule.md
+   develop/rule.rst
    develop/git.md
 
 .. toctree::

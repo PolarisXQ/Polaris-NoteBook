@@ -20,7 +20,6 @@
 
 # CI节点出现状态正常但是无法访问的情况
 
-- 可能是系统内存爆了，登上去删掉一些缓存的镜像就好了。
-<img src="./pic/init_fail.png"  width="50%">
 
 
+ docker run --gpus all -dit --ipc=host --net=host --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /home/geekbang/codingci_rm2024: /home/node/codingci_rm2024 codingci/default-env:test
