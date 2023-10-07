@@ -1,39 +1,38 @@
 # 开发记录
 
-## ✅ farplanner仿真测试
+## ✅ far_planner导航算法仿真测试
 
 - 🗓️2023.09.24
 - 仿真内效果很好
     <img src="./pic/simu.png"  width="90%">
     <img src="./pic/farplanner.png"  width="90%">
 
-## ✅ navigation2方案测试
+## ✅ navigation2导航定位方案测试
 
 - 🗓️2023.09.24
-- fast_lio, lio_sam, kiss_icp + dll + navigation2
+- fast_lio/lio_sam/kiss_icp (定位算法) + dll （重定位算法） + navigation2 （导航框架）
+- dll算法配准效果
+
     <img src="./pic/dll.png"  width="90%">
+
+- fastlio建图转八叉树地图
+
     <img src="./pic/octo.gif"  width="90%">
 
 - 📑下一步上实车测试
 
-## ✅ ego_planner仿真测试
+## ✅ ego_planner导航方案仿真测试
 
 - 🗓️2023.09.24
 - 效果不佳，还需要调试。
-- 而且为了将三维导航适用于二维，需要带上很多其他的包，感觉没有必要
-
-## ✅ docker镜像通信问题
-
-- 🗓️2023.09.24
-- WSL2下的docker的串口通信和网络通信还是存在一定问题，在linux中就没有这种问题了
-- 教程文档在博客中更新
+- 而且为了将三维导航适用于二维，需要带上很多其他的算法包，感觉没有必要
 
 ## ✅ 电控通信
 
 - 🗓️2023.09.24
 - 电控通信完成
 - 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
-- 通信测试PASS
+- 实车通信测试
 
     <img src="./pic/real_robot.png"  width="90%">
 
@@ -43,11 +42,6 @@
 ## ✅ 了解AEDE（autonomous_exploration_development_environment）框架
 
 - 🗓️2023.09.29 详见代码注释以及readme文档
-
-## ✅ 尝试跑起来rikibot
-
-- 底板框架是ROS1的，还是比较麻烦
-- 后来把上层换成ROS1了
 
 ## 🟩 尝试将farPlanner与navigation2中的localPlanner（Controller）结合
 
@@ -85,6 +79,8 @@
 
     <img src="./pic/car.jpg"  width="90%">
 
+- FASTLIO_MAPPING
+
     <img src="./pic/mapping.gif"  width="90%">
 
 ## 🟩 使用FAST_LIO_LOCALIZATION
@@ -93,11 +89,12 @@
 
 ## 🟩 使用DLL的问题
 
-- 按照23赛季留下来的思路，应该是这个逻辑
+- 使用dll的话，tf树逻辑应该是这样的
     - fast_lio: odom->sensor
     - dll: sensor->map
 - 但是感觉不是特别好用，一个是计算速度不够，一个是对初始点的要求严格。
-<img src="./pic/dll_real.gif"  width="90%">
+
+    <img src="./pic/dll_real.gif"  width="90%">
 
 ## ✅ local_planner实车测试
 
@@ -111,8 +108,12 @@
 - 🗓️2023.10.01 localPlanner原地转圈：看了社区里别人的方法，应该可以通过调大dirdiffthre来解决
 - 🗓️2023.10.02 破案了，原地转圈是因为mid360方向装反了。
 - 🗓️2023.10.02 后期可以看到地图出现了一些问题。
+- 在室内测局部控制器
 
     <img src="./pic/far_planner_indoor.gif"  width="90%">
+
+- 在走廊测规划器
+
     <img src="./pic/far_plannerx3.gif"  width="90%">
 
 
@@ -126,21 +127,21 @@
 ## Localization方案原理理解
 
 - 🗓️2023.10.02 ICP and its variants..
-- 🗓️2023.10.03 DLL，NDT
-    TODO: ACML,ACML3D,EKF,UKF...😂😂😂
+- 🗓️2023.10.03 DLL，NDT; TODO: ACML,ACML3D,EKF,UKF...
 
 ## CMU系统参数理解
 
 - 🗓️2023.10.02/03 给代码加上了参数服务，以后可以动态调参了
-- 上坡了！！！
+- 实现上坡功能
 
     <img src="./pic/slope.png"  width="90%">
+
 - 🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中找到。调参都在rqt_parameter_reconfigure中进行。（对于ROS1参数服务写起来比较麻烦，懒得写了）
 
 
-## 🟩 阅读CMU系列论文
+## 🟩 阅读CMU导航算法系列论文
 
-- 🗓️2023.09.29 感触不深🙃
+- 🗓️2023.09.29 感触不深
 - 🗓️2023.10.05 terrain_analysis, local_planner
 
 ## ✅ git规范文档
