@@ -55,15 +55,6 @@
 - 带有lfs管理的仓库持续集成问题会比较多，暂时还是先把大文件删除了
 - 🗓️2023.10.03 分为开发镜像和部署镜像
 
-## 🟩 为localPlanner[CMU]加入全向运动模型的支持
-
-- 🗓️2023.09.30
-- localPlanner默认是差分运动模型，依照作者描述和实际跑起来的效果，localplanner的算法优先转向再前进，并且在很多算法里都需要这种调整
-- 用差分来控制全向也未必不行，先看效果，需要的话再加入全向
-- localPlanner的路径是写死的，从一开始设计就没有考虑到全向的运动模型。
-- 解决方案：1.差分转全向 2.按照localPlanner的设计思路，重写全向的localPlanner 3.接入其他的全向localPlanner算法 4.把twowaydrive改成fourwaydriver
-- 🗓️2023.10.03 仿真环境内加入了对全向运动的支持
-
 
 ## ✅ 阅读localPlanerr[CMU]的代码
 
@@ -137,13 +128,41 @@
     <img src="./pic/slope.png"  width="90%">
 
 - 🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中找到。调参都在rqt_parameter_reconfigure中进行。（对于ROS1参数服务写起来比较麻烦，懒得写了）
+- 🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释
 
 
 ## 🟩 阅读CMU导航算法系列论文
 
 - 🗓️2023.09.29 感触不深
-- 🗓️2023.10.05 terrain_analysis, local_planner
+- 🗓️2023.10.05-07 terrain_analysis, local_planner原理和参数理解，理解后才能修改源码，加入对全向轮的支持。
 
 ## ✅ git规范文档
-- 🗓️2023.10.05 
+- 🗓️2023.10.06 
+
+## ✅ CMU仿真环境加入麦轮支持
+- 🗓️2023.10.08 
+
+## ✅ 为localPlanner[CMU]加入全向运动模型的支持
+
+- 🗓️2023.09.30
+- localPlanner默认是差分运动模型，依照作者描述和实际跑起来的效果，localplanner的算法优先转向再前进，并且在很多算法里都需要这种调整
+- 用差分来控制全向也未必不行，先看效果，需要的话再加入全向
+- localPlanner的路径是写死的，从一开始设计就没有考虑到全向的运动模型。
+- 解决方案：1.差分转全向 2.按照localPlanner的设计思路，重写全向的localPlanner 3.接入其他的全向localPlanner算法 4.把twowaydrive改成fourwaydriver
+- 🗓️2023.10.09/10 仿真环境内加入了对全向运动的支持，最后是按照localPlanner的设计思路，重写了全向的localPlanner按照localPlanner的设计思路，重写全向的localPlanner
+
+- 进化过程
+
+    振荡版
+
+    <img src="./pic/oscillation.gif"  width="90%">
+
+    修正版，并且保留了原作者的一些设计思路，详见代码注释和readme
+
+    <img src="./pic/final.gif"  width="90%">
+
+    加入了全向轮的twoWayDrive控制模式，可以看到如果是后侧的点会先转向
+
+    <img src="./pic/notwowaydrive.gif"  width="90%">
+
 
