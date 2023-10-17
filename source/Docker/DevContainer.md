@@ -1,4 +1,6 @@
-# DevContainer: What Why and How
+# DevContainer: What Why and How[Optional]
+
+既然使用了Docker，当然还可以考虑使用上DevContainer，来进一步配置开发环境。
 
 ## What is DevContainer
 
@@ -8,7 +10,7 @@
 **依照本人的理解**
 devcontainer= docker container + VSCode
 
-也可以理解为，运行一个镜像，然后用ssh将VSCode连接到这个镜像上,并且定制化了一些东西，比如说安装了一些插件，配置了一些环境变量等等。然后这些配置是通过编写一个json文件来实现的。
+也可以理解为定制了工作空间，比如运行镜像的参数、安装的VSCode插件、进入镜像时需要执行的脚本等等。这些配置都可以通过编写一个json文件来实现。
 
 因此，理论上只要我们有共同的dockerfile,.devcontainer文件，就可以实现一键配置环境，一键启动开发环境,而且所有人的环境都是一样的。
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>DevContainer: What Why and How</title>
+      <title>DevContainer: What Why and How[Optional]</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -262,7 +262,25 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../develop/rule.html" class="reference internal ">Develop Rule</a>
+              <a href="../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/CI.html" class="reference internal ">配置CI节点</a>
             
 
             
@@ -298,7 +316,7 @@
         
           <li class="toctree-l1 current">
             
-              <a href="#" class="reference internal current">DevContainer: What Why and How</a>
+              <a href="#" class="reference internal current">DevContainer: What Why and How[Optional]</a>
             
 
             
@@ -316,6 +334,24 @@
           <li class="toctree-l1 ">
             
               <a href="workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
             
 
             
@@ -457,6 +493,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -502,6 +547,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -514,7 +568,7 @@
   <ul class="breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
     
-    <li>DevContainer: What Why and How</li>
+    <li>DevContainer: What Why and How[Optional]</li>
   </ul>
   
 
@@ -533,14 +587,15 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section class="tex2jax_ignore mathjax_ignore" id="devcontainer-what-why-and-how">
-<h1>DevContainer: What Why and How<a class="headerlink" href="#devcontainer-what-why-and-how" title="此标题的永久链接">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="devcontainer-what-why-and-how-optional">
+<h1>DevContainer: What Why and How[Optional]<a class="headerlink" href="#devcontainer-what-why-and-how-optional" title="此标题的永久链接">¶</a></h1>
+<p>既然使用了Docker，当然还可以考虑使用上DevContainer，来进一步配置开发环境。</p>
 <section id="what-is-devcontainer">
 <h2>What is DevContainer<a class="headerlink" href="#what-is-devcontainer" title="此标题的永久链接">¶</a></h2>
 <p><a class="reference external" href="https://zhuanlan.zhihu.com/p/604545087">😎read me if you like to</a></p>
 <p><strong>依照本人的理解</strong>
 devcontainer= docker container + VSCode</p>
-<p>也可以理解为，运行一个镜像，然后用ssh将VSCode连接到这个镜像上,并且定制化了一些东西，比如说安装了一些插件，配置了一些环境变量等等。然后这些配置是通过编写一个json文件来实现的。</p>
+<p>也可以理解为定制了工作空间，比如运行镜像的参数、安装的VSCode插件、进入镜像时需要执行的脚本等等。这些配置都可以通过编写一个json文件来实现。</p>
 <p>因此，理论上只要我们有共同的dockerfile,.devcontainer文件，就可以实现一键配置环境，一键启动开发环境,而且所有人的环境都是一样的。</p>
 <p>优雅！</p>
 </section>

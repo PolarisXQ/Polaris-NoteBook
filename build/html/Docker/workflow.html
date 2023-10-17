@@ -29,8 +29,8 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="Some Useful Command for Docker" href="UsefulCommand.html" />
-  <link rel="prev" title="DevContainer: What Why and How" href="DevContainer.html" /> 
+  <link rel="next" title="Step by Step in detail: Launch the Development Workspace" href="RunDevEnv.html" />
+  <link rel="prev" title="DevContainer: What Why and How[Optional]" href="DevContainer.html" /> 
   </head>
 
   <body>
@@ -262,7 +262,25 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../develop/rule.html" class="reference internal ">Develop Rule</a>
+              <a href="../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/CI.html" class="reference internal ">配置CI节点</a>
             
 
             
@@ -298,7 +316,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="DevContainer.html" class="reference internal ">DevContainer: What Why and How</a>
+              <a href="DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
             
 
             
@@ -315,9 +333,27 @@
                 
                   <li class="toctree-l2"><a href="#a-glance-at-our-work-flow" class="reference internal">A glance at our work flow</a></li>
                 
-                  <li class="toctree-l2"><a href="#step-by-step-and-detail-explaination" class="reference internal">Step by Step and detail explaination</a></li>
+                  <li class="toctree-l2"><a href="#step-by-step-a-preview-of-our-work-flow" class="reference internal">Step by Step: A preview of our work flow</a></li>
                 
               </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
             
           </li>
 
@@ -457,6 +493,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -502,6 +547,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -521,11 +575,11 @@
   <ul class="page-nav">
   <li class="prev">
     <a href="DevContainer.html"
-       title="上一章">← DevContainer: What Why and How</a>
+       title="上一章">← DevContainer: What Why and How[Optional]</a>
   </li>
   <li class="next">
-    <a href="UsefulCommand.html"
-       title="下一章">Some Useful Command for Docker →</a>
+    <a href="RunDevEnv.html"
+       title="下一章">Step by Step in detail: Launch the Development Workspace →</a>
   </li>
 </ul>
   
@@ -535,458 +589,55 @@
             
   <section class="tex2jax_ignore mathjax_ignore" id="introduce-to-our-workflow">
 <h1>Introduce to our WorkFlow<a class="headerlink" href="#introduce-to-our-workflow" title="此标题的永久链接">¶</a></h1>
-<p>如何使用docker+devcontainer来实现一键配置环境,实现一键启动，纵享丝滑</p>
+<p>经过了原理的介绍，现在讲讲在开发的工作流中要如何使用Docker、DevContainer、CI、CD。</p>
 <section id="a-glance-at-our-work-flow">
 <h2>A glance at our work flow<a class="headerlink" href="#a-glance-at-our-work-flow" title="此标题的永久链接">¶</a></h2>
 <a class="reference internal image-reference" href="../_images/workflow.png"><img alt="../_images/workflow.png" src="../_images/workflow.png" style="width: 90%;" /></a>
-<p>总结就是定制一个容器，开发在容器中进行，并且写好相应的Dockerfile和devcontainer.json，然后上传到github，配置好CI，在服务器上完成镜像构建，最后小电脑内只需要安装docker,dockercompose,ssh,不用装ros,拉下来镜像就可以上场了。当然对最后上场的镜像要加一些必要的启动脚本，删除一些开发时才需要用的倚赖包，这样可以减小镜像的体积。</p>
 <p>（图源网络，侵删）</p>
 </section>
-<section id="step-by-step-and-detail-explaination">
-<h2>Step by Step and detail explaination<a class="headerlink" href="#step-by-step-and-detail-explaination" title="此标题的永久链接">¶</a></h2>
-<a class="reference internal image-reference" href="../_images/stepbystep.gif"><img alt="../_images/stepbystep.gif" src="../_images/stepbystep.gif" style="width: 30%;" /></a>
-<section id="development">
-<h3>Development<a class="headerlink" href="#development" title="此标题的永久链接">¶</a></h3>
-<section id="installation-skip-if-you-already-prepared">
-<h4>Installation [ Skip if you already prepared ]<a class="headerlink" href="#installation-skip-if-you-already-prepared" title="此标题的永久链接">¶</a></h4>
-<ol class="arabic simple">
-<li><p>Install Docker on your computer</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop for Windows</a></p></li>
-<li><p><a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">Docker Desktop for Mac</a></p></li>
-<li><p><a class="reference external" href="https://docs.docker.com/engine/install/">Docker Engine for Linux</a></p></li>
-</ul>
-</li>
-<li><p>Install VsCode Extension</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote-SSH</a></p></li>
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Remote-Containers</a></p></li>
-</ul>
-</li>
-<li><p>Install Xming/Xlaunch on Windows / Install XQuartz on Mac</p></li>
-</ol>
-<p>Used for GUI visualization</p>
-<p>I am currently using XLanch on Windows.</p>
-</section>
-<section id="pull-and-run">
-<h4>Pull and Run<a class="headerlink" href="#pull-and-run" title="此标题的永久链接">¶</a></h4>
-<p>If your colleage have already built the image and prepared the environment:</p>
+<section id="step-by-step-a-preview-of-our-work-flow">
+<h2>Step by Step: A preview of our work flow<a class="headerlink" href="#step-by-step-a-preview-of-our-work-flow" title="此标题的永久链接">¶</a></h2>
 <ol class="arabic">
-<li><p>Clone the repo.</p></li>
-<li><p>Pull the image.</p>
-<p>For Tencent Coding.项目-&gt; 制品管理：制品仓库-&gt;拉取</p>
-</li>
-<li><p>config devcontainer.json</p>
-<p>modify at least these item:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="s2">&quot;rm_sentry:test2&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// to the name of the image you just pulled</span>
-</pre></div>
-</div>
-<p>and notice that this will mount your local workspace folder into the container, they are binded, i.e. if you change the file in the container, it will change the file in your local workspace folder, and vice versa.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sentry_ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// workdir in container</span>
-<span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//mount your local file into container, ${containerWorkspaceFolder}==&quot;workspaceFolder&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p>Open the folder in DevContainer</p>
+<li><p>准备开发使用的镜像</p>
+<p>首先要准备好开发环境，之后开发的代码的构建、运行环境都是基于这个镜像的。当然之后如果有新增的依赖，也可以在这个镜像的基础上再构建。</p>
 <ul class="simple">
-<li><p>Click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
-<li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
-<li><p>Start your development! Enjoy it!</p></li>
+<li><p>从<a class="reference external" href="https://hub.docker.com/">docker hub</a>上拉取镜像</p></li>
+<li><p><a class="reference internal" href="CustomImage.html"><span class="std std-doc">自己写dockerfile构建镜像</span></a></p></li>
 </ul>
 </li>
-</ol>
-</section>
-<section id="customize-your-own-docker-image">
-<h4>Customize your own Docker Image<a class="headerlink" href="#customize-your-own-docker-image" title="此标题的永久链接">¶</a></h4>
-<ol class="arabic simple">
-<li><p>Pull an basic docker image from docker hub.</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ros:humble-perception-jammy
-</pre></div>
-</div>
-<p>其实后面build docker image的时候，也会自动下载的，先下载下来省时间。</p>
-<p>我们这一步做的就是拉取别人构建好的基础镜像，在上面再装一些我们自己需要的软件、上传自己的文件。</p>
-<ol class="arabic simple" start="2">
-<li><p>Write your own Dockerfile</p></li>
-</ol>
-<p>为什么要写dockerfile呢？ 因为我们需要在基础镜像上安装一些软件，或者上传一些文件，这些操作都可以在dockerfile里面完成。</p>
-<p>这里是一个简单的示例</p>
-<p>因为也是自己在慢慢摸索，现在还只能写点基础的🫠</p>
-<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Base on which image</span>
-<span class="k">FROM</span><span class="w"> </span><span class="s">ros:humble-perception-jammy</span>
-
-<span class="c"># source ros environment</span>
-<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/</span><span class="nv">$ROS_DISTRO</span><span class="s2">/setup.bash&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-<span class="c"># color your terminal</span>
-<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;force_color_prompt=yes&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-
-<span class="c">## Install dependencies</span>
-<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>using<span class="w"> </span>add-apt-repository
-<span class="w">    </span>software-properties-common<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>download<span class="w"> </span>
-<span class="w">    </span>wget<span class="w"> </span><span class="se">\ </span>
-<span class="w">    </span>#<span class="w"> </span>useful<span class="w"> </span>tools
-<span class="w">    </span>aptitude<span class="w"> </span>
-
-<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>rviz2
-<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rviz2<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>Gazebo
-<span class="w">    </span><span class="c1"># ros-humble-gazebo-ros \</span>
-<span class="w">    </span>#<span class="w"> </span>rqt
-<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rqt<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rqt-common-plugins<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>navigation2
-<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-navigation2<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-nav2-bringup<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>Turtlebot3
-<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-turtlebot3-gazebo<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>octomap<span class="w"> </span>dependencies
-<span class="w">    </span>ros-humble-octomap<span class="w"> </span>ros-humble-octomap-msgs<span class="w"> </span>ros-humble-octomap-mapping<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-octomap-ros<span class="w"> </span>ros-humble-octomap-rviz-plugins<span class="w"> </span>ros-humble-octomap-server<span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>octomap<span class="w"> </span>viewer
-<span class="w">    </span>octovis<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>#<span class="w"> </span>gridmap<span class="w"> </span>dependencies
-<span class="w">    </span>#<span class="w"> </span>🫠<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>learning<span class="w"> </span>gridmap,<span class="w"> </span>you<span class="w"> </span>may<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>packages
-<span class="w">    </span>#<span class="w"> </span>ros-humble-grid-map-demos
-<span class="w">    </span>ros-humble-grid-map<span class="w"> </span>ros-humble-grid-map-cmake-helpers<span class="w"> </span>ros-humble-grid-map-core<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-grid-map-costmap-2d<span class="w"> </span>ros-humble-grid-map-cv<span class="w"> </span>ros-humble-grid-map-filters<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-grid-map-loader<span class="w"> </span>ros-humble-grid-map-msgs<span class="w"> </span>ros-humble-grid-map-octomap<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-grid-map-pcl<span class="w"> </span>ros-humble-grid-map-ros<span class="w"> </span>ros-humble-grid-map-rviz-plugin<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-grid-map-sdf<span class="w"> </span>ros-humble-grid-map-visualization<span class="w"> </span>
-
-<span class="c"># LIO-SAM</span>
-<span class="c"># Add GTSAM-PPA</span>
-<span class="k">RUN</span><span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:borglab/gtsam-release-4.1
-<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-perception-pcl<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-pcl-msgs<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-vision-opencv<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>ros-humble-xacro<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>libgtsam-dev<span class="w"> </span>libgtsam-unstable-dev<span class="w"> </span>
-
-<span class="c"># Download models for gazebo</span>
-<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/.gazebo/models
-<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/root/.gazebo/models</span>
-<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>http://file.ncnynl.com/ros/gazebo_models.txt
-<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>-i<span class="w"> </span>gazebo_models.txt
-<span class="c"># extract models</span>
-<span class="k">RUN</span><span class="w"> </span>ls<span class="w"> </span>model.tar.g*<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n1<span class="w"> </span>tar<span class="w"> </span>xzvf
-<span class="c"># clean up</span>
-<span class="k">RUN</span><span class="w"> </span>rm<span class="w"> </span>model.tar.gz*
-
-<span class="c"># Install extra dependencies with apt</span>
-
-<span class="c"># Install extra dependencies with pip</span>
-
-<span class="c"># add start script</span>
-<span class="k">CMD</span><span class="w"> </span>/bin/bash
-</pre></div>
-</div>
-<p>😶‍🌫️学不会是吧，其实我是在镜像里装一个，回到dockerfile里写一条，慢慢就搓出来了。</p>
-<ol class="arabic simple" start="3">
-<li><p>Build your own Docker Image</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># under the path that contains dockerfile</span>
-
-docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;your_image_name&gt;<span class="o">[</span>:&lt;tag&gt;<span class="o">]</span><span class="w"> </span>.
-</pre></div>
-</div>
-<p>For example, lets name this image rm_sentry, and give it a tag of v1.0, and the dockerfile is in the current directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>rm_sentry:v1.0<span class="w"> </span>.
-</pre></div>
-</div>
-<p>When the building process is done, you can see it in your docker image list.</p>
-<a class="reference internal image-reference" href="../_images/localimage.png"><img alt="../_images/localimage.png" src="../_images/localimage.png" style="width: 50%;" /></a>
-</section>
-<section id="create-your-own-devcontainer-and-run-your-image">
-<h4>Create your own DevContainer and Run your image<a class="headerlink" href="#create-your-own-devcontainer-and-run-your-image" title="此标题的永久链接">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>🌟说明🌟
-
-local\host指的是你的本地电脑，container指的是你在docker里面运行的虚拟机。
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Create a folder for your project source code or clone a repo from github</p></li>
-<li><p>Create a folder called .devcontainer in the repo, and create a file called devcontainer.json in it</p></li>
-</ol>
-<p>now you have a folder structure like this</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>your_repo
-├──<span class="w"> </span>.devcontainer
-│<span class="w">   </span>└──<span class="w"> </span>devcontainer.json
-├──<span class="w"> </span>README.md
-├──<span class="w"> </span>package1
-├──<span class="w"> </span>package2
-...
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Write your own devcontainer.json</p></li>
-</ol>
-<p>This json file defines how your container will be built and run.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sentry_dev&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="s2">&quot;rm_sentry:test2&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;runArgs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="c1">// &quot;--cap-add=SYS_PTRACE&quot;, // enable debugging, e.g. gdb</span>
-
-<span class="w">        </span><span class="c1">// &quot;--ipc=host&quot;, // shared memory transport with host, e.g. rviz GUIs</span>
-
-<span class="w">        </span><span class="s2">&quot;--network=host&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// network access to host interfaces, e.g. eth0</span>
-
-<span class="w">        </span><span class="c1">// &quot;--pid=host&quot;, // DDS discovery with host, without --network=host</span>
-
-<span class="w">        </span><span class="s2">&quot;--privileged&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// device access to host peripherals, e.g. USB</span>
-
-<span class="w">        </span><span class="c1">// &quot;--security-opt=seccomp=unconfined&quot;, // enable debugging, e.g. gdb</span>
-
-<span class="w">        </span><span class="s2">&quot;--gpus all&quot;</span><span class="w"> </span>
-<span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sentry_ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// workdir in container</span>
-<span class="w">    </span><span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//mount your local file into container, ${containerWorkspaceFolder}==&quot;workspaceFolder&quot;</span>
-
-<span class="w">    </span><span class="c1">// &quot;onCreateCommand&quot;: &quot;.devcontainer/on-create-command.sh&quot;,</span>
-<span class="w">    </span><span class="c1">// &quot;updateContentCommand&quot;: &quot;.devcontainer/update-content-command.sh&quot;,</span>
-<span class="w">    </span><span class="c1">// &quot;postCreateCommand&quot;: &quot;.devcontainer/post-create-command.sh&quot;,</span>
-
-<span class="w">    </span><span class="nt">&quot;remoteEnv&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;DISPLAY&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;host.docker.internal:0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// forward X11 display to host, e.g. rviz GUIs</span>
-<span class="w">        </span><span class="c1">// NOTICE that this is for windows, for mac, you should use &quot;host.docker.internal:0&quot;</span>
-<span class="w">        </span><span class="c1">// NOTICE that XLaunch should be running on local machine</span>
-<span class="w">        </span><span class="nt">&quot;NVIDIA_DRIVER_CAPABILITIES&quot;</span><span class="p">:</span><span class="s2">&quot;all&quot;</span><span class="w"> </span><span class="c1">// enable GPU acceleration</span>
-<span class="w">        </span><span class="c1">//     &quot;OVERLAY_MIXINS&quot;: &quot;release ccache lld&quot;,</span>
-<span class="w">        </span><span class="c1">//     &quot;CCACHE_DIR&quot;: &quot;/tmp/.ccache&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="c1">// &quot;mounts&quot;: [</span>
-<span class="w">    </span><span class="c1">//     {</span>
-<span class="w">    </span><span class="c1">//         &quot;source&quot;: &quot;ccache-${devcontainerId}&quot;,</span>
-<span class="w">    </span><span class="c1">//         &quot;target&quot;: &quot;/tmp/.ccache&quot;,</span>
-<span class="w">    </span><span class="c1">//         &quot;type&quot;: &quot;volume&quot;</span>
-<span class="w">    </span><span class="c1">//     },</span>
-<span class="w">    </span><span class="c1">//     {</span>
-<span class="w">    </span><span class="c1">//         &quot;source&quot;: &quot;overlay-${devcontainerId}&quot;,</span>
-<span class="w">    </span><span class="c1">//         &quot;target&quot;: &quot;/opt/overlay_ws&quot;,</span>
-<span class="w">    </span><span class="c1">//         &quot;type&quot;: &quot;volume&quot;</span>
-<span class="w">    </span><span class="c1">//     }</span>
-<span class="w">    </span><span class="c1">// ],</span>
-<span class="w">    </span><span class="c1">// &quot;features&quot;: {</span>
-<span class="w">    </span><span class="c1">//     &quot;ghcr.io/devcontainers/features/desktop-lite:1&quot;: {},</span>
-<span class="w">    </span><span class="c1">//     &quot;ghcr.io/devcontainers/features/github-cli:1&quot;: {},</span>
-<span class="w">    </span><span class="c1">//     &quot;ghcr.io/rocker-org/devcontainer-features/apt-packages:1&quot;: {</span>
-<span class="w">    </span><span class="c1">// 		&quot;upgradePackages&quot;: true,</span>
-<span class="w">    </span><span class="c1">// 		&quot;packages&quot;: &quot;&quot;</span>
-<span class="w">    </span><span class="c1">// 	}</span>
-<span class="w">    </span><span class="c1">// },</span>
-<span class="w">    </span><span class="nt">&quot;customizations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// &quot;codespaces&quot;: {</span>
-<span class="w">        </span><span class="c1">//     &quot;openFiles&quot;: [</span>
-<span class="w">        </span><span class="c1">//         &quot;doc/development/codespaces.md&quot;</span>
-<span class="w">        </span><span class="c1">//     ]</span>
-<span class="w">        </span><span class="c1">// },</span>
-<span class="w">        </span><span class="nt">&quot;vscode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// install extension in container</span>
-<span class="w">            </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-<span class="w">            </span><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="c1">// gadget</span>
-<span class="w">                </span><span class="s2">&quot;aaron-bond.better-comments&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;PKief.material-icon-theme&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// C++</span>
-<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools-extension-pack&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools-themes&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// python</span>
-<span class="w">                </span><span class="s2">&quot;ms-python.vscode-pylance&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;ms-python.python&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// CMake</span>
-<span class="w">                </span><span class="s2">&quot;twxs.cmake&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;ms-vscode.cmake-tools&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// Github Copilot</span>
-<span class="w">                </span><span class="s2">&quot;GitHub.copilot&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;GitHub.copilot-chat&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;GitHub.copilot-labs&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// note</span>
-<span class="w">                </span><span class="s2">&quot;VisualStudioExptTeam.vscodeintellicode&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;VisualStudioExptTeam.intellicode-api-usage-examples&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// XML</span>
-<span class="w">                </span><span class="s2">&quot;DotJoshJohnson.xml&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// PCD viewer</span>
-<span class="w">                </span><span class="s2">&quot;tatsy.vscode-3d-preview&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1">// nav2 default</span>
-<span class="w">                </span><span class="c1">// &quot;althack.ament-task-provider&quot;,</span>
-<span class="w">                </span><span class="c1">// &quot;eamodio.gitlens&quot;,</span>
-<span class="w">                </span><span class="c1">// &quot;esbenp.prettier-vscode&quot;,</span>
-<span class="w">                </span><span class="c1">// &quot;ms-iot.vscode-ros&quot;,</span>
-<span class="w">                </span><span class="c1">// &quot;streetsidesoftware.code-spell-checker&quot;</span>
-
-<span class="w">            </span><span class="p">]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<ol class="arabic" start="4">
-<li><p>Open the folder in DevContainer</p>
+<li><p>使用DevContainer配置开发环境[可选]</p>
+<p>用于实现高度统一的开发环境</p>
+<p><a class="reference internal" href="RunDevEnv.html#6-write-your-own-devcontainerjsonoptional"><span class="std std-ref">编写devcontainer.json</span></a></p>
+<p><a class="reference internal" href="DevContainer.html"><span class="std std-doc">📑DevContainer: What Why and How</span></a></p>
+</li>
+<li><p>把镜像环境和devcontainner配置推送到git仓库</p>
+<p>这样就可以和队友共享了。</p>
+</li>
+<li><p>开发</p>
 <ul class="simple">
-<li><p>Click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
-<li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
-<li><p>Start your development! Enjoy it still!</p></li>
+<li><p>拉取开发镜像和仓库代码，<a class="reference internal" href="RunDevEnv.html"><span class="std std-doc">lauch工作空间</span></a></p></li>
+<li><p>遵守<a class="reference internal" href="../develop/rule.html"><span class="std std-doc">git flow工作流</span></a>，对后面的CI很重要。</p></li>
 </ul>
-<p>🌟原理部分🌟
-这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。
-在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。</p>
 </li>
-</ol>
-</section>
-<section id="official-guides">
-<h4>Official Guides<a class="headerlink" href="#official-guides" title="此标题的永久链接">¶</a></h4>
+<li><p>测试代码[可选]</p>
+<p>对项目的要求比较高的时候可以考虑加入测试代码，可以保证代码的质量。暂时先不做也是可以的，对其他流程没有影响。</p>
+</li>
+<li><p>配置测试、构建流水线</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container">https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container</a></p></li>
-<li><p><a class="reference external" href="https://containers.dev/guides">https://containers.dev/guides</a></p></li>
-</ul>
-</section>
-<section id="push-your-workspace-to-github">
-<h4>push your workspace to github<a class="headerlink" href="#push-your-workspace-to-github" title="此标题的永久链接">¶</a></h4>
-<p>Then your co-workers can pull your repo and use the same environment as yours!</p>
-</section>
-</section>
-<section id="ci">
-<h3>CI<a class="headerlink" href="#ci" title="此标题的永久链接">¶</a></h3>
-</section>
-<section id="deployment">
-<h3>Deployment<a class="headerlink" href="#deployment" title="此标题的永久链接">¶</a></h3>
-<p>Finally we can deploy our code to the robot!</p>
-<ol class="arabic simple">
-<li><p>install ubuntu in NUC</p></li>
-<li><p>install docker, docker-compose, ssh</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker.io
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-compose
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Use Docker Without sudo</p></li>
-</ol>
-<p>otherwise vscode docker extension will not work</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create/Make a Docker Group</span>
-sudo<span class="w"> </span>groupadd<span class="w"> </span>docker
-<span class="c1">#   groupadd: group &#39;docker&#39; already exists</span>
-
-<span class="c1"># Step 2: Add your user to the docker group.</span>
-sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
-<span class="c1"># The “usermod” command modifies an account of user on the system.</span>
-<span class="c1"># The “-aG docker” option adds the new user to the Docker group. The “-a” flag determines that the user should be added to the group, the “-G” flag specifies the group to which user should be added.</span>
-<span class="c1"># The “docker” is the group name.</span>
-<span class="c1"># “$USER” is a variable for the current user’s username.</span>
-
-<span class="c1"># Step 3: Log out and log back in so that your group membership is re-evaluated.</span>
-newgrp<span class="w"> </span>docker
-
-<span class="c1"># Step 4: Verify that you can run docker commands without sudo.</span>
-docker<span class="w"> </span>run<span class="w"> </span>hello-world
-</pre></div>
-</div>
-<ol class="arabic" start="4">
-<li><p>connect to NUC with ssh</p>
-<p>I prefer the wireless way.</p>
-<ul>
-<li><p>turn on your personal hotspot on your computer.</p></li>
-<li><p>connect to the hotspot with NUC</p>
-<p>in nuc, connect to the hotspot via cmd line</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli<span class="w"> </span>device<span class="w"> </span>wifi<span class="w"> </span>connect<span class="w"> </span>&lt;your_hotspot_name&gt;<span class="w"> </span>password<span class="w"> </span>&lt;your_hotspot_password&gt;
-</pre></div>
-</div>
-<p>or use GUI if you are a green hand or you really do not care about the cost of GUI.</p>
-</li>
-<li><p>find the ip address of NUC</p>
-<p>in nuc, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig
-</pre></div>
-</div>
-</li>
-<li><p>connect your computer to NUC with ssh</p>
-<p>in your computer, Open VsCode and click remote Explorer, then click the plus button</p>
-<p>then just follow the instructions.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>&lt;username&gt;@&lt;ip_address&gt;
-</pre></div>
-</div>
-<p>for example</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>sentry@192.168.137.235
-</pre></div>
-</div>
-<p>then you can see the NUC in your remote explorer. Connect to it.</p>
-</li>
+<li><p>编写jekinsfile，告诉jenkins要做什么，比如要先拉取代码，然后构建代码，最后上传镜像到docker hub。</p></li>
+<li><p>配置构建计划，比如每天几点自动构建，或者每次有合并请求的时候自动构建。</p></li>
 </ul>
 </li>
-<li><p>pull your docker image from docker hub</p>
-<p>follow the instruction in coding “制品仓库”</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>&lt;your_image_name&gt;
-</pre></div>
-</div>
-<p>install docker extension in the remote vscode</p>
-<p>finnally you can see your image in the image list</p>
-</li>
-<li><p>run the image</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>&lt;your<span class="w"> </span>hotspot<span class="w"> </span>ip&gt;:0.0
-sudo<span class="w"> </span>xhost<span class="w"> </span>+<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span><span class="si">${</span><span class="nv">DISPLAY</span><span class="si">}</span><span class="w"> </span>sentry:v0.0
-</pre></div>
-</div>
+</ol>
+<p>这时遵守Git Flow工作流的重要性就体现出来了。比如可以设置测试计划在每次有合并请求的时候被触发，评审员就可以知道这个合并请求是否可以成功build；比如可以设置构建计划在每次develop分支有更新的时候被触发，这样就可以把最新开发的且经过测试的代码构建成镜像，供后面的部署使用。</p>
+<ol class="arabic simple" start="7">
+<li><p>部署</p>
 <ul class="simple">
-<li><p>–network=host: use host network, livox lidar trasfer data via UDP, and I am tired of forwarding ports. Do not care about security!</p></li>
-<li><p>–privileged: use host devices, such as USB, GPU(Though we do not have one 🙃), etc.</p></li>
-<li><p>-e: set environment variables, DISPLAY is used for GUI visualization # TODO:</p></li>
-<li><p>-v: mount host devices, so that it support hot plug</p></li>
+<li><p><a class="reference internal" href="deploy.html"><span class="std std-doc">在小电脑上进行部署</span></a></p></li>
+<li><p>【学习中】配置docker-compose.yml，告诉docker要做什么，比如要运行哪些镜像，要把哪些端口映射到宿主机上，要把哪些文件夹挂载到宿主机上。</p></li>
 </ul>
 </li>
-<li><p>connect to docker run in NUC</p>
-<p>open docker extension in remote vscode, you can see the container list, attach a vscode window to the container.</p>
-<p>DONE!</p>
-</li>
-<li><p>[OPTIONAL] test GUI forwarding</p>
-<p>in your computer, open XLaunch, and follow the instruction.</p>
-<p>in NUC, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export DISPLAY=&lt;your_computer_ip&gt;:0.0&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-</pre></div>
-</div>
-<p>then restart the container(in NUC)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>restart<span class="w"> </span>&lt;container_name&gt;
-<span class="c1"># or use vscode docker extension to do this</span>
-</pre></div>
-</div>
-<p>in docker container, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rviz2
-</pre></div>
-</div>
-<p>if you can see the rviz2 window in your computer, then it works!`</p>
-<p>if not working, in docker container, try to run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>/etc/ssh/sshd_config
-</pre></div>
-</div>
-<p>add the following lines to the end of the file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Port</span> <span class="mi">22</span>
-
-<span class="n">PermitRootLogin</span> <span class="n">yes</span>
-
-<span class="n">ChallengeResponseAuthentication</span> <span class="n">no</span>
-
-<span class="n">UsePAM</span> <span class="n">yes</span>
-
-<span class="n">X11Forwarding</span> <span class="n">yes</span>
-
-<span class="n">X11UseLocalhost</span> <span class="n">no</span>
-</pre></div>
-</div>
-<p>then restart ssh service</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>service<span class="w"> </span>ssh<span class="w"> </span>restart
-<span class="c1"># or </span>
-/etc/init.d/ssh<span class="w"> </span>restart
-</pre></div>
-</div>
-<p>then try rviz again.</p>
-<p>Hope that the next time when you are writing a dockerfile, add lines above to the end of the file so that people who use your docker image do not need to do this again.</p>
-</li>
 </ol>
-</section>
 </section>
 </section>
 
@@ -996,11 +647,11 @@ sudo<span class="w"> </span>xhost<span class="w"> </span>+<span class="w"> </spa
             <div class="inner"><ul class="page-nav">
   <li class="prev">
     <a href="DevContainer.html"
-       title="上一章">← DevContainer: What Why and How</a>
+       title="上一章">← DevContainer: What Why and How[Optional]</a>
   </li>
   <li class="next">
-    <a href="UsefulCommand.html"
-       title="下一章">Some Useful Command for Docker →</a>
+    <a href="RunDevEnv.html"
+       title="下一章">Step by Step in detail: Launch the Development Workspace →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.
