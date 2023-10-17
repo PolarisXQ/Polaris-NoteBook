@@ -8,7 +8,7 @@
 
 
 **依照本人的理解**
-devcontainer= docker container + VSCode
+devcontainer = docker container + VSCode
 
 也可以理解为定制了工作空间，比如运行镜像的参数、安装的VSCode插件、进入镜像时需要执行的脚本等等。这些配置都可以通过编写一个json文件来实现。
 
