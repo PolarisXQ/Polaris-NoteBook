@@ -72,6 +72,8 @@ I am currently using XLanch on Windows.
 
 其实Dockerfile就是一系列的命令，这些命令会被Docker解析，然后生成一个镜像。
 
+1. Dockerfile
+   
 ```Dockerfile
 # Base on which image
 FROM ros:humble-perception-jammy
@@ -147,7 +149,7 @@ CMD /bin/bash
 
 😶‍🌫️学不会是吧，其实我是在镜像里装一个，回到dockerfile里写一条，慢慢就搓出来了。
 
-3. Build your own Docker Image
+2. Build your own Docker Image
 
 可以在自己的机器上构建镜像，看看构建的过程是什么样的，理论上服务器上的构建过程是一样的。
 

@@ -2,9 +2,9 @@
 
 Finally we can deploy our code to the robot!
 
-1. install ubuntu in NUC
+## 1. install ubuntu in NUC
 
-2. install docker, docker-compose, ssh
+## 2. install docker, docker-compose, ssh
 
 ```bash
 sudo apt-get install docker.io
@@ -12,7 +12,7 @@ sudo apt-get install docker-compose
 sudo apt-get install openssh-server
 ```
 
-3. Use Docker Without sudo
+## 3. Use Docker Without sudo
 
 otherwise vscode docker extension will not work
 
@@ -35,7 +35,7 @@ newgrp docker
 docker run hello-world
 ```
 
-4. connect to NUC with ssh
+## 4. connect to NUC with ssh
 
     I prefer the wireless way.
 
@@ -76,7 +76,7 @@ docker run hello-world
 
         then you can see the NUC in your remote explorer. Connect to it.
 
-5. pull your docker image from docker hub
+## 5. pull your docker image from docker hub
 
     follow the instruction in coding "制品仓库"
 
@@ -88,7 +88,7 @@ docker run hello-world
 
     finnally you can see your image in the image list
 
-6. run the image
+## 6. run the image
 
     ```bash
     export DISPLAY=<your hotspot ip>:0.0
@@ -103,13 +103,13 @@ docker run hello-world
 
     - -v: mount host devices, so that it support hot plug
 
-7. connect to docker run in NUC
+## 7. connect to docker run in NUC
 
     open docker extension in remote vscode, you can see the container list, attach a vscode window to the container.
 
     DONE!
 
-8. [OPTIONAL] test GUI forwarding
+## 8. [OPTIONAL] test GUI forwarding
 
     in your computer, open XLaunch, and follow the instruction.
 
