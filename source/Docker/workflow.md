@@ -16,7 +16,7 @@
 
 - 从[docker hub](https://hub.docker.com/)上拉取镜像
 
-- [自己写dockerfile构建镜像](./CustomImage.md)
+- [自己定制镜像](./CustomImage.md#方法2-自己定制镜像)
 
 ### 2. 使用DevContainer配置开发环境[可选]
     
