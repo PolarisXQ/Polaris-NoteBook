@@ -86,20 +86,6 @@
 
     <img src="./pic/local_planner.gif"  width="90%">
 
-## ✅ far_planner实车测试
-
-- 🗓️2023.10.01 localPlanner原地转圈：看了社区里别人的方法，应该可以通过调大dirdiffthre来解决
-- 🗓️2023.10.02 破案了，原地转圈是因为mid360方向装反了。
-- 🗓️2023.10.02 后期可以看到地图出现了一些问题。
-- 在室内测局部控制器
-
-    <img src="./pic/far_planner_indoor.gif"  width="90%">
-
-- 在走廊测规划器
-
-    <img src="./pic/far_plannerx3.gif"  width="90%">
-
-
 ### 🤔 一些问题
 
 - CMU的AEDE要求输入的点云是在map坐标系下的，但是fast_lio发布的两个registered_pointcloud分别是在sensor（lidar_link）和odom(init_pose)坐标系下的，也就是需要重定位算法发布odom到map的tf，使用pcl_ros库对fast_lio输出的registered_pointcloud进行点云的坐标转换。但是会出现速度太慢的问题，一直有tf时间戳对不上的WARN出现。暂时不知道是因为dll的发布频率太低还是因为坐标转换的速度太慢。
@@ -178,6 +164,42 @@
 ## ✅ Docker使用文档
 
 - 🗓️2023.10.17
+
+## ✅ 月结会+新规发布
+
+- 🗓️2023.10.18-21 读新规，PPT，进度规划
+
+## 🟩 点云处理
+
+- 🗓️2023.10.21 裁剪掉车体内的点云
+- 雷达倒挂可能出现一些问题
+
+## 🟩 哨兵决策
+
+- 🗓️2023.10.21-22 迁移代码、决策接口、GUI
+  
+    <img src="./pic/bt.gif"  width="90%">
+
+
+## ✅ far_planner实车测试
+
+- 🗓️2023.10.01 localPlanner原地转圈：看了社区里别人的方法，应该可以通过调大dirdiffthre来解决
+- 🗓️2023.10.02 破案了，原地转圈是因为mid360方向装反了。
+- 🗓️2023.10.02 后期可以看到地图出现了一些问题。
+- 在室内测局部控制器
+
+    <img src="./pic/far_planner_indoor.gif"  width="90%">
+
+- 在走廊测规划器
+
+    <img src="./pic/far_plannerx3.gif"  width="90%">
+
+- 🗓️2023.10.21-22 DEBUG，准备测试动态避障，高速避障，解决farplanner偶尔地图抽风的问题、进一步理解参数方便后面上哨兵调参
+- 更详细的配置文档
+
+
+
+
 
 
 
