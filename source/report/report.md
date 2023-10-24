@@ -39,19 +39,12 @@
 - 下一步测导航
 
 
-## ✅ 了解AEDE（autonomous_exploration_development_environment）框架
-
 - 🗓️2023.09.29 详见代码注释以及readme文档
 
 ## 🟩 尝试将farPlanner与navigation2中的localPlanner（Controller）结合
 
 - 🗓️2023.09.30
 - navigation2对系统的完整性要求比较高，locolPlanner[nav2]在没有localcost map的情况下似乎无法运行，虽然有nav2有很多现成的conntroller可以使用，但是该方案暂缓
-
-## ✅ 阅读localPlanerr[CMU]的代码
-
-- 🗓️2023.09.30
-- 详见代码注释以及readme文档
 
 ## ✅ 迁移代码至ROS1
 
@@ -97,21 +90,6 @@
 
 - 🗓️2023.10.02 ICP and its variants..
 - 🗓️2023.10.03 DLL，NDT; TODO: ACML,ACML3D,EKF,UKF...
-
-## CMU系统参数理解
-
-- 🗓️2023.10.02/03 给代码加上了参数服务，以后可以动态调参了
-- 上坡了！！！原理详解见代码注释
-
-    <img src="./pic/slope.png"  width="90%">
-
-- 🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中找到。调参都在rqt_parameter_reconfigure中进行。（对于ROS1参数服务写起来比较麻烦，懒得写了）
-- 🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释
-
-## 🟩 阅读CMU导航算法系列论文
-
-- 🗓️2023.09.29 感触不深
-- 🗓️2023.10.05-07 terrain_analysis, local_planner原理和参数理解，理解后才能修改源码，加入对全向轮的支持。
 
 ## ✅ git规范文档
 - 🗓️2023.10.06 
@@ -194,11 +172,23 @@
 
     <img src="./pic/far_plannerx3.gif"  width="90%">
 
-- 🗓️2023.10.21-22 DEBUG，准备测试动态避障，高速避障，解决farplanner偶尔地图抽风的问题、进一步理解参数方便后面上哨兵调参
-- 更详细的配置文档
+- 🗓️2023.10.21-22 DEBUG，录制测试视频；测试了动态避障，高速避障，暂时解决farplanner偶尔地图抽风的问题、需要进一步理解参数方便后面上哨兵调参
 
+## ✅ 代码理解
 
+- 🗓️2023.09.29 了解AEDE（autonomous_exploration_development_environment）框架，详见代码注释以及readme文档
+- 🗓️2023.09.30 阅读localPlanerr[CMU]的代码，详见代码注释以及readme文档
 
+- 🗓️2023.10.02/03 给代码加上了参数服务，以后可以动态调参了
+- 🗓️2023.10.03上坡了！！！原理详解见代码注释
+
+    <img src="./pic/slope.png"  width="90%">
+
+- 🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中找到。调参都在rqt_parameter_reconfigure中进行。（对于ROS1参数服务写起来比较麻烦，懒得写了）
+- 🗓️2023.09.29 阅读CMU导航算法系列论文，感触不深
+- 🗓️2023.10.05-07 terrain_analysis, local_planner原理和参数理解，理解后才能修改源码，加入对全向轮的支持。
+- 🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释
+- 🗓️2023.10，24 继续看local_planner，增加了代码注释；发现local_planner在避障上做得比较粗糙，不如nav2，可以考虑把nav2 basefootprint的思想加入到local_planner中，一个方法是类似于nav2的costmap，为地图加一个膨胀层，可以用/add_obstacle话题实现
 
 
 
