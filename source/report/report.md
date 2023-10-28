@@ -94,6 +94,18 @@
 
 - 🗓️2023.10.18-21 读新规，PPT，进度规划
 
+## 🟩 仿真测试
+
+### local_planner
+
+- 🗓️2023.10.08 CMU仿真环境加入麦轮支持
+
+### far_planner导航算法仿真测试
+
+- 🗓️2023.09.24 仿真内效果很好
+    <img src="./pic/simu.png"  width="90%">
+    <img src="./pic/farplanner.png"  width="90%">
+
 ## 🟩 电控联调
 
 - 🗓️2023.09.24
@@ -116,18 +128,6 @@
 - 🗓️2023.10.21-22 迁移代码、决策接口、GUI
   
     <img src="./pic/bt.gif"  width="90%">
-
-## 🟩 仿真测试
-
-### local_planner
-
-- 🗓️2023.10.08 CMU仿真环境加入麦轮支持
-
-### far_planner导航算法仿真测试
-
-- 🗓️2023.09.24 仿真内效果很好
-    <img src="./pic/simu.png"  width="90%">
-    <img src="./pic/farplanner.png"  width="90%">
 
 ## 🟩 实车测试、调参
 
@@ -154,7 +154,7 @@
 
 #### **far-planner**
     
-- 🗓️2023.10.02 后期可以看到地图出现了一些问题。
+- 🗓️2023.10.02 后期可以看到地图出现了一些问题，可能是因为Fast_lioZ轴飘了
 
     <img src="./pic/far_plannerx3.gif"  width="90%">
 
@@ -187,7 +187,7 @@
     
 #### 上坡
 
-## ✅ 代码理解
+## 🟩 代码理解
 
 - 🗓️2023.09.29 了解AEDE（autonomous_exploration_development_environment）框架，详见代码注释以及readme文档
 - 🗓️2023.09.30 阅读localPlanerr[CMU]的代码，详见代码注释以及readme文档
@@ -197,7 +197,8 @@
     <img src="./pic/slope.png"  width="90%">
 
         🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参
-        数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中\找到。调参都在rqt_parameter_reconfigure中进行。
+        数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中
+        找到。调参都在rqt_parameter_reconfigure中进行。
         （对于ROS1参数服务写起来比较麻烦，懒得写了）
 
 - 🗓️2023.09.29 阅读CMU导航算法系列论文，感触不深
@@ -205,3 +206,7 @@
 - 🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释
 - 🗓️2023.10.24 继续看local_planner，增加了代码注释；发现local_planner在避障上做得比较粗糙，没有像nav2一样为机器人增加footprint、给地图加膨胀层。可以考虑把nav2的思想加入到local_planner中，一个方法是模仿nav2为地图加一个膨胀层，可以用/add_obstacle话题实现
 - 🗓️2023.10.26 通过调参或许能实现差不多的避障效果
+
+## 🟩 借车
+
+- 🗓️2023.09.24-30 录视频、剪视频、做ppt
