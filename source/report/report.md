@@ -1,12 +1,5 @@
 # 开发记录
 
-## ✅ far_planner导航算法仿真测试
-
-- 🗓️2023.09.24
-- 仿真内效果很好
-    <img src="./pic/simu.png"  width="90%">
-    <img src="./pic/farplanner.png"  width="90%">
-
 ## ✅ navigation2导航定位方案测试
 
 - 🗓️2023.09.24
@@ -19,32 +12,17 @@
 
     <img src="./pic/octo.gif"  width="90%">
 
-- 📑下一步上实车测试
-
 ## ✅ ego_planner导航方案仿真测试
 
 - 🗓️2023.09.24
 - 效果不佳，还需要调试。
 - 而且为了将三维导航适用于二维，需要带上很多其他的算法包，感觉没有必要
 
-## ✅ 电控通信
-
-- 🗓️2023.09.24
-- 电控通信完成
-- 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
-- 实车通信测试
-
-    <img src="./pic/real_robot.png"  width="90%">
-
-- 下一步测导航
-
-
 - 🗓️2023.09.29 详见代码注释以及readme文档
 
 ## 🟩 尝试将farPlanner与navigation2中的localPlanner（Controller）结合
 
-- 🗓️2023.09.30
-- navigation2对系统的完整性要求比较高，locolPlanner[nav2]在没有localcost map的情况下似乎无法运行，虽然有nav2有很多现成的conntroller可以使用，但是该方案暂缓
+- 🗓️2023.09.30 navigation2对系统的完整性要求比较高，locolPlanner[nav2]在没有localcost map的情况下似乎无法运行，虽然有nav2有很多现成的conntroller可以使用，但是该方案暂缓
 
 ## ✅ 迁移代码至ROS1
 
@@ -61,41 +39,15 @@
 
 ## 🟩 使用FAST_LIO_LOCALIZATION
 
-- 🗓️2023.10.01 对初始点的要求比较奇怪，配准经常失败
+- 🗓️2023.10.01 对初始点的要求比较奇怪，配准经常失败，暂时不用这个方案
 
-## 🟩 使用DLL的问题
-
-- 使用dll的话，tf树逻辑应该是这样的
-    - fast_lio: odom->sensor
-    - dll: sensor->map
-- 但是感觉不是特别好用，一个是计算速度不够，一个是对初始点的要求严格。
-
-    <img src="./pic/dll_real.gif"  width="90%">
-
-## ✅ local_planner实车测试
-
-- 🗓️2023.10.02 仿真效果很好，实车效果也不错，速度上有高速导航的可能性
-- 🗓️2023.10.03 对于在正左方，正右方的坐标点，运行比较别扭；与仿真内的运行情况对比，感觉问题可能是输出速度太小，电机扭矩问题造成的，车动不了。
-
-    <img src="./pic/local_planner.gif"  width="90%">
-
-### 🤔 一些问题
-
-- CMU的AEDE要求输入的点云是在map坐标系下的，但是fast_lio发布的两个registered_pointcloud分别是在sensor（lidar_link）和odom(init_pose)坐标系下的，也就是需要重定位算法发布odom到map的tf，使用pcl_ros库对fast_lio输出的registered_pointcloud进行点云的坐标转换。但是会出现速度太慢的问题，一直有tf时间戳对不上的WARN出现。暂时不知道是因为dll的发布频率太低还是因为坐标转换的速度太慢。
-- 🗓️2023.10.03可以参考CMU sensor_scan_generator 的转换方法，但是官方也把这个点云数据的发布速率设在了5HZ.
-- 参看了CMU官方LOAM_Interface的文档，意思是fast_lio直接发布map到sensor的转换，不需要重定位？实际上不用重定位其实效果也很好，暂时没有出现跑飞的现象，车速0.4-0.5左右。
-
-
-## Localization方案原理理解
+## ✅ Localization方案原理理解
 
 - 🗓️2023.10.02 ICP and its variants..
 - 🗓️2023.10.03 DLL，NDT; TODO: ACML,ACML3D,EKF,UKF...
 
 ## ✅ git规范文档
 - 🗓️2023.10.06 
-
-## ✅ CMU仿真环境加入麦轮支持
-- 🗓️2023.10.08 
 
 ## ✅ 为localPlanner[CMU]加入全向运动模型的支持
 
@@ -128,11 +80,6 @@
 - 🗓️2023.10.03 分为开发镜像和部署镜像
 - 🗓️2023.10.10 极客邦节点日常掉线。。。配置了更新代码自动化部署的流水线，可以将最新的代码同步并构建到用于部署的镜像上，但是由于节点掉线，无法测试，等待节点恢复后测试。
 
-## 🟩 全向版本的far_planner方案电控联调
-
-- 🗓️2023.10.10 准备好了联调用的代码
-- 🗓️2023.10.15 联调未完成
-
 ## ✅ 集群控制仿真环境搭建
 
 - 🗓️2023.10.16 完成搭建
@@ -147,6 +94,18 @@
 
 - 🗓️2023.10.18-21 读新规，PPT，进度规划
 
+## 🟩 电控联调
+
+- 🗓️2023.09.24
+- 电控通信完成
+- 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
+- 实车通信测试
+
+    <img src="./pic/real_robot.png"  width="90%">
+
+- 🗓️2023.10.10 想换老底盘，准备好了联调用的代码
+- 🗓️2023.10.15-26 老底盘联调未完成
+
 ## 🟩 点云处理
 
 - 🗓️2023.10.21 裁剪掉车体内的点云
@@ -158,40 +117,91 @@
   
     <img src="./pic/bt.gif"  width="90%">
 
+## 🟩 仿真测试
 
-## ✅ far_planner实车测试
+### local_planner
+
+- 🗓️2023.10.08 CMU仿真环境加入麦轮支持
+
+### far_planner导航算法仿真测试
+
+- 🗓️2023.09.24 仿真内效果很好
+    <img src="./pic/simu.png"  width="90%">
+    <img src="./pic/farplanner.png"  width="90%">
+
+## 🟩 实车测试、调参
+
+<span style="color:RGB(255,10,10); font-weight: 900;">！！！思路是从简单到复杂一步一步调试！！！</span>
+
+
+### 跑通系统
+  
+#### **定位**：fastlio没什么问题
+  
+#### **local planner**
 
 - 🗓️2023.10.01 localPlanner原地转圈：看了社区里别人的方法，应该可以通过调大dirdiffthre来解决
+        
 - 🗓️2023.10.02 破案了，原地转圈是因为mid360方向装反了。
-- 🗓️2023.10.02 后期可以看到地图出现了一些问题。
-- 在室内测局部控制器
 
     <img src="./pic/far_planner_indoor.gif"  width="90%">
 
-- 在走廊测规划器
+- 🗓️2023.10.03 实车效果也不错，速度上有高速导航的可能性
+
+    <img src="./pic/local_planner.gif"  width="90%">
+
+- 🗓️2023.10.03 对于在正左方，正右方的坐标点，运行比较别扭；与仿真内的运行情况对比，感觉问题可能是输出速度太小，电机扭矩问题造成的，车动不了。
+
+#### **far-planner**
+    
+- 🗓️2023.10.02 后期可以看到地图出现了一些问题。
 
     <img src="./pic/far_plannerx3.gif"  width="90%">
 
-- 🗓️2023.10.21-22 DEBUG，录制测试视频；测试了动态避障，高速避障，暂时解决farplanner偶尔地图抽风的问题、需要进一步理解参数方便后面上哨兵调参
+#### **全向**
+    
+- 🗓️2023.10.28
+      
+#### **重定位：DLL**
+    
+- 使用dll的话，tf树逻辑应该是这样的
+    - fast_lio: odom->sensor
+    - dll: sensor->map
+- 但是感觉不是特别好用，一个是计算速度不够，一个是对初始点的要求严格。
+
+    <img src="./pic/dll_real.gif"  width="90%">
+
+- 🗓️2023.10.25-27 测试加上DLL，效果仍然不好，非常飘
+  
+### 复杂路面
+ 
+#### 动态避障
+  
+- 🗓️2023.10.21-22 效果在视频里，比较别扭，需要调参
+    
+#### 狭窄通道、近距离绕过障碍物
+  
+- 🗓️2023.10.25-27 实现更精细的避障，进一步理解了相关参数，编写调参记录
+
+    <img src="./pic/avoid.gif"  width="90%">可以看到在找路上花了很多时间，一旦找到了还是可以很快到达的
+    
+#### 上坡
 
 ## ✅ 代码理解
 
 - 🗓️2023.09.29 了解AEDE（autonomous_exploration_development_environment）框架，详见代码注释以及readme文档
 - 🗓️2023.09.30 阅读localPlanerr[CMU]的代码，详见代码注释以及readme文档
-
 - 🗓️2023.10.02/03 给代码加上了参数服务，以后可以动态调参了
 - 🗓️2023.10.03上坡了！！！原理详解见代码注释
 
     <img src="./pic/slope.png"  width="90%">
 
-- 🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中找到。调参都在rqt_parameter_reconfigure中进行。（对于ROS1参数服务写起来比较麻烦，懒得写了）
+        🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参
+        数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中\找到。调参都在rqt_parameter_reconfigure中进行。
+        （对于ROS1参数服务写起来比较麻烦，懒得写了）
+
 - 🗓️2023.09.29 阅读CMU导航算法系列论文，感触不深
 - 🗓️2023.10.05-07 terrain_analysis, local_planner原理和参数理解，理解后才能修改源码，加入对全向轮的支持。
 - 🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释
-- 🗓️2023.10，24 继续看local_planner，增加了代码注释；发现local_planner在避障上做得比较粗糙，不如nav2，可以考虑把nav2 basefootprint的思想加入到local_planner中，一个方法是类似于nav2的costmap，为地图加一个膨胀层，可以用/add_obstacle话题实现
-
-
-
-
-
-
+- 🗓️2023.10.24 继续看local_planner，增加了代码注释；发现local_planner在避障上做得比较粗糙，没有像nav2一样为机器人增加footprint、给地图加膨胀层。可以考虑把nav2的思想加入到local_planner中，一个方法是模仿nav2为地图加一个膨胀层，可以用/add_obstacle话题实现
+- 🗓️2023.10.26 通过调参或许能实现差不多的避障效果

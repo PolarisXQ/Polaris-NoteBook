@@ -29,7 +29,7 @@
       <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
   <link rel="index" title="索引" href="../genindex.html" />
   <link rel="search" title="搜索" href="../search.html" />
-  <link rel="next" title="Step by Step in detail: Launch the Development Workspace" href="RunDevEnv.html" />
+  <link rel="next" title="Step by Step in detail: Docker Image" href="CustomImage.html" />
   <link rel="prev" title="DevContainer: What Why and How[Optional]" href="DevContainer.html" /> 
   </head>
 
@@ -333,9 +333,18 @@
                 
                   <li class="toctree-l2"><a href="#a-glance-at-our-work-flow" class="reference internal">A glance at our work flow</a></li>
                 
-                  <li class="toctree-l2"><a href="#step-by-step-a-preview-of-our-work-flow" class="reference internal">Step by Step: A preview of our work flow</a></li>
+                  <li class="toctree-l2"><a href="#step-by-step-a-simple-walkthrough" class="reference internal">Step by Step: A Simple Walkthrough</a></li>
                 
               </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CustomImage.html" class="reference internal ">Step by Step in detail: Docker Image</a>
+            
+
             
           </li>
 
@@ -578,8 +587,8 @@
        title="上一章">← DevContainer: What Why and How[Optional]</a>
   </li>
   <li class="next">
-    <a href="RunDevEnv.html"
-       title="下一章">Step by Step in detail: Launch the Development Workspace →</a>
+    <a href="CustomImage.html"
+       title="下一章">Step by Step in detail: Docker Image →</a>
   </li>
 </ul>
   
@@ -595,49 +604,53 @@
 <a class="reference internal image-reference" href="../_images/workflow.png"><img alt="../_images/workflow.png" src="../_images/workflow.png" style="width: 90%;" /></a>
 <p>（图源网络，侵删）</p>
 </section>
-<section id="step-by-step-a-preview-of-our-work-flow">
-<h2>Step by Step: A preview of our work flow<a class="headerlink" href="#step-by-step-a-preview-of-our-work-flow" title="此标题的永久链接">¶</a></h2>
-<ol class="arabic">
-<li><p>准备开发使用的镜像</p>
+<section id="step-by-step-a-simple-walkthrough">
+<h2>Step by Step: A Simple Walkthrough<a class="headerlink" href="#step-by-step-a-simple-walkthrough" title="此标题的永久链接">¶</a></h2>
+<section id="id1">
+<h3>1. 准备开发使用的镜像<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h3>
 <p>首先要准备好开发环境，之后开发的代码的构建、运行环境都是基于这个镜像的。当然之后如果有新增的依赖，也可以在这个镜像的基础上再构建。</p>
 <ul class="simple">
 <li><p>从<a class="reference external" href="https://hub.docker.com/">docker hub</a>上拉取镜像</p></li>
-<li><p><a class="reference internal" href="CustomImage.html"><span class="std std-doc">自己写dockerfile构建镜像</span></a></p></li>
+<li><p><a class="reference internal" href="CustomImage.html#方法2-自己定制镜像"><span class="std std-ref">自己定制镜像</span></a></p></li>
 </ul>
-</li>
-<li><p>使用DevContainer配置开发环境[可选]</p>
+</section>
+<section id="devcontainer">
+<h3>2. 使用DevContainer配置开发环境[可选]<a class="headerlink" href="#devcontainer" title="此标题的永久链接">¶</a></h3>
 <p>用于实现高度统一的开发环境</p>
-<p><a class="reference internal" href="RunDevEnv.html#6-write-your-own-devcontainerjsonoptional"><span class="std std-ref">编写devcontainer.json</span></a></p>
-<p><a class="reference internal" href="DevContainer.html"><span class="std std-doc">📑DevContainer: What Why and How</span></a></p>
-</li>
-<li><p>把镜像环境和devcontainner配置推送到git仓库</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="RunDevEnv.html#6-write-your-own-devcontainerjsonoptional"><span class="std std-ref">编写devcontainer.json</span></a></p></li>
+</ul>
+</section>
+<section id="devcontainnergit">
+<h3>3. 把镜像环境和devcontainner配置推送到git仓库<a class="headerlink" href="#devcontainnergit" title="此标题的永久链接">¶</a></h3>
 <p>这样就可以和队友共享了。</p>
-</li>
-<li><p>开发</p>
+</section>
+<section id="id2">
+<h3>4. 开发<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
 <ul class="simple">
 <li><p>拉取开发镜像和仓库代码，<a class="reference internal" href="RunDevEnv.html"><span class="std std-doc">lauch工作空间</span></a></p></li>
 <li><p>遵守<a class="reference internal" href="../develop/rule.html"><span class="std std-doc">git flow工作流</span></a>，对后面的CI很重要。</p></li>
 </ul>
-</li>
-<li><p>测试代码[可选]</p>
+</section>
+<section id="id3">
+<h3>5. 测试代码[可选]<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
 <p>对项目的要求比较高的时候可以考虑加入测试代码，可以保证代码的质量。暂时先不做也是可以的，对其他流程没有影响。</p>
-</li>
-<li><p>配置测试、构建流水线</p>
+</section>
+<section id="id4">
+<h3>6. 配置测试、构建流水线<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
 <ul class="simple">
 <li><p>编写jekinsfile，告诉jenkins要做什么，比如要先拉取代码，然后构建代码，最后上传镜像到docker hub。</p></li>
-<li><p>配置构建计划，比如每天几点自动构建，或者每次有合并请求的时候自动构建。</p></li>
+<li><p><a class="reference internal" href="CI.html#step-by-step-in-detail-continuous-integration"><span class="std std-ref">配置构建计划</span></a>，比如每天几点自动构建，或者每次有合并请求的时候自动构建。</p></li>
 </ul>
-</li>
-</ol>
 <p>这时遵守Git Flow工作流的重要性就体现出来了。比如可以设置测试计划在每次有合并请求的时候被触发，评审员就可以知道这个合并请求是否可以成功build；比如可以设置构建计划在每次develop分支有更新的时候被触发，这样就可以把最新开发的且经过测试的代码构建成镜像，供后面的部署使用。</p>
-<ol class="arabic simple" start="7">
-<li><p>部署</p>
+</section>
+<section id="id5">
+<h3>7. 部署<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="deploy.html"><span class="std std-doc">在小电脑上进行部署</span></a></p></li>
 <li><p>【学习中】配置docker-compose.yml，告诉docker要做什么，比如要运行哪些镜像，要把哪些端口映射到宿主机上，要把哪些文件夹挂载到宿主机上。</p></li>
 </ul>
-</li>
-</ol>
+</section>
 </section>
 </section>
 
@@ -650,8 +663,8 @@
        title="上一章">← DevContainer: What Why and How[Optional]</a>
   </li>
   <li class="next">
-    <a href="RunDevEnv.html"
-       title="下一章">Step by Step in detail: Launch the Development Workspace →</a>
+    <a href="CustomImage.html"
+       title="下一章">Step by Step in detail: Docker Image →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; 版权所有 2023, PolarisXQ.

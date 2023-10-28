@@ -37,8 +37,8 @@ Welcome to Polaris' NoteBook!
    Docker/workflow
    Docker/CustomImage.md
    Docker/RunDevEnv
+   Docker/CI.md
    Docker/deploy
-
    Docker/UsefulCommand
 
 .. toctree::
