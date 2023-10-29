@@ -58,6 +58,7 @@ Welcome to Polaris' NoteBook!
    Robotics/Navigation/Overview.md
    Robotics/Navigation/CMUSeries.md
    Robotics/Navigation/PathTracking.md
+   Robotics/Navigation/farplanner_param
 
 .. toctree::
    :maxdepth: 1

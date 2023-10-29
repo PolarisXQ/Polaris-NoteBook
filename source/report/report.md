@@ -221,8 +221,11 @@
 - 🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释
 - 🗓️2023.10.24 继续看local_planner，增加了代码注释；发现local_planner在避障上做得比较粗糙，没有像nav2一样为机器人增加footprint、给地图加膨胀层。可以考虑把nav2的思想加入到local_planner中，一个方法是模仿nav2为地图加一个膨胀层，可以用/add_obstacle话题实现
 - 🗓️2023.10.26 通过调参或许能实现差不多的避障效果
-- sensor_scan_generation 发布的
 
 ## 🟩 借车
 
 - 🗓️2023.09.24-30 录视频、剪视频、做ppt
+
+## 🟩 [调参笔记](../Robotics/Navigation/farplanner_param.rst)
+
+- 🗓️2023.09.29 逐步生产中
