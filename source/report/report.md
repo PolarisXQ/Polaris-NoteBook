@@ -134,7 +134,12 @@
 <span style="color:RGB(255,10,10); font-weight: 900;">！！！思路是从简单到复杂一步一步调试！！！</span>
 
 
-### 跑通系统
+### ✅ 跑通系统
+
+- 🗓️2023.10.29 FAST_LIO定位+ICP重定位+Local_Planner+Far_Planner在预先建好的可视图中导航，系统跑通
+
+    <img src="./pic/sys.gif"  width="90%">
+    (最后导航有一点抽搐是因为local_planner的参数还没有调好)
   
 #### **定位**：fastlio没什么问题
   
@@ -172,6 +177,12 @@
     <img src="./pic/dll_real.gif"  width="90%">
 
 - 🗓️2023.10.25-27 测试加上DLL，效果仍然不好，非常飘
+- 🗓️2023.10.29 发现之前的使用方式有一点问题，改正过来以后测试了ICP和DLL的重定位效果。DLL真的不如ICP吗！
+
+    <img src="./pic/dll.gif"  width="30%"><img src="./pic/dll_imu.gif"  width="30%"><img src="./pic/icp.gif"  width="30%">
+
+    __________________ DLL  ____________________________  DDL+IMU  ____________________________  ICP  __________________
+
   
 ### 复杂路面
  
