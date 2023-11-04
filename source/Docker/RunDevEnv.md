@@ -2,11 +2,20 @@
 
 确保必要的软件已经安装好了，包括Docker，VSCode，Xming等等。具体参阅[📑准备工作](./CustomImage.md#准备工作)
 
-## 1. Clone the repo.
+不使用DevContainer的话
+----------------------------------------------
+可以直接运行镜像，然后attach到VSCode中，具体参阅[📑Some Useful Command for Docker](./UsefulCommand.md#How to Run a Container)
 
-## 2. Pull the image.
+如果使用DevContainer的话
+----------------------------------------------
+如果他人已经配置好了DevContainer，那么你只需要把他的repo clone下来，请阅读下面的1·
+如果没有，那么你需要自己配置DevContainer，步骤是1，2，5*，3，4
+
+## 1. Pull the image.
 
 For Tencent Coding.项目-> 制品管理：制品仓库->拉取
+
+## 2. Clone the repo.
 
 ## 3. config devcontainer.json
 
@@ -30,11 +39,7 @@ and notice that this will mount your local workspace folder into the container, 
 
 - Start your development! Enjoy it!
 
-## 5. if there's no devcontainer.json
-
-write it by your own or just run the container and attach it to VSCode. see [📑Some Useful Command for Docker](./UsefulCommand.md)
-
-## 6. Write your own devcontainer.json[Optional]
+## 5*. if there's no devcontainer.json，Create one!
 
 - Create a folder called .devcontainer in the repo, and create a file called devcontainer.json in it
 

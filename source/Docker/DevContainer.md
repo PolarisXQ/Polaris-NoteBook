@@ -12,7 +12,7 @@ devcontainer = docker container + VSCode
 
 也可以理解为定制了工作空间，比如运行镜像的参数、安装的VSCode插件、进入镜像时需要执行的脚本等等。这些配置都可以通过编写一个json文件来实现。
 
-因此，理论上只要我们有共同的dockerfile,.devcontainer文件，就可以实现一键配置环境，一键启动开发环境,而且所有人的环境都是一样的。
+因此，理论上只要我们有共同的dockerfile,.devcontainer文件，就可以实现一键配置环境，一键启动开发环境,而且所有人的环境，包括VsCode的配置都是一样的。
 
 优雅！
 

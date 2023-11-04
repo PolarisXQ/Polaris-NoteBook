@@ -1,4 +1,4 @@
-# Step by Step in detail: Docker Image
+# Step by Step in detail: Prepare Docker Image
 
 经过了原理介绍，终于！可以开始实践了
 
@@ -29,6 +29,8 @@ I am currently using XLanch on Windows.
 ### 方法1 从Docker Hub上下载
 
 访问DockerHub，搜索你想要的镜像，Pull下来就可以了。
+
+For Tencent Coding.项目-> 制品管理：制品仓库->拉取
 
 ### 方法2 自己定制镜像
 
