@@ -97,7 +97,7 @@ finnally you can see your image in the image list
 
 ```bash
 export DISPLAY=<your hotspot ip>:0.0
-sudo xhost + && sudo docker run -it --network=host --privileged -v /dev:/dev DISPLAY=${DISPLAY} sentry:v0.0
+sudo xhost + && sudo docker run -it --network=host --privileged -v /dev:/dev -e DISPLAY=${DISPLAY} sentry:v0.0
 ```
 
 - --network=host: use host network, livox lidar trasfer data via UDP, and I am tired of forwarding ports. Do not care about security!
@@ -114,24 +114,14 @@ open docker extension in remote vscode, you can see the container list, attach a
 
 DONE!
 
-## 8. [OPTIONAL] test GUI forwarding
+## 8. [OPTIONAL] test GUI forwarding()
 
-in your computer, open XLaunch, and follow the instruction.
+Run GUI in NUC and Forward it to your computer(not recommended)
+-----------------------------------------------------------------
 
-in NUC, run
+in your computer, open XLaunch, and follow the instruction. Remember to check the "Disable access control" option.
 
-```bash
-echo "export DISPLAY=<your_computer_ip>:0.0" >> ~/.bashrc
-```
-
-then restart the container(in NUC)
-
-```bash 
-docker restart <container_name>
-# or use vscode docker extension to do this
-```
-
-in docker container, run
+in docker container in NUC, run
 
 ```bash
 rviz2
@@ -169,5 +159,45 @@ sudo service ssh restart
 ```
 then try rviz again.
 
-Hope that the next time when you are writing a dockerfile, add lines above to the end of the file so that people who use your docker image do not need to do this again.
+Run GUI in Your Computer and receive ROS topic from NUC(recommended)
+--------------------------------------------------------------------
+
+you are not required to start a contrainer with DISPLAY environment variable, so the command looks like this
+
+```bash
+# in NUC
+sudo docker run -it --network=host --privileged -v /dev:/dev sentry:v0.0
+```
+
+enter the container, config ROS_MASTER_URI and ROS_IP
+
+```bash
+# in MUC's contrainer ~/.bashrc
+export ROS_MASTER_URI=http://<your NUC_IP>:11311
+export ROS_IP=<your NUC_IP>
+```
+
+then run a ros node in NUC, for example
+
+```bash
+# in NUC's container
+roslaunch livox_ros_driver livox_lidar_msg.launch
+roslaunch fast_lio mapping.launch
+```
+
+then in your computer, start a contrainer that has the same ROS_DISTRO as NUC, and config ROS_MASTER_URI and ROS_IP
+
+```bash
+# in your computer
+docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ROS_MASTER_URI=http://<your NUC_IP>:11311/ ros:noetic-perception
+```
+
+enter the container, start rviz
+
+```bash
+# in your computer's container
+rviz
+```
+
+see if there's any topic in rviz
 

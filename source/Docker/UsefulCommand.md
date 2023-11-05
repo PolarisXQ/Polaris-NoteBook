@@ -43,6 +43,10 @@ so B&C are using the same roscore and share the same network
 
 - -e ROS_MASTER_URI=http://ros-master:11311 
 
+```bash
+docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ROS_MASTER_URI=http://hero-NUC12WSKi5:11311/ ros:noetic-perception /bin/bash
+```
+
 ## EXAMPLE
 ```bash
 docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -dit thiagofalcao/opencv3
