@@ -11,6 +11,7 @@ Welcome to Polaris' NoteBook!
    :caption: Daily Report
 
    report/report.md
+   report/report.md
 
 .. toctree::
    :maxdepth: 1
