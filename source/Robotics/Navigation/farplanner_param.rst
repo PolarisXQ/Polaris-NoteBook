@@ -18,6 +18,8 @@ FarPlanner调参笔记
 
 再调试far_planner
 
+terrain_analysis的正常运行是controller和Planner正常运行的前提！分析出来的点云符合逻辑了再进行下一步
+
 
 
 

@@ -8,7 +8,7 @@
 
 如果使用DevContainer的话
 ----------------------------------------------
-如果他人已经配置好了DevContainer，那么你只需要把他的repo clone下来，请阅读下面的1·
+如果他人已经配置好了DevContainer，那么你只需要把他的repo clone下来，请阅读下面的1，2，3，4
 如果没有，那么你需要自己配置DevContainer，步骤是1，2，5*，3，4
 
 ## 1. Pull the image.

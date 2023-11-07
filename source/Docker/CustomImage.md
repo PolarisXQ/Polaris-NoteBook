@@ -30,7 +30,7 @@ I am currently using XLanch on Windows.
 
 访问DockerHub，搜索你想要的镜像，Pull下来就可以了。
 
-For Tencent Coding.项目-> 制品管理：制品仓库->拉取
+如果队友已经做好镜像，那么可以在coding平台，项目-> 制品管理：制品仓库->拉取
 
 ### 方法2 自己定制镜像
 
@@ -60,7 +60,7 @@ For Tencent Coding.项目-> 制品管理：制品仓库->拉取
 
 5. 上传镜像到DockerHub
 
-    保存好镜像以后，就可以上传到DockerHub上了，这样就可以在任何一台电脑上下载这个镜像了。
+    保存好最终的镜像以后，就可以上传到DockerHub上了，这样就可以在任何一台电脑上下载这个镜像了。
 
     在Coding的制品仓库界面有详细的介绍，如何上传镜像。
 
