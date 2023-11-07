@@ -61,7 +61,10 @@ pipeline {
 
 #### 测试使用的构建计划
 
-这个构建计划是在每一次有人提MR的时候触发的，服务器会进入上面构建好的镜像，运行测试脚本。测试的结果会反馈到MR中，负责人可以查看。如果测试通过，那么代码基本就没什么问题，也可以merge了。
+这个构建计划是在每一次有人提MR的时候触发的，服务器会进入上面构建好的镜像，运行测试脚本。测试的结果会反馈到MR中，负责人可以查看。如果测试通过，那么代码基本就没什么问题，也可以merge了。当然没通过也是可以merge的。
+
+<img src="./pic/citestresult.png" width="80%">
+合并请求的测试结果
 
 对应的，merge完成后，开发使用的构建计划会被触发，开发使用镜像就会加入最新的功能。
 
@@ -137,13 +140,13 @@ fi'''
   }
 ```
 
-<img src="./pic/cidevflow.png" width="80%">
+<img src="./pic/CItestflow.png" width="80%">
 图形化配置界面
 
-<img src="./pic/cidevflow2.png" width="80%">
+<img src="./pic/CItestflow2.png" width="50%">
 在制品仓库中选择镜像作为构建环境
 
-<img src="./pic/cidevrule.png" width="80%">
+<img src="./pic/citestrule.png" width="80%">
 触发规则配置
 
 #### 部署使用的构建计划
