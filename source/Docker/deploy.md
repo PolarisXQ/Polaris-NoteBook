@@ -169,15 +169,29 @@ you are not required to start a contrainer with DISPLAY environment variable, so
 sudo docker run -it --network=host --privileged -v /dev:/dev sentry:v0.0
 ```
 
-enter the container, config ROS_MASTER_URI and ROS_IP
+then in your computer, start a contrainer for GUI visualization
 
 ```bash
-# in MUC's contrainer ~/.bashrc
+# in your computer
+docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ROS_MASTER_URI=http://<your NUC_IP>:11311/ ros:noetic-perception
+```
+
+both in the container and your computer, add these lines in correspoding files
+
+```bash
+# in ~/.bashrc
+export ROS_HOSTNAME=<NUC_NAME>
 export ROS_MASTER_URI=http://<your NUC_IP>:11311
 export ROS_IP=<your NUC_IP>
 ```
 
-then run a ros node in NUC, for example
+```bash
+# in /etc/hosts
+<your NUC_IP> <NUC_NAME>
+<your COMPUTER_IP> <COMPUTER_NAME>
+```
+
+then start a node to see if it works
 
 ```bash
 # in NUC's container
@@ -185,19 +199,7 @@ roslaunch livox_ros_driver livox_lidar_msg.launch
 roslaunch fast_lio mapping.launch
 ```
 
-then in your computer, start a contrainer that has the same ROS_DISTRO as NUC, and config ROS_MASTER_URI and ROS_IP
-
-```bash
-# in your computer
-docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ROS_MASTER_URI=http://<your NUC_IP>:11311/ ros:noetic-perception
-```
-
-enter the container, start rviz
-
 ```bash
 # in your computer's container
 rviz
 ```
-
-see if there's any topic in rviz
-
