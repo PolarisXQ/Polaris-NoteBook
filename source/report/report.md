@@ -106,14 +106,3 @@
     <img src="./pic/simu.png"  width="90%">
     <img src="./pic/farplanner.png"  width="90%">
     
-## 🟩 电控联调
-
-- 🗓️2023.09.24
-- 电控通信完成
-- 可以使用navigation中的odometryCalibration launch测试车速执行是否如预期
-- 实车通信测试
-
-    <img src="./pic/real_robot.png"  width="90%">
-
-- 🗓️2023.10.10 想换老底盘，准备好了联调用的代码
-- 🗓️2023.10.15-26 老底盘联调未完成

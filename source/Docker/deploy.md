@@ -162,36 +162,40 @@ then try rviz again.
 Run GUI in Your Computer and receive ROS topic from NUC(recommended)
 --------------------------------------------------------------------
 
-you are not required to start a contrainer with DISPLAY environment variable, so the command looks like this
-
 ```bash
 # in NUC
-sudo docker run -it --network=host --privileged -v /dev:/dev sentry:v0.0
+sudo docker run -it --network=host --privileged -v /dev:/dev [image:tag]
 ```
 
 then in your computer, start a contrainer for GUI visualization
 
 ```bash
 # in your computer
-docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ROS_MASTER_URI=http://<your NUC_IP>:11311/ ros:noetic-perception
+docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all [image:tag]
 ```
 
 both in the container and your computer, add these lines in correspoding files
 
 ```bash
 # in ~/.bashrc
+# for NUC
 export ROS_HOSTNAME=<NUC_NAME>
-export ROS_MASTER_URI=http://<your NUC_IP>:11311
-export ROS_IP=<your NUC_IP>
+export ROS_MASTER_URI=http://<NUC_IP>:11311
+export ROS_IP=<NUC_IP>
+
+# for your computer
+export ROS_HOSTNAME=<COMPUTER_NAME>
+export ROS_MASTER_URI=http://<NUC_IP>:11311
+export ROS_IP=<COMPUTER_IP>
 ```
 
 ```bash
 # in /etc/hosts
-<your NUC_IP> <NUC_NAME>
+<NUC_IP> <NUC_NAME>
 <your COMPUTER_IP> <COMPUTER_NAME>
 ```
 
-then start a node to see if it works
+then start a node to see if it works, for example
 
 ```bash
 # in NUC's container
