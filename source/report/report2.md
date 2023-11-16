@@ -1,10 +1,5 @@
 # 开发记录(10.01-now)
 
-## 🟩 点云处理
-
-- 🗓️2023.10.21 裁剪掉车体内的点云
-- 雷达倒挂可能出现一些问题
-
 ## 🟩 哨兵决策
 
 - 🗓️2023.09.21-22 迁移代码、决策接口、GUI
@@ -156,7 +151,7 @@
 
 ## 🟩 整理代码仓库、写文档
 
-- 🗓️2023.11.11
+- 🗓️2023.11.11 备份、删除多余模块、整理docker制品库
 
 ## ✅电控联调
 
@@ -170,3 +165,24 @@
 - 🗓️2023.10.10 想换老底盘，准备好了联调用的代码
 - 🗓️2023.10.15-26 老底盘联调未完成
 - 🗓️2023.11.11 老底盘和UA车都调通了
+
+## ✅雷达倒挂的机械问题
+
+- 🗓️2023.11.14 和机械沟通了一下雷达安装的一些问题，发现机械哥并不知道雷达需要什么，所以给基本科普了一下工作原理，写了个简单的文档
+- 🌟🌟🌟**沟通很重要哇**🌟🌟🌟
+- 🗓️2023.11.15 雷达装好，真不错！
+
+    <img src="./pic/flipped_lidar.jpg"  width="45%"><img src="./pic/1115test.png"  width="45%">
+
+## ✅点云处理
+
+- 🗓️2023.10.21 裁剪掉车体内的点云
+- 🗓️2023.11.16 雷达倒挂后确实出现了一些问题，龙sir留下来的代码有一些bug,tf的发布有问题，导致了坐标系的抽搐（非常感谢顾昊大佬的关心🌹🌹🌹）
+
+    <img src="./pic/tf_error.gif"  width="90%">
+
+- 关于地图反过来和tf树的一些问题：
+  - **livox_ros_driver2的问题：**把雷达倒挂过来，livox_ros_driver发布出来的点云居然没有倒过来，不知道是不是算法对点云做了什么处理
+  - **反过来的地图：**因此产生的问题就是fast_lio建出来的地图是反的。因为fast_lio将odom和camera_init初始化在同一点。解决的方法是让fast_lio和livox_ros_driver2在odom_flipped和sensor_flipped坐标系下工作，再增加两个sensor到sensor_flipped和odom_flipped的tf树，这样就可以得到正向的tf树了。
+  - **Computational Cost:**需要注意的是，如此，fast_lio发布的点云数据就是在odom_flipped坐标系下的了（cloud_registered_body在sensor_flipped坐标系下），如果后面的模块对数据的frame_id有要求，需要做相应的修改，并且要注意相应产生的计算消耗，因为有可能会为了把点云转到必要的坐标系而进行太多的点云遍历，导致计算量过大。
+  - **TF Tree:**tf2_ros的static_transform_publisher有一些神奇的特性，明明发布了坐标系，但是就是不工作，tf树连不起来。有可能是frame_id和child_frame_id写反了，改过来也许就能解决问题，但还不知道是为什么。（就比如说fast_lio发布odom_flipped到sensor_flipped的变换，一个static_transform_publisher发布--frame-id odom --child-frame-id odom_flipped --qx 1.0 --qw 0.0，另一个static_transform_publisher发布--frame-id sensor --child-frame-id sensor_flipped --qx 1.0 --qw 0.0，就会出现tf树连不上的问题，但是把sensor和sensor_flipped换一下位置，问题就解决了，好像有点道理，但不知道为什么）
