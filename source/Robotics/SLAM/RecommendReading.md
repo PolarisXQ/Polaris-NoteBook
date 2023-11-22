@@ -20,3 +20,7 @@
 
 🫠 待研究
 
+
+## 📑 [BLOG] PointCloud Processing
+
+👉 [点云|CloudCompare软件使用总结](https://zhuanlan.zhihu.com/p/613329264)
