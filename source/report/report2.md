@@ -182,7 +182,10 @@
 
     <img src="./pic/cc.png"  width="90%">
 
-- 🗓️2023.11.15-18 将terrain_analysis_ext做成离线的了，一方面减轻实时运行的负担，一方面保证稳定性，还可以离线处理点云，查看visiblity map的构建效果
+- 🗓️2023.11.15-18 将terrain_analysis_ext做成离线的了，一方面减轻实时运行的负担，一方面保证稳定性，还可以离线处理点云，查看visiblity map的构建效果。
+- 发现两个需要改进的问题：
+  - 可以看到有一些很薄的墙壁无法被构建出来，terrain_analysis是有正确识别的但可视图中却没有，很可能是far_planner在对点云进行滤波的时候把这些点滤掉了，后面需要改一下点云转图像然后图像处理的部分。
+  - terrain_analysis_ext的分析效果没有terrain_analysis好，可以看到再上坡的地方有锯齿出现，后面需要改一下terrain_analysis_ext的代码，或者直接用terrain_analysis的代码。
 
     <img src="./pic/terrain.png"  width="45%"><img src="./pic/visi.png"  width="45%">
 
