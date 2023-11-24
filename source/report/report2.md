@@ -185,11 +185,17 @@
 - 🗓️2023.11.15-18 将terrain_analysis_ext做成离线的了，一方面减轻实时运行的负担，一方面保证稳定性，还可以离线处理点云，查看visiblity map的构建效果。
 - 发现两个需要改进的问题：
   - 可以看到有一些很薄的墙壁无法被构建出来，terrain_analysis是有正确识别的但可视图中却没有，很可能是far_planner在对点云进行滤波的时候把这些点滤掉了，后面需要改一下点云转图像然后图像处理的部分。
-  - terrain_analysis_ext的分析效果没有terrain_analysis好，可以看到再上坡的地方有锯齿出现，后面需要改一下terrain_analysis_ext的代码，或者直接用terrain_analysis的代码。
+  - terrain_analysis_ext的分析效果没有terrain_analysis好，可以看到在上坡的地方有锯齿出现，后面需要改一下terrain_analysis_ext的代码，或者直接用terrain_analysis的代码。
 
-    <img src="./pic/terrain.png"  width="45%"><img src="./pic/visi.png"  width="45%">
+    <img src="./pic/terrain.png"  width="45%"><img src="./pic/visi.png"  width="44%">
 
 - 🗓️2023.11.18 为FAST_LIO加入裁剪点云功能，以去除车体内的点云
+
+- 🗓️2023.11.24 terrain_analysis_ext改进
+  - terrain_analysis和terrain_analysis_ext有不同的超参数，terrain_analysis_ext中的体素格更大，分析得也就比较粗糙，导致了锯齿的出现，改了一下超参就好了。
+  - 但是far_planner中还是不能很好的提取多边形，可以看到在对点云进行图形学处理的时候，是只有左图中红色的部分会被放进去处理。对于矮小的墙壁，加上只扫描了一个面，点云的数量就太少了，再模糊一下，处理一下，几乎就没有了。
+
+    <img src="./pic/terrain_analysis_ext_imporved.png"  width="41%"><img src="./pic/countour_extrac.png"  width="45%">
 
 ## 🟩 哨兵决策
 
