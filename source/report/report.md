@@ -18,8 +18,6 @@
 - 效果不佳，还需要调试。
 - 而且为了将三维导航适用于二维，需要带上很多其他的算法包，感觉没有必要
 
-- 🗓️2023.09.29 详见代码注释以及readme文档
-
 ## 🟩 尝试将farPlanner与navigation2中的localPlanner（Controller）结合
 
 - 🗓️2023.09.30 navigation2对系统的完整性要求比较高，locolPlanner[nav2]在没有localcost map的情况下似乎无法运行，虽然有nav2有很多现成的conntroller可以使用，但是该方案暂缓
@@ -94,13 +92,7 @@
 
 - 🗓️2023.10.18-21 读新规，PPT，进度规划
 
-## 🟩 仿真测试
-
-### local_planner
-
-- 🗓️2023.10.08 CMU仿真环境加入麦轮支持
-
-### far_planner导航算法仿真测试
+## ✅ far_planner导航算法仿真测试
 
 - 🗓️2023.09.24 仿真内效果很好
     <img src="./pic/simu.png"  width="90%">

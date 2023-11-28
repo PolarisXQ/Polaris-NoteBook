@@ -24,3 +24,7 @@
 ## 📑 [BLOG] PointCloud Processing
 
 👉 [点云|CloudCompare软件使用总结](https://zhuanlan.zhihu.com/p/613329264)
+
+[PCL滤波大全、原理+代码实例+操作步骤](https://blog.csdn.net/weixin_43925768/article/details/129183368)
+
+[工具网站推荐 - 欧拉角四元数在线可视化转化网站/三维在线旋转变换网站](https://blog.csdn.net/HW140701/article/details/106255294/)
