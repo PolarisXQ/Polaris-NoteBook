@@ -181,13 +181,17 @@
 
 
 - 🗓️2023.11.27 对于更加陡峭的坡面，如果不调整上坡的角度，可能会出现车轮悬空的情况，所以还是要进行一下坡面的分析
-    想法是计算路径内点云的法线
+- 想法是计算路径内点云的法线
   
     <img src="./pic/slope_analysis.png"  width="90%">
 
     得到了对应的坡度，感觉还是比较准确的。(对于离群点需要滤波，不然会干扰分析)
 
-    <img src="./pic/slope_est.png"  width="90%">
+    <img src="./pic/slope_est.png"  width="60%"><img src="./pic/compass1.jpg"  width="15%">
+
+    <img src="./pic/slope_est2.png"  width="67%"><img src="./pic/compass2.jpg"  width="15%">
+
+- 🗓️2023.11.27 哨兵会调整角度上坡啦！
 
 #### ✅重定位与上坡: DLL
 
@@ -224,3 +228,7 @@
     <img src="./pic/rmul_bt.png"  width="90%">
 
 - 🗓️2023.11.22 导航接入决策，巡航DEMO跑通
+
+## ✅赛季规划
+
+- 🗓️2023.10.28-29
