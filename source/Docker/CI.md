@@ -144,12 +144,15 @@ fi'''
 ```
 
 <img src="./pic/CItestflow.png" width="80%">
+
 图形化配置界面
 
 <img src="./pic/CItestflow2.png" width="50%">
+
 在制品仓库中选择镜像作为构建环境
 
 <img src="./pic/citestrule.png" width="80%">
+
 触发规则配置
 
 #### 部署使用的构建计划
