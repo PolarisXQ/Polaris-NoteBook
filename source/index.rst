@@ -12,6 +12,7 @@ Welcome to Polaris' NoteBook!
 
    report/report.md
    report/report2.md
+   report/report3.md
 
 .. toctree::
    :maxdepth: 1
