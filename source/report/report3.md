@@ -74,4 +74,23 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 ### 小陀螺和云台旋转的问题
 
 - 什么时候要开启小陀螺？小陀螺开起来以后，云台的朝向就是前向，那么就是说走路的时候云台不能转？
-- 
+- 获取云台角度的方式？话题还是tf?
+- 所有的角度都是相对于一个固定的baselink坐标系的？如何旋转这个固定的baselink坐标系？
+
+## 对比一下Nav2和Navigation_development_environment两个导航框架
+
+### Nav2
+
+- 稳定、工程化，给决策提供了很多便利
+- 框架庞大，难以分离使用
+- 2d地图方便编辑
+
+### Navigation_development_environment
+
+- 灵活，但是决策接口不够友好
+- local_planner算力开销小，但是效果不够好
+- 点云地图编辑不方便
+- 整体算力开销还算可以的
+
+<img src="./pic/cpu2.png"  width="45%">
+<img src="./pic/mem2.png"  width="45%">
