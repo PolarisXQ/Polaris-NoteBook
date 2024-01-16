@@ -1,4 +1,4 @@
-# 开发记录 2024
+# 开发记录 2024.01.01-now
 
 ## 框架融合
 
@@ -40,7 +40,7 @@ DLL表现OK，但是以防万一还是要备上一个手动重定位的方案，
 
 Nav2默认的算法感觉够用了，不是说算法有多高级，但是工程化和优化做得真不错。
 
-### local planner
+#### local planner
 
 local_planner其实还是会有一些jitter的问题，跑起来很不优雅，对定位也不友好。再加上如果要和Nav2框架融合还没做，所以先暂缓把。
 
@@ -48,24 +48,24 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 
 而且Nav2的避障很精细啊，总结来说比我开得好多了hhh
 
-## 决策部分
+### 决策部分
 
 决策稍微改了一下来适应Navigation2的框架，Nav2的框架真的太成熟了，很多东西都不用自己写了，直接用就行了。舒服。
 
 跟BehaviorTree.CPP申请到了一年的Pro版本使用权，更舒服了。
 
-## 复杂地形
+### 复杂地形
 
-### terrain analysis
+#### terrain analysis
 
 写了两个Nav2 Costmap 2D Plugin把terrain analysis接入了Nav2。
 
-### 下楼梯
+#### 下楼梯
 
 主要是3个问题：
 - 楼梯的辨识
 - 对准的问题
-- 单向通行：下楼梯的时候不能往回走。写了一个Nav2 Costmap 2D的Dynamic Layer，和Binary Layer结合起来可以实现动态地堵上某些通道。
+- 单向通行：只能下楼梯不能上楼梯，地图需要防止逆向的路径生成。写了一个Nav2 Costmap 2D的Dynamic Layer，和Binary Layer结合起来可以实现动态地堵上某些通道。
 
     <img src="./pic/dynamic_layer.gif"  width="90%">
 
