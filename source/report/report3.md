@@ -92,5 +92,10 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 - 点云地图编辑不方便
 - 整体算力开销还算可以的
 
+### FarPlanner 的致命缺点
+
+- 地图分辨率不够高
+- 地图不好编辑
+
 <img src="./pic/cpu2.png"  width="45%">
 <img src="./pic/mem2.png"  width="45%">
