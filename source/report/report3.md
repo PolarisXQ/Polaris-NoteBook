@@ -32,7 +32,9 @@ Point_lio比Fast_lio稳很多，占用率也是OK的，所以就用Point_lio了�
 
 ### 重定位部分
 
-DLL表现OK，但是以防万一还是要备上一个手动重定位的方案，或者后面看看雷达站能不能辅助重定位。
+DLL和Point_lio一起使用貌似有一点问题，不知道是不是Point_lio发布消息的速率太高了，原本用于Fast_lio的参数不适用了。还需要再调参试试看。
+
+还找了另外一个类似于DLL的点云配准算法，和DLL优化的对象相同但是方法不一样，用的是高斯牛顿，效果等待测试。
 
 ### 导航部分
 
@@ -68,6 +70,7 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 - 单向通行：只能下楼梯不能上楼梯，地图需要防止逆向的路径生成。写了一个Nav2 Costmap 2D的Dynamic Layer，和Binary Layer结合起来可以实现动态地堵上某些通道。
 
     <img src="./pic/dynamic_layer.gif"  width="90%">
+- 上坡和下楼梯的时候需要把小陀螺关掉，还需要临时加速。这个部分通过修改Nav2的velocity_smoother实现。将速度需要放大的倍率通过话题发布即可。
 
 ## 还需要解决的问题
 
@@ -99,3 +102,12 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 
 <img src="./pic/cpu2.png"  width="45%">
 <img src="./pic/mem2.png"  width="45%">
+
+### Nav2优化
+
+#### 卡在costmap中无法移动的问题
+
+之前的backup行为很傻，胡乱后退。现在改写成了先找到free space，朝着free space的方向移动。如图，疯狂逃避inflation layer。
+
+<img src="./pic/better_backup.png"  width="90%">
+
