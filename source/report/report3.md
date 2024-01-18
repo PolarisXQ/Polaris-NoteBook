@@ -109,5 +109,5 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 
 之前的backup行为很傻，胡乱后退。现在改写成了先找到free space，朝着free space的方向移动。如图，疯狂逃避inflation layer。
 
-<img src="./pic/better_backup.png"  width="90%">
+<img src="./pic/better_backup.gif"  width="90%">
 
