@@ -70,7 +70,15 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 - 单向通行：只能下楼梯不能上楼梯，地图需要防止逆向的路径生成。写了一个Nav2 Costmap 2D的Dynamic Layer，和Binary Layer结合起来可以实现动态地堵上某些通道。
 
     <img src="./pic/dynamic_layer.gif"  width="90%">
-- 上坡和下楼梯的时候需要把小陀螺关掉，还需要临时加速。这个部分通过修改Nav2的velocity_smoother实现。将速度需要放大的倍率通过话题发布即可。
+- 上坡和下楼梯的时候需要临时加速。这个部分通过修改Nav2的velocity_smoother实现。将速度需要放大的倍率通过话题发布即可。
+
+### Nav2优化
+
+##### 卡在costmap中无法移动的问题
+
+之前的backup行为很傻，胡乱后退。现在改写成了先找到free space，朝着free space的方向移动。如图，疯狂逃避inflation layer。
+
+<img src="./pic/better_backup.gif"  width="90%">
 
 ## 还需要解决的问题
 
@@ -79,6 +87,7 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 - 什么时候要开启小陀螺？小陀螺开起来以后，云台的朝向就是前向，那么就是说走路的时候云台不能转？
 - 获取云台角度的方式？话题还是tf?
 - 所有的角度都是相对于一个固定的baselink坐标系的？如何旋转这个固定的baselink坐标系？
+- 上坡和下楼梯的时候需要把小陀螺关掉
 
 ## 对比一下Nav2和Navigation_development_environment两个导航框架
 
@@ -103,11 +112,5 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 <img src="./pic/cpu2.png"  width="45%">
 <img src="./pic/mem2.png"  width="45%">
 
-### Nav2优化
 
-#### 卡在costmap中无法移动的问题
-
-之前的backup行为很傻，胡乱后退。现在改写成了先找到free space，朝着free space的方向移动。如图，疯狂逃避inflation layer。
-
-<img src="./pic/better_backup.gif"  width="90%">
 
