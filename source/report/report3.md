@@ -136,7 +136,7 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
     - 自瞄消息的类型，Publisher和Subscriber要用同样的Qos，否则收不到消息。注意看termial的报错
     - 自瞄最好能改一下消息发送的方式，/tracker/target最好是可以一直发送，没有目标的时候将tracking设置为false，有目标的时候将tracking设置为true。这样可以避免决策上的一些问题
     - 导航自瞄共同运行的效果
-    <img src="./pic/better_backup.gif"  width="90%">
+    - <img src="./pic/autoaim+nav.png"  width="60%">
 
 ## 雷达全向感知
 
