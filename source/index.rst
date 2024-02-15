@@ -52,6 +52,7 @@ Welcome to Polaris' NoteBook!
    Robotics/SLAM/relocalization
    Robotics/SLAM/Traditional/ORB-SLAM3
    Robotics/SLAM/SLAM_w_NN
+   Robotics/SLAM/MID360
 
 .. toctree::
    :maxdepth: 1
@@ -69,6 +70,7 @@ Welcome to Polaris' NoteBook!
    Robotics/ROS/aboutTF.md
    Robotics/ROS/migration.md
    Robotics/ROS/msg_filter.md
+   Robotics/ROS/Composition.md
 
 .. toctree::
    :maxdepth: 1
