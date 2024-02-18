@@ -153,13 +153,35 @@ MPPI Controller路径很平滑，20hz的规划频率算力也跟得上，打算�
 ## 2024.02.09-02.11 优化和重构代码
 
 - 尽量换成进程内通信，在一些部分用上zero-copy，装进containter里运行
-- 写教程文档。
+- 写[教程文档](../Robotics/ROS/Composition.md)
 - 想用server-client的方式重构决策的代码，但是感觉有点复杂且没必要🙃
 
-## Cartographer Pure Localization试验
+## 各种试验和探索
 
 2024.02.04-06 试验了一下Cartographer Pure Localization，回学校以后在实车上测试一下效果如何
 
+2024.02.14 还打算试一下基于NDT的定位和重定位算法
+https://github.com/rsasaki0109/lidar_localization_ros2/tree/humble
+https://github.com/rsasaki0109/lidarslam_ros2
+
+2024.02.15 发现了做雷达全向感知的方法，在数据集上测试了，感觉可以
+
+2024.02.17 又打算试一下SCA-IA之类的点云配准重定位方法
+https://github.com/juliangaal/scan_matching
+https://github.com/Coldplayplay/SAC-IA
+
+
+2024.02.16-17 研究了一下其他学校的哨兵方案和技术报告，汇总一下然后写个文档把
+
+2024.02.18 SCA-IA+gicp 甚至不需要提供初始位姿啊惊了，稍后了解下原理
+
+<img src="./pic/sca-ia-gicp.png" width="50%"/>
+
+2024.02.18 学了一下ROS的executor,callback group和Qos，写了[文档](../Robotics/ROS/executos.md)
+
+
+
+https://docs.ros.org/en/humble/How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html
 
 <!-- ⭐许愿哨兵稳定运行，嘎嘎乱杀！！⭐ -->
 

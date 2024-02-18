@@ -71,6 +71,7 @@ Welcome to Polaris' NoteBook!
    Robotics/ROS/migration.md
    Robotics/ROS/msg_filter.md
    Robotics/ROS/Composition.md
+   Robotics/ROS/executos.md
 
 .. toctree::
    :maxdepth: 1
