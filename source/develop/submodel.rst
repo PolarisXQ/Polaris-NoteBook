@@ -14,7 +14,7 @@
 
 
 子项目版本管理和主项目版本管理是分发的，主项目中的子项目更新需要手动操作：
-
+https://zhuanlan.zhihu.com/p/87053283
 .. code-block:: bash
 
     # 更新子模块

@@ -1,4 +1,5 @@
 {
     "iis.configDir": "",
-    "esbonio.sphinx.confDir": ""
+    "esbonio.sphinx.confDir": "",
+    "restructuredtext.preview.docutils.disabled": true
 }
