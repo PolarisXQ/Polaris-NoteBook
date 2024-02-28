@@ -78,6 +78,13 @@ Welcome to Polaris' NoteBook!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Robotics etc.
+
+   Robotics/Miscellaneous/behaviour_tree.md
+   Robotics/Miscellaneous/ProbablisticRobotics.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: CV
 
    CV/basic.md
