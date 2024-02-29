@@ -18,6 +18,8 @@
     - 线性系统：满足叠加性和齐次性
     - 高斯系统：噪声满足正态分布
 
+<img src="./pic/1dimguss.png" width="45%"/> <img src="./pic/2dimguss.png" width="45%"/>
+
 ## 卡尔曼滤波的数学原理
 
 ### 状态空间表达式

@@ -186,22 +186,6 @@ conversion between tf2 and geometry_msgs\eigen\bullet\KDL is available
 
 see prototype in tf2_geometry_msgs.hpp\tf2_eigen.hpp\tf2_bullet.hpp\tf2_kdl.hpp for more details
 
-<details>
-  <summary>tf2_eigen.hpp</summary>
-  
-  ```cpp
-    {} tf2
-    
-
-  ```
-  
-</details>
-
-
-
-
 tf2::doTransform(odom_now, odom_now, odom_now_tf);
 
-
-
- inverseTime 
+inverseTime 
