@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Learning Kalman Filter</title>
+    
+          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../_static/theme-vendors.js"></script> -->
+      <script src="../../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../../genindex.html" />
+  <link rel="search" title="搜索" href="../../search.html" />
+  <link rel="next" title="Learning Lidar Slam" href="Lidar_Slam.html" />
+  <link rel="prev" title="Learing PCL" href="PCL.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report.html" class="reference internal ">开发记录(09.15-10.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report2.html" class="reference internal ">开发记录(11.01-12.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report3.html" class="reference internal ">开发记录 2024.01.01-now</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/CI.html" class="reference internal ">配置CI节点</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/CustomImage.html" class="reference internal ">Step by Step in detail: Prepare Docker Image</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/CI.html" class="reference internal ">Step by Step in detail: Continuous Integration</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="MID360.html" class="reference internal ">MID360激光雷达的装配说明</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PCL.html" class="reference internal ">Learing PCL</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Learning Kalman Filter</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#id1" class="reference internal">卡尔曼滤波的通俗解释</a></li>
+                
+                  <li class="toctree-l2"><a href="#id2" class="reference internal">适用范围</a></li>
+                
+                  <li class="toctree-l2"><a href="#id3" class="reference internal">卡尔曼滤波的数学原理</a></li>
+                
+                  <li class="toctree-l2"><a href="#id6" class="reference internal">【附】数学知识</a></li>
+                
+                  <li class="toctree-l2"><a href="#id7" class="reference internal">变式</a></li>
+                
+                  <li class="toctree-l2"><a href="#id8" class="reference internal">优化和滤波</a></li>
+                
+                  <li class="toctree-l2"><a href="#slam-fast-lio-ekflidar-imu-slam" class="reference internal">从滤波器到SLAM：FAST-LIO，基于EKF的Lidar-IMU SLAM</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Lidar_Slam.html" class="reference internal ">Learning Lidar Slam</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/farplanner_param.html" class="reference internal ">FarPlanner调参笔记</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/control.html" class="reference internal ">Learning Control</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">ROS</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../ROS/aboutTF.html" class="reference internal ">Learning TF2</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../ROS/migration.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../ROS/msg_filter.html" class="reference internal ">Message_filter and TimeSynchronizer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../ROS/Composition.html" class="reference internal ">Composition and Intra-process Communication</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../ROS/executos.html" class="reference internal ">Manage how the callbaks are called: Exeturos & CallbackGroups & Qos</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Robotics etc.</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/behaviour_tree.html" class="reference internal ">rm_decision</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/ProbablisticRobotics.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+    <li>Learning Kalman Filter</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="PCL.html"
+       title="上一章">← Learing PCL</a>
+  </li>
+  <li class="next">
+    <a href="Lidar_Slam.html"
+       title="下一章">Learning Lidar Slam →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="learning-kalman-filter">
+<h1>Learning Kalman Filter<a class="headerlink" href="#learning-kalman-filter" title="此标题的永久链接">¶</a></h1>
+<p>推荐观看<a class="reference external" href="https://www.bilibili.com/video/BV1Rh41117MT">从放弃到精通！卡尔曼滤波从理论到实践~</a></p>
+<section id="id1">
+<h2>卡尔曼滤波的通俗解释<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>卡尔曼滤波实际上解决了这样一个问题： 假设对某一个系统， 你有一个观测结果， 然后基于建模你也有一个预测结果，那么你很自然会想到要把这2个结果进行一个融合， 从而得到一个更靠谱的结果。 那怎么融合呢，最简答的可能是加权平均， 你可以根据经验觉得谁更靠谱就多信任谁一点， 那这个加权系数你就可以根据经验确定下来了。 实际中你确实可以这么做， 但是效果不见得好。 那卡尔曼滤波其实就是提出了一种更好的加权融合的方案， 它根据协方差（考虑单变量就是方差， 更便于理解）来决定谁更靠谱， 直观来说， 就是方差越小， 那么它就更靠谱（想象一下， 对高斯分布， 方差为0意味着什么， 意味着没有不确定性啊， 100%的肯定呀， 那当然靠谱了）。 并且这个加权系数是动态确定的， 那灵活性就更高了， 有时候观测值更靠谱， 有时候预测值更靠谱， 卡尔曼滤波都能适应这种情况。 更重要的是， 它还是有扎实的理论保证的， 保证让你的每次卡尔曼滤波的估计结果的方差都是小于观测方差和预测方差的， 从而就保证了卡尔曼滤波的方差是越来越小的。 这点同样很重要， 因为我们的卡尔曼滤波是一个迭代估计的过程， 这一点能保证卡尔曼滤波结果是朝着越来越好的方向房展的。 这也就是为什么卡尔曼滤波性能如此强大的关键原因， 随着迭代的进行， 卡尔曼滤波的结果会越来越好。</p>
+<p>关于公式的得来， 这里也做一个通俗的解释：公式中最重要的一项是把观测结果和预测结果进行一个加权求和， 这从直观上很好理解， 但是其实背后是有严谨的数学理论支撑的。我们有一个观测， 有一个预测，那么我们最好的估计结果是什么呢？其实应该是在这2者共同的区间内， 代表这2个事件同时发生，那当然就更有把握说这个预测结果是更好的， 那这在数学上是什么呢？ 是2个概率密度函数相乘呀。 如果2个过程都是高斯分布的话， 根据极大似然法， 很容易就推导出后验估计结果 以及方差。 它的后验估计结果形式刚好就是加权求和的形式。</p>
+<p>至于滤波器这个名称，先来看一个简单的例子，低通滤波器，结果=低频信号×1+高频信号×0</p>
+<p>所以卡尔曼滤波器做的工作也差不多，就是估计理想状态：结果=信号×1+噪声×0</p>
+</section>
+<section id="id2">
+<h2>适用范围<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p>高斯线性系统
+- 线性系统：满足叠加性和齐次性
+- 高斯系统：噪声满足正态分布</p>
+<p><a class="reference internal" href="../../_images/1dimguss.png"><img alt="../../_images/1dimguss.png" src="../../_images/1dimguss.png" style="width: 45%;" /></a> <a class="reference internal" href="../../_images/2dimguss.png"><img alt="../../_images/2dimguss.png" src="../../_images/2dimguss.png" style="width: 45%;" /></a></p>
+</section>
+<section id="id3">
+<h2>卡尔曼滤波的数学原理<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<section id="id4">
+<h3>状态空间表达式<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+<p>状态方程：<span class="math notranslate nohighlight">\(x_k = Ax_{k-1} + Bu_{k-1} + w_{k-1}\)</span></p>
+<p>观测方程：<span class="math notranslate nohighlight">\(z_k = Hx_k + v_k\)</span></p>
+<p>其中，<span class="math notranslate nohighlight">\(x_k\)</span>是状态向量，<span class="math notranslate nohighlight">\(x_{k-1}\)</span>是上一时刻的状态向量，<span class="math notranslate nohighlight">\(A\)</span>是状态转移矩阵，<span class="math notranslate nohighlight">\(B\)</span>是控制矩阵，<span class="math notranslate nohighlight">\(u_{k-1}\)</span>是控制向量，<span class="math notranslate nohighlight">\(w_k\)</span>是状态噪声，<span class="math notranslate nohighlight">\(z_k\)</span>是观测向量，<span class="math notranslate nohighlight">\(H\)</span>是观测矩阵，<span class="math notranslate nohighlight">\(v_k\)</span>是观测噪声。</p>
+<p>所以我们就是在用上一时刻的最优估计来预测这一时刻的状态（也叫做先验估计），然后用观测值来修正这个预测值，得到这一时刻的最优估计（也叫做后验估计）。</p>
+<p>放到一个一维的例子中，状态方程可以写成：<span class="math notranslate nohighlight">\(x_k = ax_{k-1} + bu_{k-1} + w_{k-1}\)</span></p>
+<p>观测方程可以写成：<span class="math notranslate nohighlight">\(z_k = hx_k + v_k\)</span></p>
+<p>以一个带温度计保温杯为例，要观测的是温度</p>
+<p>因为保温，所以温度不变，及状态转移矩阵（一维就是一个数）为1，没有其他控制因素，所以控制矩阵为0。当然因为保温杯的保温效果不是完美的，所以有一个状态噪声。</p>
+<p>所以状态方程可以写成：<span class="math notranslate nohighlight">\(x_k = x_{k-1} + w_{k-1}\)</span></p>
+<p>从温度计上读到的温度就是温度，所以观测矩阵（一维就是一个数）为1，当然温度计也有误差，所以有一个观测噪声。</p>
+<p>所以观测方程可以写成：<span class="math notranslate nohighlight">\(z_k = x_k + v_k\)</span></p>
+<p>注意，<span class="math notranslate nohighlight">\(v_k\)</span>和<span class="math notranslate nohighlight">\(w_k\)</span>都是高斯分布的，且相互独立，他们分别服从</p>
+<p><span class="math notranslate nohighlight">\(w_k \sim N(0, Q)\)</span></p>
+<p><span class="math notranslate nohighlight">\(v_k \sim N(0, R)\)</span></p>
+<p>对于一维的例子，<span class="math notranslate nohighlight">\(Q\)</span>和<span class="math notranslate nohighlight">\(R\)</span>都是一个数，分别代表状态噪声和观测噪声的方差。对于多维的情况，<span class="math notranslate nohighlight">\(Q\)</span>和<span class="math notranslate nohighlight">\(R\)</span>是协方差矩阵，分别代表状态噪声和观测噪声的协方差矩阵。</p>
+<p>其中的Q,R分别是状态噪声和观测噪声的协方差矩阵，这个是需要事先给出的。一般是通过经验值得到，也就是这个系统的超参数。对于传感器的噪声，可以通过标定得到。</p>
+<p>以上，构成了这个系统的状态空间表达式。状态空间表达法就是将系统用一组输入、输出及其之间的关系进行表征的方法。他们之间的关系通过一阶微分方程描述。</p>
+</section>
+<section id="id5">
+<h3>卡尔曼滤波的工作流程（套公式）<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h3>
+<ol class="arabic">
+<li><p>预测</p>
+<p>通过上一时刻的最优估计来预测这一时刻的状态（也叫做先验估计）</p>
+<p><span class="math notranslate nohighlight">\(x_k^- = Ax_{k-1} + Bu_{k-1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(P_k^- = AP_{k-1}A^T + Q\)</span></p>
+<p>其中，<span class="math notranslate nohighlight">\(x_k^-\)</span>是先验估计，<span class="math notranslate nohighlight">\(P_k^-\)</span>是先验估计的协方差矩阵。</p>
+</li>
+<li><p>更新</p>
+<p>用观测值来修正这个预测值，得到这一时刻的最优估计（也叫做后验估计）</p>
+<p><span class="math notranslate nohighlight">\(K_k = P_k^-H^T(HP_k^-H^T + R)^{-1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(x_k = x_k^- + K_k(z_k - Hx_k^-)\)</span></p>
+<p><span class="math notranslate nohighlight">\(P_k = (I - K_kH)P_k^-\)</span></p>
+<p>其中，<span class="math notranslate nohighlight">\(K_k\)</span>是卡尔曼增益，<span class="math notranslate nohighlight">\(x_k\)</span>是后验估计，<span class="math notranslate nohighlight">\(P_k\)</span>是后验估计的协方差矩阵。</p>
+<p>卡尔曼增益的作用是根据先验估计的不确定性和观测的不确定性来决定对先验估计的修正程度。当观测的不确定性越大，卡尔曼增益越小，对先验估计的修正程度越小。当观测的不确定性越小，卡尔曼增益越大，对先验估计的修正程度越大。</p>
+<p>从公式上看，卡尔曼增益是由先验估计的不确定性和观测的不确定性来决定的，这也是卡尔曼滤波的核心思想。</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="id6">
+<h2>【附】数学知识<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p><a class="reference external" href="https://www.cnblogs.com/bigmonkey/p/11097322.html">方差、均方差和协方差</a></p>
+</section>
+<section id="id7">
+<h2>变式<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<section id="ekf">
+<h3>EKF<a class="headerlink" href="#ekf" title="此标题的永久链接">¶</a></h3>
+<p>卡尔曼滤波的前提是系统的状态改变和观测是线性的，但是实际应用中系统是非线性的。EKF通过一个一阶泰勒展开的线性系统来近似非线性。</p>
+</section>
+<section id="ukf">
+<h3>UKF<a class="headerlink" href="#ukf" title="此标题的永久链接">¶</a></h3>
+</section>
+<section id="eskf">
+<h3>ESKF<a class="headerlink" href="#eskf" title="此标题的永久链接">¶</a></h3>
+</section>
+<section id="partical-filter">
+<h3>Partical Filter<a class="headerlink" href="#partical-filter" title="此标题的永久链接">¶</a></h3>
+</section>
+</section>
+<section id="id8">
+<h2>优化和滤波<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<p>卡尔曼滤波器: 从k-1时刻后验推k时刻先验，从k时刻先验推k时刻后验 (马尔可夫假设)</p>
+<p>扩展卡尔曼滤波器:对卡尔曼滤波器进行修正，针对不是线性的情况，采用一阶泰勒展开近似线性(马尔可夫假设) ;</p>
+<p>BA优化:把一路上的所有坐标点(像素坐标对应的空间点等)与位姿整体放在一起作为自变量进行非线性优化</p>
+<p>PoseGraph优化: 先通过一路递推方式算出的各点位姿，通过数学方式计算得到一个位姿的变换A，再通过单独拿出两张图像来算出一个位姿变换B，争取让B=A</p>
+<p>增量因子图优化:保留中间结果，每加入一个点，对不需要重新计算的就直接用之前的中间结果，需要重新计算的再去计算，从而避免几余计算。iSAM是增量的处理后端优化。由于机器人是运动的，不同的边和节点会被不断加入图中。每加入一个点，普通图优化是对整个图进行优化，所以比较麻烦和耗时。iSAM的话相当于是保留中间结果，每加入一个点，对不需要重新计算的就直接用之前的中间结果，对需要重新计算的再去计算。以这种方式加速计算，避免元余计算。</p>
+<p>从全文的整理来看，特别是在IKF章节，我们可以发现滤波算法其实就是将Sliding Window的大小设置为1的优化算法，不论是优化算法还是滤波算法都是期望求解出问题概率模型的最大似然估计 (MLE)，本质上滤波就是基于马尔可夫假设将优化问题的建模进行了“特征化”的处理。</p>
+<p>再进一步分析，正因为滤波器进行了范围上维度的“简化”、模型的近似处理，所以其计算消耗较于优化算法更低，但由此引发的代价就是精度上的损失。</p>
+<p>另一个需要考虑的方面是，滤波器是由先验信息+运动模型+观测信息三个方面点顺序执行，以实现位姿状及其协方差的估计和更新，也正因为滤波器的框架如此，若是先验(上一时刻)状态出现了问题，比如位姿跟丢、计算错误等，那么在该时刻之后的状态都会出现问题以致纠正不回来了，而基于优化方法的位姿求解则会考虑更多时刻 (关键) 下的状态信息和观测信息，即使有某一时刻的状态量和协方差是outlier，系统也有一定的能力维稳。</p>
+<p>如果在处理器算力充足且精度为第一需求的前提下，那么在位姿估算问题处理上是首推优化算法，但若是效率是第一前提条件，那么就需要根据实际的应用情况和机器人问题模型选择合适的滤波器了。</p>
+</section>
+<section id="slam-fast-lio-ekflidar-imu-slam">
+<h2><a class="reference internal" href="Lidar_Slam.html#从滤波器到slamfast-lio基于ekf的lidar-imu紧耦合slam"><span class="std std-ref">从滤波器到SLAM：FAST-LIO，基于EKF的Lidar-IMU SLAM</span></a><a class="headerlink" href="#slam-fast-lio-ekflidar-imu-slam" title="此标题的永久链接">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="PCL.html"
+       title="上一章">← Learing PCL</a>
+  </li>
+  <li class="next">
+    <a href="Lidar_Slam.html"
+       title="下一章">Learning Lidar Slam →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

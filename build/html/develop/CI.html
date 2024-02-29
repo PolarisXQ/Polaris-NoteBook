@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>配置CI节点</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../genindex.html" />
+  <link rel="search" title="搜索" href="../search.html" />
+  <link rel="next" title="GIT" href="git.html" />
+  <link rel="prev" title="关联仓库的管理" href="submodel.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report.html" class="reference internal ">开发记录</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">配置CI节点</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#id1" class="reference internal">节点配置</a></li>
+                
+                  <li class="toctree-l2"><a href="#jenkinsfile" class="reference internal">常用的构建计划jenkinsfile</a></li>
+                
+                  <li class="toctree-l2"><a href="#jenkins-docker" class="reference internal">Jenkins + Docker</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/CustomImage.html" class="reference internal ">Step by Step in detail: Docker Image</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>配置CI节点</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="submodel.html"
+       title="上一章">← 关联仓库的管理</a>
+  </li>
+  <li class="next">
+    <a href="git.html"
+       title="下一章">GIT →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="ci">
+<h1>配置CI节点<a class="headerlink" href="#ci" title="此标题的永久链接">¶</a></h1>
+<section id="id1">
+<h2>节点配置<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>1.节点应该运行在服务器的docker内，而不是直接运行在服务器上</p>
+<p>2.按照教程文档配置好docker环境，可以将环境commit一个镜像，方便后续使用</p>
+<p>使用Coding做持续集成可以在dockerhub上拉取codingci/default-env镜像，该镜像已经安装好常用工具</p>
+<p>但还缺少crontab</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>install<span class="w"> </span>libconfig-crontab-perl<span class="w"> </span>libset-crontab-perl<span class="w"> </span>python3-crontab
+</pre></div>
+</div>
+<p>3.运行docker容器，挂载宿主机的docker.sock，才能在容器内部使用宿主机的docker环境</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-dit<span class="w"> </span>--ipc<span class="o">=</span>host<span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span>-v<span class="w"> </span>/home/geekbang/codingci_rm2024:<span class="w"> </span>/home/node/codingci_rm2024<span class="w"> </span>codingci/default-env:test
+</pre></div>
+</div>
+<p>4.余下的跟着教程文档走就行了</p>
+</section>
+<section id="jenkinsfile">
+<h2>常用的构建计划jenkinsfile<a class="headerlink" href="#jenkinsfile" title="此标题的永久链接">¶</a></h2>
+</section>
+<section id="jenkins-docker">
+<h2>Jenkins + Docker<a class="headerlink" href="#jenkins-docker" title="此标题的永久链接">¶</a></h2>
+<p>if you continously fail to checkout, think about if you use git lfs to manage your large files.</p>
+<p>if the answer is yes, then you need to add a step in your CI workflow to install git lfs and pull the large files.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>pipeline<span class="w"> </span>{
+<span class="w">  </span>agent<span class="w"> </span>any
+<span class="w">  </span>stages<span class="w"> </span>{
+<span class="w">    </span>stage(&#39;检出&#39;)<span class="w"> </span>{
+<span class="w">      </span>steps<span class="w"> </span>{
+<span class="w">        </span>checkout([
+<span class="w">          </span>$class:<span class="w"> </span>&#39;GitSCM&#39;,
+<span class="w">          </span>branches:<span class="w"> </span>[[name:<span class="w"> </span>env.GIT_BUILD_REF]],
+<span class="w">          </span>extensions:<span class="w"> </span>[
+<span class="w">            </span>//<span class="w"> </span>添加<span class="w"> </span>GitLFSPull<span class="w"> </span>插件
+<span class="w">            </span>[$class:<span class="w"> </span>&#39;GitLFSPull&#39;],
+<span class="w">          </span>],
+<span class="w">          </span>userRemoteConfigs:<span class="w"> </span>[[
+<span class="w">            </span>url:<span class="w"> </span>env.GIT_REPO_URL,
+<span class="w">            </span>credentialsId:<span class="w"> </span>env.CREDENTIALS_ID
+<span class="w">          </span>]]
+<span class="w">        </span>])
+<span class="w">      </span>}
+<span class="w">    </span>}
+<span class="w">  </span>}
+}
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="submodel.html"
+       title="上一章">← 关联仓库的管理</a>
+  </li>
+  <li class="next">
+    <a href="git.html"
+       title="下一章">GIT →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

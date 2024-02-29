@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Step by Step in detail: Prepare Docker Image</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../genindex.html" />
+  <link rel="search" title="搜索" href="../search.html" />
+  <link rel="next" title="Step by Step in detail: Launch the Development Workspace" href="RunDevEnv.html" />
+  <link rel="prev" title="Introduce to our WorkFlow" href="workflow.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report.html" class="reference internal ">开发记录(09.15-10.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report2.html" class="reference internal ">开发记录(11.01-12.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report3.html" class="reference internal ">开发记录 2024.01.01-now</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/CI.html" class="reference internal ">配置CI节点</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Step by Step in detail: Prepare Docker Image</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#id1" class="reference internal">准备工作</a></li>
+                
+                  <li class="toctree-l2"><a href="#id2" class="reference internal">准备开发使用的镜像</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CI.html" class="reference internal ">Step by Step in detail: Continuous Integration</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/MID360.html" class="reference internal ">MID360激光雷达的装配说明</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/PCL.html" class="reference internal ">Learing PCL</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/KalmanFilter.html" class="reference internal ">Learning Kalman Filter</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/Lidar_Slam.html" class="reference internal ">Learning Lidar Slam</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/farplanner_param.html" class="reference internal ">FarPlanner调参笔记</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/control.html" class="reference internal ">Learning Control</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">ROS</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/aboutTF.html" class="reference internal ">Learning TF2</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/migration.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/msg_filter.html" class="reference internal ">Message_filter and TimeSynchronizer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/Composition.html" class="reference internal ">Composition and Intra-process Communication</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/executos.html" class="reference internal ">Manage how the callbaks are called: Exeturos & CallbackGroups & Qos</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Robotics etc.</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Miscellaneous/behaviour_tree.html" class="reference internal ">rm_decision</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Miscellaneous/ProbablisticRobotics.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>Step by Step in detail: Prepare Docker Image</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="workflow.html"
+       title="上一章">← Introduce to our WorkFlow</a>
+  </li>
+  <li class="next">
+    <a href="RunDevEnv.html"
+       title="下一章">Step by Step in detail: Launch the Development Workspace →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="step-by-step-in-detail-prepare-docker-image">
+<h1>Step by Step in detail: Prepare Docker Image<a class="headerlink" href="#step-by-step-in-detail-prepare-docker-image" title="此标题的永久链接">¶</a></h1>
+<p>经过了原理介绍，终于！可以开始实践了</p>
+<a class="reference internal image-reference" href="../_images/stepbystep.gif"><img alt="../_images/stepbystep.gif" src="../_images/stepbystep.gif" style="width: 30%;" /></a>
+<section id="id1">
+<h2>准备工作<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Install Docker on your computer</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop for Windows</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">Docker Desktop for Mac</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/install/">Docker Engine for Linux</a></p></li>
+</ul>
+</li>
+<li><p>Install VsCode Extension</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Docker</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">DevContainer</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">Remote Development</a></p></li>
+</ul>
+</li>
+<li><p>Install Xming on Windows / Install XQuartz on Mac</p></li>
+</ol>
+<p>Used for GUI visualization</p>
+<p>I am currently using XLanch on Windows.</p>
+</section>
+<section id="id2">
+<h2>准备开发使用的镜像<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<section id="docker-hub">
+<h3>方法1 从Docker Hub上下载<a class="headerlink" href="#docker-hub" title="此标题的永久链接">¶</a></h3>
+<p>访问DockerHub，搜索你想要的镜像，Pull下来就可以了。</p>
+<p>如果队友已经做好镜像，那么可以在coding平台，项目-&gt; 制品管理：制品仓库-&gt;拉取</p>
+</section>
+<section id="id3">
+<h3>方法2 自己定制镜像<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
+<p>当然会出现DockerHub上的镜像不满足你的需求的情况，这时候就需要自己定制镜像了。</p>
+<section id="id4">
+<h4>方法2.1 在基础镜像内进行配置<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h4>
+<ol class="arabic">
+<li><p>从DockerHub上下载一个基础镜像，比如Ubuntu</p></li>
+<li><p>运行和进入容器
+镜像拉去完毕以后就可以把这个镜像运行起来，具体的运行配置可以参考这一篇文章<a class="reference internal" href="UsefulCommand.html"><span class="std std-doc">📑Some Useful Command for Docker</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>E:<span class="se">\r</span>obotics<span class="se">\o</span>rbslam2_learn:/home/orbslam2<span class="w"> </span>-e<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0.0<span class="w"> </span>-dit<span class="w"> </span>thiagofalcao/opencv3
+</pre></div>
+</div>
+<p>这时候来到VsCode的Docker插件界面，可以看到已经运行的容器了，右键选择Attach Visual Studio Code，就可以进入容器了。</p>
+</li>
+<li><p>在容器内进行配置</p>
+<p>就和在本机上配置环境一样，安装软件，配置环境变量，配置开发环境，配置ROS环境等等。</p>
+</li>
+<li><p>保存镜像</p>
+<p>在配置的过程中可以随时保存镜像，后面要是配坏了，就可以直接用这个镜像重新开始。就像打游戏的时候有个存档一样。</p>
+<p>具体的命令在<a class="reference internal" href="UsefulCommand.html#how-to-commit"><span class="std std-ref">📑Some Useful Command for Docker-how-to-commit</span></a></p>
+</li>
+<li><p>上传镜像到DockerHub</p>
+<p>保存好最终的镜像以后，就可以上传到DockerHub上了，这样就可以在任何一台电脑上下载这个镜像了。</p>
+<p>在Coding的制品仓库界面有详细的介绍，如何上传镜像。</p>
+<a class="reference internal image-reference" href="../_images/dockerhubincoding.png"><img alt="../_images/dockerhubincoding.png" src="../_images/dockerhubincoding.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/pushimage.png"><img alt="../_images/pushimage.png" src="../_images/pushimage.png" style="width: 80%;" /></a>
+</li>
+</ol>
+</section>
+<section id="dockerfile">
+<h4>方法2.2 使用Dockerfile进行配置<a class="headerlink" href="#dockerfile" title="此标题的永久链接">¶</a></h4>
+<p>如果想要更加灵活的配置镜像，或者需要在服务器上进行镜像的构建，就需要使用Dockerfile了。</p>
+<p>其实Dockerfile就是一系列的命令，这些命令会被Docker解析，然后生成一个镜像。</p>
+<ol class="arabic simple">
+<li><p>Dockerfile</p></li>
+</ol>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Base on which image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ros:humble-perception-jammy</span>
+
+<span class="c"># source ros environment</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/</span><span class="nv">$ROS_DISTRO</span><span class="s2">/setup.bash&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="c"># color your terminal</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;force_color_prompt=yes&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+
+<span class="c">## Install dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>using<span class="w"> </span>add-apt-repository
+<span class="w">    </span>software-properties-common<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>download<span class="w"> </span>
+<span class="w">    </span>wget<span class="w"> </span><span class="se">\ </span>
+<span class="w">    </span>#<span class="w"> </span>useful<span class="w"> </span>tools
+<span class="w">    </span>aptitude<span class="w"> </span>
+
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>rviz2
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rviz2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>Gazebo
+<span class="w">    </span><span class="c1"># ros-humble-gazebo-ros \</span>
+<span class="w">    </span>#<span class="w"> </span>rqt
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rqt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-rqt-common-plugins<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>navigation2
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-navigation2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-nav2-bringup<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>Turtlebot3
+<span class="w">    </span>ros-<span class="nv">$ROS_DISTRO</span>-turtlebot3-gazebo<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>octomap<span class="w"> </span>dependencies
+<span class="w">    </span>ros-humble-octomap<span class="w"> </span>ros-humble-octomap-msgs<span class="w"> </span>ros-humble-octomap-mapping<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-octomap-ros<span class="w"> </span>ros-humble-octomap-rviz-plugins<span class="w"> </span>ros-humble-octomap-server<span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>octomap<span class="w"> </span>viewer
+<span class="w">    </span>octovis<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>gridmap<span class="w"> </span>dependencies
+<span class="w">    </span>#<span class="w"> </span>🫠<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>learning<span class="w"> </span>gridmap,<span class="w"> </span>you<span class="w"> </span>may<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>packages
+<span class="w">    </span>#<span class="w"> </span>ros-humble-grid-map-demos
+<span class="w">    </span>ros-humble-grid-map<span class="w"> </span>ros-humble-grid-map-cmake-helpers<span class="w"> </span>ros-humble-grid-map-core<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-costmap-2d<span class="w"> </span>ros-humble-grid-map-cv<span class="w"> </span>ros-humble-grid-map-filters<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-loader<span class="w"> </span>ros-humble-grid-map-msgs<span class="w"> </span>ros-humble-grid-map-octomap<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-pcl<span class="w"> </span>ros-humble-grid-map-ros<span class="w"> </span>ros-humble-grid-map-rviz-plugin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-grid-map-sdf<span class="w"> </span>ros-humble-grid-map-visualization<span class="w"> </span>
+
+<span class="c"># LIO-SAM</span>
+<span class="c"># Add GTSAM-PPA</span>
+<span class="k">RUN</span><span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:borglab/gtsam-release-4.1
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-perception-pcl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-pcl-msgs<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-vision-opencv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ros-humble-xacro<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libgtsam-dev<span class="w"> </span>libgtsam-unstable-dev<span class="w"> </span>
+
+<span class="c"># Download models for gazebo</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/.gazebo/models
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/root/.gazebo/models</span>
+<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>http://file.ncnynl.com/ros/gazebo_models.txt
+<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>-i<span class="w"> </span>gazebo_models.txt
+<span class="c"># extract models</span>
+<span class="k">RUN</span><span class="w"> </span>ls<span class="w"> </span>model.tar.g*<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n1<span class="w"> </span>tar<span class="w"> </span>xzvf
+<span class="c"># clean up</span>
+<span class="k">RUN</span><span class="w"> </span>rm<span class="w"> </span>model.tar.gz*
+
+<span class="c"># Install extra dependencies with apt</span>
+
+<span class="c"># Install extra dependencies with pip</span>
+
+<span class="c"># add start script</span>
+<span class="k">CMD</span><span class="w"> </span>/bin/bash
+</pre></div>
+</div>
+<p>😶‍🌫️学不会是吧，其实我是在镜像里装一个，回到dockerfile里写一条，慢慢就搓出来了。</p>
+<ol class="arabic simple" start="2">
+<li><p>Build your own Docker Image</p></li>
+</ol>
+<p>可以在自己的机器上构建镜像，看看构建的过程是什么样的，理论上服务器上的构建过程是一样的。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># under the path that contains dockerfile</span>
+
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;your_image_name&gt;<span class="o">[</span>:&lt;tag&gt;<span class="o">]</span><span class="w"> </span>.
+</pre></div>
+</div>
+<p>For example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>rm_sentry:v1.0<span class="w"> </span>.
+</pre></div>
+</div>
+<p>构建完成后，可以在本机上运行这个镜像，看看是否符合预期。也可以像上面一样，把镜像上传到DockerHub上。</p>
+<a class="reference internal image-reference" href="../_images/localimage.png"><img alt="../_images/localimage.png" src="../_images/localimage.png" style="width: 50%;" /></a>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="workflow.html"
+       title="上一章">← Introduce to our WorkFlow</a>
+  </li>
+  <li class="next">
+    <a href="RunDevEnv.html"
+       title="下一章">Step by Step in detail: Launch the Development Workspace →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

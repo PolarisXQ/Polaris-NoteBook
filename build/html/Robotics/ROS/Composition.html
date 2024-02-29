@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Composition and Intra-process Communication</title>
+    
+          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../_static/theme-vendors.js"></script> -->
+      <script src="../../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../../genindex.html" />
+  <link rel="search" title="搜索" href="../../search.html" />
+  <link rel="next" title="Manage how the callbaks are called: Exeturos &amp; CallbackGroups &amp; Qos" href="executos.html" />
+  <link rel="prev" title="Message_filter and TimeSynchronizer" href="msg_filter.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report.html" class="reference internal ">开发记录(09.15-10.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report2.html" class="reference internal ">开发记录(11.01-12.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report3.html" class="reference internal ">开发记录 2024.01.01-now</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/CI.html" class="reference internal ">配置CI节点</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/CustomImage.html" class="reference internal ">Step by Step in detail: Prepare Docker Image</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/CI.html" class="reference internal ">Step by Step in detail: Continuous Integration</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/MID360.html" class="reference internal ">MID360激光雷达的装配说明</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/KalmanFilter.html" class="reference internal ">Learning Kalman Filter</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/farplanner_param.html" class="reference internal ">FarPlanner调参笔记</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Navigation/control.html" class="reference internal ">Learning Control</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">ROS</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="aboutTF.html" class="reference internal ">Learning TF2</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="migration.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="msg_filter.html" class="reference internal ">Message_filter and TimeSynchronizer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Composition and Intra-process Communication</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#composition" class="reference internal">Composition</a></li>
+                
+                  <li class="toctree-l2"><a href="#intra-process-communication" class="reference internal">Intra-process Communication</a></li>
+                
+                  <li class="toctree-l2"><a href="#example" class="reference internal">Example</a></li>
+                
+                  <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="executos.html" class="reference internal ">Manage how the callbaks are called: Exeturos & CallbackGroups & Qos</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Robotics etc.</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/behaviour_tree.html" class="reference internal ">rm_decision</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/ProbablisticRobotics.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+    <li>Composition and Intra-process Communication</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="msg_filter.html"
+       title="上一章">← Message_filter and TimeSynchronizer</a>
+  </li>
+  <li class="next">
+    <a href="executos.html"
+       title="下一章">Manage how the callbaks are called: Exeturos &amp; CallbackGroups &amp; Qos →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="composition-and-intra-process-communication">
+<h1>Composition and Intra-process Communication<a class="headerlink" href="#composition-and-intra-process-communication" title="此标题的永久链接">¶</a></h1>
+<section id="composition">
+<h2>Composition<a class="headerlink" href="#composition" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>Main Idea: Combine multiple nodes into a single process</p></li>
+<li><p>Advantages:</p>
+<ul>
+<li><p>Organize related functionality</p></li>
+<li><p>Improve performance</p></li>
+<li><p>Simplify deployment</p></li>
+</ul>
+</li>
+<li><p>Disadvantages:</p>
+<ul>
+<li><p>Tighter coupling</p></li>
+<li><p>Single point of failure</p></li>
+</ul>
+</li>
+<li><p>Types of Composition:</p>
+<ul>
+<li><p>Component Container: Component container with a single-threaded executor.</p></li>
+<li><p>Component Container Isolated: Component container with dedicated single-threaded executors for each components.</p></li>
+<li><p>Component Container MT: Component container with a multi-threaded executor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="intra-process-communication">
+<h2>Intra-process Communication<a class="headerlink" href="#intra-process-communication" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>Main Idea: Communicate between nodes within the same process</p></li>
+<li><p>Advantages:</p>
+<ul>
+<li><p>Efficient communication</p></li>
+<li><p>Simplify data sharing</p></li>
+</ul>
+</li>
+<li><p>Disadvantages:</p>
+<ul>
+<li><p>Tighter coupling</p></li>
+<li><p>Limited to a single process?</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="此标题的永久链接">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// FILE: talker_component.hpp</span>
+<span class="cp">#ifndef COMPOSITION__TALKER_COMPONENT_HPP_</span>
+<span class="cp">#define COMPOSITION__TALKER_COMPONENT_HPP_</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;std_msgs/msg/string.hpp&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">composition</span>
+<span class="p">{</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Talker</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">COMPOSITION_PUBLIC</span>
+<span class="w">  </span><span class="c1">// default parameter is to use intra-process communication</span>
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">Talker</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="o">=</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="p">().</span><span class="n">use_intra_process_comms</span><span class="p">(</span><span class="nb">true</span><span class="p">));</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">on_timer</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">pub_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">TimerBase</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">timer_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace composition</span>
+
+<span class="cp">#endif  </span><span class="c1">// COMPOSITION__TALKER_COMPONENT_HPP_</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// FILE: talker_component.cpp</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;talker_component.hpp&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;std_msgs/msg/string.hpp&quot;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">composition</span>
+<span class="p">{</span>
+<span class="c1">// Create a Talker &quot;component&quot; that subclasses the generic rclcpp::Node base class.</span>
+<span class="c1">// Components get built into shared libraries and as such do not write their own main functions.</span>
+<span class="c1">// The process using the component&#39;s shared library will instantiate the class as a ROS node.</span>
+<span class="n">Talker</span><span class="o">::</span><span class="n">Talker</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">)</span>
+<span class="o">:</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="s">&quot;talker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">),</span><span class="w"> </span><span class="n">count_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">pub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;chatter&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">  </span><span class="n">timer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_wall_timer</span><span class="p">(</span><span class="mi">1</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Talker</span><span class="o">::</span><span class="n">on_timer</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">Talker</span><span class="o">::</span><span class="n">on_timer</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello World: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="o">++</span><span class="n">count_</span><span class="p">);</span>
+<span class="w">  </span><span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Publishing: &#39;%s&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">flush</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Put the message into a queue to be processed by the middleware.</span>
+<span class="w">  </span><span class="c1">// This call is non-blocking.</span>
+<span class="w">  </span><span class="n">pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace composition</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp_components/register_node_macro.hpp&quot;</span>
+<span class="c1">// Register the component with class_loader.</span>
+<span class="c1">// This acts as a sort of entry point, allowing the component to be discoverable when its library</span>
+<span class="c1">// is being loaded into a running process.</span>
+<span class="n">RCLCPP_COMPONENTS_REGISTER_NODE</span><span class="p">(</span><span class="n">composition</span><span class="o">::</span><span class="n">Talker</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// FILE: main.cpp</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;composition/talker_component.hpp&quot;</span>
+
+<span class="c1">// A main function is optional for a component</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">spin</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">composition</span><span class="o">::</span><span class="n">Talker</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span># FILE: CMakeLists.txt
+cmake_minimum_required(VERSION 3.5)
+
+project(composition)
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES &quot;Clang&quot;)
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(example_interfaces REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclcpp_components REQUIRED)
+find_package(rcutils REQUIRED)
+find_package(std_msgs REQUIRED)
+
+# include directories
+include_directories(include)
+
+# add the components
+add_library(talker_component SHARED
+  src/talker_component.cpp)
+ament_target_dependencies(talker_component
+  rclcpp
+  rclcpp_components
+  std_msgs)
+rclcpp_components_register_nodes(talker_component &quot;composition::Talker&quot;) # MUST BE THE SAME AS THE CLASS NAME
+
+add_library(listener_component SHARED
+  src/listener_component.cpp)
+target_compile_definitions(listener_component
+  PRIVATE &quot;COMPOSITION_BUILDING_DLL&quot;)
+ament_target_dependencies(listener_component
+  rclcpp
+  rclcpp_components
+  std_msgs)
+rclcpp_components_register_nodes(listener_component &quot;composition::Listener&quot;)
+
+# This use main function to run the component as a standalone node
+add_executable(talker_node
+  src/main.cpp)
+target_link_libraries(talker_node
+  talker_component)
+ament_target_dependencies(talker_node
+    rclcpp
+    rclcpp_components
+    std_msgs)
+
+# Install the components
+install(TARGETS
+  talker_component
+  listener_component
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
+
+# Install the executables
+install(TARGETS
+  talker_node
+  DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_package()
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># FILE: launch/talker_component.launch.py</span>
+<span class="sd">&quot;&quot;&quot;Launch a talker and a listener in a component container.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">launch</span>
+<span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">ComposableNodeContainer</span>
+<span class="kn">from</span> <span class="nn">launch_ros.descriptions</span> <span class="kn">import</span> <span class="n">ComposableNode</span>
+
+
+<span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate launch description with multiple components.&quot;&quot;&quot;</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="n">ComposableNodeContainer</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_container&#39;</span><span class="p">,</span>
+            <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">package</span><span class="o">=</span><span class="s1">&#39;rclcpp_components&#39;</span><span class="p">,</span>
+            <span class="c1"># choose from three types of container as you need</span>
+            <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;component_container&#39;</span><span class="p">,</span>
+            <span class="n">composable_node_descriptions</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">ComposableNode</span><span class="p">(</span>
+                    <span class="n">package</span><span class="o">=</span><span class="s1">&#39;composition&#39;</span><span class="p">,</span>
+                    <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;composition::Talker&#39;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;talker&#39;</span><span class="p">,</span>
+                    <span class="n">parameters</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;use_sim_time&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
+                    <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;use_intra_process_comms&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}]</span>
+                    <span class="n">remappings</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;chatter&#39;</span><span class="p">,</span> <span class="s1">&#39;my_chatter&#39;</span><span class="p">)]</span>
+                    <span class="p">),</span>
+                <span class="n">ComposableNode</span><span class="p">(</span>
+                    <span class="n">package</span><span class="o">=</span><span class="s1">&#39;composition&#39;</span><span class="p">,</span>
+                    <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;composition::Listener&#39;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;listener&#39;</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">launch</span><span class="o">.</span><span class="n">LaunchDescription</span><span class="p">([</span><span class="n">container</span><span class="p">])</span>
+</pre></div>
+</div>
+<section id="key-points">
+<h3>Key Points<a class="headerlink" href="#key-points" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Talker</span></code> class is derived from <code class="docutils literal notranslate"><span class="pre">rclcpp::Node</span></code> and has a constructor that takes a <code class="docutils literal notranslate"><span class="pre">rclcpp::NodeOptions</span></code> object.</p></li>
+<li><p>The publisher publishes a message and transfers ownership of the message to the middleware using <code class="docutils literal notranslate"><span class="pre">std::move</span></code>. This make it possible for zero-copy transfer of the message.</p></li>
+<li><p>The subscriber’s node is created in a similar way to the publisher’s node. One thing to note is how the callback function receives the message, as we will see in the next section.</p></li>
+<li><p>Components get built into shared libraries and as such do not write their own main functions. However, you can still write a main function and using <code class="docutils literal notranslate"><span class="pre">rclcpp::spin</span></code> to run the component as a standalone node.</p></li>
+<li><p>The intra-process communication is enabled in launch file by setting <code class="docutils literal notranslate"><span class="pre">use_intra_process_comms</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in the <code class="docutils literal notranslate"><span class="pre">ComposableNode</span></code> description.</p></li>
+</ul>
+</section>
+<section id="about-listeners-callback-function">
+<h3>About Listeners’ Callback Function<a class="headerlink" href="#about-listeners-callback-function" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">listener_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+<span class="n">listener_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">UniquePtr</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The callback function can receive the message as either a shared pointer or a unique pointer.</p></li>
+<li><p>Use the unique pointer when the message is to be moved to another part of the program. i.e. the message is to be used in only one place. In this case, we can realize zero-copy transfer of the message, which is more efficient.(The message is not copied, but moved to the subscriber’s callback function with std::move.)</p></li>
+<li><p>Use the shared pointer when the message is to be shared with other parts of the program. i.e. the message is to be used in multiple places.</p></li>
+</ul>
+</section>
+<section id="more-about-std-move">
+<h3>More about std::move<a class="headerlink" href="#more-about-std-move" title="此标题的永久链接">¶</a></h3>
+<p>When an object is passed to a function, it is typically copied or moved depending on the context. However, in some cases, we may want to explicitly indicate that we want to move the object instead of making a copy. This is where std::move comes into play.</p>
+</section>
+<section id="more-about-ros2-pointer-types">
+<h3>More About ROS2 Pointer Types<a class="headerlink" href="#more-about-ros2-pointer-types" title="此标题的永久链接">¶</a></h3>
+<p>For each pointer type there a non-const and a const typedef:</p>
+<p>RawPtr and ConstRawPtr
+SharedPtr and ConstSharedPtr
+UniquePtr and ConstUniquePtr
+WeakPtr and ConstWeakPtr</p>
+<ul class="simple">
+<li><p>RawPtr is a simple pointer to an object.</p></li>
+<li><p>SharedPtr is used for shared ownership of an object. It is used when multiple parts of the program need to access the object.</p></li>
+<li><p>UniquePtr is used for exclusive ownership of an object. It is used when only one part of the program needs to access the object.</p></li>
+<li><p>WeakPtr is used to break circular references between SharedPtr objects.</p></li>
+<li><p>ConstSharedPtr is a shared pointer to a const object.</p></li>
+<li><p>ConstUniquePtr is a unique pointer to a const object.</p></li>
+<li><p>ConstWeakPtr is a weak pointer to a const object.</p></li>
+</ul>
+<p>ConstSharedPtr and UniquePtr are widely used in ROS programming for shared ownership and unique ownership, respectively. However, ConstUniquePtr is not typically utilized due to its contradictory nature.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="此标题的永久链接">¶</a></h2>
+<p><a class="reference external" href="https://docs.ros.org/en/foxy/Concepts/About-Composition.html">About-Composition</a></p>
+<p><a class="reference external" href="https://docs.ros.org/en/foxy/Tutorials/Intermediate/Composition.html">Component Tutorial</a></p>
+<p><a class="reference external" href="https://docs.ros.org/en/foxy/Concepts/About-Intra-Process-Communication.html">Intra-process Communication</a></p>
+<p><a class="reference external" href="https://github.com/ros2/demos/tree/foxy">Code Examples</a></p>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="msg_filter.html"
+       title="上一章">← Message_filter and TimeSynchronizer</a>
+  </li>
+  <li class="next">
+    <a href="executos.html"
+       title="下一章">Manage how the callbaks are called: Exeturos &amp; CallbackGroups &amp; Qos →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

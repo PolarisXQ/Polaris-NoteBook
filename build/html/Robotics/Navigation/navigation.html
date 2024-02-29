@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>导航算法</title>
+    
+          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../_static/theme-vendors.js"></script> -->
+      <script src="../../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../../genindex.html" />
+  <link rel="search" title="搜索" href="../../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report.html" class="reference internal ">开发记录</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/CI.html" class="reference internal ">配置CI节点</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+    <li>导航算法</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>导航算法<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<section id="id2">
+<h2>哨兵导航目前在用的算法<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<section id="pahtplannning">
+<h3>规划器PahtPlannning<a class="headerlink" href="#pahtplannning" title="此标题的永久链接">¶</a></h3>
+<p><a class="reference external" href="https://github.com/MichaelFYang/far_planner/tree/humble">FarPlanner</a></p>
+</section>
+<section id="pathtracking">
+<h3>控制器PathTracking<a class="headerlink" href="#pathtracking" title="此标题的永久链接">¶</a></h3>
+<p><a class="reference internal" href="#"><span class="xref myst">这个导航算法开发包</span></a>中的locol_planner</p>
+<p>带有注释和一些说明的代码在导航组的仓库中不定时更新</p>
+</section>
+</section>
+<section id="id3">
+<h2>导航算法的一个总览文章<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p>写得比较详细吧，感觉他这个系列的文章有一些都挺不错的</p>
+<p><a class="reference external" href="https://mp.weixin.qq.com/s/tC3UP1KUXj7_EQqXLLBzvw">机器人运动规划算法研究现状简述</a></p>
+<p><a class="reference external" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI3MTIyMjQwNQ==&amp;amp;action=getalbum&amp;amp;album_id=2236876593568858115&amp;amp;scene=173&amp;amp;from_msgid=2247484296&amp;amp;from_itemidx=1&amp;amp;count=3&amp;amp;nolastread=1#wechat_redirect">运动规划系列文章目录</a></p>
+</section>
+<section id="id4">
+<h2>推荐的算法资料<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h2>
+<p>把机器人学中的经典算法用python实现了一遍，而且有动图</p>
+<p>跟导航有关的是PathPlanning和PathTracking部分</p>
+<p>PythonRobotics <a class="reference external" href="https://github.com/AtsushiSakai/PythonRobotics/tree/master">github</a></p>
+<p>如果懒得配python环境，也可以直接到项目的文档里面看gif</p>
+<p><a class="reference external" href="https://atsushisakai.github.io/PythonRobotics/index.html">PythonRobotics文档</a></p>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

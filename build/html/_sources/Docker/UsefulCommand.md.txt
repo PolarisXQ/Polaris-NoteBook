@@ -43,6 +43,10 @@ so B&C are using the same roscore and share the same network
 
 - -e ROS_MASTER_URI=http://ros-master:11311 
 
+```bash
+docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ROS_MASTER_URI=http://hero-NUC12WSKi5:11311/ ros:noetic-perception /bin/bash
+```
+
 ## EXAMPLE
 ```bash
 docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -dit thiagofalcao/opencv3
@@ -74,18 +78,18 @@ For Mid360
 docker run -dit -p 56101:56101/udp -p 56201:56201/udp -p 56301:56301/udp -p 56401:56401/udp -p 56501:56501/udp --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all rm_sentry:app
 ```
 
-apt install -Y libnet-ifconfig-wrapper-perl iputils-ping 
-
 ## How to Commit
 
 现在，我们需要将容器中的更改更新到原始镜像。首先，我们需要获取容器 ID：
 ```shell
+# 在本地终端
 docker ps -l
 ```
 
 找到容器 ID 后，可以使用以下命令生成一个新的镜像：
 
 ```shell
+# 在本地终端
 docker commit CONTAINER_ID NEW_IMAGE_NAME[:tag(latest)]
 ```
 

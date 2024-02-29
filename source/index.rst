@@ -53,8 +53,9 @@ Welcome to Polaris' NoteBook!
    Robotics/SLAM/Traditional/ORB-SLAM3
    Robotics/SLAM/SLAM_w_NN
    Robotics/SLAM/MID360
+   Robotics/SLAM/PCL
    Robotics/SLAM/KalmanFilter.md
-   Robotics/SLAM/Lidar_SLAM.md
+   Robotics/SLAM/Lidar_Slam.md
 
 .. toctree::
    :maxdepth: 1

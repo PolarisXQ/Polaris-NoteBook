@@ -52,3 +52,5 @@ add this into cap_ffmpeg_impl.hpp
 ```bash
 pkg-config --modversion opencv
 ```
+
+<opencv/cv.h>==> <opencv2/imgproc.hpp>

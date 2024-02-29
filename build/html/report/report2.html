@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>开发记录(11.01-12.31)</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../genindex.html" />
+  <link rel="search" title="搜索" href="../search.html" />
+  <link rel="next" title="开发记录 2024.01.01-now" href="report3.html" />
+  <link rel="prev" title="开发记录(09.15-10.31)" href="report.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="report.html" class="reference internal ">开发记录(09.15-10.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">开发记录(11.01-12.31)</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#id2" class="reference internal">✅借车</a></li>
+                
+                  <li class="toctree-l2"><a href="#id3" class="reference internal">🟩代码理解</a></li>
+                
+                  <li class="toctree-l2"><a href="#id4" class="reference internal">✅整理代码仓库、写文档</a></li>
+                
+                  <li class="toctree-l2"><a href="#id5" class="reference internal">✅电控联调</a></li>
+                
+                  <li class="toctree-l2"><a href="#id6" class="reference internal">✅雷达倒挂的机械问题</a></li>
+                
+                  <li class="toctree-l2"><a href="#id7" class="reference internal">🟩 调参笔记</a></li>
+                
+                  <li class="toctree-l2"><a href="#id8" class="reference internal">🟩 实车测试、调参</a></li>
+                
+                  <li class="toctree-l2"><a href="#id16" class="reference internal">🟩 哨兵决策</a></li>
+                
+                  <li class="toctree-l2"><a href="#id17" class="reference internal">✅赛季规划</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="report3.html" class="reference internal ">开发记录 2024.01.01-now</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/CI.html" class="reference internal ">配置CI节点</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/CustomImage.html" class="reference internal ">Step by Step in detail: Prepare Docker Image</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/RunDevEnv.html" class="reference internal ">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/CI.html" class="reference internal ">Step by Step in detail: Continuous Integration</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/MID360.html" class="reference internal ">MID360激光雷达的装配说明</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/KalmanFilter.html" class="reference internal ">Learning Kalman Filter</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/farplanner_param.html" class="reference internal ">FarPlanner调参笔记</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/control.html" class="reference internal ">Learning Control</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">ROS</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/aboutTF.html" class="reference internal ">Learning TF2</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/migration.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/msg_filter.html" class="reference internal ">Message_filter and TimeSynchronizer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/Composition.html" class="reference internal ">Composition and Intra-process Communication</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/executos.html" class="reference internal ">Manage how the callbaks are called: Exeturos & CallbackGroups & Qos</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Robotics etc.</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Miscellaneous/behaviour_tree.html" class="reference internal ">rm_decision</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Miscellaneous/ProbablisticRobotics.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>开发记录(11.01-12.31)</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="report.html"
+       title="上一章">← 开发记录(09.15-10.31)</a>
+  </li>
+  <li class="next">
+    <a href="report3.html"
+       title="下一章">开发记录 2024.01.01-now →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>开发记录(11.01-12.31)<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<section id="id2">
+<h2>✅借车<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>🗓️2023.10.24-11.04 录视频、剪视频、做ppt</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>🟩代码理解<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<ul>
+<li><p>🗓️2023.09.29 了解AEDE（autonomous_exploration_development_environment）框架，详见代码注释以及readme文档</p></li>
+<li><p>🗓️2023.09.30 阅读localPlanerr[CMU]的代码，详见代码注释以及readme文档</p></li>
+<li><p>🗓️2023.10.02/03 给代码加上了参数服务，以后可以动态调参了</p></li>
+<li><p>🗓️2023.10.03 上坡了！！！原理详解见代码注释</p>
+<a class="reference internal image-reference" href="../_images/slope.png"><img alt="../_images/slope.png" src="../_images/slope.png" style="width: 90%;" /></a>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  🌟🌟🌟**经验之谈** 强烈推荐所有需要调参的包都加上ROS的参
+  数服务，示例可以在24赛季修改过的ADED包中或者pcl_cloud包中
+  找到。调参都在rqt_parameter_reconfigure中进行。
+  （对于ROS1参数服务写起来比较麻烦，懒得写了）
+</pre></div>
+</div>
+</li>
+<li><p>🗓️2023.09.29 阅读CMU导航算法系列论文，感触不深</p></li>
+<li><p>🗓️2023.10.05-07 terrain_analysis, local_planner原理和参数理解，理解后才能修改源码，加入对全向轮的支持。</p></li>
+<li><p>🗓️2023.10.07/08 主要在看local_planner和terrain_analysis的博客、代码和论文，详见代码注释</p></li>
+<li><p>🗓️2023.10.24 继续看local_planner，增加了代码注释；发现local_planner在避障上做得比较粗糙，没有像nav2一样为机器人增加footprint、给地图加膨胀层。可以考虑把nav2的思想加入到local_planner中，比如模仿nav2为地图加一个膨胀层，可以用/add_obstacle话题实现（弃用）</p></li>
+<li><p>🗓️2023.10.26 （接上）通过调参或许能实现差不多的避障效果</p></li>
+<li><p>🗓️2023.11.10 （接上）避障也可以通过高速率的路径规划模块来实现，比如说对于far_planner这种基于可视图的导航，会将角点向外拉出半个机器人的距离，来实现避障，类似于栅格地图膨胀层的作用。再次，AEDE中的localplanner的避障是没有考虑机器人自身大小的。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>✅整理代码仓库、写文档<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>🗓️2023.11.11 备份、删除多余模块、整理docker制品库</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>✅电控联调<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<ul>
+<li><p>🗓️2023.09.24</p></li>
+<li><p>电控通信完成</p></li>
+<li><p>可以使用navigation中的odometryCalibration launch测试车速执行是否如预期</p></li>
+<li><p>实车通信测试</p>
+<a class="reference internal image-reference" href="../_images/real_robot.png"><img alt="../_images/real_robot.png" src="../_images/real_robot.png" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.10.10 想换老底盘，准备好了联调用的代码</p></li>
+<li><p>🗓️2023.10.15-26 老底盘联调未完成</p></li>
+<li><p>🗓️2023.11.11 老底盘和UA车都调通了</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>✅雷达倒挂的机械问题<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<ul>
+<li><p>🗓️2023.11.14 和机械沟通了一下雷达安装的一些问题，发现机械哥并不知道雷达需要什么，所以给基本科普了一下工作原理，写了个简单的文档</p></li>
+<li><p>🌟🌟🌟<strong>沟通很重要哇</strong>🌟🌟🌟</p></li>
+<li><p>🗓️2023.11.15 雷达装好，真不错！</p>
+<p><a class="reference internal" href="../_images/flipped_lidar1.jpg"><img alt="../_images/flipped_lidar1.jpg" src="../_images/flipped_lidar1.jpg" style="width: 45%;" /></a><a class="reference internal" href="../_images/1115test1.png"><img alt="../_images/1115test1.png" src="../_images/1115test1.png" style="width: 45%;" /></a></p>
+</li>
+<li><p>🗓️2023.11.17 雷达装在高处，底盘传上去的震动会比较大，特别是急停的时候，所以雷达内的IMU会处于一个小幅度高速震动的状态中，可能会导致FAST_LIO跑飞。加了互补滤波器以后效果好多了。后面机械上悬挂可能效果会更好。</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>🟩 <a class="reference internal" href="../Robotics/Navigation/farplanner_param.html"><span class="std std-doc">调参笔记</span></a><a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>🗓️2023.09.29 逐步生产中</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>🟩 实车测试、调参<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<p><span style="color:RGB(255,10,10); font-weight: 900;">！！！思路是从简单到复杂一步一步调试！！！</span></p>
+<section id="id9">
+<h3>✅ 跑通系统<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h3>
+<ul>
+<li><p>🗓️2023.10.29 FAST_LIO定位+ICP重定位+Local_Planner+Far_Planner在预先建好的可视图中导航，系统跑通</p>
+<a class="reference internal image-reference" href="../_images/sys.gif"><img alt="../_images/sys.gif" src="../_images/sys.gif" style="width: 90%;" /></a>
+<p>(最后导航有一点抽搐是因为local_planner的参数还没有调好)</p>
+</li>
+</ul>
+<section id="fastlio">
+<h4>✅<strong>定位部分</strong>：fastlio没什么大问题<a class="headerlink" href="#fastlio" title="此标题的永久链接">¶</a></h4>
+</section>
+<section id="controller-local-planner">
+<h4>✅<strong>Controller</strong>: local planner<a class="headerlink" href="#controller-local-planner" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.10.01 localPlanner原地转圈：看了社区里别人的方法，应该可以通过调大dirdiffthre来解决</p></li>
+<li><p>🗓️2023.10.02 破案了，原地转圈是因为mid360方向装反了。</p>
+<a class="reference internal image-reference" href="../_images/far_planner_indoor.gif"><img alt="../_images/far_planner_indoor.gif" src="../_images/far_planner_indoor.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.10.03 实车效果也不错，速度上有高速导航的可能性</p>
+<a class="reference internal image-reference" href="../_images/local_planner.gif"><img alt="../_images/local_planner.gif" src="../_images/local_planner.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.10.03 对于在正左方，正右方的坐标点，运行比较别扭；与仿真内的运行情况对比，感觉问题可能是输出速度太小，电机扭矩问题造成的，车动不了。</p></li>
+<li><p>🗓️2023.10.29 全向调通</p></li>
+</ul>
+</section>
+<section id="planner-far-planner">
+<h4>✅<strong>Planner</strong>: far-planner<a class="headerlink" href="#planner-far-planner" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.10.02 后期可以看到地图出现了一些问题，可能是因为Fast_lioZ轴飘了</p>
+<a class="reference internal image-reference" href="../_images/far_plannerx3.gif"><img alt="../_images/far_plannerx3.gif" src="../_images/far_plannerx3.gif" style="width: 90%;" /></a>
+</li>
+</ul>
+</section>
+<section id="icp">
+<h4>✅<strong>重定位：ICP</strong><a class="headerlink" href="#icp" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>使用dll的话，tf树逻辑应该是这样的</p>
+<ul class="simple">
+<li><p>fast_lio: odom-&gt;sensor</p></li>
+<li><p>dll: sensor-&gt;map</p></li>
+</ul>
+</li>
+<li><p>dll对初始点的要求比较严格，icp鲁棒但是很耗算力</p>
+<a class="reference internal image-reference" href="../_images/dll_real.gif"><img alt="../_images/dll_real.gif" src="../_images/dll_real.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.10.25-27 测试加上DLL，效果仍然不好，非常飘</p></li>
+<li><p>🗓️2023.10.29 发现之前的使用方式有一点问题，改正过来以后测试了ICP和DLL的重定位效果。DLL真的不如ICP吗！</p>
+<p><a class="reference internal" href="../_images/dll.gif"><img alt="../_images/dll.gif" src="../_images/dll.gif" style="width: 30%;" /></a><a class="reference internal" href="../_images/dll_imu.gif"><img alt="../_images/dll_imu.gif" src="../_images/dll_imu.gif" style="width: 30%;" /></a><a class="reference internal" href="../_images/icp.gif"><img alt="../_images/icp.gif" src="../_images/icp.gif" style="width: 30%;" /></a></p>
+<p>__________________ DLL  ____________________________  DDL+IMU  ____________________________  ICP  __________________</p>
+</li>
+<li><p>🗓️2023.11.03-05 使用ICP虽然配的准，但是速度很慢，发布tf的速率太低，估计是连5hz都达不到，达不到导航要求的消息速率，已经影响了路径追踪了。</p>
+<a class="reference internal image-reference" href="../_images/icp+err.gif"><img alt="../_images/icp%2Berr.gif" src="../_images/icp%2Berr.gif" style="width: 90%;" /></a>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h4>改进方向<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h4>
+<p>1.测试FAST_LIO_LOCALIZATION
+2.改变DLL的使用方式，生成的八叉树地图不应该把地板和天花板滤掉，不然会影响z轴上的定位，目前DLL会飘也可能是八叉树地图没有处理好的原因
+3.Controller做得不够精致，需要改进一下</p>
+</section>
+</section>
+<section id="id11">
+<h3>✅ 复杂路面、动态场景+其他的改进<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h3>
+<section id="id12">
+<h4>✅动态避障<a class="headerlink" href="#id12" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.10.21-22 效果在视频里，比较别扭，需要调参</p></li>
+<li><p>🗓️2023.10.29 写了一个巡航的demo，用于测试动态避障，漫漫调参路😭😭😭</p>
+<a class="reference internal image-reference" href="../_images/patrol.gif"><img alt="../_images/patrol.gif" src="../_images/patrol.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.11.05 调参不是解决问题的最终方法，决定爆改一下local_planner</p></li>
+<li><p>🗓️2023.12.08 测试动态避障，貌似没什么问题</p></li>
+</ul>
+</section>
+<section id="id13">
+<h4>🟩狭窄通道、近距离绕过障碍物<a class="headerlink" href="#id13" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.10.25-27 实现更精细的避障，进一步理解了相关参数，编写调参记录</p>
+<p><a class="reference internal" href="../_images/avoid.gif"><img alt="../_images/avoid.gif" src="../_images/avoid.gif" style="width: 90%;" /></a>可以看到在找路上花了很多时间，一旦找到了还是可以很快到达的</p>
+</li>
+<li><p>🗓️2023.10.29 通过狭窄通道+全向运动</p>
+<a class="reference internal image-reference" href="../_images/narrow_omni.gif"><img alt="../_images/narrow_omni.gif" src="../_images/narrow_omni.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.11.09 mid360扫描不到比自己低的障碍物是一个很大的问题，尽早把雷达倒挂过来测试把</p></li>
+</ul>
+</section>
+<section id="pointlio">
+<h4>🟩定位：PointLio<a class="headerlink" href="#pointlio" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>雷达挂高以后，IMU抖动得比较严重，FAST_LIO跑飞的情况更容易发生了，可能是官步的悬挂不够好</p></li>
+<li><p>🗓️2023.11.27 Point-Lio测试，🐂🐂🐂，换方案！！！</p>
+<a class="reference internal image-reference" href="../_images/point_lio_no_filter.gif"><img alt="../_images/point_lio_no_filter.gif" src="../_images/point_lio_no_filter.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.11.27-12.07 迁移Point-Lio到ROS2，滤波器的更新一直有问题</p></li>
+<li><p>🗓️2023.12.10 迁移完成！！！问题出在指针类型上，作者使用了const指针来防止指针被修改，但是在迁移的时候没有注意到这一点，用了普通指针，导致滤波器的更新出现了问题。</p></li>
+<li><p>关于ROS1 const指针的一些说明<a class="reference external" href="https://answers.ros.org/question/212857/what-is-constptr/">what-is-constptr</a></p></li>
+<li><p>官方的指针说明<a class="reference external" href="https://design.ros2.org/articles/generated_interfaces_cpp.html">Pointer types</a></p></li>
+</ul>
+</section>
+<section id="id14">
+<h4>✅地形分析与上坡<a class="headerlink" href="#id14" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.11.03 小车成功上15°坡面</p>
+<a class="reference internal image-reference" href="../_images/slope.gif"><img alt="../_images/slope.gif" src="../_images/slope.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.10.21 terrain_analysis中裁剪掉车体内的点云</p></li>
+<li><p>🗓️2023.11.15-18 可以把点云放到CloudCompare中进行滤波，得到一个理想的点云再导入系统中处理，主要是用到这两个工具：</p>
+<ul>
+<li><p>SOR滤波(Statistical Outlier Removal):Tools-&gt;clean-&gt;SOR filter，对离群点进行滤波</p></li>
+<li><p>分割:Tools-&gt;Segmentation-&gt;Label Connected Components，如果有比较大块的离群点，可以用这个分割出来，然后删除</p>
+<a class="reference internal image-reference" href="../_images/cc.png"><img alt="../_images/cc.png" src="../_images/cc.png" style="width: 90%;" /></a>
+</li>
+</ul>
+</li>
+<li><p>🗓️2023.11.15-18 将terrain_analysis_ext做成离线的了，一方面减轻实时运行的负担，一方面保证稳定性，还可以离线处理点云，查看visiblity graph的构建效果。</p></li>
+<li><p>发现两个需要改进的问题：</p>
+<ul>
+<li><p>可以看到有一些很薄的墙壁无法被构建出来，terrain_analysis是有正确识别的但可视图中却没有，很可能是far_planner在对点云进行滤波的时候把这些点滤掉了，后面需要改一下点云转图像然后图像处理的部分。</p></li>
+<li><p>terrain_analysis_ext的分析效果没有terrain_analysis好，可以看到在上坡的地方有锯齿出现，后面需要改一下terrain_analysis_ext的代码，或者直接用terrain_analysis的代码。</p>
+<p><a class="reference internal" href="../_images/terrain.png"><img alt="../_images/terrain.png" src="../_images/terrain.png" style="width: 45%;" /></a><a class="reference internal" href="../_images/visi.png"><img alt="../_images/visi.png" src="../_images/visi.png" style="width: 44%;" /></a></p>
+</li>
+</ul>
+</li>
+<li><p>🗓️2023.11.18 为FAST_LIO加入裁剪点云功能，以去除车体内的点云，不然建出来的图里面会有车子经过的轨迹</p></li>
+<li><p>🗓️2023.11.24 terrain_analysis_ext改进（接上上）</p>
+<ul>
+<li><p>terrain_analysis和terrain_analysis_ext有不同的超参数，terrain_analysis_ext中的体素格更大，分析得也就比较粗糙，导致了锯齿的出现，改了一下超参就好了。</p></li>
+<li><p>调参以后far_planner中还是不能很好的提取多边形。可以看到在对点云进行图形学处理的时候，是只有左图中红色的部分会被放进去处理。对于矮小的墙壁，加上只扫描了一个面，点云的数量就太少了，再模糊一下，处理一下，几乎就没有了。</p>
+<p><a class="reference internal" href="../_images/terrain_analysis_ext_imporved.png"><img alt="../_images/terrain_analysis_ext_imporved.png" src="../_images/terrain_analysis_ext_imporved.png" style="width: 41%;" /></a><a class="reference internal" href="../_images/countour_extrac.png"><img alt="../_images/countour_extrac.png" src="../_images/countour_extrac.png" style="width: 45%;" /></a></p>
+</li>
+</ul>
+</li>
+<li><p>🗓️2023.11.27 对于更加陡峭的坡面，如果不调整上坡的角度，可能会出现车轮悬空的情况，所以还是要进行一下坡面的分析</p></li>
+<li><p>❌第一个想法是将开启use_sorting和不开启use_sorting的分析结果相减，获得坡面的点云。效果并不好。</p>
+<a class="reference internal image-reference" href="../_images/subtract_slope.png"><img alt="../_images/subtract_slope.png" src="../_images/subtract_slope.png" style="width: 90%;" /></a>
+</li>
+<li><p>✔️第二个想法是计算路径内点云的法线</p>
+<a class="reference internal image-reference" href="../_images/slope_analysis.png"><img alt="../_images/slope_analysis.png" src="../_images/slope_analysis.png" style="width: 90%;" /></a>
+<p>得到了对应的坡度，还是比较准确的。(对于离群点需要滤波，不然会干扰分析)</p>
+<p><a class="reference internal" href="../_images/slope_est.png"><img alt="../_images/slope_est.png" src="../_images/slope_est.png" style="width: 60%;" /></a><a class="reference internal" href="../_images/compass1.jpg"><img alt="../_images/compass1.jpg" src="../_images/compass1.jpg" style="width: 15%;" /></a></p>
+<p><a class="reference internal" href="../_images/slope_est2.png"><img alt="../_images/slope_est2.png" src="../_images/slope_est2.png" style="width: 67%;" /></a><a class="reference internal" href="../_images/compass2.jpg"><img alt="../_images/compass2.jpg" src="../_images/compass2.jpg" style="width: 15%;" /></a></p>
+</li>
+<li><p>🗓️2023.11.27 哨兵会调整角度上坡啦！</p></li>
+</ul>
+</section>
+<section id="dll">
+<h4>✅重定位与上坡: DLL<a class="headerlink" href="#dll" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.11.06-09 测试FAST_LIO_LOCALIZATION 还是没有成功，怎么给初始点都不对。</p></li>
+<li><p>🗓️2023.11.06-09 给DLL做定位的八叉树地图留下天花板以后，z轴不怎么飘了，跑得也挺稳的。请教了顾昊，说是DLL很迷，建议使用ICP或NDT,但根据DLL的论文所述以及实际的测试，ICP更耗算力。在DLL还没出问题之前还是优先DLL把。</p></li>
+<li><p>🗓️2023.11.09 发现DLL在上坡的时候会出现pitch对不上的问题，会导致提供给导航的里程计信息有错，这和DLL使用了imu数据做roll和pitch的计算有关。顾昊的建议是给imu数据加上互补滤波，然后在dll中将use_imu设为true,（可能还要调一下use_increasement?）。但是发现把use_imu设置为false以后（也就是使用fastlio发布的tf来做roll和pitch的计算），问题也解决了。</p>
+<a class="reference internal image-reference" href="../_images/error_dll.png"><img alt="../_images/error_dll.png" src="../_images/error_dll.png" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.11.18-20 在小车上测试的时候用的是原版ROS1的DLL，使用方法正确以后效果是很不错的。但是使用了TUP开源的DLL以后就开始出现问题，怀疑是迁移没做好，就自己迁移了，感觉恢复了DLL在ROS1的荣光！</p></li>
+</ul>
+</section>
+<section id="id15">
+<h4>✅雷达倒挂的问题<a class="headerlink" href="#id15" title="此标题的永久链接">¶</a></h4>
+<ul>
+<li><p>🗓️2023.11.16 雷达倒挂后确实出现了一些问题，龙sir留下来的代码有一些bug,tf的发布有问题，导致了坐标系的抽搐（非常感谢顾昊大佬的关心🌹🌹🌹）</p>
+<a class="reference internal image-reference" href="../_images/tf_error.gif"><img alt="../_images/tf_error.gif" src="../_images/tf_error.gif" style="width: 90%;" /></a>
+</li>
+<li><p>关于地图反过来和tf树的一些问题：</p>
+<ul class="simple">
+<li><p>livox_ros_driver2的问题：把雷达倒挂过来，livox_ros_driver发布出来的点云居然没有倒过来，不知道是不是算法对点云做了什么处理</p></li>
+<li><p>反过来的地图：因此产生的问题就是fast_lio建出来的地图是反的。因为fast_lio将odom和camera_init初始化在同一点。解决的方法是让fast_lio和livox_ros_driver2在odom_flipped和sensor_flipped坐标系下工作，再增加两个sensor到sensor_flipped和odom_flipped的tf树，这样就可以得到正向的tf树了。</p></li>
+<li><p>Computational Cost:需要注意的是，如此，fast_lio发布的点云数据就是在odom_flipped坐标系下的了（cloud_registered_body在sensor_flipped坐标系下），如果后面的模块对数据的frame_id有要求，需要做相应的修改，并且要注意相应产生的计算消耗，因为有可能会为了把点云转到必要的坐标系而进行太多的点云遍历，导致计算量过大。</p></li>
+<li><p>TF Tree:tf2_ros的static_transform_publisher有一些神奇的特性，明明发布了坐标系，但是就是不工作，tf树连不起来。有可能是frame_id和child_frame_id写反了，改过来也许就能解决问题，但还不知道是为什么。（就比如说fast_lio发布odom_flipped到sensor_flipped的变换，一个static_transform_publisher发布–frame-id odom –child-frame-id odom_flipped –qx 1.0 –qw 0.0，另一个static_transform_publisher发布–frame-id sensor –child-frame-id sensor_flipped –qx 1.0 –qw 0.0，就会出现tf树连不上的问题，但是把sensor和sensor_flipped换一下位置，问题就解决了，好像有点道理，但不知道为什么）</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id16">
+<h2>🟩 哨兵决策<a class="headerlink" href="#id16" title="此标题的永久链接">¶</a></h2>
+<ul>
+<li><p>🗓️2023.10.21-22 迁移代码、决策接口、GUI</p>
+<a class="reference internal image-reference" href="../_images/bt.gif"><img alt="../_images/bt.gif" src="../_images/bt.gif" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.11.05 改进决策模块，联盟赛用的行为树写了个基本的demo</p>
+<a class="reference internal image-reference" href="../_images/decision1.gif"><img alt="../_images/decision1.gif" src="../_images/decision1.gif" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="../_images/rmul_bt.png"><img alt="../_images/rmul_bt.png" src="../_images/rmul_bt.png" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.11.22 导航接入决策，巡航DEMO跑通</p></li>
+<li><p>🗓️2023.12.1 追击节点开发</p>
+<p>假定目标在（1，1），红色的点是备选攻击点。颜色越浅，距离哨兵越近；点越小，这一点到目标的直线路径上障碍物越少。最终选取的攻击点如图绿色点所示。</p>
+<a class="reference internal image-reference" href="../_images/attack_pose.png"><img alt="../_images/attack_pose.png" src="../_images/attack_pose.png" style="width: 90%;" /></a>
+</li>
+<li><p>🗓️2023.12.09 联盟赛决策基本开发完成，在仿真中通过测试</p></li>
+</ul>
+</section>
+<section id="id17">
+<h2>✅赛季规划<a class="headerlink" href="#id17" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>🗓️2023.10.28-29</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="report.html"
+       title="上一章">← 开发记录(09.15-10.31)</a>
+  </li>
+  <li class="next">
+    <a href="report3.html"
+       title="下一章">开发记录 2024.01.01-now →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

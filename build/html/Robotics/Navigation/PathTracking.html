@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Path Tracking Algorithms Overview</title>
+    
+          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../_static/theme-vendors.js"></script> -->
+      <script src="../../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../../genindex.html" />
+  <link rel="search" title="搜索" href="../../search.html" />
+  <link rel="next" title="Basic" href="../../CV/basic.html" />
+  <link rel="prev" title="CMU Exploration Series" href="CMUSeries.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../report/report.html" class="reference internal ">开发记录</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/rule.html" class="reference internal ">Develop Rule</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/DevContainer.html" class="reference internal ">DevContainer: What Why and How</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Docker/UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Path Tracking Algorithms Overview</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#dwa-dynamic-window-approach" class="reference internal">DWA (Dynamic Window Approach)</a></li>
+                
+                  <li class="toctree-l2"><a href="#teb-timed-elastic-band" class="reference internal">TEB (Timed Elastic Band)</a></li>
+                
+                  <li class="toctree-l2"><a href="#local-planner-of-cmu" class="reference internal">Local Planner of CMU</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+    <li>Path Tracking Algorithms Overview</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="CMUSeries.html"
+       title="上一章">← CMU Exploration Series</a>
+  </li>
+  <li class="next">
+    <a href="../../CV/basic.html"
+       title="下一章">Basic →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="path-tracking-algorithms-overview">
+<h1>Path Tracking Algorithms Overview<a class="headerlink" href="#path-tracking-algorithms-overview" title="此标题的永久链接">¶</a></h1>
+<section id="dwa-dynamic-window-approach">
+<h2>DWA (Dynamic Window Approach)<a class="headerlink" href="#dwa-dynamic-window-approach" title="此标题的永久链接">¶</a></h2>
+<p>以运动学约束为范围，遍历所有可能的速度，计算每个速度对应的轨迹，评价轨迹，选取最优轨迹对应的速度，驱动机器人运动。</p>
+<section id="id1">
+<h3>优点<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>计算复杂度低：考虑到速度和加速度的限制，只有安全的轨迹会被考虑，且每次采样的时间较短，因此轨迹空间较小</p></li>
+<li><p>可以实现避障：可以实时避障，但是避障效果一般</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>缺点<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>前瞻性不足：只模拟并评价了下一步，如在机器人前段遇见“C”字形障碍时，不能很好的避障</p></li>
+<li><p>动态避障效果差： 模拟运动轨迹断，动态避障效果差</p></li>
+<li><p>非全局最优路径： 每次都选择下一步的最佳路径，而非全局最优路径</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>适用模型<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
+<p>✔️ 两轮差分、全向</p>
+<p>❌ 阿克曼</p>
+</section>
+<section id="id4">
+<h3><a class="reference external" href="https://zhuanlan.zhihu.com/p/519958218">算法原理</a><a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+</section>
+</section>
+<section id="teb-timed-elastic-band">
+<h2>TEB (Timed Elastic Band)<a class="headerlink" href="#teb-timed-elastic-band" title="此标题的永久链接">¶</a></h2>
+<p>关于eletic band（橡皮筋）的定义：连接起始、目标点，并让这个路径可以变形，变形的条件就是将所有约束当做橡皮筋的外力。</p>
+<p>关于time eletic band的简述：起始点、目标点状态由用户/全局规划器指定，中间插入N个控制橡皮筋形状的控制点（机器人姿态）；为了显示轨迹的运动学信息，我们在点与点之间定义运动时间Time，即为Timed-Elastic-Band算法。</p>
+<section id="id5">
+<h3>优点<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>有很强的前瞻性： 对前方一段轨迹进行优化</p></li>
+<li><p>动态避障效果好： 对动态障碍有较好的避障效果，可直接使用其封装好障碍类Obstacle</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>缺点<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>计算复杂度较大：可通过牺牲预测距离来降低复杂度</p></li>
+<li><p>速度和角度波动较大、控制不稳定： 源码中是通过两状态之间的距离和角度差及时间差来计算该控制周期内的速度和角速度，使得在控制过程中速度和角度波动较大。</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>适用模型<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h3>
+<p>✔️ 两轮差分、全向、阿克曼</p>
+</section>
+<section id="id8">
+<h3><a class="reference external" href="https://zhuanlan.zhihu.com/p/520293878">算法原理</a><a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h3>
+</section>
+</section>
+<section id="local-planner-of-cmu">
+<h2>Local Planner of CMU<a class="headerlink" href="#local-planner-of-cmu" title="此标题的永久链接">¶</a></h2>
+<p>路径是预先生成的，在预先生成的路径中删去有障碍物的路径；该算法优先转向再前进</p>
+<section id="id9">
+<h3>优点<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>高速导航</p></li>
+<li><p>实时避障</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>缺点<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h3>
+</section>
+<section id="id11">
+<h3>适用模型<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p>差分</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="CMUSeries.html"
+       title="上一章">← CMU Exploration Series</a>
+  </li>
+  <li class="next">
+    <a href="../../CV/basic.html"
+       title="下一章">Basic →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

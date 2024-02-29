@@ -1,0 +1,44 @@
+#  图书馆自动机器人的行为树开发
+
+## 导航框架
+
+[Navigation2](https://navigation.ros.org/index.html)
+
+## 仿真环境
+
+把这个[demo](https://navigation.ros.org/commander_api/index.html#examples-and-demos)跑起来仿真环境就有了
+
+[aws-robomaker-small-warehouse-world](https://github.com/aws-robotics/aws-robomaker-small-warehouse-world)
+
+## 行为树框架
+
+https://www.behaviortree.dev/
+
+## 基础行为的开发
+
+- 导航到定点（去取书）
+- 按预定路径导航（去还书）
+- 跟随动点（图书管理员的小跟班）
+  - 动点的信息通过话题发布，话题的类型是[autoaim_Interfaces](https://github.com/JellyfishKnight/HeliosCV-2023-AutoAim/tree/master/armor_autoaim/autoaim_Interfaces)
+  - 位置信息是相对于gimble坐标系的
+- 故障恢复（卡住了、路径规划失败了，怎么办）
+
+## 知识点
+
+### 导航相关
+- Navigation2的框架是什么样的？navigation2内置的行为树和上面的行为树有什么区别？如何把上面的行为树接入navigation2？
+
+- Navigation2目前提供了哪些导航和规划算法，他们的基本原理和优缺点是什么？如果要自己开发导航算法，应该怎么把自己的算法加入框架？
+
+### cpp相关
+- 继承
+- 智能指针
+- 为什么用callback函数，有什么优点
+
+### 行为树相关
+- 控制节点之间有什么区别，特别是名字特别像的节点
+
+## 要求
+- 遵守代码规范（不是很严格，清楚就行，可以看看[HeliosCV-2023-AutoAim](https://github.com/JellyfishKnight/HeliosCV-2023-AutoAim/tree/master/armor_autoaim)作为参考）
+- 创建代码仓库，遵守commit message规范，要写README，参考https://polaris-notebook.readthedocs.io/zh-cn/latest/develop/rule.html
+- 学习过程的记录，随心写

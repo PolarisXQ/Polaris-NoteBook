@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+      <title>Step by Step in detail: Launch the Development Workspace</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../_static/madcat_mini.png"/>
+  <link rel="index" title="索引" href="../genindex.html" />
+  <link rel="search" title="搜索" href="../search.html" />
+  <link rel="next" title="Step by Step in detail: Continuous Integration" href="CI.html" />
+  <link rel="prev" title="Step by Step in detail: Prepare Docker Image" href="CustomImage.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../_static/madcat_mini.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Daily Report
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         System
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Development Related
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link  router-link-active">
+         Docker
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         SLAM
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Navigation
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         ROS
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Robotics etc.
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         CV
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-polaris-notebook"
+         class="nav-link ">
+         Miscellaneous
+      </a>
+    </div>
+  
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/PolarisXQ"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">快速搜索</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="搜索" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Daily Report</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report.html" class="reference internal ">开发记录(09.15-10.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report2.html" class="reference internal ">开发记录(11.01-12.31)</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../report/report3.html" class="reference internal ">开发记录 2024.01.01-now</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">System</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/bind_device.html" class="reference internal ">Bind a USB device under a static name</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Sys/Linux/Miscellaneous.html" class="reference internal ">Miscellaneous</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Development Related</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/rule.html" class="reference internal ">开发的姿势</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/submodel.html" class="reference internal ">关联仓库的管理</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/CI.html" class="reference internal ">配置CI节点</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../develop/git.html" class="reference internal ">GIT</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Docker</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="docker.html" class="reference internal ">Dockernize Everything!</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="DevContainer.html" class="reference internal ">DevContainer: What Why and How[Optional]</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="workflow.html" class="reference internal ">Introduce to our WorkFlow</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CustomImage.html" class="reference internal ">Step by Step in detail: Prepare Docker Image</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Step by Step in detail: Launch the Development Workspace</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#devcontainer" class="reference internal">不使用DevContainer的话</a></li>
+                
+                  <li class="toctree-l2"><a href="#id1" class="reference internal">如果使用DevContainer的话</a></li>
+                
+                  <li class="toctree-l2"><a href="#pull-the-image" class="reference internal">1. Pull the image.</a></li>
+                
+                  <li class="toctree-l2"><a href="#clone-the-repo" class="reference internal">2. Clone the repo.</a></li>
+                
+                  <li class="toctree-l2"><a href="#config-devcontainer-json" class="reference internal">3. config devcontainer.json</a></li>
+                
+                  <li class="toctree-l2"><a href="#open-the-folder-in-devcontainer" class="reference internal">4. Open the folder in DevContainer</a></li>
+                
+                  <li class="toctree-l2"><a href="#if-theres-no-devcontainer-json-create-one" class="reference internal">5*. if there’s no devcontainer.json，Create one!</a></li>
+                
+                  <li class="toctree-l2"><a href="#official-guides" class="reference internal">Official Guides</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CI.html" class="reference internal ">Step by Step in detail: Continuous Integration</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="deploy.html" class="reference internal ">Step by Step in detail: Deploy in NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="UsefulCommand.html" class="reference internal ">Some Useful Command for Docker</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">SLAM</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/overview.html" class="reference internal ">A Simple Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/RecommendReading.html" class="reference internal ">阅读推荐</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/relocalization.html" class="reference internal ">Relocalization Method</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/Traditional/ORB-SLAM3.html" class="reference internal ">ORB_SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/SLAM_w_NN.html" class="reference internal ">SLAM with Nerual Network</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/MID360.html" class="reference internal ">MID360激光雷达的装配说明</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/SLAM/KalmanFilter.html" class="reference internal ">Learning Kalman Filter</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Navigation</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/Overview.html" class="reference internal ">Robot Path Planning</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/CMUSeries.html" class="reference internal ">CMU Exploration Series</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/PathTracking.html" class="reference internal ">Path Tracking Algorithms Overview</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/farplanner_param.html" class="reference internal ">FarPlanner调参笔记</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Navigation/control.html" class="reference internal ">Learning Control</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">ROS</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/aboutTF.html" class="reference internal ">Learning TF2</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/migration.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/msg_filter.html" class="reference internal ">Message_filter and TimeSynchronizer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/Composition.html" class="reference internal ">Composition and Intra-process Communication</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/ROS/executos.html" class="reference internal ">Manage how the callbaks are called: Exeturos & CallbackGroups & Qos</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Robotics etc.</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Miscellaneous/behaviour_tree.html" class="reference internal ">rm_decision</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Robotics/Miscellaneous/ProbablisticRobotics.html" class="reference internal "><no title></a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">CV</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/basic.html" class="reference internal ">Basic</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/Yolo.html" class="reference internal ">Yolo</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/multiobj_track.html" class="reference internal ">Tracking Multi-Objects</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../CV/issue.html" class="reference internal ">Miscellaneous things</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-polaris-notebook">Miscellaneous</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/migrationcv3tocv4.html" class="reference internal ">Migrate from OpenCV3 to CV4</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/roadtoslam.html" class="reference internal ">On the bumpy road to SLAM</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/Cmake.html" class="reference internal ">How to ues Cmake</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/develowithnuc.html" class="reference internal ">Develop With NUC</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../Miscellaneous/JKB-NetWork.html" class="reference internal ">SCU极客邦服务器使用指南</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>Step by Step in detail: Launch the Development Workspace</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="CustomImage.html"
+       title="上一章">← Step by Step in detail: Prepare Docker Image</a>
+  </li>
+  <li class="next">
+    <a href="CI.html"
+       title="下一章">Step by Step in detail: Continuous Integration →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="step-by-step-in-detail-launch-the-development-workspace">
+<h1>Step by Step in detail: Launch the Development Workspace<a class="headerlink" href="#step-by-step-in-detail-launch-the-development-workspace" title="此标题的永久链接">¶</a></h1>
+<p>确保必要的软件已经安装好了，包括Docker，VSCode，Xming等等。具体参阅<a class="reference internal" href="CustomImage.html#准备工作"><span class="std std-ref">📑准备工作</span></a></p>
+<section id="devcontainer">
+<h2>不使用DevContainer的话<a class="headerlink" href="#devcontainer" title="此标题的永久链接">¶</a></h2>
+<p>可以直接运行镜像，然后attach到VSCode中，具体参阅[📑Some Useful Command for Docker](./UsefulCommand.md#How to Run a Container)</p>
+</section>
+<section id="id1">
+<h2>如果使用DevContainer的话<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>如果他人已经配置好了DevContainer，那么你只需要把他的repo clone下来，请阅读下面的1，2，3，4
+如果没有，那么你需要自己配置DevContainer，步骤是1，2，5*，3，4</p>
+</section>
+<section id="pull-the-image">
+<h2>1. Pull the image.<a class="headerlink" href="#pull-the-image" title="此标题的永久链接">¶</a></h2>
+<p>For Tencent Coding.项目-&gt; 制品管理：制品仓库-&gt;拉取</p>
+</section>
+<section id="clone-the-repo">
+<h2>2. Clone the repo.<a class="headerlink" href="#clone-the-repo" title="此标题的永久链接">¶</a></h2>
+</section>
+<section id="config-devcontainer-json">
+<h2>3. config devcontainer.json<a class="headerlink" href="#config-devcontainer-json" title="此标题的永久链接">¶</a></h2>
+<p>modify at least these item:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="s2">&quot;rm_sentry:test2&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// to the name of the image you just pulled</span>
+</pre></div>
+</div>
+<p>and notice that this will mount your local workspace folder into the container, they are binded, i.e. if you change the file in the container, it will change the file in your local workspace folder, and vice versa.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sentry_ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// workdir in container</span>
+<span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//mount your local file into container, ${containerWorkspaceFolder}==&quot;workspaceFolder&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="open-the-folder-in-devcontainer">
+<h2>4. Open the folder in DevContainer<a class="headerlink" href="#open-the-folder-in-devcontainer" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p>Click the green button in the bottom left corner of VSCode(remenber to install the extension)</p></li>
+<li><p>Click “Reopen in Container” and wait for the container to be built.</p></li>
+<li><p>Start your development! Enjoy it!</p></li>
+</ul>
+</section>
+<section id="if-theres-no-devcontainer-json-create-one">
+<h2>5*. if there’s no devcontainer.json，Create one!<a class="headerlink" href="#if-theres-no-devcontainer-json-create-one" title="此标题的永久链接">¶</a></h2>
+<ul>
+<li><p>Create a folder called .devcontainer in the repo, and create a file called devcontainer.json in it</p>
+<p>now you have a folder structure like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>your_repo
+├──<span class="w"> </span>.devcontainer
+│<span class="w">   </span>└──<span class="w"> </span>devcontainer.json
+├──<span class="w"> </span>README.md
+├──<span class="w"> </span>package1
+├──<span class="w"> </span>package2
+...
+</pre></div>
+</div>
+</li>
+<li><p>Write your own devcontainer.json</p>
+<p>This json file defines how your container will be built and run.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sentry_dev&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="s2">&quot;rm_sentry:test2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;runArgs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="c1">// &quot;--cap-add=SYS_PTRACE&quot;, // enable debugging, e.g. gdb</span>
+
+<span class="w">        </span><span class="c1">// &quot;--ipc=host&quot;, // shared memory transport with host, e.g. rviz GUIs</span>
+
+<span class="w">        </span><span class="s2">&quot;--network=host&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// network access to host interfaces, e.g. eth0</span>
+
+<span class="w">        </span><span class="c1">// &quot;--pid=host&quot;, // DDS discovery with host, without --network=host</span>
+
+<span class="w">        </span><span class="s2">&quot;--privileged&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// device access to host peripherals, e.g. USB</span>
+
+<span class="w">        </span><span class="c1">// &quot;--security-opt=seccomp=unconfined&quot;, // enable debugging, e.g. gdb</span>
+
+<span class="w">        </span><span class="s2">&quot;--gpus all&quot;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sentry_ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// workdir in container</span>
+<span class="w">    </span><span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/src,type=bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//mount your local file into container, ${containerWorkspaceFolder}==&quot;workspaceFolder&quot;</span>
+
+<span class="w">    </span><span class="c1">// &quot;onCreateCommand&quot;: &quot;.devcontainer/on-create-command.sh&quot;,</span>
+<span class="w">    </span><span class="c1">// &quot;updateContentCommand&quot;: &quot;.devcontainer/update-content-command.sh&quot;,</span>
+<span class="w">    </span><span class="c1">// &quot;postCreateCommand&quot;: &quot;.devcontainer/post-create-command.sh&quot;,</span>
+
+<span class="w">    </span><span class="nt">&quot;remoteEnv&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;DISPLAY&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;host.docker.internal:0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// forward X11 display to host, e.g. rviz GUIs</span>
+<span class="w">        </span><span class="c1">// NOTICE that this is for windows, for mac, you should use &quot;host.docker.internal:0&quot;</span>
+<span class="w">        </span><span class="c1">// NOTICE that XLaunch should be running on local machine</span>
+<span class="w">        </span><span class="nt">&quot;NVIDIA_DRIVER_CAPABILITIES&quot;</span><span class="p">:</span><span class="s2">&quot;all&quot;</span><span class="w"> </span><span class="c1">// enable GPU acceleration</span>
+<span class="w">        </span><span class="c1">//     &quot;OVERLAY_MIXINS&quot;: &quot;release ccache lld&quot;,</span>
+<span class="w">        </span><span class="c1">//     &quot;CCACHE_DIR&quot;: &quot;/tmp/.ccache&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="c1">// &quot;mounts&quot;: [</span>
+<span class="w">    </span><span class="c1">//     {</span>
+<span class="w">    </span><span class="c1">//         &quot;source&quot;: &quot;ccache-${devcontainerId}&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;target&quot;: &quot;/tmp/.ccache&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;type&quot;: &quot;volume&quot;</span>
+<span class="w">    </span><span class="c1">//     },</span>
+<span class="w">    </span><span class="c1">//     {</span>
+<span class="w">    </span><span class="c1">//         &quot;source&quot;: &quot;overlay-${devcontainerId}&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;target&quot;: &quot;/opt/overlay_ws&quot;,</span>
+<span class="w">    </span><span class="c1">//         &quot;type&quot;: &quot;volume&quot;</span>
+<span class="w">    </span><span class="c1">//     }</span>
+<span class="w">    </span><span class="c1">// ],</span>
+<span class="w">    </span><span class="c1">// &quot;features&quot;: {</span>
+<span class="w">    </span><span class="c1">//     &quot;ghcr.io/devcontainers/features/desktop-lite:1&quot;: {},</span>
+<span class="w">    </span><span class="c1">//     &quot;ghcr.io/devcontainers/features/github-cli:1&quot;: {},</span>
+<span class="w">    </span><span class="c1">//     &quot;ghcr.io/rocker-org/devcontainer-features/apt-packages:1&quot;: {</span>
+<span class="w">    </span><span class="c1">// 		&quot;upgradePackages&quot;: true,</span>
+<span class="w">    </span><span class="c1">// 		&quot;packages&quot;: &quot;&quot;</span>
+<span class="w">    </span><span class="c1">// 	}</span>
+<span class="w">    </span><span class="c1">// },</span>
+<span class="w">    </span><span class="nt">&quot;customizations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// &quot;codespaces&quot;: {</span>
+<span class="w">        </span><span class="c1">//     &quot;openFiles&quot;: [</span>
+<span class="w">        </span><span class="c1">//         &quot;doc/development/codespaces.md&quot;</span>
+<span class="w">        </span><span class="c1">//     ]</span>
+<span class="w">        </span><span class="c1">// },</span>
+<span class="w">        </span><span class="nt">&quot;vscode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// install extension in container</span>
+<span class="w">            </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">            </span><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="c1">// gadget</span>
+<span class="w">                </span><span class="s2">&quot;aaron-bond.better-comments&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;PKief.material-icon-theme&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// C++</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools-extension-pack&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cpptools-themes&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// python</span>
+<span class="w">                </span><span class="s2">&quot;ms-python.vscode-pylance&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-python.python&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// CMake</span>
+<span class="w">                </span><span class="s2">&quot;twxs.cmake&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;ms-vscode.cmake-tools&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// Github Copilot</span>
+<span class="w">                </span><span class="s2">&quot;GitHub.copilot&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;GitHub.copilot-chat&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;GitHub.copilot-labs&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// note</span>
+<span class="w">                </span><span class="s2">&quot;VisualStudioExptTeam.vscodeintellicode&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;VisualStudioExptTeam.intellicode-api-usage-examples&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// XML</span>
+<span class="w">                </span><span class="s2">&quot;DotJoshJohnson.xml&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// PCD viewer</span>
+<span class="w">                </span><span class="s2">&quot;tatsy.vscode-3d-preview&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// nav2 default</span>
+<span class="w">                </span><span class="c1">// &quot;althack.ament-task-provider&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;eamodio.gitlens&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;esbenp.prettier-vscode&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;ms-iot.vscode-ros&quot;,</span>
+<span class="w">                </span><span class="c1">// &quot;streetsidesoftware.code-spell-checker&quot;</span>
+
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里说明一下mount的功能，也就是挂载。上面的这条命令，就是把你本地的文件夹挂载到了container里面，这样你在container里面的操作，就会直接影响到你本地的文件夹，也就是说，你在container里面写的代码，就会直接保存到你本地的文件夹里面，这样就不用每次都把代码从container里面拷贝出来了。</p>
+<p>在本地改动也同样会影响到container里面的文件。建议是统一在一个地方做修改，免得冲突。</p>
+</li>
+</ul>
+</section>
+<section id="official-guides">
+<h2>Official Guides<a class="headerlink" href="#official-guides" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container">https://code.visualstudio.com/docs/devcontainers/create-dev-container#_set-up-a-folder-to-run-in-a-container</a></p></li>
+<li><p><a class="reference external" href="https://containers.dev/guides">https://containers.dev/guides</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="CustomImage.html"
+       title="上一章">← Step by Step in detail: Prepare Docker Image</a>
+  </li>
+  <li class="next">
+    <a href="CI.html"
+       title="下一章">Step by Step in detail: Continuous Integration →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; 版权所有 2023, PolarisXQ.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
