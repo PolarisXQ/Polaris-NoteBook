@@ -207,3 +207,71 @@ roslaunch fast_lio mapping.launch
 # in your computer's container
 rviz
 ```
+
+# 开机自启
+
+获得容器名称
+```bash
+docker ps -a
+docker commit <container_id> <image_name>:<tag>
+```
+
+创建服务
+```bash
+sudo nano /etc/systemd/system/my-container.service
+```
+
+写入以下内容
+```bash
+[Unit]
+Description=My Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a my-container
+ExecStop=/usr/bin/docker stop -t 2 my-container
+
+[Install]
+WantedBy=multi-user.target
+```
+
+解释一下上述配置文件的内容：
+
+[Unit]：描述服务的信息。
+Description：描述服务的名称，这里是 “My Container”。
+After：指定服务在 docker.service 启动之后才启动。
+Requires：指定服务依赖于 docker.service。
+[Service]：指定服务的具体配置。
+ExecStart：指定服务启动时要执行的命令，这里是 /usr/bin/docker start -a my-container，其中 -a 表示附加到容器的标准输出和错误输出。
+ExecStop：指定服务停止时要执行的命令，这里是 /usr/bin/docker stop -t 2 my-container，其中 -t 2 表示等待容器最多 2 秒后再强制停止。
+[Install]：指定服务的安装信息。
+WantedBy：指定服务在多用户目标中启用。
+
+ctrl + O 保存，ctrl + X 退出
+
+启用服务
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable my-container.service
+```
+
+重启系统
+```bash
+sudo reboot
+```
+
+设置docker启动脚本
+对于ros镜像，可以直接写入ros_entrypoint.sh中
+
+```bash
+code /ros_entrypoint.sh 
+```
+
+文件最后加入以下内容
+```bash
+# setup custom ros environment
+source "/home/sentry_ws/install/setup.bash"
+# start custom ros launch file
+ros2 launch sentry sentry.launch.py
+```
