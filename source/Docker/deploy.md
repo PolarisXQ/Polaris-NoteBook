@@ -114,164 +114,75 @@ open docker extension in remote vscode, you can see the container list, attach a
 
 DONE!
 
-## 8. [OPTIONAL] test GUI forwarding()
+## 8. [OPTIONAL] test GUI forwarding
 
-Run GUI in NUC and Forward it to your computer(not recommended)
------------------------------------------------------------------
+**对于linux->windows:**
 
-in your computer, open XLaunch, and follow the instruction. Remember to check the "Disable access control" option.
+1. windowns安装Xlaunch[https://sourceforge.net/projects/xming/]
+2. 启动Xlaunch时勾选disable acess control
+3. 在linux的./bashrc中写入export DISPLAY=[自己电脑IP]:0.0
+4. source bashrc即可转发图形界面
 
-in docker container in NUC, run
+**对于linux->linux**
+1. 在ssh配置文件中加入“X11Forwarding yes ForwardX11Trusted yes”
+例如：
+  Host 192.168.0.101
+  HostName 192.168.0.101
+  User scurm
+  ForwardX11 yes
+  ForwardX11Trusted yes
+2. 保存配置重新ssh连接即可转发图形界面
+3. 如果不行再试试在命令行中输入“xhost +"
 
-```bash
-rviz2
-```
-if you can see the rviz2 window in your computer, then it works!`
+## 9. DOCKER开机自启动
 
-if not working, in docker container, try to run
-
-```bash
-code /etc/ssh/sshd_config
-```
-
-add the following lines to the end of the file
-
-```
-Port 22
-
-PermitRootLogin yes
-
-ChallengeResponseAuthentication no
-
-UsePAM yes
-
-X11Forwarding yes
-
-X11UseLocalhost no
-```
-
-then restart ssh service
+对于Ubuntu18.04以上的系统，如果是使用命令sudo apt-get install -y docker.io安装的docker，都可以使用下列命令设置开机启动docker
 
 ```bash
-sudo service ssh restart
-# or 
-/etc/init.d/ssh restart
+systemctl enable docker
 ```
-then try rviz again.
 
-Run GUI in Your Computer and receive ROS topic from NUC(recommended)
---------------------------------------------------------------------
+## 10. 容器自启动
 
 ```bash
-# in NUC
-sudo docker run -it --network=host --privileged -v /dev:/dev [image:tag]
-```
+docker update --restart=always 容器名字或ID
+``` 
 
-then in your computer, start a contrainer for GUI visualization
-
-```bash
-# in your computer
-docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all [image:tag]
-```
-
-both in the container and your computer, add these lines in correspoding files
+或者在运行镜像时就加入–restart=always属性
 
 ```bash
-# in ~/.bashrc
-# for NUC
-export ROS_HOSTNAME=<NUC_NAME>
-export ROS_MASTER_URI=http://<NUC_IP>:11311
-export ROS_IP=<NUC_IP>
-
-# for your computer
-export ROS_HOSTNAME=<COMPUTER_NAME>
-export ROS_MASTER_URI=http://<NUC_IP>:11311
-export ROS_IP=<COMPUTER_IP>
+docker run -itd --name test --restart=always amd64/ubuntu:18.04 /bin/bash 
 ```
+
+**启动时运行脚本**
 
 ```bash
-# in /etc/hosts
-<NUC_IP> <NUC_NAME>
-<your COMPUTER_IP> <COMPUTER_NAME>
+docker run  -itd --name test --restart=always amd64/ubuntu:18.04 /bin/bash  PATH/run.sh
 ```
 
-then start a node to see if it works, for example
+- PATH 是 docker 中的绝对路径
+- 前面必须有 /bin/bash
+
+**执行多个脚本**
+
+有些时候，如果我们需要使用多个脚本，可以使用一个脚本来启动其它的脚本，也可以使用下列命令
 
 ```bash
-# in NUC's container
-roslaunch livox_ros_driver livox_lidar_msg.launch
-roslaunch fast_lio mapping.launch
+docker run -itd --name test --restart=always amd64/ubuntu:18.04 /bin/bash PATH/1.sh;PATH/2.sh;PATH/
 ```
+
+**docker容器启动后退出**
+
+使用 docker ps -a可以查看容器的运行状态，如果我们使用docker start启动容器后，容器自动退出，且docker ps -a看到状态为Exit(0)，那么说明是我们写的脚本没有循环，导致docker执行完脚本以后自动退出，那么只要在自己写的脚本后面加上/bin/bash，如下
 
 ```bash
-# in your computer's container
-rviz
+#!/bin/bash
+#ls
+#cd /
+#more
+/bin/bash
 ```
 
-# 开机自启
+重新打开一个bash，就可以防止容器执行完脚本后退出
 
-获得容器名称
-```bash
-docker ps -a
-docker commit <container_id> <image_name>:<tag>
-```
-
-创建服务
-```bash
-sudo nano /etc/systemd/system/my-container.service
-```
-
-写入以下内容
-```bash
-[Unit]
-Description=My Container
-After=docker.service
-Requires=docker.service
-
-[Service]
-ExecStart=/usr/bin/docker start -a my-container
-ExecStop=/usr/bin/docker stop -t 2 my-container
-
-[Install]
-WantedBy=multi-user.target
-```
-
-解释一下上述配置文件的内容：
-
-[Unit]：描述服务的信息。
-Description：描述服务的名称，这里是 “My Container”。
-After：指定服务在 docker.service 启动之后才启动。
-Requires：指定服务依赖于 docker.service。
-[Service]：指定服务的具体配置。
-ExecStart：指定服务启动时要执行的命令，这里是 /usr/bin/docker start -a my-container，其中 -a 表示附加到容器的标准输出和错误输出。
-ExecStop：指定服务停止时要执行的命令，这里是 /usr/bin/docker stop -t 2 my-container，其中 -t 2 表示等待容器最多 2 秒后再强制停止。
-[Install]：指定服务的安装信息。
-WantedBy：指定服务在多用户目标中启用。
-
-ctrl + O 保存，ctrl + X 退出
-
-启用服务
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable my-container.service
-```
-
-重启系统
-```bash
-sudo reboot
-```
-
-设置docker启动脚本
-对于ros镜像，可以直接写入ros_entrypoint.sh中
-
-```bash
-code /ros_entrypoint.sh 
-```
-
-文件最后加入以下内容
-```bash
-# setup custom ros environment
-source "/home/sentry_ws/install/setup.bash"
-# start custom ros launch file
-ros2 launch sentry sentry.launch.py
-```
+对于ROS镜像，默认的启动脚本是ros_entrypoint.sh，位于docker内部的根目录下。如果我们需要在启动容器后执行自己的脚本，可以在ros_entrypoint.sh的最后加上自己的脚本
