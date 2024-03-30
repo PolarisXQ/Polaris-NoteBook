@@ -1,4 +1,6 @@
-# Bind a USB device under a static name
+# BIND DEVICE
+
+## Bind a USB device under a static name
 
 1. find the kernel name of the USB device you want to bind
 
@@ -44,3 +46,10 @@ then check if the static name setting is done properly
 ```bash
 ls -l /dev/device_name
 ```
+
+## 多网口ip地址与MAC地址绑定
+
+
+多网卡或者接了usb/lightning转网口时，需要把网卡的MAC地址和ip profile绑定
+
+<img src="./pic/MAC.png" width="50%"/>

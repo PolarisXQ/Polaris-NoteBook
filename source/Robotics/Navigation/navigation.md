@@ -1,10 +1,12 @@
 # 导航算法
 
-## 哨兵导航目前在用的算法
-
 ### 规划器PahtPlannning
 
 [FarPlanner](https://github.com/MichaelFYang/far_planner/tree/humble)
+
+[Lazy Theta * : 任意角度路径规划及3D空间下的路径分析](https://blog.csdn.net/zhiai315/article/details/113027503)
+
+[基于海图栅格化的路径规划——Theta*](https://blog.csdn.net/qq_45053161/article/details/130593335)
 
 ### 控制器PathTracking
 

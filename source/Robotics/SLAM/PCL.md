@@ -4,6 +4,12 @@
 
 ## [RANSAC](https://blog.csdn.net/weixin_48147838/article/details/131815563)
 
+## [Filter](https://blog.csdn.net/weixin_43925768/article/details/129183368)
+
+## [CropHull 任意多边形内部点云提取](https://blog.csdn.net/weixin_44444810/article/details/123593580)
+
+## [点云表面法线估算](https://blog.csdn.net/TimeRiverForever/article/details/115671162)
+
 ## 快速点特征直方图PFH/FPFH
 
 ### 什么是PFH/FPFH特征

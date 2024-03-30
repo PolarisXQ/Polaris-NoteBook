@@ -185,4 +185,19 @@ docker run -itd --name test --restart=always amd64/ubuntu:18.04 /bin/bash PATH/1
 
 重新打开一个bash，就可以防止容器执行完脚本后退出
 
-对于ROS镜像，默认的启动脚本是ros_entrypoint.sh，位于docker内部的根目录下。如果我们需要在启动容器后执行自己的脚本，可以在ros_entrypoint.sh的最后加上自己的脚本
+**ROS镜像**
+
+默认的启动脚本是ros_entrypoint.sh，位于docker内部的根目录下。如果我们需要在启动容器后执行自己的脚本，可以在ros_entrypoint.sh的最后加上自己的脚本
+
+比如
+```bash
+#!/bin/bash
+set -e
+
+# setup ros2 environment
+source "/opt/ros/$ROS_DISTRO/setup.bash" --
+exec "$@"
+
+source "/home/sentry_ws/intall/setup.bash"
+ros2 launch sentry_bringup bringup_all_in_one.launch.py
+```
