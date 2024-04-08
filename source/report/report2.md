@@ -51,10 +51,7 @@
     <img src="./pic/flipped_lidar.jpg"  width="45%"><img src="./pic/1115test.png"  width="45%">
 
 - 🗓️2023.11.17 雷达装在高处，底盘传上去的震动会比较大，特别是急停的时候，所以雷达内的IMU会处于一个小幅度高速震动的状态中，可能会导致FAST_LIO跑飞。加了互补滤波器以后效果好多了。后面机械上悬挂可能效果会更好。
-    
-## 🟩 [调参笔记](../Robotics/Navigation/farplanner_param.rst)
 
-- 🗓️2023.09.29 逐步生产中
 
 ## 🟩 实车测试、调参
 
