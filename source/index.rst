@@ -29,6 +29,7 @@ Welcome to Polaris' NoteBook!
    develop/submodel.rst
    develop/CI.rst
    develop/git.md
+   develop/opensource
 
 .. toctree::
    :maxdepth: 1
@@ -42,6 +43,7 @@ Welcome to Polaris' NoteBook!
    Docker/CI.md
    Docker/deploy
    Docker/UsefulCommand
+   Docker/error_report
 
 .. toctree::
    :maxdepth: 1
