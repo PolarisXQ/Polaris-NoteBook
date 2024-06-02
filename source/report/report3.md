@@ -280,8 +280,8 @@ Point-Lio：在官方的测试视频中效果是很震撼的，但是实际测�
 
 标明了方向的地图就长这样
 
-<img src="./pic/dirmap.png"  width="90%">
+<img src="./pic/dirmap.png"  width="20%">
 
 我哨！
 
-<img src="./pic/sentry.png"  width="20%">
+<img src="./pic/sentry.png"  width="40%">
