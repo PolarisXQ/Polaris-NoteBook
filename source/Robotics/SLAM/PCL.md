@@ -49,3 +49,17 @@ $\Delta \theta = \cos^{-1}(n_p \cdot n_q)$
 - 解决点云数据之间的初始对齐问题
 - 基本可以实现角度上的对齐
 - 基于采样一致性的方法，通过迭代的方式找到最优的平面模型
+
+## ICP algorithm
+
+
+{'solver_euclidean_fitness_epsilon':1e-5},
+                {'solver_transformation_epsilon':1e-5},
+                {'solver_max_correspondence_distance':2.0},
+                {'solver_correspondence_randomness':20},
+                {'solver_max_optimizer_iterations':20},
+                {'solver_use_reciprocal_correspondences':True},
+                {'solver_use_trimmed':True},
+                {'solver_use_point_to_plane':True},
+                {'solver_point_to_plane_weight':1.0},
+                {'solver_point_to_point_weight':1.0},
