@@ -4,28 +4,9 @@ Robotics
 =========
 
 .. toctree::
-   :maxdepth: 1
-   :caption: SLAM
+   :maxdepth: 2
 
    SLAM/index
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Navigation
-
    Navigation/index
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: ROS
-
    ROS/index
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Miscellaneous
-
    Miscellaneous/index

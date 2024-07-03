@@ -4,7 +4,7 @@ Miscellaneous in Robotics
 ==========================
 
 .. toctree:: 
-    :maxdepth: 1
+   :maxdepth: 1
 
-    behaviour_tree
-    ProbablisticRobotics
+   behaviour_tree
+   ProbablisticRobotics
