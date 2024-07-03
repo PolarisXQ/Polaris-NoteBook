@@ -53,7 +53,7 @@ language = 'zh_CN'
 html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
 html_sidebars = {
-    '***': ["search-field.html","sbt-sidebar-nav.html",],
+    '***': ["navbar-logo.html","search-field.html","sbt-sidebar-nav.html",],
 }
 
 
@@ -63,10 +63,11 @@ source_parsers = {
 }
 source_suffix = ['.rst', '.md']
 
+import random
 
-html_logo = '_static/madcat_mini.png'
+html_logo = '_static/cat (6).jpg'
 
-html_favicon='_static/madcat_mini.png'
+html_favicon = '_static/cat (11)(1).jpg'
 
 
 html_theme_options = {
