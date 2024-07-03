@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Polaris' NoteBook"
-copyright = '2023-2024, PolarisXQ'
+copyright = '2023, PolarisXQ'
 author = 'PolarisXQ'
 release = '0.0'
 
@@ -39,44 +39,23 @@ myst_enable_extensions = [
     "smartquotes",
     "strikethrough",
     "substitution",
-    "tasklist",    
-    "ablog",
-    "myst_nb",
-    "numpydoc",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.viewcode",
-    "sphinxcontrib.youtube",
-    "sphinx_copybutton",
-    "sphinx_design",
-    "sphinx_examples",
-    "sphinx_tabs.tabs",
-    "sphinx_thebe",
-    "sphinx_togglebutton",
-    "sphinxcontrib.bibtex",
-    "sphinxext.opengraph",
-    # For the kitchen sink
-    "sphinx.ext.todo",
+    "tasklist",
 ]
 
 templates_path = ['_templates']
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = []
 
 language = 'zh_CN'
 
+# -- Options for HTML output -------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-myst_enable_extensions = [
-    "dollarmath",
-    "amsmath",
-    "deflist",
-    # "html_admonition",
-    # "html_image",
-    "colon_fence",
-    # "smartquotes",
-    # "replacements",
-    # "linkify",
-    # "substitution",
-]
+html_theme = 'sphinx_book_theme'
+html_static_path = ['_static']
+html_sidebars = {
+    '***': ["search-field.html","sbt-sidebar-nav.html",],
+}
+
 
 from recommonmark.parser import CommonMarkParser
 source_parsers = {
@@ -84,20 +63,10 @@ source_parsers = {
 }
 source_suffix = ['.rst', '.md']
 
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-# html_theme = 'press'
-html_theme = 'sphinx_book_theme'
 html_logo = '_static/madcat_mini.png'
+
 html_favicon='_static/madcat_mini.png'
-html_title = "Polaris' NoteBook"
-html_static_path = ['_static']
-html_sidebars = {
-    '***': ["search-field.html","sbt-sidebar-nav.html",],
-}
-
-
 
 
 html_theme_options = {
