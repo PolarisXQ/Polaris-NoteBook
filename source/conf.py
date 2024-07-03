@@ -67,7 +67,7 @@ import random
 
 html_logo = '_static/cat (6).jpg'
 
-html_favicon = '_static/cat (11)(1).jpg'
+html_favicon = '_static/cat (11)(1).png'
 
 
 html_theme_options = {
