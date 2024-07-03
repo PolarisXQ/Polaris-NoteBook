@@ -7,102 +7,10 @@ Welcome to Polaris' NoteBook!
 =============================================
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Daily Report
+   :maxdepth: 2
 
-   report/report.md
-   report/report2.md
-   report/report3.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: System
-
-   Sys/Linux/bind_device
-   Sys/Linux/Miscellaneous
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Development Related
-
-   develop/rule.rst
-   develop/submodel.rst
-   develop/CI.rst
-   develop/git.md
-   develop/opensource
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Docker
-
-   Docker/docker
-   Docker/DevContainer
-   Docker/workflow
-   Docker/CustomImage.md
-   Docker/RunDevEnv
-   Docker/CI.md
-   Docker/deploy
-   Docker/UsefulCommand
-   Docker/error_report
-
-.. toctree::
-   :maxdepth: 1
-   :caption: SLAM
-
-   Robotics/SLAM/overview
-   Robotics/SLAM/RecommendReading
-   Robotics/SLAM/relocalization
-   Robotics/SLAM/Traditional/ORB-SLAM3
-   Robotics/SLAM/SLAM_w_NN
-   Robotics/SLAM/MID360
-   Robotics/SLAM/PCL
-   Robotics/SLAM/KalmanFilter.md
-   Robotics/SLAM/Lidar_Slam.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Navigation
-
-   Robotics/Navigation/Overview.md
-   Robotics/Navigation/CMUSeries.md
-   Robotics/Navigation/PathTracking.md
-   Robotics/Navigation/farplanner_param
-   Robotics/Navigation/control
-
-.. toctree::
-   :maxdepth: 1
-   :caption: ROS
-
-   Robotics/ROS/aboutTF.md
-   Robotics/ROS/migration.md
-   Robotics/ROS/msg_filter.md
-   Robotics/ROS/Composition.md
-   Robotics/ROS/executos.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Robotics etc.
-
-   Robotics/Miscellaneous/behaviour_tree.md
-   Robotics/Miscellaneous/ProbablisticRobotics.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: CV
-
-   CV/basic.md
-   CV/Yolo.md
-   CV/multiobj_track
-   CV/issue
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Miscellaneous
-
-   Miscellaneous/migrationcv3tocv4
-   Miscellaneous/roadtoslam
-   Miscellaneous/Cmake
-   Miscellaneous/develowithnuc
-   Miscellaneous/JKB-NetWork
-   
+   report/index
+   develop/index
+   Robotics/index
+   CV/index
+   Miscellaneous/index

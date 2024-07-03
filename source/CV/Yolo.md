@@ -19,7 +19,7 @@
 ||$\mathcal{L}_{C I o U}=1-I o U+\frac{\rho^{2}\left(\mathbf{b}, \mathbf{b}^{g t}\right)}{c^{2}}+\alpha v $| 👉[改进过程详解](https://zhuanlan.zhihu.com/p/183781646) 不断改进的IoU Loss 考虑了GT与Bounding Box的距离，重合面积，解决Bounding Box全包含GT的问题，加快了收敛速度||
 |YOloV5|自适应anchor|之前anchor是固定的，自适应anchor利用网络的学习功能，让Anchor的$(x_A,y_A,w_A,h_A) $也是可以学习的||
 
-#### Summary
+## Summary
 ![](./pic/improvement.webp)
 
 👉 [BackBone优化方案](https://zhuanlan.zhihu.com/p/186014243)
