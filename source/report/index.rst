@@ -1,6 +1,6 @@
 .. _report:
 
-Daily Report
+🗓️Daily Report
 =======================
 
 .. toctree::

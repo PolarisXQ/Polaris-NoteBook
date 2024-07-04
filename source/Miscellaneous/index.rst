@@ -1,6 +1,6 @@
 .. _miscellaneous:
 
-Miscellaneous
+😼Miscellaneous
 =============
 
 .. toctree::

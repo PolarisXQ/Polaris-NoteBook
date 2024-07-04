@@ -1,6 +1,6 @@
 .. _cv:
 
-Computer Vision
+🏁Computer Vision
 ===============
 
 .. toctree::

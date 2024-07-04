@@ -1,6 +1,6 @@
 .. _docker:
 
-Docker
+🐋Docker
 ===========
 
 .. toctree::

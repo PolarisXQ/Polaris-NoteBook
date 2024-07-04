@@ -1,6 +1,6 @@
 .. _robotics:
 
-Robotics
+🤖Robotics
 =========
 
 .. toctree::
