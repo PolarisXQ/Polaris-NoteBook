@@ -1,7 +1,7 @@
 .. _robotics:
 
-🤖Robotics
-=========
+**🤖Robotics**
+=======================
 
 .. toctree::
    :maxdepth: 2

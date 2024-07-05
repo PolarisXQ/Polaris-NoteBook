@@ -1,7 +1,7 @@
 .. _development_related:
 
-👩‍💻Development Related
-=====================
+**👩‍💻Development Related**
+=============================
 
 .. toctree::
    :maxdepth: 1

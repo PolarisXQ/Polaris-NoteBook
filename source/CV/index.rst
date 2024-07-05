@@ -1,7 +1,7 @@
 .. _cv:
 
-🏁Computer Vision
-===============
+**🏁Computer Vision**
+========================
 
 .. toctree::
    :maxdepth: 1

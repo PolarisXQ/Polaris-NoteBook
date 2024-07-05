@@ -56,7 +56,7 @@ RANSAC的思想：在点云数据中随机抽取一部分作为样本，根据�
 
 算法流程：
 
-<pic src="https://img-blog.csdnimg.cn/a87879582241480092b534d911139bc9.jpeg" width="20%"/>
+<img src="https://img-blog.csdnimg.cn/a87879582241480092b534d911139bc9.jpeg" width="20%"/>
 
 ## SAC-IA算法(采样一致性)
 
