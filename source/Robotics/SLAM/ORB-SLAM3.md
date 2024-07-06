@@ -183,3 +183,13 @@ $s(w−v)=2∑_{i=1}^N|w_i|+|v_i|−|w_i−v_i|$
 至此，我们的外观验证已经完成了。从步骤1开始到步骤6，ORBSLAM2都是在不断提高筛选条件进而缩小<span style="color:RGB(195,83,195); font-weight: 600;">候选帧集</span>。可以想见，这是在利用词袋模型检索和匹配效率极高的优势，快速完成粗检索，精细化的部分再交由几何验证去进一步确定最终的<span style="color:RGB(195,83,195); font-weight: 600;">候选帧</span>。
 
 ### Geometry Validation
+
+
+
+## 📑 Learn ORBSLAM2 
+
+ divide the source code into many parts according to their function which can be easily built
+
+👉 [https://github.com/yepeichu123/orbslam2_learn](https://github.com/yepeichu123/orbslam2_learn)
+
+❤️ include a blog that explain algorithm in detail.

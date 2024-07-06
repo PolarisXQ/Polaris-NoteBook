@@ -7,4 +7,5 @@ Miscellaneous in Robotics
    :maxdepth: 1
 
    behaviour_tree
-   ProbablisticRobotics
+   useful_tools
+   
