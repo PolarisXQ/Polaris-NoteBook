@@ -10,7 +10,6 @@ Simultaneous Localization and Mapping (SLAM)
    Lidar_Slam.md
    MID360
    PCL
-   relocalization
    relo
    MCL
    overview

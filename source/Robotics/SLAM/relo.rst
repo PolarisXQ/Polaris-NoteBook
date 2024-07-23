@@ -25,9 +25,10 @@ to complment the shift problem of odometry
      - 容易陷入局部最优解、对初始值敏感、收敛速度慢、精度低；两帧激光点云数据中的点不可能表示的是空间中相同的位置。所以用点到点的距离作为误差方程势必会引入随机误差。
    * - PL-ICP
      - 采用点到其最近两个点连线的距离作为误差方程。
-     - .. image:: ./pic/error_func_PLICP.png
-     - | 相对于PP-ICP最大的区别是其改进了误差方程, PP-ICP是点对点的距离作为误差而PL-ICP是采用点到其最近两个点连线的距离
-       | .. image:: ./pic/icp.png
+     - :math:`J(\boldsymbol{q}_{k+1},\boldsymbol{C}_k)=\sum_i\left(\boldsymbol{n}_i^\mathrm{T}\left[\mathbf{R}(\theta_{k+1})\boldsymbol{p}_i+\boldsymbol{t}_{k+1}-\boldsymbol{p}_{j_1^i}\right]\right)^2`
+     - 相对于PP-ICP最大的区别是其改进了误差方程, PP-ICP是点对点的距离作为误差而PL-ICP是采用点到其最近两个点连线的距离
+
+       .. image:: ./pic/icp.png
      - 1）误差函数的形式不同，ICP对点对点的距离作为误差，PL-ICP为点到线的距离作为误差，PL-ICP的误差形式更符合实际情况；2）收敛速度不同，ICP为一阶收敛，PL-ICP为二阶收敛 :math:`∥q_k − q_∞ ∥ < c ∥ q_{k−1} −q_∞∥` :math:`∥q_k−q_∞ ∥^2 < c ∥ q_{k−1}−q_∞∥^2`；3）PL-ICP的求解精度高于ICP，特别是在结构化环境中。
      - 对初始值更敏感、容易陷入局部循环
    * - NICP
@@ -43,56 +44,13 @@ to complment the shift problem of odometry
      - 对噪声和离群点具有鲁棒性、精度高
      - 计算量大、复杂度高
    * - NDT
-     - | normal distribution transformation正态分布变换！该算法的核心思想是首先将空间离散为方格，若是二维空间，则离散为栅格，若是三维空间则离散划分为立方体，这样就可以将采样的点云划分到不同的网格中，这样可以很方便的描述点云的局部特性，例如点云局部的形状（直线、平面or球体）、方向（平面法向、直线方向等）。现在我们可以利用统计的方法分析每一个网格的特性。 
-       | .. image:: ./pic/NDT.png
-     - .. image:: ./pic/likelihood_NDT.png
+     - normal distribution transformation正态分布变换！该算法的核心思想是首先将空间离散为方格，若是二维空间，则离散为栅格，若是三维空间则离散划分为立方体，这样就可以将采样的点云划分到不同的网格中，这样可以很方便的描述点云的局部特性，例如点云局部的形状（直线、平面or球体）、方向（平面法向、直线方向等）。现在我们可以利用统计的方法分析每一个网格的特性。 
+       
+       .. image:: ./pic/NDT.png
+     - :math:`Likelihood: \Theta=\prod_{k=1}^nf(T(\vec{p},\vec{x}_k))`
      - 利用统计的方法
      - 配准过程中不利用对应点的特征计算和匹配，所以时间比其他方法快
      - 
-
-
-重定位算法
-------------
-
-.. list-table:: 重定位算法
-   :header-rows: 1
-
-   * - 算法
-     - 基本思想
-     - 优化目标
-     - 改进
-     - 优点
-     - 缺点
-   * - DLL
-     - 基于非线性优化的点云到地图的配准,不需要特征也不需要点的对应。
-     - :math:` \underset{Tmap} {arg min} [\overset{P}{ \underset{i=1} ∑}  DF^2(T_{map}p_i)] `
-     - 利用距离场表示地图,直接优化点到地图距离的和来求解传感器点云到地图的变换
-     - 避免了特征提取和最近邻搜索的计算量大的步骤。还使用IMU数据进行倾斜补偿以简化配准
-     - 
-   * - AMCL
-     - 基于粒子滤波的定位算法，需要特征点的对应。
-     - 
-     - 
-     -
-     - 
-   * - AMCL-3D
-     - 基于粒子滤波的定位算法，需要特征点的对应。
-     - 
-     - 
-     - 
-     -
-   * - EKF
-     - 基于卡尔曼滤波的定位算法，需要特征点的对应。
-     - 
-     - 
-     - 
-     -
-   * - UKF
-     - 基于无迹卡尔曼滤波的定位算法，需要特征点的对应。
-     - 
-     - 
-     - 
-     -
 
 References
 ----------
