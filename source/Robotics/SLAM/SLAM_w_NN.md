@@ -4,10 +4,12 @@
 
 | Algorithm | Time | Nerual Network | Details |
 | -------- | -------- | -------- | -------- |
-| SG-SLAM |  | ncnn+mobilenetv3_lite(backbone) | |
-| kimera-semantic |  | Row 2, Column 3 ||
+| SG-SLAM |  | ncnn+mobilenetv3_lite(backbone) | Nural Network is used for semantic segmentation |
+| kimera-semantic |  | Row 2, Column 3 | same as above |
+| Nerf-SLAM |  | Row 2, Column 3 | Nural Network is used for expressing the 3D scene |
 
 ## implementation tools
+
 ![](./pic/impltol.webp)
 腾讯公司开发的移动端平台部署工具——NCNN；Intel公司针对自家设备开开发的部署工具——OpenVino；NVIDIA公司针对自家GPU开发的部署工具——TensorRT；Google针对自家硬件设备和深度学习框架开发的部署工具——MediaPipe；由微软、亚马逊 、Facebook 和 IBM 等公司共同开发的开放神经网络交换格式——ONNX(Open Neural Network Exchange)。除此之外，还有一些深度学习框架有自己的专用部署服务：比如TensorFlow自己提供的部署服务：TensorFlow Serving、TensorFlow Lite，pytorch自己提供的部署服务：libtorch。
 
@@ -49,7 +51,7 @@ ncnn 和 TensorRT 都是高效的深度学习推理框架,主要的区别和选�
 
 综上,如果是部署到 ARM/Android,那么 ncnn 会是更好的选择。如果有 NVIDIA GPU,并需要更多高级功能,TensorRT 会更合适。需要根据自己的硬件条件和需求来决定。
 
-## Semantic Segmentation Methods
+## Semantic Segmentation
 
 ### Yolact
 YOLACT，一个实时的检测+分割的one-stage框架。
@@ -68,3 +70,9 @@ YOLACT，一个实时的检测+分割的one-stage框架。
 ### Mask-rcnn
 
 老旧
+
+## Nerf
+
+### Basic Idea
+
+[Nerf详解](https://blog.csdn.net/leviopku/article/details/129933938)

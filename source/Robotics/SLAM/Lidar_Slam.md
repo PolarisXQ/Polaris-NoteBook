@@ -238,12 +238,6 @@ LIO-SAM则采用因子图优化方法，包含四种因子：IMU预积分因子�
 
 [[激光SLAM]运行LIO-SAM时存在的一些问题](https://blog.csdn.net/Travis_X/article/details/113103067)
 
-https://github.com/kahowang/FAST_LIO_SAM/tree/master with livox support
-
-https://github.com/gisbi-kim/SC-LIO-SAM no livox support
-
-https://github.com/JokerJohn/LIO_SAM_6AXIS/tree/main with livox support
-
 ## FAST-LIO2
 
 总体框架和FAST-LIO差不多，主要的创新点如下：
