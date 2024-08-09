@@ -130,3 +130,25 @@ $$
 ### 5.2 生成器（Generator）的损失函数
 
 生成器（Generator）的损失函数由生成器的输出与真实样本之间的差值的损失函数组成。
+
+$$
+\text{Loss}_{\text{Generator}} = \text{Loss}(\text{Generator}(\text{Noise}), \text{Real})
+$$
+
+其中，$\text{Noise}$ 表示生成器的输入，$\text{Real}$ 表示真实样本。
+
+### 5.3 判别器（Discriminator）的损失函数
+
+判别器（Discriminator）的损失函数由判别器的输出与真实标签之间的差值的损失函数和判别器的输出与生成器的输出之间的差值的损失函数组成。
+
+$$
+\text{Loss}_{\text{Discriminator}} = \text{Loss}(\text{Discriminator}(\text{Real}), 1) + \text{Loss}(\text{Discriminator}(\text{Generator}(\text{Noise})), 0)
+$$
+
+## 6. 模型评估 
+
+常见的模型评估指标有模型大小、参数数量、训练时间、推理时间、模型精度、模型泛化能力、模型可解释性、模型鲁棒性等。
+
+### GFLOPs、FLOPs、FLOPS
+
+[GFLOPs、FLOPS和FLOPs的区别和联系（含代码示例）](https://blog.csdn.net/wzk4869/article/details/135260285)

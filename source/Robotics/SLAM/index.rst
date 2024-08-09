@@ -10,8 +10,6 @@ Simultaneous Localization and Mapping (SLAM)
    Lidar_Slam.md
    MID360
    PCL
-   relo
+   regis
    MCL
-   overview
    VSLAM
-   SLAM_w_NN
