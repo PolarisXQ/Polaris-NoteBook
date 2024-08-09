@@ -93,4 +93,12 @@ docker ps -l
 docker commit CONTAINER_ID NEW_IMAGE_NAME[:tag(latest)]
 ```
 
+## push image to docker hub
+
+```shell
+docker login
+docker tag local-image:tagname username/repo:tagname
+docker push username/repo:tagname
+```
+
 
