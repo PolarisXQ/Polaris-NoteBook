@@ -1,6 +1,6 @@
 # Introduce to our WorkFlow
 
-经过了原理的介绍，现在讲讲在开发的工作流中要如何使用Docker、DevContainer、CI、CD。
+经过了原理的介绍，现在讲讲在开发的工作流中Docker、DevContainer、CI、CD的作用分别是什么。
 
 ## A glance at our work flow
 

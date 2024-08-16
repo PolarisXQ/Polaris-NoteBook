@@ -20,9 +20,9 @@
 
 3. Install Xming on Windows / Install XQuartz on Mac
 
-Used for GUI visualization
+    Used for GUI visualization
 
-I am currently using XLanch on Windows.
+    I am currently using XLanch on Windows.
 
 ## 准备开发使用的镜像
 
@@ -40,7 +40,7 @@ I am currently using XLanch on Windows.
 
 1. 从DockerHub上下载一个基础镜像，比如Ubuntu
 2. 运行和进入容器
-   镜像拉去完毕以后就可以把这个镜像运行起来，具体的运行配置可以参考这一篇文章[📑Some Useful Command for Docker](./UsefulCommand.md)
+   镜像拉取完毕以后就可以把这个镜像运行起来，具体的运行配置可以参考这一篇文章[📑Some Useful Command for Docker](./UsefulCommand.md)
 
     ```bash
     docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -dit thiagofalcao/opencv3
@@ -56,13 +56,29 @@ I am currently using XLanch on Windows.
 
     在配置的过程中可以随时保存镜像，后面要是配坏了，就可以直接用这个镜像重新开始。就像打游戏的时候有个存档一样。
 
-    具体的命令在[📑Some Useful Command for Docker-how-to-commit](./UsefulCommand.md#how-to-commit)
+    具体的命令如下
+    
+    ```bash
+    docker ps -a
+    # find the container id
+    docker commit <container_id> <your_image_name>[:<tag>]
+    ```
+
+    这样就保存了一个镜像。
 
 5. 上传镜像到DockerHub
 
     保存好最终的镜像以后，就可以上传到DockerHub上了，这样就可以在任何一台电脑上下载这个镜像了。
 
-    在Coding的制品仓库界面有详细的介绍，如何上传镜像。
+    具体的操作如下
+
+    ```bash
+    docker login
+    docker tag <your_image_name>[:<tag>] <your_dockerhub_username>/<your_image_name>[:<tag>]
+    docker push <your_dockerhub_username>/<your_image_name>[:<tag>]
+    ```
+
+    如果你的项目是在Coding上，那么可以直接在Coding的制品仓库界面有详细的介绍，如何上传镜像。
 
     <img src="./pic/dockerhubincoding.png" width="80%">
 
