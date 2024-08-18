@@ -22,7 +22,7 @@
 
     Used for GUI visualization
 
-    I am currently using XLanch on Windows.
+    - Download [Xming](https://sourceforge.net/projects/xming/)
 
 ## 准备开发使用的镜像
 
