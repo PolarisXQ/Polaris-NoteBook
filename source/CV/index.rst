@@ -9,4 +9,5 @@
    basic.md
    Yolo.md
    multiobj_track
-   issue
+   3D_vision.md
+   miscellaneous.md
