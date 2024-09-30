@@ -7,7 +7,7 @@ Navigation
    :maxdepth: 1
 
    Overview
-   CMUSeries
+   map_presentation
+   PathPlanning
    PathTracking
-   control
-   navigation
+   Mescellaneous

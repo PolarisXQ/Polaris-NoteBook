@@ -11,5 +11,4 @@
    Cmake
    develowithnuc
    JKB-NetWork
-   Miscellaneous
    bind_device

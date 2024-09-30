@@ -39,6 +39,14 @@
 
 ### 基于滑动窗口的单目视觉紧耦合后端优化模型
 
+## ORB-SLAM2
+
+## ORB-SLAM3
+
+从框架图中也可以看出,ORB-SLAM3最突出的两点是IMU融合、地图集(map atlas)以及地图融合(map merging).
+
+这里提下，笔者理解的要使用MLPnP的原因。按照作者的说法是，ePnP是要基于pinhole的形式，因此要修改PnP的算法，使之独立于所用的相机模型。而MLPnP就是一种使用投影线作为输入的算法，不依赖与相机模型。然而此前，笔者自己也基于ORBv2改过支持鱼眼相机的工作。当时笔者使用的是OpenCV支持的fisheye模型，也便于标定和矫正函数的直接调用。并且，笔者使用OpenCV的鱼眼模型是可以直接支持ePnP的。
+
 ## Comparision & Analysis
 
 | Algorithm     | Sensors                            | Back-End Optimization Algorithm              | Image Detection Method | Semantic Information | Pros                                | Cons                                         | Real-Time Capabilities |

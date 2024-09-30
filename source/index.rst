@@ -13,5 +13,5 @@ Welcome to Polaris' NoteBook!
    develop/index
    Robotics/index
    CV/index
-   MachineLearing/index
+   AI/index
    Miscellaneous/index

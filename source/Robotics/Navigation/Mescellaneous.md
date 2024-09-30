@@ -1,4 +1,4 @@
-# CMU Exploration Series
+# Mescellaneous
 
 ## Recommended Reading
 
