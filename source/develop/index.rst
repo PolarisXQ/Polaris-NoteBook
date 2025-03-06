@@ -6,9 +6,7 @@
 .. toctree::
    :maxdepth: 1
 
-   rule
-   submodel
-   CI
-   git
-   opensource
    Docker/index
+   git/index
+   CI
+   opensource
