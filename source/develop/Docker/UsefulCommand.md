@@ -49,33 +49,29 @@ docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.do
 
 ## EXAMPLE
 ```bash
-docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -dit thiagofalcao/opencv3
+# For Win
+docker run -v E:\robotics\orbslam2_learn:/home/orbslam2 -e DISPLAY=host.docker.internal:0.0 -dit [image:tag]
 ```
 
 ```bash
-docker run -dit --name sim-server --network net-sim ^
-	--gpus all ^
-	-e ROS_MASTER_URI=http://ros-master:11311 ^
-	-e DISPLAY=^%DISPLAY% ^
-	-e QT_X11_NO_MITSHM=1 ^
-	-e NO_AT_BRIDGE=1 ^
-	-e LIBGL_ALWAYS_SOFTWARE=1 ^
-	-e NVIDIA_DRIVER_CAPABILITIES=all ^
-	-v /tmp/.X11-unix:/tmp/.X11-unix ^
-	%SERVER_IMAGE% 
+# For Linux
+docker run -dit --network host \
+	-e DISPLAY=$DISPLAY \
+	-e QT_X11_NO_MITSHM=1 \
+	-e NO_AT_BRIDGE=1 \
+	-e LIBGL_ALWAYS_SOFTWARE=1 \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-v /dev:/dev [image:tag]
 ```
 
 ```shell
 docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 client:latest
 ```
 
-```shell
-docker run --gpus all -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all kimera:mine /bin/bash
-```
 
-For Mid360
 ```shell
-docker run -dit -p 56101:56101/udp -p 56201:56201/udp -p 56301:56301/udp -p 56401:56401/udp -p 56501:56501/udp --privileged -e DISPLAY=host.docker.internal:0.0 -e NVIDIA_DRIVER_CAPABILITIES=all rm_sentry:app
+docker run -dit --ipc=host --net=host --privileged -e DISPLAY=host.docker.internal:0.0 
+```
 ```
 
 ## How to Commit
@@ -101,4 +97,17 @@ docker tag local-image:tagname username/repo:tagname
 docker push username/repo:tagname
 ```
 
+# 更换国内DOCKER镜像源
 
+```bash
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<EOF
+{
+    "registry-mirrors": [
+        "https://docker.xuanyuan.me"
+    ]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```

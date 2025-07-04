@@ -29,7 +29,7 @@ sudo usermod -aG docker $USER
 # “$USER” is a variable for the current user’s username.
 
 # Step 3: Log out and log back in so that your group membership is re-evaluated.
-newgrp docker
+sudo newgrp docker
 
 # Step 4: Verify that you can run docker commands without sudo.
 docker run hello-world
