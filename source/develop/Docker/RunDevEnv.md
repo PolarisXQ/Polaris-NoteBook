@@ -1,10 +1,10 @@
 # Step by Step in detail: Launch the Development Workspace
 
-首先~确保必要的软件已经安装好了，包括Docker，VSCode，Xming等等。具体参阅[📑准备工作](./CustomImage.md#准备工作)
+首先~确保必要的软件已经安装好了，包括Docker，VSCode，Xming等等。具体参阅[📑准备工作](../Docker/CustomImage.md#准备工作)
 
 不使用DevContainer的话
 ----------------------------------------------
-可以直接运行镜像，然后attach到VSCode中，具体的命令可以参考[📑Some Useful Command for Docker](./UsefulCommand.md)
+可以直接运行镜像，然后attach到VSCode中，具体的命令可以参考[📑Some Useful Command for Docker](../Docker/UsefulCommand.md)
 
 大致就是
 
@@ -47,7 +47,7 @@ and notice that this will mount your local workspace folder into the container, 
 
 - Start your development! Enjoy it!
 
-## 5*. if there's no devcontainer.json，Create one!
+## 5. 编写配置文件
 
 - Create a folder called .devcontainer in the repo, and create a file called devcontainer.json in it
 

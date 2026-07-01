@@ -129,7 +129,7 @@ int main(int argc, char * argv[])
 }
 ```
 
-```makefile
+```
 # FILE: CMakeLists.txt
 cmake_minimum_required(VERSION 3.5)
 

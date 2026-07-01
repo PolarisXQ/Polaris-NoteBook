@@ -1,0 +1,494 @@
+﻿    <!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://2.lz787.com/assets/1.css">
+
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css"><div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">源码剖析：MimicMotion: High-Quality Human Motion Video Generation with Confidence-aware Pose Guidance</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                      <a class="follow-nickName " href="https://xduwq.blog.csdn.net" target="_blank" rel="noopener" title="沉迷单车的追风少年">沉迷单车的追风少年</a>
+                    <img class="article-time-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUpTime2.png" alt="">
+                    <span class="time">已于&nbsp;2024-07-18 11:07:44&nbsp;修改</span>
+                   <div class="read-count-box">
+                      <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes2.png" alt="">
+                      <span class="read-count">阅读量703</span>
+                      <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                          <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect2.png" alt="">
+                          <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt="">
+                          <span class="name">收藏</span>
+                          <span class="get-collection">
+                              5
+                          </span>
+                      </a>
+                      <div class="read-count-box is-like">
+                        <img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Active.png" alt="">
+                        <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Black.png" alt="">
+                        <span class="read-count" id="blog-digg-num">点赞数
+                            6
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a class="tag-link" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" rel="noopener">Diffusion Models与深度学习</a>
+                            <span class="label">文章标签：</span>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"AIGC","ab":"new","extra":"{\"searchword\":\"AIGC\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"AIGC","ab":"new","extra":"{\"searchword\":\"AIGC\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=AIGC&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">AIGC</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=扩散模型&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">扩散模型</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"视频生成","ab":"new","extra":"{\"searchword\":\"视频生成\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"视频生成","ab":"new","extra":"{\"searchword\":\"视频生成\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=视频生成&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">视频生成</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"人工智能","ab":"new","extra":"{\"searchword\":\"人工智能\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"人工智能","ab":"new","extra":"{\"searchword\":\"人工智能\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=人工智能&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">人工智能</a>
+                    </div>
+                </div>
+                <div class="up-time"><span>于&nbsp;2024-07-17 21:09:52&nbsp;首次发布</span></div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/qq_41895747/article/details/140461890" target="_blank">https://blog.csdn.net/qq_41895747/article/details/140461890</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="blogHuaweiyunAdvert"></div>
+        <div id="blogColumnPayAdvert">
+            <div class="column-group">
+                <div class="column-group-item column-group0 column-group-item-one">
+                    <div class="item-l">
+                        <a class="item-target" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" title="Diffusion Models与深度学习"
+                        data-report-view='{"spm":"1001.2101.3001.6332"}'
+                        data-report-click='{"spm":"1001.2101.3001.6332"}'>
+                            <img class="item-target" src="https://img-blog.csdnimg.cn/20190927151026427.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="">
+                            <span class="title item-target">
+                                <span>
+                                <span class="tit">Diffusion Models与深度学习</span>
+                                    <span class="dec">专栏收录该内容</span>
+                                </span>
+                                <span class="rank"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/columnHotIcon2.png" alt="">该专栏为热销专栏榜&nbsp;第41名</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item-m">
+                        <span>184 篇文章</span>
+                        <span>2695 订阅</span>
+                        <span class="old-add-new-box">
+                            <span class="price">yen29.90</span>
+                            <span class="oldprice">yen99.00</span>
+                        </span>
+                    </div>
+                    <div class="item-r">
+                                    <a class="item-target article-column-subscribe">已订阅
+                                    </a>
+                                    <a class="item-target column-studyvip-discount column-studyvip-pass"
+                                    data-report-view='{"spm":"1001.2015.3001.8590"}'
+                                    data-report-click='{"spm":"1001.2015.3001.8590"}'>8折续费
+                                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning_the_member_box">
+            <a href="https://www.csdn.net/vip?utm_source=bkzl_cjhy_ckqy" target="_blank">
+                <div class="left"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconVIpCrown.png" alt=""><span>您已是超级会员，正在免费阅读会员专享内容</span></div>
+                <div class="right"><span>查看更多超级会员权益</span><img src="https://csdnimg.cn/release/blogv2/dist/components/img/vipIconArrowLeftWhite.png" alt=""></div>
+            </a>
+        </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-704d5b9767.css">
+             
+                <div id="content_views" class="htmledit_views">
+                    <blockquote> 
+ <p><a href="https://xduwq.blog.csdn.net/article/details/127023461?spm&#61;1001.2014.3001.5502" rel="nofollow" title="Diffusion models代码解读&#xff1a;入门与实战">Diffusion models代码解读&#xff1a;入门与实战</a></p> 
+</blockquote> 
+<blockquote> 
+ <p><em><strong>前言</strong></em>&#xff1a;最近一年有很多非常火的人类跳舞视频生成的工作&#xff0c;最近腾讯出品了基于SVD模型的MimicMotion&#xff0c;是目前生成结果最好、效果最稳定、分辨率最高、人物ID特征保持最好的工作&#xff0c;这篇博客结合论文原理和细节&#xff0c;深入解读《MimicMotion: High-Quality Human Motion Video Generation with Confidence-aware Pose Guidance》的代码。</p> 
+</blockquote> 
+<p id="main-toc"><strong>目录</strong></p> 
+<p id="姿态提取-toc" style="margin-left:40px;"><a href="#姿态提取" rel="nofollow">姿态提取</a></p> 
+<p id="DWPose-toc" style="margin-left:80px;"><a href="#DWPose" rel="nofollow">DWPose</a></p> 
+<p id="Pose尺度缩放-toc" style="margin-left:80px;"><a href="#Pose尺度缩放" rel="nofollow">Pose尺度缩放</a></p> 
+<p id="PoseNet-toc" style="margin-left:80px;"><a href="#PoseNet" rel="nofollow">PoseNet</a></p> 
+<p id="解决姿态信息不准确的问题-toc" style="margin-left:40px;"><a href="#解决姿态信息不准确的问题" rel="nofollow">解决姿态信息不准确的问题</a></p> 
+<hr id="hr-toc" /> 
+<p></p> 
+<p><img alt="" height="964" src="https://i-blog.csdnimg.cn/direct/d843b026ac5e481d9b836a373d92b6a7.png" width="1200" /></p> 
+<h3 id="姿态提取">姿态提取</h3> 
+<p>如下图&#xff0c;先用DWPose提取pose&#xff0c;再经过PoseNet注入到Unet中。</p> 
+<p><img alt="" height="828" src="https://i-blog.csdnimg.cn/direct/452edbdd834244c6bbb06b5bea7c4520.png" width="1200" /></p> 
+<h4 id="DWPose">DWPose</h4> 
+<p>DWPose是预训练&#xff0c;作者也没有再训练过&#xff0c;直接用&#xff1a;</p> 
+<pre><code>ref_pose &#61; dwprocessor(ref_image)
+
+dwpose_detector &#61; DWposeDetector(
+    model_det&#61;&#34;models/DWPose/yolox_l.onnx&#34;,
+    model_pose&#61;&#34;models/DWPose/dw-ll_ucoco_384.onnx&#34;,
+    device&#61;device)</code></pre> 
+<pre><code>class DWposeDetector:
+    &#34;&#34;&#34;
+    A pose detect method for image-like data.
+
+    Parameters:
+        model_det: (str) serialized ONNX format model path, 
+                    such as https://huggingface.co/yzd-v/DWPose/blob/main/yolox_l.onnx
+        model_pose: (str) serialized ONNX format model path, 
+                    such as https://huggingface.co/yzd-v/DWPose/blob/main/dw-ll_ucoco_384.onnx
+        device: (str) &#39;cpu&#39; or &#39;cuda:{device_id}&#39;
+    &#34;&#34;&#34;
+    def __init__(self, model_det, model_pose, device&#61;&#39;cpu&#39;):
+        self.args &#61; model_det, model_pose, device
+
+    def release_memory(self):
+        if hasattr(self, &#39;pose_estimation&#39;):
+            del self.pose_estimation
+            import gc; gc.collect()
+
+    def __call__(self, oriImg):
+        if not hasattr(self, &#39;pose_estimation&#39;):
+            self.pose_estimation &#61; Wholebody(*self.args)
+
+        oriImg &#61; oriImg.copy()
+        H, W, C &#61; oriImg.shape
+        with torch.no_grad():
+            candidate, score &#61; self.pose_estimation(oriImg)
+            nums, _, locs &#61; candidate.shape
+            candidate[..., 0] /&#61; float(W)
+            candidate[..., 1] /&#61; float(H)
+            body &#61; candidate[:, :18].copy()
+            body &#61; body.reshape(nums * 18, locs)
+            subset &#61; score[:, :18].copy()
+            for i in range(len(subset)):
+                for j in range(len(subset[i])):
+                    if subset[i][j] &gt; 0.3:
+                        subset[i][j] &#61; int(18 * i &#43; j)
+                    else:
+                        subset[i][j] &#61; -1
+
+            # un_visible &#61; subset &lt; 0.3
+            # candidate[un_visible] &#61; -1
+
+            # foot &#61; candidate[:, 18:24]
+
+            faces &#61; candidate[:, 24:92]
+
+            hands &#61; candidate[:, 92:113]
+            hands &#61; np.vstack([hands, candidate[:, 113:]])
+
+            faces_score &#61; score[:, 24:92]
+            hands_score &#61; np.vstack([score[:, 92:113], score[:, 113:]])
+
+            bodies &#61; dict(candidate&#61;body, subset&#61;subset, score&#61;score[:, :18])
+            pose &#61; dict(bodies&#61;bodies, hands&#61;hands, hands_score&#61;hands_score, faces&#61;faces, faces_score&#61;faces_score)
+
+            return pose</code></pre> 
+<h4 id="Pose尺度缩放">Pose尺度缩放</h4> 
+<p>计算两个线性变换参数<code>a</code>和<code>b</code>&#xff0c;用于将检测到的人体关键点&#xff08;<code>detected_bodies</code>&#xff09;重新缩放到参考人体关键点&#xff08;<code>ref_body</code>&#xff09;的尺度上&#xff0c;同时考虑到视频分辨率&#xff08;<code>vr[0].shape</code>&#xff09;和目标图像的尺寸&#xff08;<code>height</code>和<code>width</code>&#xff09;。</p> 
+<p>对检测到的人体关键点进行尺度和位置的校正&#xff0c;以匹配参考人体关键点的尺度和位置&#xff0c;同时考虑到视频和目标图像的尺寸差异。</p> 
+<pre><code>    # compute linear-rescale params
+    ay, by &#61; np.polyfit(detected_bodies[:, :, 1].flatten(), np.tile(ref_body[:, 1], len(detected_bodies)), 1)
+    fh, fw, _ &#61; vr[0].shape
+    ax &#61; ay / (fh / fw / height * width)
+    bx &#61; np.mean(np.tile(ref_body[:, 0], len(detected_bodies)) - detected_bodies[:, :, 0].flatten() * ax)
+    a &#61; np.array([ax, ay])
+    b &#61; np.array([bx, by])</code></pre> 
+<p>然后对检测到的人体姿势进行缩放和平移&#xff0c;以适应特定的输出尺寸&#xff0c;然后将处理后的姿势绘制到图像上&#xff0c;并收集这些图像到一个列表中。 </p> 
+<pre><code>    # pose rescale 
+    for detected_pose in detected_poses:
+        detected_pose[&#39;bodies&#39;][&#39;candidate&#39;] &#61; detected_pose[&#39;bodies&#39;][&#39;candidate&#39;] * a &#43; b
+        detected_pose[&#39;faces&#39;] &#61; detected_pose[&#39;faces&#39;] * a &#43; b
+        detected_pose[&#39;hands&#39;] &#61; detected_pose[&#39;hands&#39;] * a &#43; b
+        im &#61; draw_pose(detected_pose, height, width)
+        output_pose.append(np.array(im))</code></pre> 
+<h4 id="PoseNet">PoseNet</h4> 
+<p>先看一下PoseNet的结构&#xff1a;</p> 
+<pre><code>class PoseNet(nn.Module):
+    &#34;&#34;&#34;a tiny conv network for introducing pose sequence as the condition
+    &#34;&#34;&#34;
+    def __init__(self, noise_latent_channels&#61;320, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # multiple convolution layers
+        self.conv_layers &#61; nn.Sequential(
+            nn.Conv2d(in_channels&#61;3, out_channels&#61;3, kernel_size&#61;3, padding&#61;1),
+            nn.SiLU(),
+            nn.Conv2d(in_channels&#61;3, out_channels&#61;16, kernel_size&#61;4, stride&#61;2, padding&#61;1),
+            nn.SiLU(),
+
+            nn.Conv2d(in_channels&#61;16, out_channels&#61;16, kernel_size&#61;3, padding&#61;1),
+            nn.SiLU(),
+            nn.Conv2d(in_channels&#61;16, out_channels&#61;32, kernel_size&#61;4, stride&#61;2, padding&#61;1),
+            nn.SiLU(),
+
+            nn.Conv2d(in_channels&#61;32, out_channels&#61;32, kernel_size&#61;3, padding&#61;1),
+            nn.SiLU(),
+            nn.Conv2d(in_channels&#61;32, out_channels&#61;64, kernel_size&#61;4, stride&#61;2, padding&#61;1),
+            nn.SiLU(),
+
+            nn.Conv2d(in_channels&#61;64, out_channels&#61;64, kernel_size&#61;3, padding&#61;1),
+            nn.SiLU(),
+            nn.Conv2d(in_channels&#61;64, out_channels&#61;128, kernel_size&#61;3, stride&#61;1, padding&#61;1),
+            nn.SiLU()
+        )
+
+        # Final projection layer
+        self.final_proj &#61; nn.Conv2d(in_channels&#61;128, out_channels&#61;noise_latent_channels, kernel_size&#61;1)
+
+        # Initialize layers
+        self._initialize_weights()
+
+        self.scale &#61; nn.Parameter(torch.ones(1) * 2)
+
+    def _initialize_weights(self):
+        &#34;&#34;&#34;Initialize weights with He. initialization and zero out the biases
+        &#34;&#34;&#34;
+        for m in self.conv_layers:
+            if isinstance(m, nn.Conv2d):
+                n &#61; m.kernel_size[0] * m.kernel_size[1] * m.in_channels
+                init.normal_(m.weight, mean&#61;0.0, std&#61;np.sqrt(2. / n))
+                if m.bias is not None:
+                    init.zeros_(m.bias)
+        init.zeros_(self.final_proj.weight)
+        if self.final_proj.bias is not None:
+            init.zeros_(self.final_proj.bias)
+
+    def forward(self, x):
+        if x.ndim &#61;&#61; 5:
+            x &#61; einops.rearrange(x, &#34;b f c h w -&gt; (b f) c h w&#34;)
+        x &#61; self.conv_layers(x)
+        x &#61; self.final_proj(x)
+
+        return x * self.scale
+
+    &#64;classmethod
+    def from_pretrained(cls, pretrained_model_path):
+        &#34;&#34;&#34;load pretrained pose-net weights
+        &#34;&#34;&#34;
+        if not Path(pretrained_model_path).exists():
+            print(f&#34;There is no model file in {pretrained_model_path}&#34;)
+        print(f&#34;loaded PoseNet&#39;s pretrained weights from {pretrained_model_path}.&#34;)
+
+        state_dict &#61; torch.load(pretrained_model_path, map_location&#61;&#34;cpu&#34;)
+        model &#61; PoseNet(noise_latent_channels&#61;320)
+
+        model.load_state_dict(state_dict, strict&#61;True)
+
+        return model</code></pre> 
+<p>这个PoseNet是和Unet是整个过程中唯二可训练的部分。</p> 
+<p>PoseNet提取出的特征&#xff0c;命名为pose_latents&#xff1a;</p> 
+<pre><code>                    pose_latents &#61; self.pose_net(image_pose[idx].to(device))
+                    _noise_pred &#61; self.unet(
+                        latent_model_input[:1, idx],
+                        t,
+                        encoder_hidden_states&#61;image_embeddings[:1],
+                        added_time_ids&#61;added_time_ids[:1],
+                        pose_latents&#61;None,
+                        image_only_indicator&#61;image_only_indicator,
+                        return_dict&#61;False,
+                    )[0]</code></pre> 
+<p>在Unet里&#xff0c;输入是一个2D卷积&#xff1a;</p> 
+<pre><code>        # input
+        self.conv_in &#61; nn.Conv2d(
+            in_channels,
+            block_out_channels[0],
+            kernel_size&#61;3,
+            padding&#61;1,
+        )</code></pre> 
+<p>2D卷积出来的特征直接与PoseNet的特征相加&#xff1a;</p> 
+<pre><code>        sample &#61; self.conv_in(sample)
+        if pose_latents is not None:
+            sample &#61; sample &#43; pose_latents</code></pre> 
+<p>之前的做法都在UNet中的每一层添加了姿态信息&#xff0c;但是作者只在第一层添加&#xff0c;作者解释的原因是&#xff1a;a) 序列姿势逐帧提取&#xff0c;无需任何时间交互&#xff0c;因此当 U-Net 直接处理这些层时&#xff0c;它可能会混淆 U-Net 中的时空层&#xff1b; b) 姿势序列的过度参与可能会降低预训练图像到图像模型的性能。 </p> 
+<h3 id="解决姿态信息不准确的问题">解决姿态信息不准确的问题</h3> 
+<p>DWPose提取的姿态引导是不准确的&#xff0c;本质是从2D图片中估计姿态就是一件非常难搞的事情。所以用一个不准确的条件控制模型很容易进一步恶化模型的效果&#xff0c;作者想到了一个方法&#xff0c;引入一个置信度得分来反应检测的准确度&#xff0c;较高的值表示更高的可见性、更少的遮挡和运动模糊。</p> 
+<p>将姿势和关键点的置信度分数集成到它们各自的绘图颜色中。这意味着将分配给每个关键点和肢体的颜色乘以其置信度分数。因此&#xff0c;具有较高置信度分数的关键点和相应的肢体在姿势引导图上会显得更显著。该方法使模型能够在其指导中优先考虑更可靠的姿态信息&#xff0c;从而提高姿态引导生成的整体精度。</p>
+                </div>
+        </div>
+        <div id="treeSkill"></div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    </article>
+  <script>
+    $(function() {
+      setTimeout(function () {
+        var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+        if (mathcodeList.length > 0) {
+          for (let i = 0; i < mathcodeList.length; i  ) {
+            if (mathcodeList[i].complete) {
+              if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              }
+            } else {
+              mathcodeList[i].onerror = function() {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              };
+            }
+          }
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+      }, 500)
+    });
+  </script>
+</div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-newWhite.png">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-roup.png">
+          <span class="def">立减 yen</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query='spm=1001.2101.3001.9621'>立即使用</a>
+  </div>
+</div>    <div class="more-toolbox-new" id="toolBarBox">
+      <div class="left-toolbox">
+        <div class="toolbox-left">
+            <div class="profile-box">
+              <a class="profile-href" target="_blank" href="https://xduwq.blog.csdn.net"><img class="profile-img" src="https://profile-avatar.csdnimg.cn/4ef02b7dcddf49f28d56bcfa2b957977_qq_41895747.jpg!1">
+                <span class="profile-name">
+                  沉迷单车的追风少年
+                </span>
+              </a>
+            </div>
+            <div class="profile-attend">
+                <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"已关注"}'>已关注</a>
+              <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </div>
+        </div>
+        <div class="toolbox-middle">
+          <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like">
+              <a class="tool-item-href">
+                <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+                <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2021Active.png" alt="">
+                <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2021Black.png" alt="">
+                <span id="spanCount" class="count ">
+                    6
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">点赞</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-unlike" id="is-unlike">
+              <a class="tool-item-href">
+                <img class="isactive" style="margin-right:0px;display:none" id="is-unlike-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUnHeart2021Active.png" alt="">
+                <img class="isdefault" style="margin-right:0px;display:block" id="is-unlike-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUnHeart2021Black.png" alt="">
+                <span id="unlikeCount" class="count "></span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">踩</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+              <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectBlack.png" alt="">
+                <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectActive.png" alt="">
+                <span class="count get-collection " data-num="5" id="get-collection">
+                    5
+                </span>
+              </a>
+              <div class="tool-hover-tip collect">
+                <div class="collect-operate-box">
+                  <span class="collect-text" id="is-collection">
+                    收藏
+                  </span>
+                </div>
+              </div>
+              <div class="tool-active-list">
+                <div class="text">
+                  觉得还不错?
+                  <span class="collect-text" id="tool-active-list-collection">
+                    一键收藏
+                  </span>
+                 <img id="tool-active-list-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/collectionCloseWhite.png" alt="">
+                </div>
+              </div>
+            </li>
+                <li class="tool-item tool-item-size tool-active tool-item-reward">
+                  <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_830","spm":"1001.2101.3001.4237","dest":"","ab":"new"}'>
+                    <img class="isdefault reward-bt" id="rewardBtNew" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newRewardBlack.png" alt="打赏">
+                    <span class="count"></span>
+                  </a>
+                  <div class="tool-hover-tip"><span class="text space">打赏</span></div>
+                </li>
+          <li class="tool-item tool-item-size tool-active tool-item-comment">
+            <div class="guide-rr-first">
+              <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward01.png" alt="">
+              <button class="btn-guide-known">知道了</button>
+            </div>
+              <a class="tool-item-href go-side-comment" data-report-click='{"spm":"1001.2101.3001.7009"}'>
+              <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newComment2021Black.png" alt="">
+              <span class="count">
+                  2
+              </span>
+            </a>
+            <div class="tool-hover-tip"><span class="text space">评论</span></div>
+          </li>
+          <li class="tool-item tool-item-bar">
+          </li>
+          <li class="tool-item tool-item-size tool-active tool-QRcode" data-type="article" id="tool-share">
+            <a class="tool-item-href" href="javascript:;" data-report-view='{"spm":"3001.4129","extra":{"type":"blogdetail"}}'>
+              <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newShareBlack.png" alt="">
+            </a>
+              <div class="QRcode" id="tool-QRcode">
+              <div class="share-bg-box">
+                <div class="share-content">
+                  <a id="copyPosterUrl" data-type="link" class="btn-share">复制链接</a>
+                </div>
+                <div class="share-content">
+                  <a class="btn-share" data-type="qq">分享到 QQ</a>
+                </div>
+                <div class="share-content">
+                  <a class="btn-share" data-type="weibo">分享到新浪微博</a>
+                </div>
+                <div class="share-code">
+                  <div class="share-code-box" id='shareCode'></div>
+                  <div class="share-code-text">
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/share/icon-wechat.png" alt="">扫一扫
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="toolbox-right"><script type="text/javascript" crossorigin src="https://g.csdnimg.cn/common/csdn-login-box/csdn-login-box.js"></script></html>

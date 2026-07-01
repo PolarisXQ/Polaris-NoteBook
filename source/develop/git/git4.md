@@ -71,7 +71,7 @@ touch .gitignore
 
 ### 编辑
 
-```txt
+```
 *.pyc
 __pycache__
 ```

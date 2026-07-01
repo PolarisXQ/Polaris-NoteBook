@@ -42,6 +42,8 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
+myst_heading_anchors = 3
+
 templates_path = ['_templates']
 exclude_patterns = []
 

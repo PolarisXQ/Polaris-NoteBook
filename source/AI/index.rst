@@ -7,5 +7,10 @@
    :maxdepth: 1
 
    basic
+   math
    evaluation
-   eai
+   lossfunc
+   eai1
+   rl
+   prompt
+   install

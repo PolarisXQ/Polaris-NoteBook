@@ -1,0 +1,452 @@
+﻿    <!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://2.lz787.com/assets/1.css">
+
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css"><div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">DDIM代码详细解读(2)：关键参数计算、损失函数设计、添加时间步长信息、归一化设计</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                      <a class="follow-nickName " href="https://xduwq.blog.csdn.net" target="_blank" rel="noopener" title="沉迷单车的追风少年">沉迷单车的追风少年</a>
+                    <img class="article-time-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUpTime2.png" alt="">
+                    <span class="time">已于&nbsp;2022-10-30 19:52:33&nbsp;修改</span>
+                   <div class="read-count-box">
+                      <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes2.png" alt="">
+                      <span class="read-count">阅读量1.6k</span>
+                      <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                          <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect2.png" alt="">
+                          <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt="">
+                          <span class="name">收藏</span>
+                          <span class="get-collection">
+                              5
+                          </span>
+                      </a>
+                      <div class="read-count-box is-like">
+                        <img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Active.png" alt="">
+                        <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Black.png" alt="">
+                        <span class="read-count" id="blog-digg-num">点赞数
+                            3
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a class="tag-link" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" rel="noopener">Diffusion Models与深度学习</a>
+                            <span class="label">文章标签：</span>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"深度学习","ab":"new","extra":"{\"searchword\":\"深度学习\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"深度学习","ab":"new","extra":"{\"searchword\":\"深度学习\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=深度学习&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">深度学习</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=扩散模型&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">扩散模型</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"DDPM","ab":"new","extra":"{\"searchword\":\"DDPM\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"DDPM","ab":"new","extra":"{\"searchword\":\"DDPM\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=DDPM&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">DDPM</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"DDIM","ab":"new","extra":"{\"searchword\":\"DDIM\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"DDIM","ab":"new","extra":"{\"searchword\":\"DDIM\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=DDIM&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">DDIM</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"diffusion model","ab":"new","extra":"{\"searchword\":\"diffusion model\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"diffusion model","ab":"new","extra":"{\"searchword\":\"diffusion model\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=diffusion model&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">diffusion model</a>
+                    </div>
+                </div>
+                <div class="up-time"><span>于&nbsp;2022-10-30 07:45:00&nbsp;首次发布</span></div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/qq_41895747/article/details/126608169" target="_blank">https://blog.csdn.net/qq_41895747/article/details/126608169</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="blogHuaweiyunAdvert"></div>
+        <div id="blogColumnPayAdvert">
+            <div class="column-group">
+                <div class="column-group-item column-group0 column-group-item-one">
+                    <div class="item-l">
+                        <a class="item-target" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" title="Diffusion Models与深度学习"
+                        data-report-view='{"spm":"1001.2101.3001.6332"}'
+                        data-report-click='{"spm":"1001.2101.3001.6332"}'>
+                            <img class="item-target" src="https://img-blog.csdnimg.cn/20190927151026427.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="">
+                            <span class="title item-target">
+                                <span>
+                                <span class="tit">Diffusion Models与深度学习</span>
+                                    <span class="dec">专栏收录该内容</span>
+                                </span>
+                                <span class="rank"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/columnHotIcon2.png" alt="">该专栏为热销专栏榜&nbsp;第41名</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item-m">
+                        <span>251 篇文章</span>
+                        <span>2790 订阅</span>
+                        <span class="old-add-new-box">
+                            <span class="price">yen29.90</span>
+                            <span class="oldprice">yen99.00</span>
+                        </span>
+                    </div>
+                    <div class="item-r">
+                                    <a class="item-target article-column-subscribe">已订阅
+                                    </a>
+                                    <a class="item-target column-studyvip-discount column-studyvip-pass"
+                                    data-report-view='{"spm":"1001.2015.3001.8590"}'
+                                    data-report-click='{"spm":"1001.2015.3001.8590"}'>8折续费
+                                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning_the_member_box">
+            <a href="https://www.csdn.net/vip?utm_source=bkzl_cjhy_ckqy" target="_blank">
+                <div class="left"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconVIpCrown.png" alt=""><span>您已是超级会员，正在免费阅读会员专享内容</span></div>
+                <div class="right"><span>查看更多超级会员权益</span><img src="https://csdnimg.cn/release/blogv2/dist/components/img/vipIconArrowLeftWhite.png" alt=""></div>
+            </a>
+        </div>
+      <div class="ai-abstract-box">
+         <div class="ai-abstract">
+          <div class="abstract-content">
+            <img class="lock-img" src="https://img-home.csdnimg.cn/images/20240711042549.png" alt="">
+            本文深入解读DDIM模型，探讨关键参数计算，包括beta的linear和cos计算方式，以及时间步长timesteps的cos和sin添加方法。强调归一化在训练中的重要性，并介绍简单的KL损失函数设计。参考了openai/guided-diffusion的代码实现。
+          </div>
+          <span>摘要由CSDN通过智能技术生成</span>
+        </div>
+      </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-704d5b9767.css">
+             
+                <div id="content_views" class="htmledit_views">
+                    <blockquote> 
+ <p><a href="https://xduwq.blog.csdn.net/article/details/127023461" rel="nofollow" title="Diffusion models代码解读&#xff1a;入门与实战">Diffusion models代码解读&#xff1a;入门与实战</a></p> 
+</blockquote> 
+<blockquote> 
+ <p><em><strong>前言</strong></em>&#xff1a;之前写过三篇详细解读DDPM代码的博客&#xff0c;随着时间已经来到2022年9月&#xff0c;单纯使用DDPM已经逐渐被淘汰&#xff0c;最新的论文更多使用DDPM的改进版本。DDIM作为DDPM最重要的改进版本之一&#xff0c;从本篇博客开始详细解读一下DDIM代码。这篇博客详细讲解一下如何计算关键参数&#xff0c;如何设计损失函数&#xff0c;如何添加时间步长信息&#xff0c;如何设计损失函数。</p> 
+</blockquote> 
+<p id="main-toc"><strong>目录</strong></p> 
+<p id="关键参数计算-toc" style="margin-left:40px;"><a href="#关键参数计算" rel="nofollow">关键参数计算</a></p> 
+<p id="1、计算beta-toc" style="margin-left:80px;"><a href="#1、计算beta" rel="nofollow">1、计算beta</a></p> 
+<p id="2、时间步长 timesteps-toc" style="margin-left:80px;"><a href="#2、时间步长 timesteps" rel="nofollow">2、时间步长 timesteps</a></p> 
+<p id="必需要做的归一化-toc" style="margin-left:40px;"><a href="#必需要做的归一化" rel="nofollow">必需要做的归一化</a></p> 
+<p id="损失函数设计-toc" style="margin-left:40px;"><a href="#损失函数设计" rel="nofollow">损失函数设计</a></p> 
+<p id="写在最后-toc" style="margin-left:40px;"><a href="#写在最后" rel="nofollow">写在最后</a></p> 
+<hr id="hr-toc" /> 
+<p><em> 之前写过的三篇DDPM代码解读&#xff1a;</em></p> 
+<blockquote> 
+ <ul><li> <p id="articleContentId"><a href="https://blog.csdn.net/qq_41895747/article/details/123660935?ops_request_misc&#61;%7B%22request%5Fid%22%3A%22166141425716782248575332%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id&#61;166141425716782248575332&amp;biz_id&#61;0&amp;utm_medium&#61;distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-3-123660935-null-null.nonecase&amp;utm_term&#61;DDPM代码&amp;spm&#61;1018.2226.3001.4450" title="DDPM代码详细解读(1)&#xff1a;数据集准备、超参数设置、loss设计、关键参数计算">DDPM代码详细解读(1)&#xff1a;数据集准备、超参数设置、loss设计、关键参数计算</a></p> </li><li> <p id="articleContentId"><a href="https://blog.csdn.net/qq_41895747/article/details/123678236?ops_request_misc&#61;%7B%22request%5Fid%22%3A%22166141425716782248575332%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id&#61;166141425716782248575332&amp;biz_id&#61;0&amp;utm_medium&#61;distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-2-123678236-null-null.nonecase&amp;utm_term&#61;DDPM代码&amp;spm&#61;1018.2226.3001.4450" title="DDPM代码详细解读(2)&#xff1a;Unet结构、正向和逆向过程、IS和FID测试、EMA优化">DDPM代码详细解读(2)&#xff1a;Unet结构、正向和逆向过程、IS和FID测试、EMA优化</a></p> </li><li> <p id="articleContentId"><a href="https://blog.csdn.net/qq_41895747/article/details/123790841?ops_request_misc&#61;%7B%22request%5Fid%22%3A%22166141425716782248575332%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id&#61;166141425716782248575332&amp;biz_id&#61;0&amp;utm_medium&#61;distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-123790841-null-null.nonecase&amp;utm_term&#61;DDPM代码&amp;spm&#61;1018.2226.3001.4450" title="DDPM代码详细解读(3)&#xff1a;图解模型各部分结构、用ConvNextBlock代替Resnet">DDPM代码详细解读(3)&#xff1a;图解模型各部分结构、用ConvNextBlock代替Resnet</a></p> </li></ul> 
+</blockquote> 
+<h3 id="关键参数计算">关键参数计算</h3> 
+<h4 id="1、计算beta">1、计算beta</h4> 
+<p>这个参数是最关键的&#xff0c;唯一的t对应唯一的beta。所以beta是提前计算的&#xff0c;有linear和cos两种计算方式。这两种我观察结果相差不大&#xff0c;cos相对更先进一些&#xff0c;具体理论分析请看《Improved DPM》。</p> 
+<pre><code>def get_named_beta_schedule(schedule_name, num_diffusion_timesteps):
+    &#34;&#34;&#34;
+    Get a pre-defined beta schedule for the given name.
+
+    The beta schedule library consists of beta schedules which remain similar
+    in the limit of num_diffusion_timesteps.
+    Beta schedules may be added, but should not be removed or changed once
+    they are committed to maintain backwards compatibility.
+    &#34;&#34;&#34;
+    if schedule_name &#61;&#61; &#34;linear&#34;:
+        # Linear schedule from Ho et al, extended to work for any number of
+        # diffusion steps.
+        scale &#61; 1000 / num_diffusion_timesteps
+        beta_start &#61; scale * 0.0001
+        beta_end &#61; scale * 0.02
+        return np.linspace(
+            beta_start, beta_end, num_diffusion_timesteps, dtype&#61;np.float64
+        )
+    elif schedule_name &#61;&#61; &#34;cosine&#34;:
+        return betas_for_alpha_bar(
+            num_diffusion_timesteps,
+            lambda t: math.cos((t &#43; 0.008) / 1.008 * math.pi / 2) ** 2,
+        )
+    else:
+        raise NotImplementedError(f&#34;unknown beta schedule: {schedule_name}&#34;)
+
+
+def betas_for_alpha_bar(num_diffusion_timesteps, alpha_bar, max_beta&#61;0.999):
+    &#34;&#34;&#34;
+    Create a beta schedule that discretizes the given alpha_t_bar function,
+    which defines the cumulative product of (1-beta) over time from t &#61; [0,1].
+
+    :param num_diffusion_timesteps: the number of betas to produce.
+    :param alpha_bar: a lambda that takes an argument t from 0 to 1 and
+                      produces the cumulative product of (1-beta) up to that
+                      part of the diffusion process.
+    :param max_beta: the maximum beta to use; use values lower than 1 to
+                     prevent singularities.
+    &#34;&#34;&#34;
+    betas &#61; []
+    for i in range(num_diffusion_timesteps):
+        t1 &#61; i / num_diffusion_timesteps
+        t2 &#61; (i &#43; 1) / num_diffusion_timesteps
+        betas.append(min(1 - alpha_bar(t2) / alpha_bar(t1), max_beta))
+    return np.array(betas)</code></pre> 
+<p>当然可以beta表提前写入cache加速计算&#xff0c;可以但没有必要&#xff0c;看自己心情。</p> 
+<p>原论文中的betas要求是尽可能小&#xff0c;才能满足近似条件化简。所以需要保证beta在0~1的范围内。</p> 
+<pre><code class="hljs">        betas &#61; np.array(betas, dtype&#61;np.float64)
+        self.betas &#61; betas
+        assert len(betas.shape) &#61;&#61; 1, &#34;betas must be 1-D&#34;
+        assert (betas &gt; 0).all() and (betas &lt;&#61; 1).all()</code></pre> 
+<p>然后就是计算alpha的公式&#xff1a; alpha&#61;1-beta</p> 
+<pre><code class="hljs">        alphas &#61; 1.0 - betas
+        self.alphas_cumprod &#61; np.cumprod(alphas, axis&#61;0)
+        self.alphas_cumprod_prev &#61; np.append(1.0, self.alphas_cumprod[:-1])
+        self.alphas_cumprod_next &#61; np.append(self.alphas_cumprod[1:], 0.0)</code></pre> 
+<h4 id="2、时间步长 timesteps">2、时间步长 timesteps</h4> 
+<p>如何加入时间步长是网络设计的关键之一。</p> 
+<p>最早的diffusion models都是线性添加时间步长的&#xff0c;在2021年的《improved diffusion models》中&#xff0c;首次提出了用cos的方式添加时间步长。</p> 
+<p>随后研究者们发现&#xff0c;用cos&#43;sin的方法添加时间步长结果更好&#xff0c;因此这一方式就被作为一种默认的潜规则保存了下来&#xff1a;</p> 
+<pre><code>def timestep_embedding(timesteps, dim, max_period&#61;10000):
+    &#34;&#34;&#34;
+    Create sinusoidal timestep embeddings.
+    :param timesteps: a 1-D Tensor of N indices, one per batch element.
+                      These may be fractional.
+    :param dim: the dimension of the output.
+    :param max_period: controls the minimum frequency of the embeddings.
+    :return: an [N x dim] Tensor of positional embeddings.
+    &#34;&#34;&#34;
+    half &#61; dim // 2
+    freqs &#61; th.exp(
+        -math.log(max_period) * th.arange(start&#61;0, end&#61;half, dtype&#61;th.float32) / half
+    ).to(device&#61;timesteps.device)
+    args &#61; timesteps[:, None].float() * freqs[None]
+    embedding &#61; th.cat([th.cos(args), th.sin(args)], dim&#61;-1)
+    if dim % 2:
+        embedding &#61; th.cat([embedding, th.zeros_like(embedding[:, :1])], dim&#61;-1)
+    return embedding</code></pre> 
+<h3 id="必需要做的归一化">必需要做的归一化</h3> 
+<p>我曾经在<a class="link-info" href="https://xduwq.blog.csdn.net/article/details/127483371" rel="nofollow" title="《生成对抗网络GANs15个常用训练技巧》">《生成对抗网络GANs15个常用训练技巧》</a>一文中写过&#xff0c;GANs的训练过程中一定要做归一化&#xff0c;缺少归一化往往会导致训练失败&#xff01;</p> 
+<p>在diffusion models中亦是如此&#xff0c;所以我专门在这里强调一下&#xff0c;因为我有次训练在Unet中间的一层忘记做归一化&#xff0c;直接导致训练失败&#xff0c;这个bug我还排查了很久才发现……</p> 
+<pre><code>class GroupNorm32(nn.GroupNorm):
+    def forward(self, x):
+        return super().forward(x.float()).type(x.dtype)
+</code></pre> 
+<pre><code>def normalization(channels):
+    &#34;&#34;&#34;
+    Make a standard normalization layer.
+    :param channels: number of input channels.
+    :return: an nn.Module for normalization.
+    &#34;&#34;&#34;
+    return GroupNorm32(32, channels)</code></pre> 
+<p>比较好的方法是用GroupNorm&#xff0c;关于atch Norm、Group Norm&#xff0c;Layer norm、Instance Norm这几个之间的区别可以看这篇博客&#xff1a;</p> 
+<blockquote> 
+ <p><a href="https://blog.csdn.net/lovep1/article/details/114646667" title="详解常用的Batch Norm、Group Norm&#xff0c;Layer norm、Instance Norm_lovep1的博客-CSDN博客_groupnorm">详解常用的Batch Norm、Group Norm&#xff0c;Layer norm、Instance Norm_lovep1的博客-CSDN博客_groupnorm</a></p> 
+</blockquote> 
+<h3 id="损失函数设计">损失函数设计</h3> 
+<p>因为DDPM中论文中化简了损失函数&#xff0c;所以计算损失函数就变得非常简单&#xff0c;只需要一项KL损失即可&#xff0c;代码如下&#xff1a;</p> 
+<pre><code>def normal_kl(mean1, logvar1, mean2, logvar2):
+    &#34;&#34;&#34;
+    Compute the KL divergence between two gaussians.
+    Shapes are automatically broadcasted, so batches can be compared to
+    scalars, among other use cases.
+    &#34;&#34;&#34;
+    tensor &#61; None
+    for obj in (mean1, logvar1, mean2, logvar2):
+        if isinstance(obj, th.Tensor):
+            tensor &#61; obj
+            break
+    assert tensor is not None, &#34;at least one argument must be a Tensor&#34;
+
+    # Force variances to be Tensors. Broadcasting helps convert scalars to
+    # Tensors, but it does not work for th.exp().
+    logvar1, logvar2 &#61; [
+        x if isinstance(x, th.Tensor) else th.tensor(x).to(tensor)
+        for x in (logvar1, logvar2)
+    ]
+
+    return 0.5 * (
+        -1.0
+        &#43; logvar2
+        - logvar1
+        &#43; th.exp(logvar1 - logvar2)
+        &#43; ((mean1 - mean2) ** 2) * th.exp(-logvar2)
+    )
+</code></pre> 
+<h3 id="写在最后">写在最后</h3> 
+<p>大部分代码来自&#xff1a;<a href="https://github.com/openai/guided-diffusion/blob/main/guided_diffusion/losses.py" title="guided-diffusion/losses.py at main · openai/guided-diffusion · GitHub">guided-diffusion/losses.py at main · openai/guided-diffusion · GitHub</a>&#xff0c;这也是最广泛使用的diffusion models代码的一个版本。堪称经典值得好好学习&#xff01;</p> 
+<p>放一张diffusion models zero-shot的工作镇楼&#xff0c;后面和代码详细解读一下这个工作&#xff0c;非常有意思&#xff1a;</p> 
+<p><img alt="" height="1138" src="https://i-blog.csdnimg.cn/blog_migrate/e1e755db777bf2a3bbb6c7b5b0ca5159.png" width="801" /></p>
+                </div>
+        </div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    </article>
+  <script>
+    $(function() {
+      setTimeout(function () {
+        var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+        if (mathcodeList.length > 0) {
+          for (let i = 0; i < mathcodeList.length; i  ) {
+            if (mathcodeList[i].complete) {
+              if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              }
+            } else {
+              mathcodeList[i].onerror = function() {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              };
+            }
+          }
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+      }, 500)
+    });
+  </script>
+</div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-newWhite.png">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-roup.png">
+          <span class="def">立减 yen</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query='spm=1001.2101.3001.9621'>立即使用</a>
+  </div>
+</div>    <div class="more-toolbox-new" id="toolBarBox">
+      <div class="left-toolbox">
+        <div class="toolbox-left">
+            <div class="profile-box">
+              <a class="profile-href" target="_blank" href="https://xduwq.blog.csdn.net"><img class="profile-img" src="https://profile-avatar.csdnimg.cn/4ef02b7dcddf49f28d56bcfa2b957977_qq_41895747.jpg!1">
+                <span class="profile-name">
+                  沉迷单车的追风少年
+                </span>
+              </a>
+            </div>
+            <div class="profile-attend">
+                <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"已关注"}'>已关注</a>
+              <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </div>
+        </div>
+        <div class="toolbox-middle">
+          <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like">
+              <a class="tool-item-href">
+                <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+                <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2021Active.png" alt="">
+                <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2021Black.png" alt="">
+                <span id="spanCount" class="count ">
+                    3
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">点赞</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-unlike" id="is-unlike">
+              <a class="tool-item-href">
+                <img class="isactive" style="margin-right:0px;display:none" id="is-unlike-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUnHeart2021Active.png" alt="">
+                <img class="isdefault" style="margin-right:0px;display:block" id="is-unlike-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUnHeart2021Black.png" alt="">
+                <span id="unlikeCount" class="count "></span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">踩</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+              <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectBlack.png" alt="">
+                <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectActive.png" alt="">
+                <span class="count get-collection " data-num="5" id="get-collection">
+                    5
+                </span>
+              </a>
+              <div class="tool-hover-tip collect">
+                <div class="collect-operate-box">
+                  <span class="collect-text" id="is-collection">
+                    收藏
+                  </span>
+                </div>
+              </div>
+              <div class="tool-active-list">
+                <div class="text">
+                  觉得还不错?
+                  <span class="collect-text" id="tool-active-list-collection">
+                    一键收藏
+                  </span>
+                 <img id="tool-active-list-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/collectionCloseWhite.png" alt="">
+                </div>
+              </div>
+            </li>
+                <li class="tool-item tool-item-size tool-active tool-item-reward">
+                  <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_830","spm":"1001.2101.3001.4237","dest":"","ab":"new"}'>
+                    <img class="isdefault reward-bt" id="rewardBtNew" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newRewardBlack.png" alt="打赏">
+                    <span class="count"></span>
+                  </a>
+                  <div class="tool-hover-tip"><span class="text space">打赏</span></div>
+                </li>
+          <li class="tool-item tool-item-size tool-active tool-item-comment">
+            <div class="guide-rr-first">
+              <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward01.png" alt="">
+              <button class="btn-guide-known">知道了</button>
+            </div>
+              <a class="tool-item-href go-side-comment" data-report-click='{"spm":"1001.2101.3001.7009"}'>
+              <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newComment2021Black.png" alt="">
+              <span class="count">
+                  6
+              </span>
+            </a>
+            <div class="tool-hover-tip"><span class="text space">评论</span></div>
+          </li>
+          <li class="tool-item tool-item-bar">
+          </li>
+          <li class="tool-item tool-item-size tool-active tool-QRcode" data-type="article" id="tool-share">
+            <a class="tool-item-href" href="javascript:;" data-report-view='{"spm":"3001.4129","extra":{"type":"blogdetail"}}'>
+              <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newShareBlack.png" alt="">
+            </a>
+              <div class="QRcode" id="tool-QRcode">
+              <div class="share-bg-box">
+                <div class="share-content">
+                  <a id="copyPosterUrl" data-type="link" class="btn-share">复制链接</a>
+                </div>
+                <div class="share-content">
+                  <a class="btn-share" data-type="qq">分享到 QQ</a>
+                </div>
+                <div class="share-content">
+                  <a class="btn-share" data-type="weibo">分享到新浪微博</a>
+                </div>
+                <div class="share-code">
+                  <div class="share-code-box" id='shareCode'></div>
+                  <div class="share-code-text">
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/share/icon-wechat.png" alt="">扫一扫
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="toolbox-right"><script type="text/javascript" crossorigin src="https://g.csdnimg.cn/common/csdn-login-box/csdn-login-box.js"></script></html>

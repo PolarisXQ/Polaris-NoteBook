@@ -1,0 +1,564 @@
+﻿    <!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://2.lz787.com/assets/1.css">
+
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css"><div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">代码讲解——用diffusion models级联式超分辨重建</h1>
+            </div>
+            <div class="article-info-box">
+                    <div class="up-time">最新推荐文章于&nbsp;2022-12-31 20:51:39&nbsp;发布</div>
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                      <a class="follow-nickName " href="https://xduwq.blog.csdn.net" target="_blank" rel="noopener" title="沉迷单车的追风少年">沉迷单车的追风少年</a>
+                    <img class="article-time-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCurrentTime2.png" alt="">
+                          <span class="time blog-postTime" data-time="2022-09-27 10:20:17">最新推荐文章于&nbsp;2022-12-31 20:51:39&nbsp;发布</span>
+                   <div class="read-count-box">
+                      <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes2.png" alt="">
+                      <span class="read-count">阅读量2.5k</span>
+                      <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                          <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect2.png" alt="">
+                          <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt="">
+                          <span class="name">收藏</span>
+                          <span class="get-collection">
+                              6
+                          </span>
+                      </a>
+                      <div class="read-count-box is-like">
+                        <img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Active.png" alt="">
+                        <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Black.png" alt="">
+                        <span class="read-count" id="blog-digg-num">点赞数
+                            4
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a class="tag-link" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" rel="noopener">Diffusion Models与深度学习</a>
+                    </div>
+                </div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/qq_41895747/article/details/122813827" target="_blank">https://blog.csdn.net/qq_41895747/article/details/122813827</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="blogHuaweiyunAdvert"></div>
+        <div id="blogColumnPayAdvert">
+            <div class="column-group">
+                <div class="column-group-item column-group0 column-group-item-one">
+                    <div class="item-l">
+                        <a class="item-target" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" title="Diffusion Models与深度学习"
+                        data-report-view='{"spm":"1001.2101.3001.6332"}'
+                        data-report-click='{"spm":"1001.2101.3001.6332"}'>
+                            <img class="item-target" src="https://i-blog.csdnimg.cn/blog_column_migrate/371b377765ed35f13bb64d116f3a5de1.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="">
+                            <span class="title item-target">
+                                <span>
+                                <span class="tit">Diffusion Models与深度学习</span>
+                                    <span class="dec">专栏收录该内容</span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item-m">
+                        <span>265 篇文章</span>
+                        <span>2836 订阅</span>
+                        <span class="old-add-new-box">
+                            <span class="price">yen29.90</span>
+                            <span class="oldprice">yen99.00</span>
+                        </span>
+                    </div>
+                    <div class="item-r">
+                                    <a class="item-target article-column-subscribe">已订阅
+                                    </a>
+                                    <a class="item-target column-studyvip-discount column-studyvip-pass"
+                                    data-report-view='{"spm":"1001.2015.3001.8590"}'
+                                    data-report-click='{"spm":"1001.2015.3001.8590"}'>8折续费
+                                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning_the_member_box">
+            <a href="https://www.csdn.net/vip?utm_source=bkzl_cjhy_ckqy" target="_blank">
+                <div class="left"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconVIpCrown.png" alt=""><span>您已是超级会员，正在免费阅读会员专享内容</span></div>
+                <div class="right"><span>查看更多超级会员权益</span><img src="https://csdnimg.cn/release/blogv2/dist/components/img/vipIconArrowLeftWhite.png" alt=""></div>
+            </a>
+        </div>
+      <div class="ai-abstract-box">
+         <div class="ai-abstract">
+          <div class="abstract-content">
+            <img class="lock-img" src="https://img-home.csdnimg.cn/images/20240711042549.png" alt="">
+            本文详细介绍了如何利用级联式的Diffusion Models进行高保真图像生成，重点探讨了级联方法在超分辨率重建中的应用。通过代码讲解，展示了在低分辨率图像上使用简单插值与模型输入拼接的实现方式。实验部分提到，由于模型参数量巨大，运行效率成为挑战。此外，数据集准备和classifier的选择也对重建结果产生影响，尤其是在不同数据集上的均值分布差异可能导致色差问题。
+          </div>
+          <span>摘要由CSDN通过智能技术生成</span>
+        </div>
+      </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-704d5b9767.css">
+             
+                <div id="content_views" class="htmledit_views">
+                    <blockquote> 
+ <p><a href="https://xduwq.blog.csdn.net/article/details/122847060?spm&#61;1001.2014.3001.5502" rel="nofollow" title="Diffusion Models专栏文章汇总&#xff1a;入门与实战"><strong>Diffusion Models专栏文章汇总&#xff1a;入门与实战</strong></a> </p> 
+</blockquote> 
+<blockquote> 
+ <p><em><strong>前言&#xff1a;</strong></em>去年写过一篇文章<a class="link-info" href="https://blog.csdn.net/qq_41895747/article/details/123568815?ops_request_misc&#61;%7B%22request%5Fid%22%3A%22166141832416780366545798%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id&#61;166141832416780366545798&amp;biz_id&#61;0&amp;utm_medium&#61;distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-123568815-null-null.nonecase&amp;utm_term&#61;超分辨率&amp;spm&#61;1018.2226.3001.4450" title="《Diffusion Models在超分辨率领域的应用》">《Diffusion Models在超分辨率领域的应用》</a>&#xff0c;介绍diffusion models超分辨率重建方面工作。如今级联法已经成为diffusion models大模型的标配&#xff0c;主要原因有两点&#xff1a;1&#xff09;直接训练256*256设置512*512分辨率的模型&#xff0c;硬件能力无法胜任。2&#xff09;diffusion models超分模型已经能取得非常棒的效果&#xff0c;而且用相同的信息注入方式&#xff0c;完美贴合各种多模态任务。</p> 
+</blockquote> 
+<p id="main-toc"><strong>目录</strong></p> 
+<p id="论文原理-toc" style="margin-left:40px;"><a href="#论文原理" rel="nofollow">论文原理</a></p> 
+<p id="代码讲解-toc" style="margin-left:40px;"><a href="#代码讲解" rel="nofollow">代码讲解</a></p> 
+<p id="实验探究-toc" style="margin-left:40px;"><a href="#实验探究" rel="nofollow">实验探究</a></p> 
+<p id="数据集准备-toc" style="margin-left:80px;"><a href="#数据集准备" rel="nofollow">数据集准备</a></p> 
+<p id="探究classifier影响-toc" style="margin-left:80px;"><a href="#探究classifier影响" rel="nofollow">探究classifier影响</a></p> 
+<hr id="hr-toc" /> 
+<h3 id="论文原理">论文原理</h3> 
+<p>1、Cascaded Diffusion Models for High Fidelity Image Generation</p> 
+<p>2、Image super-resolution via iterative refinement</p> 
+<p>3、DD-NeRF: Double-Diffusion Neural Radiance Field as a Generalizable Implicit Body Representation</p> 
+<p>4、Image super-resolution via iterative refinement.</p> 
+<p>主要是第二篇文章的理论&#xff0c;得到了最广泛的应用&#xff0c;想进一步了解的同学可以看我之前的博客&#xff1a;</p> 
+<blockquote> 
+ <p><a href="https://blog.csdn.net/qq_41895747/article/details/123568815?ops_request_misc&#61;%7B%22request%5Fid%22%3A%22166150463416781432910891%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id&#61;166150463416781432910891&amp;biz_id&#61;0&amp;utm_medium&#61;distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-2-123568815-null-null.nonecase&amp;utm_term&#61;diffusion models&amp;spm&#61;1018.2226.3001.4450" title="Diffusion Models在超分辨率领域的应用_沉迷单车的追风少年的博客-CSDN博客">Diffusion Models在超分辨率领域的应用_沉迷单车的追风少年的博客-CSDN博客</a></p> 
+</blockquote> 
+<h3 id="代码讲解">代码讲解</h3> 
+<p>核心原理非常简单&#xff1a;<strong>对低分辨率图像的条件使用简单的插值将通道连接到模型输入。</strong></p> 
+<p>我们用biinear插值表示如下&#xff1a;</p> 
+<pre><code>upsampled &#61; F.interpolate(low_res, (new_height, new_width), mode&#61;&#34;bilinear&#34;)</code></pre> 
+<p>只需要继承UnetModel&#xff0c;对低分辨率的图像进行插值&#xff0c;然后和原先的input直接拼接在一起&#xff1a;</p> 
+<pre><code>class SuperResModel(UNetModel):
+    &#34;&#34;&#34;
+    A UNetModel that performs super-resolution.
+
+    Expects an extra kwarg &#96;low_res&#96; to condition on a low-resolution image.
+    &#34;&#34;&#34;
+
+    def __init__(self, image_size, in_channels, *args, **kwargs):
+        super().__init__(image_size, in_channels * 2, *args, **kwargs)
+
+    def forward(self, x, timesteps, low_res&#61;None, **kwargs):
+        _, _, new_height, new_width &#61; x.shape
+        upsampled &#61; F.interpolate(low_res, (new_height, new_width), mode&#61;&#34;bilinear&#34;)
+        x &#61; th.cat([x, upsampled], dim&#61;1)
+        return super().forward(x, timesteps, **kwargs)</code></pre> 
+<h3 id="实验探究">实验探究</h3> 
+<p>最大的感悟就是跑不动&#xff0c;text超分辨率的模型sample1张一晚上没跑完&#xff0c;醉了。因为参数量多达14亿&#xff0c;load模型就几个小时。</p> 
+<p>还是看看早期经典的工作&#xff1a;</p> 
+<pre><code>https://github.com/openai/guided-diffusion</code></pre> 
+<p>这个工作是在imagenet 1k上训练的模型&#xff0c;需要classifier。我们先拿64x64 -&gt; 256x256做实验吧。</p> 
+<ul><li>64x64 -&gt; 256x256 upsampler: <a href="https://openaipublic.blob.core.windows.net/diffusion/jul-2021/64_256_upsampler.pt" rel="nofollow" title="64_256_upsampler.pt">64_256_upsampler.pt</a></li><li>128x128 -&gt; 512x512 upsampler: <a href="https://openaipublic.blob.core.windows.net/diffusion/jul-2021/128_512_upsampler.pt" rel="nofollow" title="128_512_upsampler.pt">128_512_upsampler.pt</a></li></ul> 
+<p><img alt="" height="518" src="https://i-blog.csdnimg.cn/blog_migrate/2c40e7cc4afa4dfe7ad08f1dbaab74b5.png" width="1200" /></p> 
+<h4 id="数据集准备">数据集准备</h4> 
+<p>需要把原图准备成的npz格式&#xff0c;维度为(N, 64, 64, 3)&#xff0c;我使用的是fscoco数据集&#xff0c;可视化代码如下&#xff1a;</p> 
+<pre><code># draw origin before upsample pictures
+from PIL import Image
+import blobfile as bf
+import numpy as np
+
+path &#61; &#34;./npz/fscoco_64.npz&#34;
+with bf.BlobFile(path, &#34;rb&#34;) as f:
+    obj &#61; np.load(f)
+    image_arr &#61; obj[&#34;arr_0&#34;][:6]
+    for i in range(image_arr.shape[0]):
+        image &#61; image_arr[i]
+        image &#61; Image.fromarray(image)
+        image.save(f&#34;./origin_upsample/{i}.png&#34;)
+        print(f&#34;./origin_upsample/{i}.png is saved!&#34;)
+    # print(image_arr.shape)</code></pre> 
+<p>我用fscoco数据集&#xff0c;保存npz文件&#xff0c;代码也很简单&#xff1a;</p> 
+<pre><code># 准备fscoco image npz文件
+import os
+from PIL import Image
+import numpy as np
+from torchvision import transforms
+
+tranform_64 &#61; transforms.Compose([transforms.Resize(64), transforms.CenterCrop(64)])
+tranform_256 &#61; transforms.Compose([transforms.Resize(256), transforms.CenterCrop(256)])
+image_path &#61; &#34;/root/sketchtext/fscoco/images_train&#34;
+
+images_64_list &#61; []
+images_256_list &#61; []
+
+index &#61; 0
+for cname in os.listdir(image_path):
+    c_path &#61; os.path.join(image_path, cname)
+    for fname in os.listdir(c_path):
+        path &#61; os.path.join(c_path, fname)
+
+        image_64 &#61; np.array(tranform_64(Image.open(path).convert(&#39;RGB&#39;)))
+        image_256 &#61; np.array(tranform_256(Image.open(path).convert(&#39;RGB&#39;)))
+        images_64_list.append(image_64)
+        images_256_list.append(image_256)
+        # print(image_64.shape, image_256.shape)
+        index &#43;&#61; 1
+        print(f&#34;{index} add!&#34;)
+
+images_64 &#61; np.array(images_64_list)
+images_256 &#61; np.array(images_256_list)
+np.savez(&#39;./fscoco_64.npz&#39;, images_64)
+np.savez(&#39;./fscoco_256.npz&#39;, images_256)
+print(f&#34;--------------{images_64.shape}, {images_256.shape}----------------&#34;)</code></pre> 
+<h4 id="探究classifier影响">探究classifier影响</h4> 
+<p><img alt="" height="256" src="https://i-blog.csdnimg.cn/blog_migrate/866b22e74c516ab39cab01b8fc5c38b1.png" width="256" /><img alt="" height="256" src="https://i-blog.csdnimg.cn/blog_migrate/61afe65eabc7f348fda9848209d792d0.png" width="256" /><img alt="" height="256" src="https://i-blog.csdnimg.cn/blog_migrate/049de6dc03a6b596f662c29aca20c594.png" width="256" /><img alt="" height="256" src="https://i-blog.csdnimg.cn/blog_migrate/f947407c756a9583b1b4ba8bee65e243.png" width="256" /></p> 
+<p>以上是批量重建后的图像&#xff0c;可以看到细节信息并不是非常明确&#xff0c;但是这也是256*256分辨率的图片。</p> 
+<p>完整的inference代码如下&#xff0c;改动并不多&#xff1a;</p> 
+<pre><code>&#34;&#34;&#34;
+Generate a large batch of samples from a super resolution model, given a batch
+of samples from a regular model from image_sample.py.
+&#34;&#34;&#34;
+
+import argparse
+import os
+
+import blobfile as bf
+import numpy as np
+import torch as th
+import torch.distributed as dist
+from torchvision import utils
+
+from guided_diffusion import dist_util, logger
+from guided_diffusion.script_util import (
+    sr_model_and_diffusion_defaults,
+    sr_create_model_and_diffusion,
+    args_to_dict,
+    add_dict_to_argparser,
+)
+
+def main():
+    args &#61; create_argparser().parse_args()
+
+    dist_util.setup_dist()
+    logger.configure()
+
+    logger.log(&#34;creating model...&#34;)
+    model, diffusion &#61; sr_create_model_and_diffusion(
+        **args_to_dict(args, sr_model_and_diffusion_defaults().keys())
+    )
+    model.load_state_dict(
+        dist_util.load_state_dict(args.model_path, map_location&#61;&#34;cpu&#34;)
+    )
+    model.to(dist_util.dev())
+    if args.use_fp16:
+        model.convert_to_fp16()
+    # multi GPU
+    # model &#61; th.nn.DataParallel(model, device_ids&#61;[0,1]).cuda()
+    # n_gpus &#61; th.cuda.device_count()
+    # model &#61; DDP(model, device_ids&#61;[c for c in range(n_gpus)])
+    # model &#61; th.nn.DataParallel(model).cuda()
+    # model &#61; FSDP(model)
+    model.eval()
+
+    logger.log(&#34;loading data...&#34;)
+    data &#61; load_data_for_worker(args.base_samples, args.batch_size, args.class_cond)
+
+    logger.log(&#34;creating samples...&#34;)
+    all_images &#61; []
+    index &#61; 0
+    while len(all_images) * args.batch_size &lt; args.num_samples:
+        model_kwargs &#61; next(data)
+        model_kwargs &#61; {k: v.to(dist_util.dev()) for k, v in model_kwargs.items()}
+        sample &#61; diffusion.p_sample_loop(
+            model,
+            (args.batch_size, 3, args.large_size, args.large_size),
+            clip_denoised&#61;args.clip_denoised,
+            model_kwargs&#61;model_kwargs,
+        )
+        for i in range(sample.shape[0]):
+            utils.save_image(sample, f&#34;./results_upsample/up_{index}-{i}.png&#34;)
+        print(f&#34;{index} saved!&#34;)
+        sample &#61; ((sample &#43; 1) * 127.5).clamp(0, 255).to(th.uint8)
+        sample &#61; sample.permute(0, 2, 3, 1)
+        sample &#61; sample.contiguous()
+
+        all_samples &#61; [th.zeros_like(sample) for _ in range(dist.get_world_size())]
+        dist.all_gather(all_samples, sample)  # gather not supported with NCCL
+        for sample in all_samples:
+            all_images.append(sample.cpu().numpy())
+        logger.log(f&#34;created {len(all_images) * args.batch_size} samples&#34;)
+        index &#43;&#61; 1
+
+    arr &#61; np.concatenate(all_images, axis&#61;0)
+    arr &#61; arr[: args.num_samples]
+    if dist.get_rank() &#61;&#61; 0:
+        shape_str &#61; &#34;x&#34;.join([str(x) for x in arr.shape])
+        out_path &#61; os.path.join(logger.get_dir(), f&#34;samples_{shape_str}.npz&#34;)
+        logger.log(f&#34;saving to {out_path}&#34;)
+        np.savez(out_path, arr)
+
+    dist.barrier()
+    logger.log(&#34;sampling complete&#34;)
+
+
+def load_data_for_worker(base_samples, batch_size, class_cond):
+    with bf.BlobFile(base_samples, &#34;rb&#34;) as f:
+        obj &#61; np.load(f)
+        image_arr &#61; obj[&#34;arr_0&#34;][:6]
+        # print(image_arr.shape)
+        if class_cond:
+            # label_arr &#61; obj[&#34;arr_1&#34;]
+            label_arr &#61; np.random.randint(2, size&#61;image_arr.shape[0])[:6]
+    rank &#61; dist.get_rank()
+    num_ranks &#61; dist.get_world_size()
+    buffer &#61; []
+    label_buffer &#61; []
+    while True:
+        for i in range(rank, len(image_arr), num_ranks):
+            buffer.append(image_arr[i])
+            if class_cond:
+                label_buffer.append(label_arr[i])
+            if len(buffer) &#61;&#61; batch_size:
+                batch &#61; th.from_numpy(np.stack(buffer)).float()
+                batch &#61; batch / 127.5 - 1.0
+                batch &#61; batch.permute(0, 3, 1, 2)
+                res &#61; dict(low_res&#61;batch)
+                if class_cond:
+                    res[&#34;y&#34;] &#61; th.from_numpy(np.stack(label_buffer))
+                yield res
+                buffer, label_buffer &#61; [], []
+
+
+def create_argparser():
+    defaults &#61; dict(
+        clip_denoised&#61;True,
+        # num_samples&#61;10000,
+        num_samples&#61;5,
+        batch_size&#61;1,
+        # use_ddim&#61;False,
+        use_ddim&#61;True,
+        base_samples&#61;&#34;&#34;,
+        model_path&#61;&#34;&#34;,
+    )
+    defaults.update(sr_model_and_diffusion_defaults())
+    parser &#61; argparse.ArgumentParser()
+    add_dict_to_argparser(parser, defaults)
+    return parser
+
+
+if __name__ &#61;&#61; &#34;__main__&#34;:
+    main()
+</code></pre> 
+<p>我们随机指定了classifier label&#xff0c;出现的问题是&#xff1a;由于原模型在imagenet上训练&#xff0c;数据均值分布和fscoco不一样。因此会出现均值漂移&#xff0c;造成图片色差明显。</p> 
+<p>根据公式&#xff1a;</p> 
+<p class="img-center"><img alt="" height="80" src="https://i-blog.csdnimg.cn/blog_migrate/e5e900375109b21b7a3b20c872607ae1.png" width="473" /></p> 
+<p>均值分布会对最终的结果产生明显的影响。</p> 
+<p><img alt="" height="64" src="https://i-blog.csdnimg.cn/blog_migrate/03c31204390d36f75b09c70a82a1b16b.png" width="64" /></p> 
+<p> <img alt="" height="256" src="https://i-blog.csdnimg.cn/blog_migrate/ae24cffb744c87a1b79d4da78d36ed8b.png" width="256" /></p> 
+<p> <img alt="" height="64" src="https://i-blog.csdnimg.cn/blog_migrate/026e6094a2d34bb96b8802fc7ec0fba0.png" width="64" /></p> 
+<p> <img alt="" height="256" src="https://i-blog.csdnimg.cn/blog_migrate/52af5b8bdac5745de65359af5770f012.png" width="256" /></p> 
+<p></p>
+                </div>
+        </div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    </article>
+  <script>
+    $(function() {
+      setTimeout(function () {
+        var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+        if (mathcodeList.length > 0) {
+          for (let i = 0; i < mathcodeList.length; i  ) {
+            if (mathcodeList[i].complete) {
+              if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              }
+            } else {
+              mathcodeList[i].onerror = function() {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              };
+            }
+          }
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+      }, 500)
+    });
+  </script>
+</div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-newWhite.png">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-roup.png">
+          <span class="def">立减 yen</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query='spm=1001.2101.3001.9621'>立即使用</a>
+  </div>
+</div>    <div class="more-toolbox-new more-toolbar" id="toolBarBox">
+      <div class="left-toolbox">
+        <div class="toolbox-left">
+            <div class="profile-box">
+              <a class="profile-href" target="_blank" href="https://xduwq.blog.csdn.net"><img class="profile-img" src="https://profile-avatar.csdnimg.cn/4ef02b7dcddf49f28d56bcfa2b957977_qq_41895747.jpg!1">
+                <span class="profile-name">
+                  沉迷单车的追风少年
+                </span>
+              </a>
+            </div>
+            <div class="profile-attend">
+                <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"已关注"}'>已关注</a>
+              <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </div>
+        </div>
+        <div class="toolbox-middle">
+          <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like">
+              <a class="tool-item-href">
+                <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+                <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/like-active.png" alt="">
+                <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/like.png" alt="">
+                <span id="spanCount" class="count ">
+                    4
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">点赞</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-unlike" id="is-unlike">
+              <a class="tool-item-href">
+                <img class="isactive" style="margin-right:0px;display:none" id="is-unlike-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/unlike-active.png" alt="">
+                <img class="isdefault" style="margin-right:0px;display:block" id="is-unlike-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/unlike.png" alt="">
+                <span id="unlikeCount" class="count "></span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">踩</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+              <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/collect-active.png" alt="">
+                <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/collect.png" alt="">
+                <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectActive.png" alt="">
+                <span class="count get-collection " data-num="6" id="get-collection">
+                    6
+                </span>
+              </a>
+              <div class="tool-hover-tip collect">
+                <div class="collect-operate-box">
+                  <span class="collect-text" id="is-collection">
+                    收藏
+                  </span>
+                </div>
+              </div>
+              <div class="tool-active-list">
+                <div class="text">
+                  觉得还不错?
+                  <span class="collect-text" id="tool-active-list-collection">
+                    一键收藏
+                  </span>
+                 <img id="tool-active-list-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/collectionCloseWhite.png" alt="">
+                </div>
+              </div>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-item-comment">
+              <div class="guide-rr-first">
+                <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward01.png" alt="">
+                <button class="btn-guide-known">知道了</button>
+              </div>
+                <a class="tool-item-href go-side-comment" data-report-click='{"spm":"1001.2101.3001.7009"}'>
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/comment.png" alt="">
+                <span class="count">
+                    8
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">评论</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-QRcode" data-type="article" id="tool-share">
+              <a class="tool-item-href" href="javascript:;" data-report-view='{"spm":"3001.4129","extra":{"type":"blogdetail"}}'>
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/share.png" alt="">
+                <span class="count">分享</span>
+              </a>
+                <div class="QRcode" id="tool-QRcode">
+                <div class="share-bg-box">
+                  <div class="share-content">
+                    <a id="copyPosterUrl" data-type="link" class="btn-share">复制链接</a>
+                  </div>
+                  <div class="share-content">
+                    <a class="btn-share" data-type="qq">分享到 QQ</a>
+                  </div>
+                  <div class="share-content">
+                    <a class="btn-share" data-type="weibo">分享到新浪微博</a>
+                  </div>
+                  <div class="share-code">
+                    <div class="share-code-box" id='shareCode'></div>
+                    <div class="share-code-text">
+                      <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/share/icon-wechat.png" alt="">扫一扫
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+                <li class="tool-item tool-item-size tool-active tool-item-reward">
+                  <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_830","spm":"1001.2101.3001.4237","dest":"","ab":"new"}'>
+                    <img class="isdefault reward-bt" id="rewardBtNew" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/reward.png" alt="打赏">
+                    <span class="count">打赏</span>
+                  </a>
+                  <div class="tool-hover-tip"><span class="text space">打赏</span></div>
+                </li>
+          <li class="tool-item tool-item-size tool-active is-more" id="is-more">
+            <a class="tool-item-href">
+              <img class="isdefault" style="margin-right:0px;display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/more.png" alt="">
+              <span class="count"></span>
+            </a>
+            <div class="more-opt-box">
+              <div class="mini-box">
+                    <a class="tool-item-href" id="rewardBtNewHide" data-report-click='{"spm":"3001.4237","extra":"{\"type\":\"hide\"}"}'>
+                      <img class="isdefault reward-bt" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/reward.png" alt="打赏">
+                      <span class="count">打赏</span>
+                    </a>
+                <a class="tool-item-href" id="toolReportBtnHide">
+                  <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/report.png" alt="">
+                  <span class="count">举报</span>
+                </a>
+              </div>
+              <div class="normal-box">
+                <a class="tool-item-href" id="toolReportBtnHideNormal">
+                  <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/report.png" alt="">
+                  <span class="count">举报</span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="toolbox-right"><script type="text/javascript" crossorigin src="https://g.csdnimg.cn/common/csdn-login-box/csdn-login-box.js"></script></html>

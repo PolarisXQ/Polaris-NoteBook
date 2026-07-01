@@ -95,9 +95,9 @@ PCL中的ICP参数
 NDT algorithm(Normal Distributions Transform)
 ----------------------------------------------
 
-.. _NDT算法原理1:https://www.cnblogs.com/kuangxionghui/p/9686698.html
+.. _NDT算法原理1: https://www.cnblogs.com/kuangxionghui/p/9686698.html
 
-.. _NDT算法原理2:http://www.360doc.com/content/23/0310/11/1071372101_1071372101.shtml
+.. _NDT算法原理2: http://www.360doc.com/content/23/0310/11/1071372101_1071372101.shtml
 
 似乎就在ICP中间加上几步，一个是将点云数据分割成相等的格子，然后用Normal Distribution来描述每个格子的点云数据，然后再用ICP来进行配准。但计算的不是点云之间的距离，而是点云之间的概率分布。
 
@@ -167,4 +167,4 @@ References
 
 - 👉 `对点云匹配算法ICP、PL-ICP、NICP和IMLS-ICP的理解 <https://blog.csdn.net/shoufei403/article/details/102972842>`_
 - 👉 `激光SLAM之NDT算法 <https://blog.csdn.net/qq_40216084/article/details/107618766>`_
-- 👉 `ICP变种汇总http://www.360doc.com/content/23/0310/11/1071372101_1071372101.shtml`_
+- 👉 `ICP变种汇总 <http://www.360doc.com/content/23/0310/11/1071372101_1071372101.shtml>`_

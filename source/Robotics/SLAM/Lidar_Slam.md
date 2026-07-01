@@ -11,7 +11,9 @@ B.松耦合LIO
 C.紧耦合LIO
 将原始云点数据和IMU原始数据一起放在图优化或者滤波器中构建残差函数，并进行优化。
 
-## 从滤波器到SLAM：FAST-LIO，基于EKF的Lidar-IMU紧耦合SLAM
+## FAST-LIO 紧耦合 SLAM
+
+### 从滤波器到SLAM：FAST-LIO，基于EKF的Lidar-IMU紧耦合SLAM
 
 虽然网上有很多解读，但是读下来感觉最清楚的还是论文本身，所以还是建议直接阅读论文的Methodology部分。如果有不理解的，再去看解读。
 

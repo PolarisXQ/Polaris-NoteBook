@@ -201,3 +201,7 @@ exec "$@"
 source "/home/sentry_ws/intall/setup.bash"
 ros2 launch sentry_bringup bringup_all_in_one.launch.py
 ```
+
+# 连接方式
+
+打开VSCode，

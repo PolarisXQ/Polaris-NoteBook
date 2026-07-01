@@ -1,0 +1,485 @@
+﻿    <!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://2.lz787.com/assets/1.css">
+
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css"><div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">代码解读：使用Stable Diffusion完成相似图像生成任务</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                      <a class="follow-nickName " href="https://xduwq.blog.csdn.net" target="_blank" rel="noopener" title="沉迷单车的追风少年">沉迷单车的追风少年</a>
+                    <img class="article-time-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUpTime2.png" alt="">
+                    <span class="time">已于&nbsp;2024-04-14 23:05:47&nbsp;修改</span>
+                   <div class="read-count-box">
+                      <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes2.png" alt="">
+                      <span class="read-count">阅读量893</span>
+                      <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                          <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect2.png" alt="">
+                          <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt="">
+                          <span class="name">收藏</span>
+                          <span class="get-collection">
+                              10
+                          </span>
+                      </a>
+                      <div class="read-count-box is-like">
+                        <img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Active.png" alt="">
+                        <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Black.png" alt="">
+                        <span class="read-count" id="blog-digg-num">点赞数
+                            8
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a class="tag-link" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" rel="noopener">Diffusion Models与深度学习</a>
+                            <span class="label">文章标签：</span>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"stable diffusion","ab":"new","extra":"{\"searchword\":\"stable diffusion\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"stable diffusion","ab":"new","extra":"{\"searchword\":\"stable diffusion\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=stable diffusion&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">stable diffusion</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=扩散模型&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">扩散模型</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"图像生成","ab":"new","extra":"{\"searchword\":\"图像生成\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"图像生成","ab":"new","extra":"{\"searchword\":\"图像生成\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=图像生成&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">图像生成</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"AIGC","ab":"new","extra":"{\"searchword\":\"AIGC\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"AIGC","ab":"new","extra":"{\"searchword\":\"AIGC\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=AIGC&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">AIGC</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"计算机视觉","ab":"new","extra":"{\"searchword\":\"计算机视觉\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"计算机视觉","ab":"new","extra":"{\"searchword\":\"计算机视觉\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=计算机视觉&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">计算机视觉</a>
+                    </div>
+                </div>
+                <div class="up-time"><span>于&nbsp;2024-04-11 19:58:46&nbsp;首次发布</span></div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/qq_41895747/article/details/137649358" target="_blank">https://blog.csdn.net/qq_41895747/article/details/137649358</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="blogHuaweiyunAdvert"></div>
+        <div id="blogColumnPayAdvert">
+            <div class="column-group">
+                <div class="column-group-item column-group0 column-group-item-one">
+                    <div class="item-l">
+                        <a class="item-target" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" title="Diffusion Models与深度学习"
+                        data-report-view='{"spm":"1001.2101.3001.6332"}'
+                        data-report-click='{"spm":"1001.2101.3001.6332"}'>
+                            <img class="item-target" src="https://i-blog.csdnimg.cn/blog_column_migrate/371b377765ed35f13bb64d116f3a5de1.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="">
+                            <span class="title item-target">
+                                <span>
+                                <span class="tit">Diffusion Models与深度学习</span>
+                                    <span class="dec">专栏收录该内容</span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item-m">
+                        <span>265 篇文章</span>
+                        <span>2836 订阅</span>
+                        <span class="old-add-new-box">
+                            <span class="price">yen29.90</span>
+                            <span class="oldprice">yen99.00</span>
+                        </span>
+                    </div>
+                    <div class="item-r">
+                                    <a class="item-target article-column-subscribe">已订阅
+                                    </a>
+                                    <a class="item-target column-studyvip-discount column-studyvip-pass"
+                                    data-report-view='{"spm":"1001.2015.3001.8590"}'
+                                    data-report-click='{"spm":"1001.2015.3001.8590"}'>8折续费
+                                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning_the_member_box">
+            <a href="https://www.csdn.net/vip?utm_source=bkzl_cjhy_ckqy" target="_blank">
+                <div class="left"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconVIpCrown.png" alt=""><span>您已是超级会员，正在免费阅读会员专享内容</span></div>
+                <div class="right"><span>查看更多超级会员权益</span><img src="https://csdnimg.cn/release/blogv2/dist/components/img/vipIconArrowLeftWhite.png" alt=""></div>
+            </a>
+        </div>
+      <div class="ai-abstract-box">
+         <div class="ai-abstract">
+          <div class="abstract-content">
+            <img class="lock-img" src="https://img-home.csdnimg.cn/images/20240711042549.png" alt="">
+            本文深入探讨稳定扩散模型（Stable Diffusion）如何用于生成相似图像，涵盖模型原理、代码实战、环境配置、参数解析，通过实例展示如何在图像中加入噪声并利用分类器引导进行图像生成。
+          </div>
+          <span>摘要由CSDN通过智能技术生成</span>
+        </div>
+      </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-704d5b9767.css">
+             
+                <div id="content_views" class="htmledit_views">
+                    <blockquote> 
+ <p id="articleContentId"><strong><a class="link-info" href="https://xduwq.blog.csdn.net/article/details/127023461?spm&#61;1001.2014.3001.5502" rel="nofollow" title="Diffusion models代码解读&#xff1a;入门与实战">Diffusion models代码解读&#xff1a;入门与实战</a></strong></p> 
+</blockquote> 
+<blockquote> 
+ <p><em><strong>前言</strong></em>&#xff1a;作为内容生产重要的一部分&#xff0c;生成相似图像是一项有意义的工作&#xff0c;例如很多内容创作分享平台单纯依赖用户贡献的图片已经不够了&#xff0c;最省力的方法就是利用已有的图片生成相似的图片作为补充。这篇博客详细解读基于Stable Diffusion生成相似图片的原理和代码。</p> 
+</blockquote> 
+<p id="main-toc"><strong>目录</strong></p> 
+<p id="原理详解-toc" style="margin-left:40px;"><a href="#原理详解" rel="nofollow">原理详解</a></p> 
+<p id="代码实战-toc" style="margin-left:40px;"><a href="#代码实战" rel="nofollow">代码实战</a></p> 
+<p id="环境安装-toc" style="margin-left:80px;"><a href="#环境安装" rel="nofollow">环境安装</a></p> 
+<p id="代码运行-toc" style="margin-left:80px;"><a href="#代码运行" rel="nofollow">代码运行</a></p> 
+<p id="参数解读-toc" style="margin-left:80px;"><a href="#参数解读" rel="nofollow">参数解读</a></p> 
+<p id="快速体验-toc" style="margin-left:80px;"><a href="#快速体验" rel="nofollow">快速体验</a></p> 
+<p id="效果展示-toc" style="margin-left:80px;"><a href="#效果展示" rel="nofollow">效果展示</a></p> 
+<p id="代码解读-toc" style="margin-left:40px;"><a href="#代码解读" rel="nofollow">代码解读</a></p> 
+<p id="模型加载-toc" style="margin-left:80px;"><a href="#模型加载" rel="nofollow">模型加载</a></p> 
+<p id="图像加噪-toc" style="margin-left:80px;"><a href="#图像加噪" rel="nofollow">图像加噪</a></p> 
+<p id="分类器引导-toc" style="margin-left:80px;"><a href="#分类器引导" rel="nofollow">分类器引导</a></p> 
+<hr id="hr-toc" /> 
+<p></p> 
+<h3 id="原理详解">原理详解</h3> 
+<p><img alt="" height="510" src="https://i-blog.csdnimg.cn/blog_migrate/4ba8817d61127b6e1f9f41a0b0d9ff41.png" width="1200" /></p> 
+<p>首先读者需要熟悉Stable Diffusion的原理&#xff0c;这部分的可以参考我之前的博客&#xff1a;</p> 
+<blockquote> 
+ <p><a href="https://xduwq.blog.csdn.net/article/details/125472027" rel="nofollow" title="Diffusion models代码实战&#xff1a;从零搭建自己的扩散模型_diffusion model 自己-CSDN博客">Diffusion models代码实战&#xff1a;从零搭建自己的扩散模型_diffusion model 自己-CSDN博客</a></p> 
+</blockquote> 
+<p>在Stable Diffusion 中&#xff0c;latent域注入了text condition&#xff1b;在相似图像生成的任务中&#xff0c;把这个text condition替换成Image conditon&#xff1a;</p> 
+<p><img alt="" height="1200" src="https://i-blog.csdnimg.cn/blog_migrate/b61f81eae07548bdf6c9436f9f09e1ec.png" width="1200" /></p> 
+<p>推理的时候&#xff0c;会先在图片中加入噪声&#xff0c;这个添加噪声的程度会用noise_level参数控制。然后把这个加噪过的图片embedding输入到模型中。</p> 
+<p>原理就这么简单……</p> 
+<h3 id="代码实战">代码实战</h3> 
+<h4 id="环境安装">环境安装</h4> 
+<pre><code>pip install git&#43;https://github.com/lllcho/image_variation.git
+pip install modelscope</code></pre> 
+<h4 id="代码运行">代码运行</h4> 
+<pre><code>from modelscope.pipelines import pipeline
+from modelscope.outputs import OutputKeys
+from PIL import Image
+from image_variation import modelscope_warpper
+
+model &#61; &#39;damo/cv_image_variation_sd&#39;
+pipe &#61; pipeline(&#39;image_variation_task&#39;, model&#61;model, device&#61;&#39;gpu&#39;,auto_collate&#61;False,model_revision&#61;&#39;v1.1.0&#39;)
+out&#61;pipe(&#39;https://vision-poster.oss-cn-shanghai.aliyuncs.com/lllcho.lc/data/test_data/sunset-landscape-sky-colorful-preview.jpg&#39;)
+imgs&#61;out[OutputKeys.OUTPUT_IMGS]
+imgs[0].save(f&#39;result.jpg&#39;)</code></pre> 
+<h4 id="参数解读">参数解读</h4> 
+<p>pipeline调用时的可调参数&#xff1a;</p> 
+<pre><code>num_inference_steps: int&#xff0c; 默认为20
+guidance_scale&#xff1a;float, 默认5.0
+num_images_per_prompt&#xff1a;默认为1&#xff0c;每次调用返回几张图&#xff0c;可根据显存大小调整
+seed&#xff1a;默认为None,int类型&#xff0c;取值范围[0, 2^32-1]
+height&#xff1a;&#xff1a;默认值512
+width&#xff1a;默认值512
+noise_level: int&#xff0c;默认值为0&#xff0c; 取值范围[0,999],表示像输入图像中加入噪声&#xff0c;值越大噪声越多&#xff0c;生成结果与输入图像的相似度越低</code></pre> 
+<h4 id="快速体验">快速体验</h4> 
+<p><a href="https://modelscope.cn/studios/iic/image_variation/summary" rel="nofollow" title="https://modelscope.cn/studios/iic/image_variation/summary">https://modelscope.cn/studios/iic/image_variation/summary</a></p> 
+<h4 id="效果展示">效果展示</h4> 
+<p>输入的图像&#xff1a;</p> 
+<p><img alt="" height="1012" src="https://i-blog.csdnimg.cn/blog_migrate/2fdad305056b51cff06a9396c71213f4.png" width="1200" /></p> 
+<p>输出的图像</p> 
+<div> 
+ <p><img alt="" height="506" src="https://i-blog.csdnimg.cn/blog_migrate/ff11424f339935b59bf1671c190a22dc.png" width="507" /></p> 
+</div> 
+<div> 
+ <p><img alt="" height="503" src="https://i-blog.csdnimg.cn/blog_migrate/0c33a821c57c907d9b8c1e248ea6e490.png" width="506" /></p> 
+</div> 
+<h3 id="代码解读">代码解读</h3> 
+<blockquote> 
+ <p>代码地址&#xff1a;<a href="https://github.com/lllcho/image_variation/tree/main" title="GitHub - lllcho/image_variation: 相似图像生成">GitHub - lllcho/image_variation: 相似图像生成</a></p> 
+</blockquote> 
+<h4 id="模型加载">模型加载</h4> 
+<div> 
+ <pre><code>    scheduler &#61; UniPCMultistepScheduler(beta_start&#61;0.00085,beta_end&#61;0.012,beta_schedule&#61;&#39;scaled_linear&#39;)
+    vae &#61; AutoencoderKL.from_pretrained(ckpt_dir, subfolder&#61;&#39;vae&#39;)
+    vae.eval()
+    unet &#61; UNet2DConditionModel.from_pretrained(ckpt_dir, subfolder&#61;&#39;unet&#39;)
+    cond_model, preprocess_train, preprocess_val &#61; open_clip.create_model_and_transforms(&#39;ViT-H-14&#39;,
+        pretrained&#61;osp.join(ckpt_dir,&#39;CLIP-ViT-H-14-laion2B-s32B-b79K/open_clip_pytorch_model.bin&#39;)     </code></pre> 
+</div> 
+<h4 id="图像加噪">图像加噪</h4> 
+<p>对输入的图片embedding加噪后输入到模型中&#xff1a;</p> 
+<pre><code>    def noise_image_embeddings(self,image_embeds,noise_level,generator&#61;None):
+        noise &#61; randn_tensor(image_embeds.shape, generator&#61;generator, device&#61;image_embeds.device, dtype&#61;image_embeds.dtype)
+        noise_level &#61; torch.tensor([noise_level] * image_embeds.shape[0], device&#61;image_embeds.device)
+        
+        meanstd&#61;torch.from_numpy(np.load(self.norm_file)[None]).to(device&#61;image_embeds.device, dtype&#61;image_embeds.dtype)
+        mean,std&#61;torch.chunk(meanstd,2,dim&#61;1)
+        #scale
+        image_embeds-&#61;mean
+        image_embeds/&#61;std
+        
+        image_embeds&#61;self.scheduler.add_noise(image_embeds,noise,noise_level)
+        
+        #unscale
+        image_embeds*&#61;std
+        image_embeds&#43;&#61;mean
+    
+        return image_embeds</code></pre> 
+<h4 id="分类器引导">分类器引导</h4> 
+<p>和text condition 一样&#xff0c;这里也有“negative prompt”的分类器引导。</p> 
+<p>图像的“negative prompt”是用masked image替代的&#xff0c;maked image用了一个图片值全0的图片表示&#xff1a;</p> 
+<pre><code>        mask&#61;torch.ones(2,1,height//8,width//8,device&#61;self.device,dtype&#61;self.dtype)
+        masked_img&#61;torch.zeros(2,3,height,width,device&#61;self.device,dtype&#61;self.dtype)
+        masked_image_latents &#61; self.vae.encode(masked_img).latent_dist.sample()
+        masked_image_latents &#61; masked_image_latents * self.vae.config.scaling_factor
+        
+        mask&#61;mask.repeat(num_images_per_prompt,1,1,1)
+        masked_image_latents&#61;masked_image_latents.repeat(num_images_per_prompt,1,1,1)</code></pre> 
+<p>完整的推理代码如下&#xff1a;</p> 
+<pre><code>   &#64;torch.no_grad()
+    def __call__(self,
+                 image,
+                 num_inference_steps&#61;20,
+                 guidance_scale&#61;5.0,
+                 num_images_per_prompt&#61;1,
+                 seed&#61;None,
+                 height&#61;512,
+                 width&#61;512,
+                 noise_level: int&#61;0,
+                 ):
+        if seed is None:
+            seed&#61;random.randint(0,2**32-1)
+        set_seed(seed)
+        self.scheduler.set_timesteps(num_inference_steps, device&#61;self.device)
+        timesteps &#61; self.scheduler.timesteps
+        
+        mask&#61;torch.ones(2,1,height//8,width//8,device&#61;self.device,dtype&#61;self.dtype)
+        masked_img&#61;torch.zeros(2,3,height,width,device&#61;self.device,dtype&#61;self.dtype)
+        masked_image_latents &#61; self.vae.encode(masked_img).latent_dist.sample()
+        masked_image_latents &#61; masked_image_latents * self.vae.config.scaling_factor
+        
+        mask&#61;mask.repeat(num_images_per_prompt,1,1,1)
+        masked_image_latents&#61;masked_image_latents.repeat(num_images_per_prompt,1,1,1)
+         
+        latents &#61; randn_tensor((num_images_per_prompt,4,height//8,width//8),device&#61;self.device, generator&#61;None,dtype&#61;self.dtype)
+        latents &#61; latents * self.scheduler.init_noise_sigma
+
+        cond_image&#61;image
+        clip_img&#61;self.preprocess(read_img(cond_image).convert(&#39;RGB&#39;)).unsqueeze(0)
+        cond_embedding&#61;self.cond_model.encode_image(clip_img.to(self.device,self.dtype)).to(self.dtype)
+        cond_embedding&#61;cond_embedding.repeat(num_images_per_prompt,1,1)
+        if noise_level&gt;0:
+            cond_embedding&#61;self.noise_image_embeddings(cond_embedding,noise_level)
+        cond_embedding&#61;torch.cat([cond_embedding*0,cond_embedding])
+        
+        for i, t in enumerate(timesteps):
+            latent_model_input &#61; torch.cat([latents] * 2)
+            latent_model_input &#61; self.scheduler.scale_model_input(latent_model_input, t)
+            latent_model_input &#61; torch.cat([latent_model_input, mask, masked_image_latents], dim&#61;1)
+            
+            noise_pred &#61; self.unet(latent_model_input,t,encoder_hidden_states&#61;cond_embedding,cross_attention_kwargs&#61;{}).sample
+            
+            noise_pred_uncond, noise_pred_text &#61; noise_pred.chunk(2)
+            noise_pred &#61; noise_pred_uncond &#43; guidance_scale * (noise_pred_text - noise_pred_uncond)
+            latents &#61; self.scheduler.step(noise_pred, t, latents, **{}).prev_sample
+        latents &#61; 1 / self.vae.config.scaling_factor * latents
+        image &#61; self.vae.decode(latents.to(self.dtype)).sample
+        image &#61; (image / 2 &#43; 0.5).clamp(0, 1)
+        image &#61; image.cpu().permute(0, 2, 3, 1).float().numpy()
+        image &#61; (image * 255).round().astype(&#34;uint8&#34;)
+        imgs&#61;[Image.fromarray(img) for img in image]
+        return imgs</code></pre>
+                </div>
+        </div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    </article>
+  <script>
+    $(function() {
+      setTimeout(function () {
+        var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+        if (mathcodeList.length > 0) {
+          for (let i = 0; i < mathcodeList.length; i  ) {
+            if (mathcodeList[i].complete) {
+              if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              }
+            } else {
+              mathcodeList[i].onerror = function() {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              };
+            }
+          }
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+      }, 500)
+    });
+  </script>
+</div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-newWhite.png">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-roup.png">
+          <span class="def">立减 yen</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query='spm=1001.2101.3001.9621'>立即使用</a>
+  </div>
+</div>    <div class="more-toolbox-new more-toolbar" id="toolBarBox">
+      <div class="left-toolbox">
+        <div class="toolbox-left">
+            <div class="profile-box">
+              <a class="profile-href" target="_blank" href="https://xduwq.blog.csdn.net"><img class="profile-img" src="https://profile-avatar.csdnimg.cn/4ef02b7dcddf49f28d56bcfa2b957977_qq_41895747.jpg!1">
+                <span class="profile-name">
+                  沉迷单车的追风少年
+                </span>
+              </a>
+            </div>
+            <div class="profile-attend">
+                <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"已关注"}'>已关注</a>
+              <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </div>
+        </div>
+        <div class="toolbox-middle">
+          <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like">
+              <a class="tool-item-href">
+                <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+                <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/like-active.png" alt="">
+                <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/like.png" alt="">
+                <span id="spanCount" class="count ">
+                    8
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">点赞</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-unlike" id="is-unlike">
+              <a class="tool-item-href">
+                <img class="isactive" style="margin-right:0px;display:none" id="is-unlike-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/unlike-active.png" alt="">
+                <img class="isdefault" style="margin-right:0px;display:block" id="is-unlike-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/unlike.png" alt="">
+                <span id="unlikeCount" class="count "></span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">踩</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+              <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/collect-active.png" alt="">
+                <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/collect.png" alt="">
+                <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectActive.png" alt="">
+                <span class="count get-collection " data-num="10" id="get-collection">
+                    10
+                </span>
+              </a>
+              <div class="tool-hover-tip collect">
+                <div class="collect-operate-box">
+                  <span class="collect-text" id="is-collection">
+                    收藏
+                  </span>
+                </div>
+              </div>
+              <div class="tool-active-list">
+                <div class="text">
+                  觉得还不错?
+                  <span class="collect-text" id="tool-active-list-collection">
+                    一键收藏
+                  </span>
+                 <img id="tool-active-list-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/collectionCloseWhite.png" alt="">
+                </div>
+              </div>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-item-comment">
+              <div class="guide-rr-first">
+                <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward01.png" alt="">
+                <button class="btn-guide-known">知道了</button>
+              </div>
+                <a class="tool-item-href go-side-comment" data-report-click='{"spm":"1001.2101.3001.7009"}'>
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/comment.png" alt="">
+                <span class="count">
+                    6
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">评论</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-QRcode" data-type="article" id="tool-share">
+              <a class="tool-item-href" href="javascript:;" data-report-view='{"spm":"3001.4129","extra":{"type":"blogdetail"}}'>
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/share.png" alt="">
+                <span class="count">分享</span>
+              </a>
+                <div class="QRcode" id="tool-QRcode">
+                <div class="share-bg-box">
+                  <div class="share-content">
+                    <a id="copyPosterUrl" data-type="link" class="btn-share">复制链接</a>
+                  </div>
+                  <div class="share-content">
+                    <a class="btn-share" data-type="qq">分享到 QQ</a>
+                  </div>
+                  <div class="share-content">
+                    <a class="btn-share" data-type="weibo">分享到新浪微博</a>
+                  </div>
+                  <div class="share-code">
+                    <div class="share-code-box" id='shareCode'></div>
+                    <div class="share-code-text">
+                      <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/share/icon-wechat.png" alt="">扫一扫
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+                <li class="tool-item tool-item-size tool-active tool-item-reward">
+                  <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_830","spm":"1001.2101.3001.4237","dest":"","ab":"new"}'>
+                    <img class="isdefault reward-bt" id="rewardBtNew" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/reward.png" alt="打赏">
+                    <span class="count">打赏</span>
+                  </a>
+                  <div class="tool-hover-tip"><span class="text space">打赏</span></div>
+                </li>
+          <li class="tool-item tool-item-size tool-active is-more" id="is-more">
+            <a class="tool-item-href">
+              <img class="isdefault" style="margin-right:0px;display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/more.png" alt="">
+              <span class="count"></span>
+            </a>
+            <div class="more-opt-box">
+              <div class="mini-box">
+                    <a class="tool-item-href" id="rewardBtNewHide" data-report-click='{"spm":"3001.4237","extra":"{\"type\":\"hide\"}"}'>
+                      <img class="isdefault reward-bt" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/reward.png" alt="打赏">
+                      <span class="count">打赏</span>
+                    </a>
+                <a class="tool-item-href" id="toolReportBtnHide">
+                  <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/report.png" alt="">
+                  <span class="count">举报</span>
+                </a>
+              </div>
+              <div class="normal-box">
+                <a class="tool-item-href" id="toolReportBtnHideNormal">
+                  <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/report.png" alt="">
+                  <span class="count">举报</span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="toolbox-right"><script type="text/javascript" crossorigin src="https://g.csdnimg.cn/common/csdn-login-box/csdn-login-box.js"></script></html>

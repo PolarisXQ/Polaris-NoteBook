@@ -64,6 +64,8 @@ docker run -dit --network host \
 	-v /dev:/dev [image:tag]
 ```
 
+docker run -dit --network host -e DISPLAY=$DISPLAY -e QT_X11_NO_MITSHM=1 -e NO_AT_BRIDGE=1 -e LIBGL_ALWAYS_SOFTWARE=1 -v /tmp/.X11-unix:/tmp/.X11-unix 	-v /dev:/dev [image:tag]
+
 ```shell
 docker run -dit --network net-sim --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all -e DISPLAY=host.docker.internal:0.0 client:latest
 ```
@@ -97,7 +99,7 @@ docker tag local-image:tagname username/repo:tagname
 docker push username/repo:tagname
 ```
 
-# 更换国内DOCKER镜像源
+## 更换国内DOCKER镜像源
 
 ```bash
 sudo mkdir -p /etc/docker
@@ -111,3 +113,6 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
+
+## FISHROS 镜像
+https://hub.docker.com/r/fishros2/ros

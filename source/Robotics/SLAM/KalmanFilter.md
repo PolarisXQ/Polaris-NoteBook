@@ -124,7 +124,7 @@ PoseGraph优化: 先通过一路递推方式算出的各点位姿，通过数学
 
 ## [从滤波器到SLAM]
 
-[从滤波器到SLAM：FAST-LIO，基于EKF的Lidar-IMU SLAM](./Lidar_Slam.md#从滤波器到slamfast-lio基于ekf的lidar-imu紧耦合slam)
+[从滤波器到SLAM：FAST-LIO，基于EKF的Lidar-IMU SLAM](./Lidar_Slam.md#fast-lio-紧耦合-slam)
 
 
 

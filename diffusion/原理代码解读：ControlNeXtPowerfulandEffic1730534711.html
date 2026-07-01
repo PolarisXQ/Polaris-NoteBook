@@ -1,0 +1,778 @@
+﻿    <!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://2.lz787.com/assets/1.css">
+
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css"><div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">原理&amp;代码解读：ControlNeXt: Powerful and Efficient Control for Image and Video Generation</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                      <a class="follow-nickName " href="https://xduwq.blog.csdn.net" target="_blank" rel="noopener" title="沉迷单车的追风少年">沉迷单车的追风少年</a>
+                    <img class="article-time-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUpTime2.png" alt="">
+                    <span class="time">已于&nbsp;2024-10-16 19:05:02&nbsp;修改</span>
+                   <div class="read-count-box">
+                      <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes2.png" alt="">
+                      <span class="read-count">阅读量652</span>
+                      <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                          <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect2.png" alt="">
+                          <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt="">
+                          <span class="name">收藏</span>
+                          <span class="get-collection">
+                              13
+                          </span>
+                      </a>
+                      <div class="read-count-box is-like">
+                        <img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Active.png" alt="">
+                        <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Black.png" alt="">
+                        <span class="read-count" id="blog-digg-num">点赞数
+                            21
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a class="tag-link" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" rel="noopener">Diffusion Models与深度学习</a>
+                            <span class="label">文章标签：</span>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"人工智能","ab":"new","extra":"{\"searchword\":\"人工智能\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"人工智能","ab":"new","extra":"{\"searchword\":\"人工智能\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=人工智能&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">人工智能</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"深度学习","ab":"new","extra":"{\"searchword\":\"深度学习\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"深度学习","ab":"new","extra":"{\"searchword\":\"深度学习\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=深度学习&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">深度学习</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"扩散模型","ab":"new","extra":"{\"searchword\":\"扩散模型\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=扩散模型&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">扩散模型</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"AIGC","ab":"new","extra":"{\"searchword\":\"AIGC\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"AIGC","ab":"new","extra":"{\"searchword\":\"AIGC\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=AIGC&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">AIGC</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"机器学习","ab":"new","extra":"{\"searchword\":\"机器学习\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"机器学习","ab":"new","extra":"{\"searchword\":\"机器学习\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=机器学习&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">机器学习</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"音视频","ab":"new","extra":"{\"searchword\":\"音视频\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"音视频","ab":"new","extra":"{\"searchword\":\"音视频\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=音视频&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">音视频</a>
+                    </div>
+                </div>
+                <div class="up-time"><span>于&nbsp;2024-10-16 07:45:00&nbsp;首次发布</span></div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/qq_41895747/article/details/142764616" target="_blank">https://blog.csdn.net/qq_41895747/article/details/142764616</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="blogHuaweiyunAdvert"></div>
+        <div id="blogColumnPayAdvert">
+            <div class="column-group">
+                <div class="column-group-item column-group0 column-group-item-one">
+                    <div class="item-l">
+                        <a class="item-target" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" title="Diffusion Models与深度学习"
+                        data-report-view='{"spm":"1001.2101.3001.6332"}'
+                        data-report-click='{"spm":"1001.2101.3001.6332"}'>
+                            <img class="item-target" src="https://img-blog.csdnimg.cn/20190927151026427.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="">
+                            <span class="title item-target">
+                                <span>
+                                <span class="tit">Diffusion Models与深度学习</span>
+                                    <span class="dec">专栏收录该内容</span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item-m">
+                        <span>235 篇文章</span>
+                        <span>2747 订阅</span>
+                        <span class="old-add-new-box">
+                            <span class="price">yen29.90</span>
+                            <span class="oldprice">yen99.00</span>
+                        </span>
+                    </div>
+                    <div class="item-r">
+                                    <a class="item-target article-column-subscribe">已订阅
+                                    </a>
+                                    <a class="item-target column-studyvip-discount column-studyvip-pass"
+                                    data-report-view='{"spm":"1001.2015.3001.8590"}'
+                                    data-report-click='{"spm":"1001.2015.3001.8590"}'>8折续费
+                                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning_the_member_box">
+            <a href="https://www.csdn.net/vip?utm_source=bkzl_cjhy_ckqy" target="_blank">
+                <div class="left"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconVIpCrown.png" alt=""><span>您已是超级会员，正在免费阅读会员专享内容</span></div>
+                <div class="right"><span>查看更多超级会员权益</span><img src="https://csdnimg.cn/release/blogv2/dist/components/img/vipIconArrowLeftWhite.png" alt=""></div>
+            </a>
+        </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-704d5b9767.css">
+             
+                <div id="content_views" class="htmledit_views">
+                    <blockquote> 
+ <p><a href="https://xduwq.blog.csdn.net/article/details/122847060" rel="nofollow" title="Diffusion Models专栏文章汇总&#xff1a;入门与实战">Diffusion Models专栏文章汇总&#xff1a;入门与实战</a></p> 
+</blockquote> 
+<blockquote> 
+ <p><em><strong>前言</strong></em>&#xff1a;ControlNet可以说是Diffusion Models条件生成领域最成功的作品之一&#xff0c;但是ControlNet的额外开销实在是太大了&#xff0c;可训练参数相当于所有预训练参数的近一半。除此之外&#xff0c;ControlNet采用零初始化会导致收敛速度慢&#xff0c;会阻止模块从损失函数接收准确的梯度。ControlNeXt完美解决了ControlNet存在的问题&#xff0c;很可能是下一代条件生成最成功的作品&#xff01;这篇博客将从代码和原理的角度&#xff0c;全面解析ControlNeXt。</p> 
+</blockquote> 
+<p id="main-toc"><strong>目录</strong></p> 
+<p id="原理讲解-toc" style="margin-left:0px;"><a href="#原理讲解" rel="nofollow">原理讲解</a></p> 
+<p id="ControlNet的问题-toc" style="margin-left:40px;"><a href="#ControlNet的问题" rel="nofollow">ControlNet的问题</a></p> 
+<p id="架构简化-toc" style="margin-left:40px;"><a href="#架构简化" rel="nofollow">架构简化</a></p> 
+<p id="部分参数可训练-toc" style="margin-left:40px;"><a href="#部分参数可训练" rel="nofollow">部分参数可训练</a></p> 
+<p id="插入控制信号-toc" style="margin-left:40px;"><a href="#插入控制信号" rel="nofollow">插入控制信号</a></p> 
+<p id="为什么ControlNet训练容易崩溃？-toc" style="margin-left:40px;"><a href="#为什么ControlNet训练容易崩溃？" rel="nofollow">为什么ControlNet训练容易崩溃&#xff1f;</a></p> 
+<p id="交叉归一化(Cross Normalization)-toc" style="margin-left:40px;"><a href="#交叉归一化(Cross Normalization)" rel="nofollow">交叉归一化(Cross Normalization)</a></p> 
+<p id="为什么ControlNet会出现突然收敛问题？-toc" style="margin-left:40px;"><a href="#为什么ControlNet会出现突然收敛问题？" rel="nofollow">为什么ControlNet会出现突然收敛问题&#xff1f;</a></p> 
+<p id="代码讲解-toc" style="margin-left:0px;"><a href="#代码讲解" rel="nofollow">代码讲解</a></p> 
+<p id="Dataloader-toc" style="margin-left:40px;"><a href="#Dataloader" rel="nofollow">Dataloader</a></p> 
+<p id="核心代码：ControlNeXt模型-toc" style="margin-left:40px;"><a href="#核心代码：ControlNeXt模型" rel="nofollow">核心代码&#xff1a;ControlNeXt模型</a></p> 
+<p id="核心代码：交叉归一化-toc" style="margin-left:40px;"><a href="#核心代码：交叉归一化" rel="nofollow">核心代码&#xff1a;交叉归一化</a></p> 
+<hr id="hr-toc" /> 
+<p></p> 
+<h2 id="原理讲解">原理讲解</h2> 
+<h3 id="ControlNet的问题">ControlNet的问题</h3> 
+<p>ControlNet额外的分支将延迟增加最多 50%&#xff0c;这对于视频生成尤其重要&#xff0c;因为每一帧都需要处理。此外&#xff0c;可训练参数很大且固定&#xff0c;相当于所有预训练参数的近一半。除了冗余之外&#xff0c;仅优化 ControlNet 还限制了整个模型的上限&#xff0c;因为它不会影响预训练的生成模型。零初始化会导致收敛速度慢&#xff0c;增加训练挑战&#xff0c;因为它会阻止模块从损失函数接收准确的梯度。这导致这种现象被称为“突然收敛”&#xff0c;其中模型不会逐渐学习条件&#xff0c;而是在扩展训练阶段之后突然开始跟随它们。</p> 
+<h3 id="架构简化">架构简化</h3> 
+<p><img alt="" height="314" src="https://i-blog.csdnimg.cn/direct/d280c863d1d241d8b2863b3fbd43711c.png" width="1140" /></p> 
+<p>首先通过删除额外的分支来简化ControlNet的原始设计。然后我们训练预训练模型的选定子集&#xff0c;从而产生更有效和高效的架构。具体来说&#xff0c;我们去掉了控制分支&#xff0c;并用仅由多个ResNet块组成的轻量级卷积模块替换它。该模块明显小于预训练模型&#xff0c;旨在从条件控制中提取引导信息并将其与去噪特征对齐。由于其小尺寸&#xff0c;更多地依赖生成模型本身来处理控制信号。</p> 
+<h3 id="部分参数可训练">部分参数可训练</h3> 
+<p>在训练期间&#xff0c;我们冻结了大部分预训练的模块&#xff0c;并从预训练的生成模型中选择性地优化可训练参数的一小部分。这种方法最大限度地减少了训练过程可能导致的遗忘风险。</p> 
+<h3 id="插入控制信号">插入控制信号</h3> 
+<p>对于大多数可控的生成任务&#xff0c;控件通常具有简单的形式或与去噪特征保持高度的一致性&#xff0c;从而消除了在多个阶段插入控件的需要。我们通过将控制直接添加到通过交叉归一化进行归一化后去噪特征中&#xff0c;将控制集成到单个选定中间块的去噪分支中。它可以用作由轻量级卷积模块和可学习参数构建的即插即用模块&#xff0c;该模块是预训练模型的子集。</p> 
+<h3 id="为什么ControlNet训练容易崩溃？">为什么ControlNet训练容易崩溃&#xff1f;</h3> 
+<p>训练崩溃的关键原因是引入的模块和预训练模型之间的数据分布不一致和不兼容。在对大规模数据进行训练后&#xff0c;预训练的生成模型通常表现出稳定的特征和数据分布&#xff0c;其特征是均值和标准差一致。</p> 
+<h3 id="交叉归一化(Cross Normalization)">交叉归一化(Cross Normalization)</h3> 
+<p>作者受到了BN层和LN层的启发&#xff0c;提出交叉归一化对齐处理后的条件控制和主分支特征&#xff0c;稳定模型的训练。用从主分支 xm 计算的均值和方差来归一化控制特征 xc&#xff0c;确保它们的对齐。首先&#xff0c;计算去噪特征的均值和方差&#xff0c;然后使用去噪特征的均值和方差对控制特征进行归一化。</p> 
+<p><img alt="" height="171" src="https://i-blog.csdnimg.cn/direct/4952ce530a5746d68f774bf530beb7c2.png" width="541" /></p> 
+<p><img alt="" height="77" src="https://i-blog.csdnimg.cn/direct/7d2830828e2a4106b608da787023fd35.png" width="517" /></p> 
+<h3 id="为什么ControlNet会出现突然收敛问题？">为什么ControlNet会出现突然收敛问题&#xff1f;</h3> 
+<p>&#xff08;1&#xff09;零卷积抑制了损失函数的影响&#xff0c;导致模型难以有效开始学习的长期预热阶段。</p> 
+<p>&#xff08;2&#xff09; 预训练的生成模型完全冻结&#xff0c;ControlNet 函数作为不能立即影响模型的适配器。</p> 
+<h2 id="代码讲解">代码讲解</h2> 
+<h3 id="Dataloader">Dataloader</h3> 
+<p>这里主要是读取Pose的信息&#xff0c;处理的方法和video保持一模一样&#xff1a;</p> 
+<pre><code>class UBCFashion(Dataset):
+    def __init__(
+            self,
+            meta_info_path, 
+            width&#61;512,
+            height&#61;768,
+            sample_n_frames&#61;14,
+            interval_frame&#61;1,
+            stage&#61;2,
+            ref_aug&#61;True,
+            ref_aug_ratio&#61;0.9,
+            valid_index&#61;False
+        ):
+        zero_rank_print(f&#34;loading meta info from {meta_info_path} ...&#34;)
+        with open(meta_info_path, &#39;r&#39;) as f:
+            self.meta_info &#61; json.load(f)
+
+        random.shuffle(self.meta_info)    
+        self.length           &#61; len(self.meta_info)
+        self.sample_n_frames  &#61; sample_n_frames
+        self.width            &#61; width
+        self.height           &#61; height
+        self.interval_frame   &#61; interval_frame
+        self.stage            &#61; stage
+        self.ref_aug          &#61; ref_aug
+        self.ref_aug_ratio    &#61; ref_aug_ratio
+        self.valid_index      &#61; valid_index
+        sample_size           &#61; (height, width)
+        
+        self.pixel_transforms &#61; transforms.Compose([
+            transforms.Resize(sample_size, antialias&#61;True),
+            transforms.Normalize(mean&#61;[0.5, 0.5, 0.5], std&#61;[0.5, 0.5, 0.5], inplace&#61;True),
+        ])
+
+        def random_transpose(tensor: torch.tensor):
+            if random.random() &gt; 0.5:
+                if len(tensor.shape) &#61;&#61; 3 and tensor.shape[0] &gt; 1:
+                    if random.random() &gt; 0.5:
+                        return tensor
+                    else:
+                        tensor[[0,-1],...] &#61; tensor[[-1,0],...]
+                        return tensor
+                elif len(tensor.shape) &#61;&#61; 4 and tensor.shape[1] &gt; 1:
+                    if random.random() &gt; 0.5:
+                        return tensor
+                    else:
+                        tensor[:, [0,-1],...] &#61; tensor[:, [-1,0],...]
+                        return tensor
+                else:
+                    return tensor
+            else:
+                return tensor
+        self.pose_transforms &#61; transforms.Compose([
+            transforms.Resize(sample_size, antialias&#61;True),
+        ])
+
+    def get_batch(self, idx):
+        while True:
+            video_path &#61; self.meta_info[idx][&#39;video_path&#39;]
+            guide_path &#61; self.meta_info[idx][&#39;guide_path&#39;]
+            try:
+                vr &#61; VideoReader(video_path)
+                length &#61; len(vr)
+
+                # Read videos ...
+                init_interval_frame &#61; self.interval_frame
+                if init_interval_frame &lt;&#61; 0:
+                    init_interval_frame &#61; random.randint(2, 7)
+
+
+                interval_frame &#61; min(init_interval_frame, int(length // self.sample_n_frames))
+                segment_length &#61; interval_frame * self.sample_n_frames
+                assert length &gt;&#61; segment_length, &#34;Too short video...&#34;
+                bg_frame_id &#61; random.randint(0, length - segment_length)
+                frame_ids &#61; list(range(bg_frame_id, bg_frame_id &#43; segment_length, interval_frame))
+
+                # select using score
+                # if &#39;meta_info&#39; in self.meta_info[idx].keys():
+                #     with open(self.meta_info[idx][&#39;meta_info&#39;]) as f:
+                #         meta_info &#61; json.load(f)
+                #     sequence_ids &#61; []
+                #     for idx_frame, meta in enumerate(meta_info):
+                #         if &#39;hands_score&#39; in meta.keys():
+                #             hands_score &#61; meta[&#39;hands_score&#39;]
+                #             for hands_idx in range(len(hands_score)):
+                #                 hand_score &#61; np.array(hands_score[hands_idx]).mean()
+                #                 if hand_score &gt; 0.4:
+                #                     sequence_ids.append(idx_frame)
+                #                     break
+                #     ids &#61; random_select_continual_sequence(sequence_ids, self.sample_n_frames, init_interval_frame)
+                #     if ids is not None:
+                #         frame_ids &#61; ids
+
+                reference_id &#61; random.randint(0, length - 1)
+
+                pixel_values &#61; np.array([vr[frame_id].asnumpy() for frame_id in frame_ids])
+                pixel_values &#61; numpy_to_pt(pixel_values)
+
+                reference_image &#61; vr[reference_id].asnumpy()
+                reference_image &#61; torch.from_numpy(reference_image.transpose(2, 0, 1))
+                reference_image &#61; reference_image.float() / 255.
+
+                # Read guide image ...
+                vr &#61; VideoReader(guide_path)
+                assert abs(len(vr) - length) &lt; 25, &#34;Guide and video lengthes are conflict ...&#34;
+                # guide_values &#61; np.array([vr[frame_id].asnumpy() for frame_id in frame_ids])
+                # guide_values &#61; numpy_to_pt(guide_values)
+                # PBH no reference
+                guide_values &#61; np.array([vr[frame_id].asnumpy() for frame_id in frame_ids])
+                # convert rgb and bgr pbh
+                for idx_guide in range(len(guide_values)):
+                    guide_values[idx_guide, ...] &#61; cv2.cvtColor(guide_values[idx_guide, ...], cv2.COLOR_BGR2RGB)
+                # guide_values[0, ...] &#61; vr[reference_id].asnumpy()
+                guide_values[0, ...] &#61; cv2.cvtColor(vr[reference_id].asnumpy(), cv2.COLOR_BGR2RGB)
+                guide_values &#61; numpy_to_pt(guide_values)
+                pixel_values[0, ...] &#61; reference_image
+
+                hands_mask &#61; torch.zeros((guide_values.shape[0], 1, guide_values.shape[2], guide_values.shape[3]))
+                if &#39;meta_info&#39; in self.meta_info[idx].keys():
+                    with open(self.meta_info[idx][&#39;meta_info&#39;]) as f:
+                        meta_info &#61; json.load(f)
+                    for idx, frame_id in enumerate(frame_ids):
+                        meta &#61; meta_info[frame_id]
+                        if &#39;hands_boxes&#39; in meta_info[frame_id].keys() and &#39;hands_score&#39; in meta.keys():
+                            hand_boxes &#61; meta_info[frame_id][&#39;hands_boxes&#39;]
+                            for hands_idx, ((x0, y0), (x1, y1)) in enumerate(hand_boxes):
+                                hands_score &#61; meta[&#39;hands_score&#39;]
+                                hands_score &#61; np.array(hands_score[hands_idx]).mean()
+                                if hands_score &gt; 0.5:
+                                    hands_score &#61; 0.8 # max((hands_score - 0.5), 0) / 0.5
+                                else:
+                                    hands_score &#61; 0.
+                                draw_mask(hands_mask[idx], x0, y0, x1, y1, hands_score)
+                
+                # Random crop to the specific ratio
+                vid_width &#61; pixel_values.shape[-1]  
+                vid_height &#61; pixel_values.shape[-2]  
+                if vid_height / vid_width &gt; self.height / self.width:  
+                    crop_width &#61; vid_width  
+                    crop_height &#61; int(vid_width * self.height / self.width)  
+                    h0 &#61; random.randint(0, vid_height - crop_height)  
+                    w0 &#61; 0  
+                else:  
+                    crop_width &#61; int(vid_height * self.width / self.height)  
+                    crop_height &#61; vid_height  
+                    h0 &#61; 0  
+                    w0 &#61; random.randint(0, vid_width - crop_width) 
+
+                pixel_values &#61; torch.stack([pixel_values[i, :, h0:h0&#43;crop_height, w0:w0&#43;crop_width] for i in range(len(pixel_values))], dim&#61;0)  
+                guide_values &#61; torch.stack([guide_values[i, :, h0:h0&#43;crop_height, w0:w0&#43;crop_width] for i in range(len(guide_values))], dim&#61;0)  
+                reference_image &#61; reference_image[:, h0:h0&#43;crop_height, w0:w0&#43;crop_width]
+                if hands_mask is not None:
+                    hands_mask &#61; hands_mask[..., h0:h0&#43;crop_height, w0:w0&#43;crop_width]
+                    
+
+                return pixel_values, guide_values, reference_image, hands_mask
+            except :
+                print(&#34;****** Filed to load: {} ******&#34;.format(video_path))
+                idx &#61; random.randint(0, self.length - 1)
+
+
+    def __len__(self):
+        return self.length
+
+    def __getitem__(self, idx):
+        pixel_values, guide_values, reference_image, hands_mask &#61; self.get_batch(idx)
+
+        pixel_values &#61; self.pixel_transforms(pixel_values)
+        reference_image &#61; self.pixel_transforms(reference_image)
+        guide_values &#61; self.pose_transforms(guide_values)
+        if hands_mask is not None:
+            hands_mask &#61; self.pose_transforms(hands_mask)
+            hands_mask &#61; (hands_mask * 4) &#43; 1.
+        
+        hands_mask[0, ...] &#61; 1
+        
+
+        sample &#61; dict(
+            pixel_values &#61; pixel_values, 
+            guide_values &#61; guide_values,
+            reference_image &#61; reference_image, 
+            hands_mask &#61; hands_mask
+        )
+        return sample</code></pre> 
+<h3 id="核心代码：ControlNeXt模型">核心代码&#xff1a;ControlNeXt模型</h3> 
+<p>论文里并没有太详细说ControlNeXt的模型是怎么设计的&#xff0c;这里只能看代码。</p> 
+<p>ControlNeXt也是一个类似于Unet结构&#xff0c;由<strong>三层对齐层 &#43; 两层下采样 &#43; 两层上采样 &#43; 两层尾层 &#43; 一层输出对齐层 组成</strong>&#xff1a;</p> 
+<pre><code>        self.embedding &#61; nn.Sequential(
+            nn.Conv2d(3, 64, kernel_size&#61;3, stride&#61;2, padding&#61;1),
+            nn.GroupNorm(2, 64),
+            nn.ReLU(),
+            nn.Conv2d(64, 64, kernel_size&#61;3, stride&#61;1, padding&#61;1),
+            nn.GroupNorm(2, 64),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size&#61;3, stride&#61;1, padding&#61;1),
+            nn.GroupNorm(2, 128),
+            nn.ReLU(),
+        )</code></pre> 
+<pre><code>       self.down_res &#61; nn.ModuleList()
+        self.down_sample &#61; nn.ModuleList()
+        for i in range(len(in_channels)):
+            self.down_res.append(
+                ResnetBlock2D(
+                    in_channels&#61;in_channels[i],
+                    out_channels&#61;out_channels[i],
+                    temb_channels&#61;time_embed_dim,
+                    groups&#61;groups[i]
+                ),
+            )
+            self.down_sample.append(
+                Downsample2D(
+                    out_channels[i],
+                    use_conv&#61;True,
+                    out_channels&#61;out_channels[i],
+                    padding&#61;1,
+                    name&#61;&#34;op&#34;,
+                )
+            )
+        
+        self.mid_convs &#61; nn.ModuleList()
+        self.mid_convs.append(nn.Sequential(
+            nn.Conv2d(
+                in_channels&#61;out_channels[-1],
+                out_channels&#61;out_channels[-1],
+                kernel_size&#61;3,
+                stride&#61;1,
+                padding&#61;1
+            ),
+            nn.ReLU(),
+            nn.GroupNorm(8, out_channels[-1]),
+            nn.Conv2d(
+                in_channels&#61;out_channels[-1],
+                out_channels&#61;out_channels[-1],
+                kernel_size&#61;3,
+                stride&#61;1,
+                padding&#61;1
+            ),
+            nn.GroupNorm(8, out_channels[-1]),
+        ))
+        self.mid_convs.append(
+            nn.Conv2d(
+            in_channels&#61;out_channels[-1],
+            out_channels&#61;320,
+            kernel_size&#61;1,
+            stride&#61;1,
+        ))
+</code></pre> 
+<p><strong>注意在下采样层中需要输入timesteps embedding&#xff01;</strong></p> 
+<pre><code>        for res, downsample in zip(self.down_res, self.down_sample):
+            sample &#61; res(sample, emb)
+            sample &#61; downsample(sample, emb)</code></pre> 
+<p>其实这个网络size也不小了&#xff0c;只是相比于controlnet来说不算很大。</p> 
+<p>比较疑惑的点在于为什么controlnext为什么仍要借鉴unet结构的设计&#xff1f;只是为了方便引入timesteps embedding吗&#xff1f;</p> 
+<p><em>另外scale作者直接设置为一个常数1&#xff0c;可能是之前想学animate anyone那样设置成一个可学习的参数&#xff0c;但是没启用&#xff1f;效果不好吗&#xff1f;</em></p> 
+<pre><code>self.scale &#61; 1.</code></pre> 
+<p>完整代码如下&#xff1a;</p> 
+<pre><code>class ControlNeXtSDVModel(ModelMixin, ConfigMixin):
+    _supports_gradient_checkpointing &#61; True
+
+    &#64;register_to_config
+    def __init__(
+        self,
+        time_embed_dim &#61; 256,
+        in_channels &#61; [128, 128],
+        out_channels &#61; [128, 256],
+        groups &#61; [4, 8]
+    ):
+        super().__init__()
+
+        self.time_proj &#61; Timesteps(128, True, downscale_freq_shift&#61;0)
+        self.time_embedding &#61; TimestepEmbedding(128, time_embed_dim)
+        self.embedding &#61; nn.Sequential(
+            nn.Conv2d(3, 64, kernel_size&#61;3, stride&#61;2, padding&#61;1),
+            nn.GroupNorm(2, 64),
+            nn.ReLU(),
+            nn.Conv2d(64, 64, kernel_size&#61;3, stride&#61;1, padding&#61;1),
+            nn.GroupNorm(2, 64),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size&#61;3, stride&#61;1, padding&#61;1),
+            nn.GroupNorm(2, 128),
+            nn.ReLU(),
+        )
+
+        self.down_res &#61; nn.ModuleList()
+        self.down_sample &#61; nn.ModuleList()
+        for i in range(len(in_channels)):
+            self.down_res.append(
+                ResnetBlock2D(
+                    in_channels&#61;in_channels[i],
+                    out_channels&#61;out_channels[i],
+                    temb_channels&#61;time_embed_dim,
+                    groups&#61;groups[i]
+                ),
+            )
+            self.down_sample.append(
+                Downsample2D(
+                    out_channels[i],
+                    use_conv&#61;True,
+                    out_channels&#61;out_channels[i],
+                    padding&#61;1,
+                    name&#61;&#34;op&#34;,
+                )
+            )
+        
+        self.mid_convs &#61; nn.ModuleList()
+        self.mid_convs.append(nn.Sequential(
+            nn.Conv2d(
+                in_channels&#61;out_channels[-1],
+                out_channels&#61;out_channels[-1],
+                kernel_size&#61;3,
+                stride&#61;1,
+                padding&#61;1
+            ),
+            nn.ReLU(),
+            nn.GroupNorm(8, out_channels[-1]),
+            nn.Conv2d(
+                in_channels&#61;out_channels[-1],
+                out_channels&#61;out_channels[-1],
+                kernel_size&#61;3,
+                stride&#61;1,
+                padding&#61;1
+            ),
+            nn.GroupNorm(8, out_channels[-1]),
+        ))
+        self.mid_convs.append(
+            nn.Conv2d(
+            in_channels&#61;out_channels[-1],
+            out_channels&#61;320,
+            kernel_size&#61;1,
+            stride&#61;1,
+        ))
+
+        self.scale &#61; 1. 
+
+    def _set_gradient_checkpointing(self, module, value&#61;False):
+        if hasattr(module, &#34;gradient_checkpointing&#34;):
+            module.gradient_checkpointing &#61; value
+
+    # Copied from diffusers.models.unet_3d_condition.UNet3DConditionModel.enable_forward_chunking
+    def enable_forward_chunking(self, chunk_size: Optional[int] &#61; None, dim: int &#61; 0) -&gt; None:
+        &#34;&#34;&#34;
+        Sets the attention processor to use [feed forward
+        chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
+
+        Parameters:
+            chunk_size (&#96;int&#96;, *optional*):
+                The chunk size of the feed-forward layers. If not specified, will run feed-forward layer individually
+                over each tensor of dim&#61;&#96;dim&#96;.
+            dim (&#96;int&#96;, *optional*, defaults to &#96;0&#96;):
+                The dimension over which the feed-forward computation should be chunked. Choose between dim&#61;0 (batch)
+                or dim&#61;1 (sequence length).
+        &#34;&#34;&#34;
+        if dim not in [0, 1]:
+            raise ValueError(f&#34;Make sure to set &#96;dim&#96; to either 0 or 1, not {dim}&#34;)
+
+        # By default chunk size is 1
+        chunk_size &#61; chunk_size or 1
+
+        def fn_recursive_feed_forward(module: torch.nn.Module, chunk_size: int, dim: int):
+            if hasattr(module, &#34;set_chunk_feed_forward&#34;):
+                module.set_chunk_feed_forward(chunk_size&#61;chunk_size, dim&#61;dim)
+
+            for child in module.children():
+                fn_recursive_feed_forward(child, chunk_size, dim)
+
+        for module in self.children():
+            fn_recursive_feed_forward(module, chunk_size, dim)
+
+    def forward(
+        self,
+        sample: torch.FloatTensor,
+        timestep: Union[torch.Tensor, float, int],
+    ):
+        
+        timesteps &#61; timestep
+        if not torch.is_tensor(timesteps):
+            # TODO: this requires sync between CPU and GPU. So try to pass timesteps as tensors if you can
+            # This would be a good case for the &#96;match&#96; statement (Python 3.10&#43;)
+            is_mps &#61; sample.device.type &#61;&#61; &#34;mps&#34;
+            if isinstance(timestep, float):
+                dtype &#61; torch.float32 if is_mps else torch.float64
+            else:
+                dtype &#61; torch.int32 if is_mps else torch.int64
+            timesteps &#61; torch.tensor([timesteps], dtype&#61;dtype, device&#61;sample.device)
+        elif len(timesteps.shape) &#61;&#61; 0:
+            timesteps &#61; timesteps[None].to(sample.device)
+
+        # broadcast to batch dimension in a way that&#39;s compatible with ONNX/Core ML
+        batch_size, num_frames &#61; sample.shape[:2]
+        timesteps &#61; timesteps.expand(batch_size)
+
+        t_emb &#61; self.time_proj(timesteps)
+
+        # &#96;Timesteps&#96; does not contain any weights and will always return f32 tensors
+        # but time_embedding might actually be running in fp16. so we need to cast here.
+        # there might be better ways to encapsulate this.
+        t_emb &#61; t_emb.to(dtype&#61;sample.dtype)
+
+        emb_batch &#61; self.time_embedding(t_emb)
+
+        # Flatten the batch and frames dimensions
+        # sample: [batch, frames, channels, height, width] -&gt; [batch * frames, channels, height, width]
+        sample &#61; sample.flatten(0, 1)
+        # Repeat the embeddings num_video_frames times
+        # emb: [batch, channels] -&gt; [batch * frames, channels]
+        emb &#61; emb_batch.repeat_interleave(num_frames, dim&#61;0)
+
+        sample &#61; self.embedding(sample)
+
+        for res, downsample in zip(self.down_res, self.down_sample):
+            sample &#61; res(sample, emb)
+            sample &#61; downsample(sample, emb)
+        
+        sample &#61; self.mid_convs[0](sample) &#43; sample
+        sample &#61; self.mid_convs[1](sample)
+
+        return {
+            &#39;output&#39;: sample,
+            &#39;scale&#39;: self.scale,
+        }
+    
+</code></pre> 
+<p></p> 
+<p></p> 
+<h3 id="核心代码：交叉归一化">核心代码&#xff1a;交叉归一化</h3> 
+<p>在SVD UNet下采样层的第一层操作&#xff0c;代码与论文中主要有两点不同&#xff1a;</p> 
+<p>&#xff08;1&#xff09; 控制的特征经过了自适应平均池化&#xff1a;</p> 
+<pre><code>conditional_controls &#61; F.adaptive_avg_pool2d(conditional_controls, sample.shape[-2:])
+</code></pre> 
+<p>&#xff08;2&#xff09;控制特征做了0.2倍增强&#xff1a;</p> 
+<pre><code>                #  0.2: This superparameter is used to adjust the control level: increasing this value will strengthen the control level.
+                sample &#61; sample &#43; conditional_controls * scale * 0.2</code></pre> 
+<p>完整代码如下&#xff1a;</p> 
+<pre><code>            if idx &#61;&#61; 0 and conditional_controls is not None:
+                scale &#61; conditional_controls[&#39;scale&#39;]
+                conditional_controls &#61; conditional_controls[&#39;output&#39;]
+                mean_latents, std_latents &#61; torch.mean(sample, dim&#61;(1, 2, 3), keepdim&#61;True), torch.std(sample, dim&#61;(1, 2, 3), keepdim&#61;True)
+                mean_control, std_control &#61; torch.mean(conditional_controls, dim&#61;(1, 2, 3), keepdim&#61;True), torch.std(conditional_controls, dim&#61;(1, 2, 3), keepdim&#61;True)
+                conditional_controls &#61; (conditional_controls - mean_control) * (std_latents / (std_control &#43; 1e-5)) &#43; mean_latents
+                conditional_controls &#61; F.adaptive_avg_pool2d(conditional_controls, sample.shape[-2:])
+                #  0.2: This superparameter is used to adjust the control level: increasing this value will strengthen the control level.
+                sample &#61; sample &#43; conditional_controls * scale * 0.2</code></pre>
+                </div>
+        </div>
+        <div id="treeSkill"></div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    </article>
+  <script>
+    $(function() {
+      setTimeout(function () {
+        var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+        if (mathcodeList.length > 0) {
+          for (let i = 0; i < mathcodeList.length; i  ) {
+            if (mathcodeList[i].complete) {
+              if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              }
+            } else {
+              mathcodeList[i].onerror = function() {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              };
+            }
+          }
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+      }, 500)
+    });
+  </script>
+</div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-newWhite.png">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-roup.png">
+          <span class="def">立减 yen</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query='spm=1001.2101.3001.9621'>立即使用</a>
+  </div>
+</div>    <div class="more-toolbox-new" id="toolBarBox">
+      <div class="left-toolbox">
+        <div class="toolbox-left">
+            <div class="profile-box">
+              <a class="profile-href" target="_blank" href="https://xduwq.blog.csdn.net"><img class="profile-img" src="https://profile-avatar.csdnimg.cn/4ef02b7dcddf49f28d56bcfa2b957977_qq_41895747.jpg!1">
+                <span class="profile-name">
+                  沉迷单车的追风少年
+                </span>
+              </a>
+            </div>
+            <div class="profile-attend">
+                <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"已关注"}'>已关注</a>
+              <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </div>
+        </div>
+        <div class="toolbox-middle">
+          <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like">
+              <a class="tool-item-href">
+                <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+                <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2021Active.png" alt="">
+                <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2021Black.png" alt="">
+                <span id="spanCount" class="count ">
+                    21
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">点赞</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-unlike" id="is-unlike">
+              <a class="tool-item-href">
+                <img class="isactive" style="margin-right:0px;display:none" id="is-unlike-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUnHeart2021Active.png" alt="">
+                <img class="isdefault" style="margin-right:0px;display:block" id="is-unlike-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUnHeart2021Black.png" alt="">
+                <span id="unlikeCount" class="count "></span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">踩</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+              <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectBlack.png" alt="">
+                <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectActive.png" alt="">
+                <span class="count get-collection " data-num="13" id="get-collection">
+                    13
+                </span>
+              </a>
+              <div class="tool-hover-tip collect">
+                <div class="collect-operate-box">
+                  <span class="collect-text" id="is-collection">
+                    收藏
+                  </span>
+                </div>
+              </div>
+              <div class="tool-active-list">
+                <div class="text">
+                  觉得还不错?
+                  <span class="collect-text" id="tool-active-list-collection">
+                    一键收藏
+                  </span>
+                 <img id="tool-active-list-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/collectionCloseWhite.png" alt="">
+                </div>
+              </div>
+            </li>
+                <li class="tool-item tool-item-size tool-active tool-item-reward">
+                  <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_830","spm":"1001.2101.3001.4237","dest":"","ab":"new"}'>
+                    <img class="isdefault reward-bt" id="rewardBtNew" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newRewardBlack.png" alt="打赏">
+                    <span class="count"></span>
+                  </a>
+                  <div class="tool-hover-tip"><span class="text space">打赏</span></div>
+                </li>
+          <li class="tool-item tool-item-size tool-active tool-item-comment">
+            <div class="guide-rr-first">
+              <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward01.png" alt="">
+              <button class="btn-guide-known">知道了</button>
+            </div>
+              <a class="tool-item-href go-side-comment" data-report-click='{"spm":"1001.2101.3001.7009"}'>
+              <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newComment2021Black.png" alt="">
+              <span class="count">
+                  1
+              </span>
+            </a>
+            <div class="tool-hover-tip"><span class="text space">评论</span></div>
+          </li>
+          <li class="tool-item tool-item-bar">
+          </li>
+          <li class="tool-item tool-item-size tool-active tool-QRcode" data-type="article" id="tool-share">
+            <a class="tool-item-href" href="javascript:;" data-report-view='{"spm":"3001.4129","extra":{"type":"blogdetail"}}'>
+              <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newShareBlack.png" alt="">
+            </a>
+              <div class="QRcode" id="tool-QRcode">
+              <div class="share-bg-box">
+                <div class="share-content">
+                  <a id="copyPosterUrl" data-type="link" class="btn-share">复制链接</a>
+                </div>
+                <div class="share-content">
+                  <a class="btn-share" data-type="qq">分享到 QQ</a>
+                </div>
+                <div class="share-content">
+                  <a class="btn-share" data-type="weibo">分享到新浪微博</a>
+                </div>
+                <div class="share-code">
+                  <div class="share-code-box" id='shareCode'></div>
+                  <div class="share-code-text">
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/share/icon-wechat.png" alt="">扫一扫
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="toolbox-right"><script type="text/javascript" crossorigin src="https://g.csdnimg.cn/common/csdn-login-box/csdn-login-box.js"></script></html>

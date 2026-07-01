@@ -9,9 +9,9 @@ Welcome to Polaris' NoteBook!
 .. toctree::
    :maxdepth: 2
 
-   report/index
    develop/index
    Robotics/index
-   CV/index
    AI/index
+   具身智能/index
    Miscellaneous/index
+   report/index

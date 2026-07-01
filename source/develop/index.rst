@@ -8,5 +8,4 @@
 
    Docker/index
    git/index
-   CI
-   opensource
+   mis/index

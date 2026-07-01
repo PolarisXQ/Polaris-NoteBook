@@ -1,0 +1,363 @@
+﻿    <!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://2.lz787.com/assets/1.css">
+
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css"><div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">深入理解Conditional Diffusion Models：解读《On Conditioning the Input Noise for Controlled Image Generation》</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                      <a class="follow-nickName " href="https://xduwq.blog.csdn.net" target="_blank" rel="noopener" title="沉迷单车的追风少年">沉迷单车的追风少年</a>
+                    <img class="article-time-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newUpTime2.png" alt="">
+                    <span class="time">已于&nbsp;2022-07-11 20:39:14&nbsp;修改</span>
+                   <div class="read-count-box">
+                      <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes2.png" alt="">
+                      <span class="read-count">阅读量7.5k</span>
+                      <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                          <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect2.png" alt="">
+                          <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt="">
+                          <span class="name">收藏</span>
+                          <span class="get-collection">
+                              9
+                          </span>
+                      </a>
+                      <div class="read-count-box is-like">
+                        <img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Active.png" alt="">
+                        <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newHeart2023Black.png" alt="">
+                        <span class="read-count" id="blog-digg-num">点赞数
+                            4
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a class="tag-link" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" rel="noopener">Diffusion Models与深度学习</a>
+                            <span class="label">文章标签：</span>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"深度学习","ab":"new","extra":"{\"searchword\":\"深度学习\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"深度学习","ab":"new","extra":"{\"searchword\":\"深度学习\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=深度学习&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">深度学习</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"人工智能","ab":"new","extra":"{\"searchword\":\"人工智能\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"人工智能","ab":"new","extra":"{\"searchword\":\"人工智能\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=人工智能&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">人工智能</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"python","ab":"new","extra":"{\"searchword\":\"python\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"python","ab":"new","extra":"{\"searchword\":\"python\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=python&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">python</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"生成模型","ab":"new","extra":"{\"searchword\":\"生成模型\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"生成模型","ab":"new","extra":"{\"searchword\":\"生成模型\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=生成模型&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">生成模型</a>
+                                <a rel="nofollow" data-report-query="spm=1001.2101.3001.4223" data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"计算机视觉","ab":"new","extra":"{\"searchword\":\"计算机视觉\"}"}' data-report-view='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"计算机视觉","ab":"new","extra":"{\"searchword\":\"计算机视觉\"}"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=计算机视觉&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=&amp;from_tracking_code=tag_word&amp;from_code=app_blog_art" target="_blank" rel="noopener">计算机视觉</a>
+                    </div>
+                </div>
+                <div class="up-time"><span>于&nbsp;2022-05-22 09:15:00&nbsp;首次发布</span></div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/qq_41895747/article/details/124810443" target="_blank">https://blog.csdn.net/qq_41895747/article/details/124810443</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="blogHuaweiyunAdvert"></div>
+        <div id="blogColumnPayAdvert">
+            <div class="column-group">
+                <div class="column-group-item column-group0 column-group-item-one">
+                    <div class="item-l">
+                        <a class="item-target" href="https://blog.csdn.net/qq_41895747/category_11504878.html" target="_blank" title="Diffusion Models与深度学习"
+                        data-report-view='{"spm":"1001.2101.3001.6332"}'
+                        data-report-click='{"spm":"1001.2101.3001.6332"}'>
+                            <img class="item-target" src="https://i-blog.csdnimg.cn/blog_column_migrate/371b377765ed35f13bb64d116f3a5de1.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="">
+                            <span class="title item-target">
+                                <span>
+                                <span class="tit">Diffusion Models与深度学习</span>
+                                    <span class="dec">专栏收录该内容</span>
+                                </span>
+                                <span class="rank"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/columnHotIcon2.png" alt="">该专栏为热销专栏榜&nbsp;第49名</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item-m">
+                        <span>266 篇文章</span>
+                        <span>2838 订阅</span>
+                        <span class="old-add-new-box">
+                            <span class="price">yen29.90</span>
+                            <span class="oldprice">yen99.00</span>
+                        </span>
+                    </div>
+                    <div class="item-r">
+                                    <a class="item-target article-column-subscribe">已订阅
+                                    </a>
+                                    <a class="item-target column-studyvip-discount column-studyvip-pass"
+                                    data-report-view='{"spm":"1001.2015.3001.8590"}'
+                                    data-report-click='{"spm":"1001.2015.3001.8590"}'>8折续费
+                                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning_the_member_box">
+            <a href="https://www.csdn.net/vip?utm_source=bkzl_cjhy_ckqy" target="_blank">
+                <div class="left"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconVIpCrown.png" alt=""><span>您已是超级会员，正在免费阅读会员专享内容</span></div>
+                <div class="right"><span>查看更多超级会员权益</span><img src="https://csdnimg.cn/release/blogv2/dist/components/img/vipIconArrowLeftWhite.png" alt=""></div>
+            </a>
+        </div>
+      <div class="ai-abstract-box">
+         <div class="ai-abstract">
+          <div class="abstract-content">
+            <img class="lock-img" src="https://img-home.csdnimg.cn/images/20240711042549.png" alt="">
+            该博客探讨了如何通过调整扩散模型的输入噪声来引导条件生成图像，特别是利用反向梯度(IG)生成关注物体显著特征的噪声。论文提出的方法在不重新训练模型的情况下，能生成与噪声定位和方向一致的图像。IG通过优化噪声的梯度与期望图像的梯度相似度，确保主要区域的维护和输入值范围的一致性。
+          </div>
+          <span>摘要由CSDN通过智能技术生成</span>
+        </div>
+      </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-704d5b9767.css">
+             
+                <div id="content_views" class="htmledit_views">
+                    <blockquote> 
+ <p><a href="https://blog.csdn.net/qq_41895747/article/details/122847060" title="Diffusion Models专栏文章汇总&#xff1a;入门与实战">Diffusion Models专栏文章汇总&#xff1a;入门与实战</a></p> 
+</blockquote> 
+<blockquote> 
+ <p><strong><em>前言&#xff1a;</em></strong>我之前写了一篇博客<a class="link-info" href="https://xduwq.blog.csdn.net/article/details/122094843" rel="nofollow" title="《条件DDPM&#xff1a;Diffusion model的第三个巅峰之作》">《条件DDPM&#xff1a;Diffusion model的第三个巅峰之作》</a>梳理了conditional diffusion models的发展脉络&#xff0c;总结了现在常用的条件使用方法。最近逛arxiv看到一篇最新的论文主打conditional diffusion models&#xff0c;和读者一起读一下这篇论文《On Conditioning the Input Noise for Controlled Image Generation with Diffusion Models》</p> 
+</blockquote> 
+<p id="main-toc"><strong>目录</strong></p> 
+<p id="用输入噪声引导条件生成-toc" style="margin-left:40px;"><a href="#用输入噪声引导条件生成" rel="nofollow">用输入噪声引导条件生成</a></p> 
+<p id="输入噪声的要求-toc" style="margin-left:80px;"><a href="#输入噪声的要求" rel="nofollow">输入噪声的要求</a></p> 
+<p id="反向梯度(IG)生成噪声-toc" style="margin-left:80px;"><a href="#反向梯度(IG)生成噪声" rel="nofollow">反向梯度(IG)生成噪声</a></p> 
+<p id="反向梯度(IG)的作用-toc" style="margin-left:80px;"><a href="#反向梯度(IG)的作用" rel="nofollow">反向梯度(IG)的作用</a></p> 
+<p id="个人感悟-toc" style="margin-left:40px;"><a href="#个人感悟" rel="nofollow">个人感悟</a></p> 
+<hr id="hr-toc" /> 
+<h3 id="用输入噪声引导条件生成">用输入噪声引导条件生成</h3> 
+<div class="img-center"> 
+ <figure class="image"> 
+  <img alt="" height="369" src="https://i-blog.csdnimg.cn/blog_migrate/32fdc7d71126247eaf048889f7d4fa42.png" width="623" /> 
+  <figcaption>
+    随机噪声(第1行)和本文(第2行)扩散模型生成的可视化。第二行噪声包括显著区域&#xff0c;而不是像第1行那样完全随机。 
+  </figcaption> 
+ </figure> 
+</div> 
+<p>与扩散模型中使用的完全随机噪声相比&#xff0c;本文使用关注代表物体的显著区域的噪声&#xff0c;经过修改的噪音捕捉到了关注物体所在区域的显著性和方向。<span style="color:#fe2c24;">当这种噪声被提供给扩散模型时&#xff0c;它生成的图像与噪声具有相同的定位和方向&#xff0c;从而通过调节噪声来调节输出。</span></p> 
+<h4 id="输入噪声的要求">输入噪声的要求</h4> 
+<p>1、<strong>突出的区域。</strong>噪声应关注显著区域&#xff0c;并指导生成图像中的定位/方向。</p> 
+<p>2、<strong>相同的输入值范围。</strong>由于不需要对扩散模型进行再训练&#xff0c;因此需要寻找一个与扩散模型可理解的输入空间相同的噪声。扩散模型从随机高斯噪声N(0;I)&#xff0c;随后使用公式<img alt="x_{t-1}&#61;\frac{1}{\sqrt{\alpha_{t}}}\left(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\overline{\alpha_{t}}}} \epsilon_{\theta}\left(x_{t}, t\right)\right)&#43;\sigma_{\theta} z, z \sim N(0, \mathbf{I})" class="mathcode" src="https://latex.csdn.net/eq?x_{t-1}=\frac{1}{\sqrt{\alpha_{t}}}\left(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\overline{\alpha_{t}}}} \epsilon_{\theta}\left(x_{t}, t\right)\right)&amp;plus;\sigma_{\theta} z, z \sim N(0, \mathbf{I})" />进行更新。</p> 
+<h4 id="反向梯度(IG)生成噪声">反向梯度(IG)生成噪声</h4> 
+<p>反向梯度Inverting Gradients(IG)来获得具有上述特征的噪声&#xff0c;IG从一个随机高斯噪声开始&#xff0c;并对其进行迭代更新&#xff0c;重新生成真实图像。中间图像<img alt="x_T" class="mathcode" src="https://latex.csdn.net/eq?x_T" />每一步的图像空间更新&#xff0c;<span style="color:#fe2c24;"><strong>使<img alt="x_T" class="mathcode" src="https://latex.csdn.net/eq?x_T" />的梯度与期望的真实图像<img alt="I_R" class="mathcode" src="https://latex.csdn.net/eq?I_R" />的梯度相似</strong></span>。优化目标为&#xff1a;</p> 
+<p style="text-align:center;"><img alt="\underset{x}{\arg \min 1}-\frac{\left\langle\nabla_{\theta} \mathcal{L}_{\theta}(x, y), \nabla_{\theta} \mathcal{L}_{\theta}\left(\left(x^{*}, y\right)\right\rangle\right.}{\| \nabla_{\theta} \mathcal{L}_{\theta}\left(( x , y ) \| \| \nabla _ { \theta } \mathcal { L } _ { \theta } \left(\left(x^{*}, y\right) \|\right.\right.}" class="mathcode" src="https://latex.csdn.net/eq?\underset{x}{\arg \min 1}-\frac{\left\langle\nabla_{\theta} \mathcal{L}_{\theta}(x, y), \nabla_{\theta} \mathcal{L}_{\theta}\left(\left(x^{*}, y\right)\right\rangle\right.}{\| \nabla_{\theta} \mathcal{L}_{\theta}\left(( x , y ) \| \| \nabla _ { \theta } \mathcal { L } _ { \theta } \left(\left(x^{*}, y\right) \|\right.\right.}" /></p> 
+<p>其中x*是需要重新创建的原始实像&#xff0c;y是真实的类别&#xff0c;<img alt="\mathcal{L}_{\theta}\left(x^{*}, y\right)" class="mathcode" src="https://latex.csdn.net/eq?\mathcal{L}_{\theta}\left(x^{*}, y\right)" />是是在参数θ下网络预测x*的损失。</p> 
+<p>找到一个图像x&#xff0c;<strong>其梯度与我们想要的图像x*的梯度具有最大可能的余弦相似度</strong>。换句话说&#xff0c;我们按照上式中的优化问题依次更新中间<img alt="x_T" class="mathcode" src="https://latex.csdn.net/eq?x_T" />。<span style="color:#fe2c24;"><strong>使用输入噪声仅仅用于定位&#xff0c;所以选择中间步骤的噪声样本&#xff0c;而不是最终生成的图像</strong></span>。</p> 
+<h4 id="反向梯度(IG)的作用">反向梯度(IG)的作用</h4> 
+<p>1、<strong>IG负责主要区域的维护。</strong>IG通过比较生成的图像和期望的图像的梯度来更新噪声。由于梯度最有可能解释显著区域&#xff0c;我们可以固有地认为&#xff0c;这个比较步骤主要涉及显著区域周围的更新噪声。</p> 
+<p>2、<strong>IG有类似的输入值范围。</strong>IG以一个随机高斯函数N(0;I)&#xff0c;并更新生成&#xff0c;因此直观上&#xff0c;这与公式<img alt="x_{t-1}&#61;\frac{1}{\sqrt{\alpha_{t}}}\left(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\overline{\alpha_{t}}}} \epsilon_{\theta}\left(x_{t}, t\right)\right)&#43;\sigma_{\theta} z, z \sim N(0, \mathbf{I})" class="mathcode" src="https://latex.csdn.net/eq?x_{t-1}=\frac{1}{\sqrt{\alpha_{t}}}\left(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\overline{\alpha_{t}}}} \epsilon_{\theta}\left(x_{t}, t\right)\right)&amp;plus;\sigma_{\theta} z, z \sim N(0, \mathbf{I})" />有相似之处&#xff0c;都是基于优化更新随机噪声。因此我们假设中间IG输出是扩散模型的一个可理解的输入。</p> 
+<p><img alt="" height="545" src="https://i-blog.csdnimg.cn/blog_migrate/56c581fde4ce04f822d72bc0a20304dc.png" width="1087" /></p> 
+<h3 id="个人感悟">个人感悟</h3> 
+<p class="img-center"><img alt="" height="374" src="https://i-blog.csdnimg.cn/blog_migrate/c96ca56874a7fe4c90f7f9226d02804d.png" width="612" /></p> 
+<p> 刚写的时候&#xff0c;我的标题是<em>深入理解Conditional Diffusion Models&#xff1a;解读《On Conditioning the Input Noise for Controlled Image Generation with Diffusion Models》</em>。但是读完之后有种“德不配位”的感觉&#xff0c;不过既然已经写完&#xff0c;标题就先不改了。</p> 
+<ul><li>更改输入噪声来引导生成&#xff0c;这是一种很常见的做法&#xff0c;我在博客<a class="link-info" href="https://blog.csdn.net/qq_41895747/article/details/122094843?ops_request_misc&#61;%7B%22request%5Fid%22%3A%22165278552516782425197673%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id&#61;165278552516782425197673&amp;biz_id&#61;0&amp;utm_medium&#61;distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-122094843-null-null.nonecase&amp;utm_term&#61;条件DDPM&amp;spm&#61;1018.2226.3001.4450" title="《条件DDPM&#xff1a;Diffusion model的第三个巅峰之作》">《条件DDPM&#xff1a;Diffusion model的第三个巅峰之作》</a>当中甚至把这种方法归结为一种“流水线”式的创新&#xff0c;我认为本论文的方法也算是一种很容易想到的创新思路。</li><li>在noise中添加一定的condition信息&#xff0c;确实会影响生成效果&#xff0c;起到影响作用。我曾经做过类似的实验&#xff0c;没有flow的方式好&#xff0c;也远达不到DDIM的noise control效果&#xff0c;我在博客《<a href="https://blog.csdn.net/qq_41895747/article/details/125563672?spm&#61;1001.2014.3001.5501" title="如何用Diffusion models做interpolation插值任务&#xff1f;——原理解析和代码实战_沉迷单车的追风少年的博客-CSDN博客">如何用Diffusion models做interpolation插值任务&#xff1f;——原理解析和代码实战_沉迷单车的追风少年的博客-CSDN博客</a>》做过类似实验。</li><li>这篇文章最大的创新在于<strong> 使用<strong><img alt="x_T" class="mathcode" src="https://latex.csdn.net/eq?x_T" /></strong>的梯度与期望的真实图像<strong><img alt="I_R" class="mathcode" src="https://latex.csdn.net/eq?I_R" /></strong>的梯度相似 </strong>的方式来约束生成&#xff0c;用梯度的方式在《Diffusion Models Beat GANs on Image Synthesis》文章里面有用分类器的梯度来约束生成。这篇文章但是没有给出严谨的数学推导、也没有更多的对比实验&#xff08;例如用log函数、<img alt="x_T" class="mathcode" src="https://latex.csdn.net/eq?x_T" />和 <img alt="I_R" class="mathcode" src="https://latex.csdn.net/eq?I_R" />等等&#xff09;&#xff0c;这方面值得我们深入探索。</li></ul>
+                </div>
+        </div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    </article>
+  <script>
+    $(function() {
+      setTimeout(function () {
+        var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+        if (mathcodeList.length > 0) {
+          for (let i = 0; i < mathcodeList.length; i  ) {
+            if (mathcodeList[i].complete) {
+              if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              }
+            } else {
+              mathcodeList[i].onerror = function() {
+                var alt = mathcodeList[i].alt;
+                alt = '\\('   alt   '\\)';
+                var curSpan = $('<span class="img-codecogs"></span>');
+                curSpan.text(alt);
+                $(mathcodeList[i]).before(curSpan);
+                $(mathcodeList[i]).remove();
+              };
+            }
+          }
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+      }, 500)
+    });
+  </script>
+</div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-newWhite.png">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/vip-limited-close-roup.png">
+          <span class="def">立减 yen</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query='spm=1001.2101.3001.9621'>立即使用</a>
+  </div>
+</div>    <div class="more-toolbox-new more-toolbar" id="toolBarBox">
+      <div class="left-toolbox">
+        <div class="toolbox-left">
+            <div class="profile-box">
+              <a class="profile-href" target="_blank" href="https://xduwq.blog.csdn.net"><img class="profile-img" src="https://profile-avatar.csdnimg.cn/4ef02b7dcddf49f28d56bcfa2b957977_qq_41895747.jpg!1">
+                <span class="profile-name">
+                  沉迷单车的追风少年
+                </span>
+              </a>
+            </div>
+            <div class="profile-attend">
+                <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"已关注"}'>已关注</a>
+              <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </div>
+        </div>
+        <div class="toolbox-middle">
+          <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like">
+              <a class="tool-item-href">
+                <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+                <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/like-active.png" alt="">
+                <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/like.png" alt="">
+                <span id="spanCount" class="count ">
+                    4
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">点赞</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-unlike" id="is-unlike">
+              <a class="tool-item-href">
+                <img class="isactive" style="margin-right:0px;display:none" id="is-unlike-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/unlike-active.png" alt="">
+                <img class="isdefault" style="margin-right:0px;display:block" id="is-unlike-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/unlike.png" alt="">
+                <span id="unlikeCount" class="count "></span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">踩</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+              <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/collect-active.png" alt="">
+                <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/collect.png" alt="">
+                <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/newCollectActive.png" alt="">
+                <span class="count get-collection " data-num="9" id="get-collection">
+                    9
+                </span>
+              </a>
+              <div class="tool-hover-tip collect">
+                <div class="collect-operate-box">
+                  <span class="collect-text" id="is-collection">
+                    收藏
+                  </span>
+                </div>
+              </div>
+              <div class="tool-active-list">
+                <div class="text">
+                  觉得还不错?
+                  <span class="collect-text" id="tool-active-list-collection">
+                    一键收藏
+                  </span>
+                 <img id="tool-active-list-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/collectionCloseWhite.png" alt="">
+                </div>
+              </div>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-item-comment">
+              <div class="guide-rr-first">
+                <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward01.png" alt="">
+                <button class="btn-guide-known">知道了</button>
+              </div>
+                <a class="tool-item-href go-side-comment" data-report-click='{"spm":"1001.2101.3001.7009"}'>
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/comment.png" alt="">
+                <span class="count">
+                    15
+                </span>
+              </a>
+              <div class="tool-hover-tip"><span class="text space">评论</span></div>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-QRcode" data-type="article" id="tool-share">
+              <a class="tool-item-href" href="javascript:;" data-report-view='{"spm":"3001.4129","extra":{"type":"blogdetail"}}'>
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/share.png" alt="">
+                <span class="count">分享</span>
+              </a>
+                <div class="QRcode" id="tool-QRcode">
+                <div class="share-bg-box">
+                  <div class="share-content">
+                    <a id="copyPosterUrl" data-type="link" class="btn-share">复制链接</a>
+                  </div>
+                  <div class="share-content">
+                    <a class="btn-share" data-type="qq">分享到 QQ</a>
+                  </div>
+                  <div class="share-content">
+                    <a class="btn-share" data-type="weibo">分享到新浪微博</a>
+                  </div>
+                  <div class="share-code">
+                    <div class="share-code-box" id='shareCode'></div>
+                    <div class="share-code-text">
+                      <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/share/icon-wechat.png" alt="">扫一扫
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+                <li class="tool-item tool-item-size tool-active tool-item-reward">
+                  <a class="tool-item-href" href="javascript:;" data-report-click='{"mod":"popu_830","spm":"1001.2101.3001.4237","dest":"","ab":"new"}'>
+                    <img class="isdefault reward-bt" id="rewardBtNew" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/reward.png" alt="打赏">
+                    <span class="count">打赏</span>
+                  </a>
+                  <div class="tool-hover-tip"><span class="text space">打赏</span></div>
+                </li>
+          <li class="tool-item tool-item-size tool-active is-more" id="is-more">
+            <a class="tool-item-href">
+              <img class="isdefault" style="margin-right:0px;display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/more.png" alt="">
+              <span class="count"></span>
+            </a>
+            <div class="more-opt-box">
+              <div class="mini-box">
+                    <a class="tool-item-href" id="rewardBtNewHide" data-report-click='{"spm":"3001.4237","extra":"{\"type\":\"hide\"}"}'>
+                      <img class="isdefault reward-bt" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/reward.png" alt="打赏">
+                      <span class="count">打赏</span>
+                    </a>
+                <a class="tool-item-href" id="toolReportBtnHide">
+                  <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/report.png" alt="">
+                  <span class="count">举报</span>
+                </a>
+              </div>
+              <div class="normal-box">
+                <a class="tool-item-href" id="toolReportBtnHideNormal">
+                  <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/toolbar/report.png" alt="">
+                  <span class="count">举报</span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="toolbox-right"><script type="text/javascript" crossorigin src="https://g.csdnimg.cn/common/csdn-login-box/csdn-login-box.js"></script></html>
