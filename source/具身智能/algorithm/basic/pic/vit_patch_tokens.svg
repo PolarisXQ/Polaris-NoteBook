@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .panel { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .token { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 8; }
+      .tr { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="55" y="75" width="180" height="180" class="panel"/>
+  <text x="145" y="300" text-anchor="middle" class="small">输入图片</text>
+  <g stroke="#2f6f9f" stroke-width="1.5">
+    <line x1="100" y1="75" x2="100" y2="255"/>
+    <line x1="145" y1="75" x2="145" y2="255"/>
+    <line x1="190" y1="75" x2="190" y2="255"/>
+    <line x1="55" y1="120" x2="235" y2="120"/>
+    <line x1="55" y1="165" x2="235" y2="165"/>
+    <line x1="55" y1="210" x2="235" y2="210"/>
+  </g>
+  <text x="145" y="170" text-anchor="middle" class="txt">patch</text>
+
+  <rect x="330" y="92" width="70" height="55" class="token"/>
+  <rect x="415" y="92" width="70" height="55" class="token"/>
+  <rect x="500" y="92" width="70" height="55" class="token"/>
+  <rect x="585" y="92" width="70" height="55" class="token"/>
+  <rect x="330" y="177" width="70" height="55" class="token"/>
+  <rect x="415" y="177" width="70" height="55" class="token"/>
+  <rect x="500" y="177" width="70" height="55" class="token"/>
+  <rect x="585" y="177" width="70" height="55" class="token"/>
+  <text x="492" y="285" text-anchor="middle" class="small">patch tokens + position embedding</text>
+
+  <rect x="735" y="95" width="170" height="150" class="tr"/>
+  <text x="820" y="145" text-anchor="middle" class="txt">Transformer</text>
+  <text x="820" y="178" text-anchor="middle" class="small">全局注意力</text>
+  <text x="820" y="210" text-anchor="middle" class="small">输出图像表示</text>
+
+  <path d="M235 165 L330 160" class="arrow"/>
+  <path d="M655 162 L735 170" class="arrow"/>
+  <text x="490" y="365" class="small" text-anchor="middle">核心直觉：把图片切成小块，当作一串视觉 token 交给 Transformer。</text>
+</svg>

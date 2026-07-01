@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .vision { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .bridge { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .llm { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="45" y="72" width="150" height="95" class="vision"/>
+  <text x="120" y="112" text-anchor="middle" class="txt">图片</text>
+  <text x="120" y="142" text-anchor="middle" class="small">image input</text>
+
+  <rect x="255" y="72" width="180" height="95" class="vision"/>
+  <text x="345" y="112" text-anchor="middle" class="txt">视觉编码器</text>
+  <text x="345" y="142" text-anchor="middle" class="small">CLIP ViT 等</text>
+
+  <rect x="500" y="72" width="155" height="95" class="bridge"/>
+  <text x="577" y="112" text-anchor="middle" class="txt">投影层</text>
+  <text x="577" y="142" text-anchor="middle" class="small">特征对齐</text>
+
+  <rect x="725" y="72" width="190" height="210" class="llm"/>
+  <text x="820" y="122" text-anchor="middle" class="txt">大语言模型</text>
+  <text x="820" y="155" text-anchor="middle" class="small">图像 token + 文本指令</text>
+  <text x="820" y="205" text-anchor="middle" class="txt">回答</text>
+  <text x="820" y="236" text-anchor="middle" class="small">描述 / 推理 / 对话</text>
+
+  <rect x="500" y="240" width="155" height="82" class="bridge"/>
+  <text x="577" y="275" text-anchor="middle" class="txt">文本指令</text>
+  <text x="577" y="302" text-anchor="middle" class="small">用户问题</text>
+
+  <path d="M195 120 L255 120" class="arrow"/>
+  <path d="M435 120 L500 120" class="arrow"/>
+  <path d="M655 120 L725 150" class="arrow"/>
+  <path d="M655 280 L725 230" class="arrow"/>
+  <text x="490" y="370" class="small" text-anchor="middle">核心直觉：把图片编码成 LLM 能读的 token，再用视觉指令微调教它按人的问题回答。</text>
+</svg>

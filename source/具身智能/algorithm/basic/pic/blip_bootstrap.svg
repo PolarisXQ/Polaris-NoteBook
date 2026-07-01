@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <defs>
+    <style>
+      .raw { fill: #fff5f5; stroke: #cc5252; stroke-width: 2; rx: 12; }
+      .model { fill: #f3f8ff; stroke: #4078b8; stroke-width: 2; rx: 12; }
+      .clean { fill: #f1fff4; stroke: #2e8b57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="40" y="80" width="190" height="120" class="raw"/>
+  <text x="135" y="125" text-anchor="middle" class="txt">网络图文对</text>
+  <text x="135" y="160" text-anchor="middle" class="small">数量大，但噪声多</text>
+
+  <rect x="310" y="45" width="190" height="90" class="model"/>
+  <text x="405" y="88" text-anchor="middle" class="txt">Captioner</text>
+  <text x="405" y="116" text-anchor="middle" class="small">生成更清楚的描述</text>
+
+  <rect x="310" y="185" width="190" height="90" class="model"/>
+  <text x="405" y="228" text-anchor="middle" class="txt">Filter</text>
+  <text x="405" y="256" text-anchor="middle" class="small">筛掉不匹配样本</text>
+
+  <rect x="585" y="80" width="180" height="120" class="clean"/>
+  <text x="675" y="125" text-anchor="middle" class="txt">干净图文数据</text>
+  <text x="675" y="160" text-anchor="middle" class="small">更适合预训练</text>
+
+  <rect x="825" y="80" width="120" height="120" class="model"/>
+  <text x="885" y="127" text-anchor="middle" class="txt">BLIP</text>
+  <text x="885" y="160" text-anchor="middle" class="small">理解 + 生成</text>
+
+  <path d="M230 140 L310 90" class="arrow"/>
+  <path d="M230 140 L310 230" class="arrow"/>
+  <path d="M500 90 L585 120" class="arrow"/>
+  <path d="M500 230 L585 165" class="arrow"/>
+  <path d="M765 140 L825 140" class="arrow"/>
+
+  <text x="490" y="340" class="small" text-anchor="middle">核心直觉：网络数据不干净，就让模型自己生成描述、筛选样本，再用更好的数据训练自己。</text>
+</svg>

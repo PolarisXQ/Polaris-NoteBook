@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .core { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 14; }
+      .cap { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="390" y="150" width="200" height="120" class="core"/>
+  <text x="490" y="198" text-anchor="middle" class="txt">Qwen-VL</text>
+  <text x="490" y="230" text-anchor="middle" class="small">Qwen + 视觉能力</text>
+
+  <rect x="80" y="55" width="190" height="80" class="cap"/>
+  <text x="175" y="90" text-anchor="middle" class="txt">图像理解</text>
+  <text x="175" y="116" text-anchor="middle" class="small">caption / VQA</text>
+
+  <rect x="395" y="35" width="190" height="80" class="cap"/>
+  <text x="490" y="70" text-anchor="middle" class="txt">文字读取</text>
+  <text x="490" y="96" text-anchor="middle" class="small">OCR / 图中文字</text>
+
+  <rect x="710" y="55" width="190" height="80" class="cap"/>
+  <text x="805" y="90" text-anchor="middle" class="txt">视觉定位</text>
+  <text x="805" y="116" text-anchor="middle" class="small">grounding / box</text>
+
+  <rect x="180" y="310" width="190" height="80" class="cap"/>
+  <text x="275" y="345" text-anchor="middle" class="txt">多语言</text>
+  <text x="275" y="371" text-anchor="middle" class="small">中英文场景</text>
+
+  <rect x="610" y="310" width="190" height="80" class="cap"/>
+  <text x="705" y="345" text-anchor="middle" class="txt">图文对话</text>
+  <text x="705" y="371" text-anchor="middle" class="small">按指令回答</text>
+
+  <path d="M270 95 L390 178" class="arrow"/>
+  <path d="M490 115 L490 150" class="arrow"/>
+  <path d="M710 95 L590 178" class="arrow"/>
+  <path d="M370 350 L430 270" class="arrow"/>
+  <path d="M610 350 L550 270" class="arrow"/>
+</svg>

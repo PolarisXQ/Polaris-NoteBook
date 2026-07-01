@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .img { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .txtbox { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .loss { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .good { fill: #2c8a57; }
+      .bad { fill: #cc5252; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="55" y="70" width="180" height="82" class="img"/>
+  <text x="145" y="105" text-anchor="middle" class="txt">图片向量</text>
+  <text x="145" y="132" text-anchor="middle" class="small">image encoder</text>
+
+  <rect x="55" y="260" width="180" height="82" class="txtbox"/>
+  <text x="145" y="295" text-anchor="middle" class="txt">文本向量</text>
+  <text x="145" y="322" text-anchor="middle" class="small">text encoder</text>
+
+  <rect x="330" y="95" width="230" height="220" class="loss"/>
+  <text x="445" y="138" text-anchor="middle" class="txt">每个 pair 独立判断</text>
+  <circle cx="380" cy="190" r="12" class="good"/>
+  <text x="410" y="197" class="small">匹配：推高相似度</text>
+  <circle cx="380" cy="245" r="12" class="bad"/>
+  <text x="410" y="252" class="small">不匹配：压低相似度</text>
+
+  <rect x="665" y="125" width="245" height="160" class="txtbox"/>
+  <text x="787" y="170" text-anchor="middle" class="txt">Sigmoid Loss</text>
+  <text x="787" y="205" text-anchor="middle" class="small">不是在 batch 内抢第一</text>
+  <text x="787" y="235" text-anchor="middle" class="small">而是判断这一对是否匹配</text>
+
+  <path d="M235 111 L330 170" class="arrow"/>
+  <path d="M235 301 L330 245" class="arrow"/>
+  <path d="M560 205 L665 205" class="arrow"/>
+  <text x="490" y="375" class="small" text-anchor="middle">核心直觉：CLIP 问“哪个文本最匹配”，SigLIP 问“这对图文是否匹配”。</text>
+</svg>

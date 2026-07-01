@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .data { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .student { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .teacher { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .update { stroke: #2c8a57; stroke-width: 2.5; fill: none; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="45" y="95" width="170" height="100" class="data"/>
+  <text x="130" y="138" text-anchor="middle" class="txt">原始图片</text>
+  <text x="130" y="168" text-anchor="middle" class="small">无人工标签</text>
+
+  <rect x="285" y="45" width="190" height="90" class="data"/>
+  <text x="380" y="88" text-anchor="middle" class="txt">全局 crop</text>
+  <text x="380" y="116" text-anchor="middle" class="small">看整体</text>
+
+  <rect x="285" y="220" width="190" height="90" class="data"/>
+  <text x="380" y="263" text-anchor="middle" class="txt">局部 crop</text>
+  <text x="380" y="291" text-anchor="middle" class="small">看局部</text>
+
+  <rect x="570" y="45" width="160" height="90" class="teacher"/>
+  <text x="650" y="88" text-anchor="middle" class="txt">Teacher</text>
+  <text x="650" y="116" text-anchor="middle" class="small">稳定输出</text>
+
+  <rect x="570" y="220" width="160" height="90" class="student"/>
+  <text x="650" y="263" text-anchor="middle" class="txt">Student</text>
+  <text x="650" y="291" text-anchor="middle" class="small">学习 teacher</text>
+
+  <rect x="800" y="128" width="130" height="95" class="student"/>
+  <text x="865" y="168" text-anchor="middle" class="txt">一致性</text>
+  <text x="865" y="196" text-anchor="middle" class="small">同图不同视角</text>
+
+  <path d="M215 145 L285 90" class="arrow"/>
+  <path d="M215 145 L285 265" class="arrow"/>
+  <path d="M475 90 L570 90" class="arrow"/>
+  <path d="M475 265 L570 265" class="arrow"/>
+  <path d="M730 90 L800 165" class="arrow"/>
+  <path d="M730 265 L800 190" class="arrow"/>
+  <path d="M650 220 C700 180 700 150 650 135" class="update"/>
+
+  <text x="490" y="370" class="small" text-anchor="middle">核心直觉：不需要标签，让模型从同一图片的不同视角中学习稳定的视觉语义。</text>
+</svg>

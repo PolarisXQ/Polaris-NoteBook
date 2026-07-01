@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Polaris' NoteBook"
-copyright = '2023, PolarisXQ'
+copyright = '2025, PolarisXQ'
 author = 'PolarisXQ'
 release = '0.0'
 

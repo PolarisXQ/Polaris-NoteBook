@@ -1,6 +1,6 @@
 .. _mis:
 
-🐋Miscellaneous
+🤪Miscellaneous
 ====================
 
 .. toctree::
