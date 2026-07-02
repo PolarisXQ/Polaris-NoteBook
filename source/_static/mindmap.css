@@ -1,0 +1,156 @@
+.mindmap-shell {
+  --mindmap-bg: #f8fafc;
+  --mindmap-panel: #ffffff;
+  --mindmap-border: #cbd5e1;
+  --mindmap-text: #0f172a;
+  --mindmap-muted: #475569;
+  --mindmap-line: #94a3b8;
+  --mindmap-root: #e0f2fe;
+  --mindmap-root-border: #0284c7;
+  --mindmap-section: #f0fdf4;
+  --mindmap-section-border: #16a34a;
+  --mindmap-topic: #fff7ed;
+  --mindmap-topic-border: #ea580c;
+  --mindmap-leaf: #fdf2f8;
+  --mindmap-leaf-border: #db2777;
+  background: var(--mindmap-bg);
+  border: 1px solid var(--mindmap-border);
+  border-radius: 8px;
+  min-height: 680px;
+  height: min(78vh, 820px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+}
+
+.mindmap-toolbar {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--mindmap-border);
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  left: 14px;
+  padding: 6px;
+  position: absolute;
+  top: 14px;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+}
+
+.mindmap-toolbar button {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--mindmap-border);
+  border-radius: 6px;
+  color: var(--mindmap-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 700;
+  height: 34px;
+  justify-content: center;
+  line-height: 1;
+  min-width: 34px;
+  padding: 0 10px;
+}
+
+.mindmap-toolbar button:hover,
+.mindmap-toolbar button:focus-visible {
+  border-color: #0284c7;
+  color: #0369a1;
+  outline: none;
+}
+
+.mindmap-canvas {
+  cursor: grab;
+  display: block;
+  height: 100%;
+  touch-action: none;
+  width: 100%;
+}
+
+.mindmap-canvas.is-panning {
+  cursor: grabbing;
+}
+
+.mindmap-link {
+  fill: none;
+  stroke: var(--mindmap-line);
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.mindmap-node {
+  cursor: pointer;
+}
+
+.mindmap-node rect {
+  filter: drop-shadow(0 8px 14px rgba(15, 23, 42, 0.08));
+  transition: stroke-width 120ms ease, filter 120ms ease;
+}
+
+.mindmap-node:hover rect,
+.mindmap-node:focus-visible rect {
+  filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.14));
+  stroke-width: 2.8;
+  outline: none;
+}
+
+.mindmap-node text {
+  fill: var(--mindmap-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  pointer-events: none;
+}
+
+.mindmap-node-title {
+  font-size: 15px;
+  font-weight: 760;
+}
+
+.mindmap-node-subtitle {
+  fill: var(--mindmap-muted);
+  font-size: 12px;
+  font-weight: 520;
+}
+
+.mindmap-toggle {
+  fill: #ffffff;
+  stroke: #64748b;
+  stroke-width: 1.7;
+}
+
+.mindmap-toggle-label {
+  fill: #334155;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.mindmap-open-link {
+  fill: #e0f2fe;
+  stroke: #0284c7;
+  stroke-width: 1.5;
+}
+
+.mindmap-open-label {
+  fill: #0369a1;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mindmap-empty {
+  color: var(--mindmap-muted);
+  padding: 32px;
+}
+
+@media (max-width: 720px) {
+  .mindmap-shell {
+    min-height: 560px;
+    height: 72vh;
+  }
+
+  .mindmap-toolbar {
+    flex-wrap: wrap;
+    max-width: calc(100% - 28px);
+  }
+}

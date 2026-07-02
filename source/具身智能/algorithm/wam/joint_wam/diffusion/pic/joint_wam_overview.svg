@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .obs { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .wm { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .act { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="55" y="80" width="190" height="110" class="obs"/>
+  <text x="150" y="124" text-anchor="middle" class="txt">当前观测</text>
+  <text x="150" y="154" text-anchor="middle" class="small">图像 / 状态 / 指令</text>
+  <rect x="360" y="65" width="260" height="140" class="wm"/>
+  <text x="490" y="118" text-anchor="middle" class="txt">Joint WAM</text>
+  <text x="490" y="151" text-anchor="middle" class="small">联合建模未来世界和动作</text>
+  <rect x="735" y="45" width="190" height="90" class="obs"/>
+  <text x="830" y="85" text-anchor="middle" class="txt">未来世界</text>
+  <text x="830" y="112" text-anchor="middle" class="small">future video/state</text>
+  <rect x="735" y="195" width="190" height="90" class="act"/>
+  <text x="830" y="235" text-anchor="middle" class="txt">机器人动作</text>
+  <text x="830" y="262" text-anchor="middle" class="small">action chunk</text>
+  <path d="M245 135 L360 135" class="arrow"/>
+  <path d="M620 120 L735 90" class="arrow"/>
+  <path d="M620 155 L735 240" class="arrow"/>
+  <text x="490" y="350" text-anchor="middle" class="small">核心直觉：不要只预测动作，也不要只预测视频，而是在一个模型里一起学习“会发生什么”和“该怎么做”。</text>
+</svg>

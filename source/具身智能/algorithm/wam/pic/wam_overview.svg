@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="390" viewBox="0 0 980 390" role="img" aria-labelledby="title desc">
+  <title id="title">WAM overview</title>
+  <desc id="desc">A diagram showing a world-action model jointly modeling robot actions and future world states.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .input { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .model { fill: #fdf2f8; stroke: #db2777; stroke-width: 2; rx: 18; }
+      .world { fill: #eef2ff; stroke: #4f46e5; stroke-width: 2; rx: 14; }
+      .act { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 14; }
+      .label { font: 700 23px sans-serif; fill: #0f172a; }
+      .small { font: 17px sans-serif; fill: #334155; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #64748b; stroke-width: 2.5; fill: none; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="980" height="390"/>
+  <rect class="input" x="45" y="80" width="215" height="90"/>
+  <text class="label" x="152.5" y="116" text-anchor="middle">当前观测</text>
+  <text class="small" x="152.5" y="145" text-anchor="middle">图像 / 状态 / 历史</text>
+  <rect class="input" x="45" y="220" width="215" height="90"/>
+  <text class="label" x="152.5" y="256" text-anchor="middle">任务指令</text>
+  <text class="small" x="152.5" y="285" text-anchor="middle">语言目标 / 奖励</text>
+  <path class="arrow" d="M260 125 C315 125, 330 155, 375 175"/>
+  <path class="arrow" d="M260 265 C315 265, 330 235, 375 215"/>
+  <rect class="model" x="375" y="115" width="240" height="160"/>
+  <text class="label" x="495" y="162" text-anchor="middle">WAM</text>
+  <text class="small" x="495" y="195" text-anchor="middle">联合建模动作</text>
+  <text class="small" x="495" y="224" text-anchor="middle">和世界变化</text>
+  <path class="arrow" d="M615 165 L720 115"/>
+  <path class="arrow" d="M615 225 L720 275"/>
+  <rect class="act" x="720" y="70" width="215" height="90"/>
+  <text class="label" x="827.5" y="106" text-anchor="middle">动作轨迹</text>
+  <text class="small" x="827.5" y="135" text-anchor="middle">机器人如何做</text>
+  <rect class="world" x="720" y="230" width="215" height="90"/>
+  <text class="label" x="827.5" y="266" text-anchor="middle">未来状态</text>
+  <text class="small" x="827.5" y="295" text-anchor="middle">世界会怎样变</text>
+  <path class="dash" d="M827.5 160 C865 185, 865 205, 827.5 230"/>
+  <path class="dash" d="M780 230 C742 205, 742 185, 780 160"/>
+</svg>

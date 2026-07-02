@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .box { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .latent { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .plan { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="55" y="95" width="150" height="95" class="box"/>
+  <text x="130" y="136" text-anchor="middle" class="txt">像素观测</text>
+  <text x="130" y="164" text-anchor="middle" class="small">image frame</text>
+  <rect x="285" y="95" width="170" height="95" class="latent"/>
+  <text x="370" y="136" text-anchor="middle" class="txt">潜在状态</text>
+  <text x="370" y="164" text-anchor="middle" class="small">latent state</text>
+  <rect x="535" y="95" width="180" height="95" class="latent"/>
+  <text x="625" y="136" text-anchor="middle" class="txt">动态模型</text>
+  <text x="625" y="164" text-anchor="middle" class="small">predict future</text>
+  <rect x="785" y="95" width="150" height="95" class="plan"/>
+  <text x="860" y="136" text-anchor="middle" class="txt">规划动作</text>
+  <text x="860" y="164" text-anchor="middle" class="small">choose action</text>
+  <path d="M205 142 L285 142" class="arrow"/>
+  <path d="M455 142 L535 142" class="arrow"/>
+  <path d="M715 142 L785 142" class="arrow"/>
+  <path d="M860 190 C830 285 245 285 130 190" class="arrow"/>
+  <text x="490" y="350" text-anchor="middle" class="small">核心直觉：不要直接在高维像素里规划，而是在压缩后的 latent world 中想象未来。</text>
+</svg>

@@ -6,6 +6,7 @@
 .. toctree::
    :maxdepth: 3
 
+   mindmap
    algorithm/index
    platform_framework/index
    simulation/index

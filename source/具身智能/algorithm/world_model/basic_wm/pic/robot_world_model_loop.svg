@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .obs { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .act { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .wm { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="60" y="80" width="180" height="105" class="obs"/>
+  <text x="150" y="124" text-anchor="middle" class="txt">当前观测</text>
+  <text x="150" y="154" text-anchor="middle" class="small">image / state</text>
+  <rect x="60" y="245" width="180" height="105" class="act"/>
+  <text x="150" y="289" text-anchor="middle" class="txt">候选动作</text>
+  <text x="150" y="319" text-anchor="middle" class="small">action sequence</text>
+  <rect x="365" y="150" width="220" height="125" class="wm"/>
+  <text x="475" y="200" text-anchor="middle" class="txt">动作条件世界模型</text>
+  <text x="475" y="232" text-anchor="middle" class="small">predict consequences</text>
+  <rect x="705" y="150" width="210" height="125" class="obs"/>
+  <text x="810" y="200" text-anchor="middle" class="txt">想象未来</text>
+  <text x="810" y="232" text-anchor="middle" class="small">future observation</text>
+  <path d="M240 132 L365 190" class="arrow"/>
+  <path d="M240 298 L365 235" class="arrow"/>
+  <path d="M585 212 L705 212" class="arrow"/>
+  <path d="M810 275 C760 365 250 382 150 350" class="arrow"/>
+  <text x="490" y="390" text-anchor="middle" class="small">核心直觉：机器人先在模型中试动作，再把最有希望的动作拿到真实世界执行。</text>
+</svg>

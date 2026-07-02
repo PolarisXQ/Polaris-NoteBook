@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="360" viewBox="0 0 980 360" role="img" aria-labelledby="title desc">
+  <title id="title">VLA overview</title>
+  <desc id="desc">A diagram showing vision and language inputs producing robot actions through a VLA model.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .model { fill: #ecfeff; stroke: #0891b2; stroke-width: 2; rx: 18; }
+      .action { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 14; }
+      .label { font: 700 24px sans-serif; fill: #0f172a; }
+      .small { font: 18px sans-serif; fill: #334155; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="980" height="360"/>
+  <rect class="box" x="50" y="60" width="200" height="92"/>
+  <text class="label" x="150" y="100" text-anchor="middle">视觉观测</text>
+  <text class="small" x="150" y="130" text-anchor="middle">图像 / 视频 / 状态</text>
+  <rect class="box" x="50" y="210" width="200" height="92"/>
+  <text class="label" x="150" y="250" text-anchor="middle">语言指令</text>
+  <text class="small" x="150" y="280" text-anchor="middle">目标 / 约束 / 意图</text>
+  <path class="arrow" d="M250 106 C310 106, 330 140, 380 165"/>
+  <path class="arrow" d="M250 256 C310 256, 330 220, 380 195"/>
+  <rect class="model" x="380" y="110" width="230" height="140"/>
+  <text class="label" x="495" y="158" text-anchor="middle">VLA</text>
+  <text class="small" x="495" y="190" text-anchor="middle">理解场景和任务</text>
+  <text class="small" x="495" y="220" text-anchor="middle">生成可执行动作</text>
+  <path class="arrow" d="M610 180 L720 180"/>
+  <rect class="action" x="720" y="110" width="210" height="140"/>
+  <text class="label" x="825" y="155" text-anchor="middle">机器人动作</text>
+  <text class="small" x="825" y="188" text-anchor="middle">关节 / 末端 / 夹爪</text>
+  <text class="small" x="825" y="218" text-anchor="middle">一步或一段轨迹</text>
+</svg>

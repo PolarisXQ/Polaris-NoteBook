@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="440" viewBox="0 0 1040 440" role="img" aria-labelledby="title desc">
+  <title id="title">Autoregressive versus diffusion generation</title>
+  <desc id="desc">A comparison between autoregressive sequential generation and diffusion iterative denoising.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 16; }
+      .ar { fill: #ecfeff; stroke: #0891b2; stroke-width: 2; rx: 12; }
+      .df { fill: #fdf2f8; stroke: #db2777; stroke-width: 2; rx: 12; }
+      .out { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .noise { fill: #f1f5f9; stroke: #64748b; stroke-width: 2; rx: 12; }
+      .label { font: 700 25px sans-serif; fill: #0f172a; }
+      .small { font: 18px sans-serif; fill: #334155; }
+      .tiny { font: 16px sans-serif; fill: #475569; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1040" height="440"/>
+  <rect class="panel" x="35" y="45" width="970" height="155"/>
+  <text class="label" x="75" y="90">自回归：一个接一个生成</text>
+  <rect class="ar" x="80" y="120" width="105" height="50"/>
+  <text class="small" x="132.5" y="151" text-anchor="middle">token 1</text>
+  <path class="arrow" d="M185 145 L230 145"/>
+  <rect class="ar" x="230" y="120" width="105" height="50"/>
+  <text class="small" x="282.5" y="151" text-anchor="middle">token 2</text>
+  <path class="arrow" d="M335 145 L380 145"/>
+  <rect class="ar" x="380" y="120" width="105" height="50"/>
+  <text class="small" x="432.5" y="151" text-anchor="middle">token 3</text>
+  <path class="arrow" d="M485 145 L530 145"/>
+  <rect class="out" x="530" y="120" width="165" height="50"/>
+  <text class="small" x="612.5" y="151" text-anchor="middle">动作/未来序列</text>
+  <text class="tiny" x="735" y="137">适合表达顺序逻辑</text>
+  <text class="tiny" x="735" y="164">但长序列可能慢且会累积误差</text>
+  <rect class="panel" x="35" y="240" width="970" height="155"/>
+  <text class="label" x="75" y="285">扩散式：从噪声反复去噪</text>
+  <rect class="noise" x="80" y="315" width="120" height="50"/>
+  <text class="small" x="140" y="346" text-anchor="middle">噪声轨迹</text>
+  <path class="arrow" d="M200 340 L245 340"/>
+  <rect class="df" x="245" y="315" width="120" height="50"/>
+  <text class="small" x="305" y="346" text-anchor="middle">去噪 1</text>
+  <path class="arrow" d="M365 340 L410 340"/>
+  <rect class="df" x="410" y="315" width="120" height="50"/>
+  <text class="small" x="470" y="346" text-anchor="middle">去噪 2</text>
+  <path class="arrow" d="M530 340 L575 340"/>
+  <rect class="out" x="575" y="315" width="165" height="50"/>
+  <text class="small" x="657.5" y="346" text-anchor="middle">完整轨迹</text>
+  <text class="tiny" x="780" y="332">适合连续动作和多解任务</text>
+  <text class="tiny" x="780" y="359">但通常需要多步采样</text>
+</svg>

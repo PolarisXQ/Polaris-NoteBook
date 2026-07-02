@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="380" viewBox="0 0 980 380" role="img" aria-labelledby="title desc">
+  <title id="title">World model overview</title>
+  <desc id="desc">A diagram showing an agent using a world model to imagine futures before acting.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .model { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 18; }
+      .future { fill: #eef2ff; stroke: #4f46e5; stroke-width: 2; rx: 14; }
+      .label { font: 700 23px sans-serif; fill: #0f172a; }
+      .small { font: 17px sans-serif; fill: #334155; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="980" height="380"/>
+  <rect class="box" x="50" y="135" width="185" height="110"/>
+  <text class="label" x="142.5" y="178" text-anchor="middle">当前状态</text>
+  <text class="small" x="142.5" y="210" text-anchor="middle">观测 + 历史</text>
+  <path class="arrow" d="M235 190 L335 190"/>
+  <rect class="model" x="335" y="95" width="235" height="190"/>
+  <text class="label" x="452.5" y="150" text-anchor="middle">World Model</text>
+  <text class="small" x="452.5" y="184" text-anchor="middle">预测状态变化</text>
+  <text class="small" x="452.5" y="214" text-anchor="middle">估计奖励 / 价值</text>
+  <text class="small" x="452.5" y="244" text-anchor="middle">在内部想象未来</text>
+  <path class="arrow" d="M570 150 L675 95"/>
+  <path class="arrow" d="M570 190 L675 190"/>
+  <path class="arrow" d="M570 230 L675 285"/>
+  <rect class="future" x="675" y="50" width="245" height="80"/>
+  <text class="label" x="797.5" y="83" text-anchor="middle">未来 A</text>
+  <text class="small" x="797.5" y="110" text-anchor="middle">动作序列 1 的结果</text>
+  <rect class="future" x="675" y="150" width="245" height="80"/>
+  <text class="label" x="797.5" y="183" text-anchor="middle">未来 B</text>
+  <text class="small" x="797.5" y="210" text-anchor="middle">动作序列 2 的结果</text>
+  <rect class="future" x="675" y="250" width="245" height="80"/>
+  <text class="label" x="797.5" y="283" text-anchor="middle">未来 C</text>
+  <text class="small" x="797.5" y="310" text-anchor="middle">动作序列 3 的结果</text>
+</svg>

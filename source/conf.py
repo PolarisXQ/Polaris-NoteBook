@@ -78,3 +78,11 @@ html_theme_options = {
     #   ("Other", "https://bla.com")
   ]
 }
+
+html_css_files = [
+    'mindmap.css',
+]
+
+html_js_files = [
+    'mindmap.js',
+]

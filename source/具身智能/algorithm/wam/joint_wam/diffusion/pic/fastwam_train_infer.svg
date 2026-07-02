@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .train { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .infer { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="80" y="75" width="340" height="130" class="train"/>
+  <text x="250" y="122" text-anchor="middle" class="txt">训练阶段</text>
+  <text x="250" y="156" text-anchor="middle" class="small">视频预测 + 动作学习</text>
+  <text x="250" y="182" text-anchor="middle" class="small">用世界动态塑造表示</text>
+  <rect x="560" y="75" width="340" height="130" class="infer"/>
+  <text x="730" y="122" text-anchor="middle" class="txt">推理阶段</text>
+  <text x="730" y="156" text-anchor="middle" class="small">跳过未来视频生成</text>
+  <text x="730" y="182" text-anchor="middle" class="small">直接实时输出动作</text>
+  <path d="M420 140 L560 140" class="arrow"/>
+  <text x="490" y="310" text-anchor="middle" class="small">核心直觉：视频预测用于训练世界表示，部署时不一定每步都要显式想象未来视频。</text>
+</svg>

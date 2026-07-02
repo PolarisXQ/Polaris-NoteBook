@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .core { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 16; }
+      .mode { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="380" y="150" width="220" height="120" class="core"/>
+  <text x="490" y="198" text-anchor="middle" class="txt">统一 WAM</text>
+  <text x="490" y="230" text-anchor="middle" class="small">shared generative model</text>
+  <rect x="70" y="55" width="190" height="80" class="mode"/>
+  <text x="165" y="100" text-anchor="middle" class="txt">视频生成</text>
+  <rect x="395" y="35" width="190" height="80" class="mode"/>
+  <text x="490" y="80" text-anchor="middle" class="txt">动作策略</text>
+  <rect x="720" y="55" width="190" height="80" class="mode"/>
+  <text x="815" y="100" text-anchor="middle" class="txt">世界模型</text>
+  <rect x="180" y="315" width="210" height="80" class="mode"/>
+  <text x="285" y="360" text-anchor="middle" class="txt">逆动力学</text>
+  <rect x="610" y="315" width="230" height="80" class="mode"/>
+  <text x="725" y="360" text-anchor="middle" class="txt">视频-动作联合预测</text>
+  <path d="M260 95 L380 178" class="arrow"/>
+  <path d="M490 115 L490 150" class="arrow"/>
+  <path d="M720 95 L600 178" class="arrow"/>
+  <path d="M390 355 L440 270" class="arrow"/>
+  <path d="M610 355 L550 270" class="arrow"/>
+</svg>

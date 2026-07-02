@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .student { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .target { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .loss { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 8 7; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="60" y="80" width="210" height="105" class="student"/>
+  <text x="165" y="123" text-anchor="middle" class="txt">当前观测</text>
+  <text x="165" y="153" text-anchor="middle" class="small">student input</text>
+  <rect x="60" y="250" width="210" height="105" class="target"/>
+  <text x="165" y="293" text-anchor="middle" class="txt">未来帧</text>
+  <text x="165" y="323" text-anchor="middle" class="small">target only</text>
+  <rect x="380" y="80" width="220" height="105" class="student"/>
+  <text x="490" y="123" text-anchor="middle" class="txt">学生预测器</text>
+  <text x="490" y="153" text-anchor="middle" class="small">predict future latent</text>
+  <rect x="380" y="250" width="220" height="105" class="target"/>
+  <text x="490" y="293" text-anchor="middle" class="txt">目标编码器</text>
+  <text x="490" y="323" text-anchor="middle" class="small">encode future latent</text>
+  <rect x="710" y="165" width="190" height="105" class="loss"/>
+  <text x="805" y="208" text-anchor="middle" class="txt">latent loss</text>
+  <text x="805" y="238" text-anchor="middle" class="small">不重建像素</text>
+  <path d="M270 132 L380 132" class="arrow"/>
+  <path d="M270 302 L380 302" class="arrow"/>
+  <path d="M600 132 L710 205" class="arrow"/>
+  <path d="M600 302 L710 230" class="arrow"/>
+  <path d="M270 302 C330 210 330 185 380 132" class="arrow dash"/>
+  <text x="490" y="395" text-anchor="middle" class="small">核心直觉：未来只作为监督目标，学生不能偷看未来，只能从当前状态预测未来 latent。</text>
+</svg>

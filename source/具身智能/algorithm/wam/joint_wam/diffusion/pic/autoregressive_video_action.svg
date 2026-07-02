@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .past { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .next { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .real { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="55" y="90" width="190" height="105" class="past"/>
+  <text x="150" y="132" text-anchor="middle" class="txt">历史观测</text>
+  <text x="150" y="162" text-anchor="middle" class="small">past tokens</text>
+  <rect x="350" y="90" width="230" height="105" class="next"/>
+  <text x="465" y="132" text-anchor="middle" class="txt">生成下一段</text>
+  <text x="465" y="162" text-anchor="middle" class="small">video + action chunk</text>
+  <rect x="700" y="90" width="210" height="105" class="real"/>
+  <text x="805" y="132" text-anchor="middle" class="txt">真实反馈</text>
+  <text x="805" y="162" text-anchor="middle" class="small">closed-loop update</text>
+  <path d="M245 142 L350 142" class="arrow"/>
+  <path d="M580 142 L700 142" class="arrow"/>
+  <path d="M805 195 C720 310 260 310 150 195" class="arrow"/>
+  <text x="490" y="355" text-anchor="middle" class="small">核心直觉：像语言模型一样按时间顺序生成，但生成的是连续视觉和动作 latent。</text>
+</svg>

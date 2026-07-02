@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <style>
+      .video { fill: #f2fbff; stroke: #2f6f9f; stroke-width: 2; rx: 12; }
+      .hidden { fill: #fff8ec; stroke: #c77d1f; stroke-width: 2; rx: 12; }
+      .action { fill: #f5fff7; stroke: #2c8a57; stroke-width: 2; rx: 12; }
+      .txt { font-family: Arial, "PingFang SC", sans-serif; font-size: 22px; fill: #222; }
+      .small { font-family: Arial, "PingFang SC", sans-serif; font-size: 17px; fill: #444; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="55" y="85" width="200" height="105" class="video"/>
+  <text x="155" y="127" text-anchor="middle" class="txt">视频 DiT</text>
+  <text x="155" y="157" text-anchor="middle" class="small">学习未来动态</text>
+  <rect x="360" y="85" width="230" height="105" class="hidden"/>
+  <text x="475" y="127" text-anchor="middle" class="txt">中间去噪特征</text>
+  <text x="475" y="157" text-anchor="middle" class="small">temporal hidden states</text>
+  <rect x="700" y="85" width="200" height="105" class="action"/>
+  <text x="800" y="127" text-anchor="middle" class="txt">动作 DiT</text>
+  <text x="800" y="157" text-anchor="middle" class="small">生成动作分布</text>
+  <path d="M255 137 L360 137" class="arrow"/>
+  <path d="M590 137 L700 137" class="arrow"/>
+  <text x="490" y="305" text-anchor="middle" class="small">核心直觉：不必等未来视频完整生成，视频生成过程中的动态特征就能指导动作预测。</text>
+</svg>
