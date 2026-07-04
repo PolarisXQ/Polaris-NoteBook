@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="430" viewBox="0 0 1040 430" role="img" aria-labelledby="title desc">
+  <title id="title">World-Env virtual RL</title>
+  <desc id="desc">World-Env uses a world model simulator and VLM reflector for VLA reinforcement learning post-training.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .vla { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 14; }
+      .wm { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 16; }
+      .reflect { fill: #eef2ff; stroke: #4f46e5; stroke-width: 2; rx: 14; }
+      .rl { fill: #fdf2f8; stroke: #db2777; stroke-width: 2; rx: 14; }
+      .label { font: 700 23px sans-serif; fill: #0f172a; }
+      .small { font: 17px sans-serif; fill: #334155; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #64748b; stroke-width: 2.5; fill: none; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1040" height="430"/>
+  <rect class="vla" x="70" y="165" width="180" height="100"/>
+  <text class="label" x="160" y="203" text-anchor="middle">VLA 策略</text>
+  <text class="small" x="160" y="232" text-anchor="middle">图像 + 指令 -> 动作</text>
+  <path class="arrow" d="M250 215 L340 215"/>
+  <rect class="wm" x="340" y="145" width="220" height="140"/>
+  <text class="label" x="450" y="190" text-anchor="middle">World Simulator</text>
+  <text class="small" x="450" y="220" text-anchor="middle">动作条件未来观测</text>
+  <text class="small" x="450" y="248" text-anchor="middle">虚拟环境</text>
+  <path class="arrow" d="M560 215 L650 215"/>
+  <rect class="reflect" x="650" y="145" width="210" height="140"/>
+  <text class="label" x="755" y="190" text-anchor="middle">Instant Reflector</text>
+  <text class="small" x="755" y="220" text-anchor="middle">reward / done</text>
+  <text class="small" x="755" y="248" text-anchor="middle">判断任务进度</text>
+  <path class="arrow" d="M755 285 L755 340 L160 340 L160 265"/>
+  <rect class="rl" x="420" y="40" width="250" height="80"/>
+  <text class="label" x="545" y="72" text-anchor="middle">RL 后训练</text>
+  <text class="small" x="545" y="98" text-anchor="middle">用虚拟 rollout 更新 VLA</text>
+  <path class="dash" d="M755 145 C735 80, 690 80, 670 80"/>
+  <path class="dash" d="M420 80 C275 80, 160 110, 160 165"/>
+</svg>

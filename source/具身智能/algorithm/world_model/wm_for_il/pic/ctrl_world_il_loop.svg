@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="420" viewBox="0 0 1040 420" role="img" aria-labelledby="title desc">
+  <title id="title">Ctrl-World for imitation learning</title>
+  <desc id="desc">A controllable world model evaluates and improves imitation learning policies in imagination.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .model { fill: #ecfeff; stroke: #0891b2; stroke-width: 2; rx: 16; }
+      .data { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 14; }
+      .warn { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 14; }
+      .label { font: 700 23px sans-serif; fill: #0f172a; }
+      .small { font: 17px sans-serif; fill: #334155; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1040" height="420"/>
+  <rect class="data" x="45" y="150" width="185" height="90"/>
+  <text class="label" x="137.5" y="188" text-anchor="middle">演示数据</text>
+  <text class="small" x="137.5" y="216" text-anchor="middle">专家轨迹</text>
+  <path class="arrow" d="M230 195 L300 195"/>
+  <rect class="box" x="300" y="150" width="185" height="90"/>
+  <text class="label" x="392.5" y="188" text-anchor="middle">IL 策略</text>
+  <text class="small" x="392.5" y="216" text-anchor="middle">输出动作</text>
+  <path class="arrow" d="M485 195 L555 195"/>
+  <rect class="model" x="555" y="105" width="220" height="180"/>
+  <text class="label" x="665" y="158" text-anchor="middle">Ctrl-World</text>
+  <text class="small" x="665" y="190" text-anchor="middle">动作条件预测</text>
+  <text class="small" x="665" y="220" text-anchor="middle">多视角想象 rollout</text>
+  <path class="arrow" d="M775 150 L850 105"/>
+  <path class="arrow" d="M775 240 L850 285"/>
+  <rect class="warn" x="850" y="65" width="155" height="80"/>
+  <text class="label" x="927.5" y="98" text-anchor="middle">评估策略</text>
+  <text class="small" x="927.5" y="123" text-anchor="middle">少做真实测试</text>
+  <rect class="data" x="850" y="255" width="155" height="80"/>
+  <text class="label" x="927.5" y="288" text-anchor="middle">合成演示</text>
+  <text class="small" x="927.5" y="313" text-anchor="middle">监督微调</text>
+  <path class="arrow" d="M850 310 C600 390, 345 360, 392 245"/>
+</svg>

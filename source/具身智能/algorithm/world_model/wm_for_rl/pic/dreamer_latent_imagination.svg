@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="430" viewBox="0 0 1040 430" role="img" aria-labelledby="title desc">
+  <title id="title">Dreamer latent imagination</title>
+  <desc id="desc">Dreamer learns a latent world model and trains actor critic from imagined trajectories.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .wm { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 16; }
+      .latent { fill: #eef2ff; stroke: #4f46e5; stroke-width: 2; rx: 14; }
+      .policy { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 14; }
+      .label { font: 700 23px sans-serif; fill: #0f172a; }
+      .small { font: 17px sans-serif; fill: #334155; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #64748b; stroke-width: 2.5; fill: none; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1040" height="430"/>
+  <rect class="box" x="45" y="170" width="180" height="90"/>
+  <text class="label" x="135" y="207" text-anchor="middle">真实经验</text>
+  <text class="small" x="135" y="235" text-anchor="middle">图像 / 动作 / 奖励</text>
+  <path class="arrow" d="M225 215 L300 215"/>
+  <rect class="wm" x="300" y="135" width="220" height="160"/>
+  <text class="label" x="410" y="185" text-anchor="middle">World Model</text>
+  <text class="small" x="410" y="216" text-anchor="middle">编码观测</text>
+  <text class="small" x="410" y="244" text-anchor="middle">预测 latent + reward</text>
+  <path class="arrow" d="M520 215 L595 215"/>
+  <rect class="latent" x="595" y="70" width="185" height="80"/>
+  <text class="label" x="687.5" y="103" text-anchor="middle">想象轨迹</text>
+  <text class="small" x="687.5" y="128" text-anchor="middle">z0, z1, z2...</text>
+  <rect class="policy" x="595" y="280" width="185" height="80"/>
+  <text class="label" x="687.5" y="313" text-anchor="middle">Actor-Critic</text>
+  <text class="small" x="687.5" y="338" text-anchor="middle">学动作和价值</text>
+  <path class="arrow" d="M688 150 L688 280"/>
+  <path class="dash" d="M780 320 C930 300, 930 95, 780 110"/>
+  <text class="small" x="884" y="205" text-anchor="middle">actor 在想象中试动作</text>
+</svg>
